@@ -219,7 +219,7 @@ h1,h2,h3,p,ul{margin:0;}
 }
 .conditions-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(6,1fr);
   gap:var(--space-gap-md);
   margin-bottom:24px;
 }

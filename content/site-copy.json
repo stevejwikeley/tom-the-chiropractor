@@ -1,5 +1,5 @@
 {
-  "_readme": "Reference copy of every text string on the site, for manual editing. This file does not drive the live page — edit it, then send me the changes and I'll fold them into index.html by hand.",
+  "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
   "nav": {
     "links": ["How it works", "What I treat", "Pricing", "Chiro vs physio", "Find me"],
@@ -7,58 +7,60 @@
   },
 
   "hero": {
-    "eyebrow": "For busy professionals with desk-related pain",
-    "heading": "Chiropractic that works around your working day",
-    "lead": "Neck, back and shoulder pain from long hours at a desk? Book online in under a minute, park right outside, and see the same chiropractor every visit. Evenings until 7pm, Saturday mornings, and a clear treatment plan — not an endless course of care.",
+    "eyebrow": "Modern chiropractic care in Loughborough",
+    "heading": "Chiropractic that fits around your life.",
+    "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last — with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
     "secondaryCta": "See how it works →",
-    "note": "New here? First appointments are 60 min consultations designed for new patients."
+    "note": "New here? Your first appointment is a 60-minute consultation, with treatment where appropriate."
   },
 
   "whoFor": {
-    "eyebrow": "Who it's for",
+    "eyebrow": "Who I help",
     "pills": [
-      "Office workers",
-      "Professionals",
-      "Hybrid & remote workers",
-      "Anyone with neck, back or shoulder pain"
+      "Busy people",
+      "Active people",
+      "Parents",
+      "People living with persistent pain"
     ]
   },
 
   "why": {
-    "strikethrough": "I provide chiropractic care.",
-    "heading": "I've designed the chiropractic experience around people who work.",
-    "pills": ["Convenience", "Consistency", "Trust", "Transparency"],
-    "quote": "I'll make getting treatment as easy as possible — and I'll only recommend the care you actually need."
+    "heading": "A simpler, more personal approach to chiropractic.",
+    "pills": ["Convenient", "Personal", "Clear", "Honest"],
+    "quote": "I'll make getting the right care as straightforward as possible — and I'll only recommend what I believe you need."
   },
 
   "valueFramework": {
-    "eyebrow": "What makes me different",
+    "eyebrow": "A better experience",
     "columns": [
       {
-        "title": "You need",
+        "title": "You want",
         "items": [
-          "Clear answers and confidence the pain will be treated",
-          "Convenient booking and parking"
+          "A clear understanding of what's causing your pain",
+          "Treatment that fits around your life",
+          "A plan that helps you move forward"
         ]
       },
       {
         "title": "I provide",
         "items": [
-          "Best practice and experience informed chiropractic care",
-          "Same practitioner every visit",
-          "Online booking",
+          "Evidence-informed chiropractic care",
+          "The same chiropractor at every appointment",
+          "Simple online booking",
           "Evening and Saturday appointments",
-          "Clear treatment plans with exercises"
+          "Treatment, advice and exercises tailored to you",
+          "Direct access to me when you need it"
         ]
       },
       {
-        "title": "Unlike others",
+        "title": "The difference",
         "items": [
-          "No reception desk delays",
-          "No being passed between chiropractors",
-          "No pressure into open-ended care plans",
-          "No lengthy phone calls just to book"
+          "No waiting around for a receptionist",
+          "No being passed between practitioners",
+          "No unnecessary appointments",
+          "No pressure into open-ended treatment plans",
+          "No need to keep explaining your history"
         ]
       }
     ]
@@ -69,34 +71,35 @@
     "pillars": [
       {
         "number": "01",
-        "title": "Consultation",
+        "title": "Book & understand",
         "items": [
-          "Open until 7pm",
-          "Saturday mornings",
           "Book online in under a minute",
-          "Complete forms before arriving",
-          "30-second walk from parking",
-          "Easy WhatsApp communication"
+          "Complete your forms before you arrive",
+          "Choose an appointment that suits you",
+          "Easy parking just 30 seconds away",
+          "No waiting room or reception desk"
         ]
       },
       {
         "number": "02",
-        "title": "Core treatment period",
+        "title": "Assess & treat",
         "items": [
-          "One chiropractor",
-          "Same clinician every appointment",
-          "You never repeat your story",
-          "Direct communication with the person treating you"
+          "A thorough first consultation",
+          "Understand what's contributing to your pain",
+          "Treatment where appropriate",
+          "Clear advice on what to do next",
+          "Always see the same chiropractor"
         ]
       },
       {
         "number": "03",
-        "title": "Transition",
+        "title": "Move forward",
         "items": [
-          "60-minute first consultation, treatment where appropriate",
-          "Clear diagnosis",
-          "Personal exercise programme",
-          "Told honestly if chiropractic isn't the right answer"
+          "A clear plan based on your needs",
+          "Personal exercises and advice",
+          "Review your progress together",
+          "Reduce treatment as you improve",
+          "Referral elsewhere if chiropractic isn't the right option"
         ]
       }
     ]
@@ -104,24 +107,31 @@
 
   "whatITreat": {
     "eyebrow": "What I treat",
-    "heading": "Evidence-informed care for the pain that comes with desk work.",
-    "conditions": ["Neck pain", "Back pain", "Shoulder pain", "Headaches", "Sciatica"],
-    "note": "Not sure it's right for you? I'll tell you honestly — including if a physio or your GP is the better fit."
+    "heading": "Care for the aches, pains and injuries that get in the way.",
+    "conditions": [
+      "Neck pain",
+      "Back pain",
+      "Shoulder pain",
+      "Joint pain",
+      "Headaches",
+      "Sciatica"
+    ],
+    "note": "Pain can come from work, sport, parenting, poor sleep, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly — including when another professional is the better choice."
   },
 
   "pricing": {
     "eyebrow": "Pricing",
-    "heading": "Clear pricing, no surprises.",
+    "heading": "Straightforward pricing. No surprises.",
     "cards": [
       {
         "label": "Initial consultation",
         "amount": "£75",
-        "description": "A 60-minute assessment, diagnosis and treatment where appropriate."
+        "description": "A 60-minute assessment to understand your problem, explain what's going on and provide treatment where appropriate."
       },
       {
         "label": "Follow-up treatment",
         "amount": "£50",
-        "description": "Ongoing treatment appointments as part of your care plan."
+        "description": "Focused follow-up appointments based on your individual plan and how you're progressing."
       }
     ],
     "cta": "Book your appointment"
@@ -132,15 +142,15 @@
     "questions": [
       {
         "q": "What is a chiropractor?",
-        "a": "A practitioner trained to assess and treat problems with your muscles, joints and spine — usually with hands-on manipulation, mobilisation and exercise advice."
+        "a": "A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints and spine. Treatment can include hands-on techniques, movement advice and exercises."
       },
       {
         "q": "Chiropractor or physio?",
-        "a": "Both can help with pain. Chiropractic focuses more on hands-on spinal and joint treatment. If I think physio — or a GP — is the better route, I'll say so and point you there."
+        "a": "Both can help with musculoskeletal pain, and there is overlap between the two. My approach combines hands-on treatment with advice and exercises. If I think a physio, GP or another professional would be more appropriate, I'll tell you and help point you in the right direction."
       },
       {
-        "q": "Are chiropractors doctors?",
-        "a": "No — chiropractors are separately regulated, registered practitioners. I diagnose and treat musculoskeletal problems, and refer you on when something is outside that."
+        "q": "Are chiropractors regulated?",
+        "a": "Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic."
       }
     ]
   },
@@ -150,11 +160,11 @@
     "heading": "Fits around your day, not the other way round.",
     "addressLine": "1 Beehive Lane, Loughborough LE11 2WN",
     "checklist": [
-      "Open until 7pm on weekdays",
-      "Saturday mornings",
+      "Evening appointments until 7pm",
+      "Saturday morning appointments",
       "Book online in under a minute",
-      "Complete forms before you arrive",
-      "30-second walk from parking",
+      "Complete your forms before you arrive",
+      "30-second walk from the nearest car park",
       "Message me directly on WhatsApp"
     ],
     "primaryCta": "Book online now",
@@ -163,11 +173,11 @@
 
   "findMe": {
     "eyebrow": "Find me",
-    "heading": "Visit me at The Work Lounge on Beehive Lane.",
-    "description": "My Loughborough clinic is situated at Beehive Lane in the Work Lounge. Premier Inn is directly opposite the road. The clinic is on the ground floor.",
+    "heading": "Your chiropractor in central Loughborough.",
+    "description": "You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.",
     "parking": {
       "title": "Parking",
-      "text": "The closest car park is Beehive Lane Car Park, just opposite the clinic."
+      "text": "Beehive Lane Car Park is just opposite the clinic — around a 30-second walk."
     },
     "address": {
       "title": "Address",
