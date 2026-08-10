@@ -245,6 +245,42 @@ h1,h2,h3,p,ul{margin:0;}
   max-width:600px;
 }
 
+/* PRICING */
+.pricing{padding:56px 32px;background:var(--cream-dark);}
+.pricing h2{
+  margin:0 0 40px;
+  font:400 34px/1.3 'Rubik',sans-serif;
+  max-width:640px;
+}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-bottom:32px;
+  max-width:720px;
+}
+.price-card{
+  background:#fff;
+  border:1px solid #00262A14;
+  padding:32px 28px;
+}
+.price-card__label{
+  font:700 13px/1 'Rubik',sans-serif;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:14px;
+}
+.price-card__amount{
+  font:400 44px/1 'Rubik',sans-serif;
+  margin-bottom:14px;
+}
+.price-card__desc{
+  margin:0;
+  font:400 14px/1.6 'Rubik',sans-serif;
+  color:#00262Ab3;
+}
+
 /* FAQ */
 .faq{padding:56px 32px;background:var(--navy);color:var(--cream);}
 .faq-grid{
@@ -391,8 +427,9 @@ h1,h2,h3,p,ul{margin:0;}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
-  .who-for,.why,.value-framework,.pillars,.treat,.faq,.booking,.find{padding-left:20px;padding-right:20px;}
-  .why h2,.treat h2,.booking h2,.find h2{font-size:28px;}
+  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.booking,.find{padding-left:20px;padding-right:20px;}
+  .why h2,.treat h2,.pricing h2,.booking h2,.find h2{font-size:28px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
+  .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .site-footer{flex-direction:column;gap:12px;}
 }
