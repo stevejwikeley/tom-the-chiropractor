@@ -125,12 +125,12 @@
     "cards": [
       {
         "label": "Initial consultation",
-        "amount": "£75",
+        "amount": "£70",
         "description": "A 60-minute assessment to understand your problem, explain what's going on and provide treatment where appropriate."
       },
       {
         "label": "Follow-up treatment",
-        "amount": "£50",
+        "amount": "£45",
         "description": "Focused follow-up appointments based on your individual plan and how you're progressing."
       }
     ],
