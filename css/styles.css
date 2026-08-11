@@ -103,7 +103,19 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* HERO */
 .hero{padding:var(--space-hero-y-top) var(--space-section-x) var(--space-hero-y-bottom);}
+.hero__grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:var(--space-gap-lg);
+  align-items:start;
+}
 .hero__inner{max-width:760px;}
+.hero__widget{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:24px;
+  min-height:480px;
+}
 .hero h1{
   margin:0 0 26px;
   font:var(--type-h1);
@@ -391,6 +403,7 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* RESPONSIVE */
 @media (max-width: 900px){
+  .hero__grid{grid-template-columns:1fr;}
   .value-grid,.pillars-grid,.faq-grid{grid-template-columns:1fr;}
   .value-col{padding:0 0 32px !important;border-bottom:1px solid var(--ink-1a);}
   .value-col:last-child{border-bottom:none;padding-bottom:0 !important;}

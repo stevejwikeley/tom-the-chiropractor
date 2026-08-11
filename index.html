@@ -46,15 +46,36 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__inner">
-      <p class="eyebrow eyebrow--teal">Modern chiropractic care in Loughborough</p>
-      <h1>Chiropractic that fits around your life.</h1>
-      <p class="hero__lead">Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last — with evening and Saturday appointments available.</p>
-      <div class="hero__actions">
-        <a href="#booking" class="btn btn--dark">Book your appointment</a>
-        <a href="#pillars" class="link-arrow">See how it works →</a>
+    <div class="hero__grid">
+      <div class="hero__inner">
+        <p class="eyebrow eyebrow--teal">Modern chiropractic care in Loughborough</p>
+        <h1>Chiropractic that fits around your life.</h1>
+        <p class="hero__lead">Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last — with evening and Saturday appointments available.</p>
+        <div class="hero__actions">
+          <a href="#booking" class="btn btn--dark">Book your appointment</a>
+          <a href="#pillars" class="link-arrow">See how it works →</a>
+        </div>
+        <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
       </div>
-      <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
+      <div class="hero__widget">
+        <!-- Booking Widget -->
+        <div id="ph_online_bookings_widget"></div>
+
+        <!-- Configuration Script -->
+        <script>
+          window.BookingTrackerConfig = {
+            domain: "tomthechiro.neptune.practicehub.io"
+          };
+
+          const phob_embed_version = Math.floor(Date.now()/600000);
+          const phob_embed_script = document.createElement('script');
+          phob_embed_script.id = 'ph-embed';
+          phob_embed_script.setAttribute('data-ph-embed', '');
+          phob_embed_script.type = 'text/javascript';
+          phob_embed_script.src = `https://tomthechiro.neptune.practicehub.io/assets/js/booking-form-embed.js?v=${phob_embed_version}`;
+          document.currentScript.parentNode.insertBefore(phob_embed_script, document.currentScript.nextSibling);
+        </script>
+      </div>
     </div>
   </section>
 
