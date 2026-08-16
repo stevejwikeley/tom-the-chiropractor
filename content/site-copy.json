@@ -164,26 +164,11 @@
     ]
   },
 
-  "booking": {
-    "eyebrow": "Booking",
-    "heading": "Fits around your day, not the other way round.",
-    "addressLine": "1 Beehive Lane, Loughborough LE11 2WN",
-    "checklist": [
-      "Evening appointments until 7pm",
-      "Saturday morning appointments",
-      "Book online in under a minute",
-      "Complete your forms before you arrive",
-      "30-second walk from the nearest car park",
-      "Message me directly on WhatsApp"
-    ],
-    "primaryCta": "Book online now",
-    "whatsappCta": "WhatsApp me"
-  },
-
   "findMe": {
     "eyebrow": "Find me",
     "heading": "Your chiropractor in central Loughborough.",
     "description": "You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.",
+    "whatsappCta": "WhatsApp me",
     "parking": {
       "title": "Parking",
       "text": "Beehive Lane Car Park is just opposite the clinic, around a 30-second walk."
