@@ -8,7 +8,7 @@
 
   "hero": {
     "eyebrow": "Hi, I'm Tom, your chiropractor in Loughborough",
-    "heading": "Chiropractic that fits around your life.",
+    "heading": "Get out of pain and back to what you enjoy.",
     "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
     "secondaryCta": "See how it works →",
@@ -27,7 +27,6 @@
   },
 
   "why": {
-    "strikethrough": "Just another chiropractic clinic.",
     "heading": "A simpler, more personal approach to chiropractic.",
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
     "quote": "I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need.",

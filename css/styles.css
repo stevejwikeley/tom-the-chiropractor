@@ -176,12 +176,6 @@ h1,h2,h3,p,ul{margin:0;}
 /* WHY */
 .why{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
 .why__inner{max-width:760px;}
-.why__strike{
-  font:var(--type-body);
-  color:var(--cream-80);
-  text-decoration:line-through;
-  margin-bottom:10px;
-}
 .why h2{
   margin:0 0 28px;
   font:var(--type-h2-quote);
