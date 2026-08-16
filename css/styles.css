@@ -316,7 +316,7 @@ h1,h2,h3,p,ul{margin:0;}
 }
 
 /* ABOUT */
-.about{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
+.about{padding:var(--space-section-y) var(--space-section-x);}
 .about__inner{max-width:680px;}
 .about__inner p{
   margin:0 0 20px;

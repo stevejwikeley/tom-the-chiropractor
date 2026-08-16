@@ -2,7 +2,7 @@
   "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
   "nav": {
-    "links": ["How it works", "What I treat", "Pricing", "Chiro vs physio", "About me", "Find me"],
+    "links": ["How it works", "What I treat", "Pricing", "About me", "Chiro vs Physio", "Find me"],
     "cta": "Book online"
   },
 
@@ -19,9 +19,9 @@
     "eyebrow": "Who I help",
     "pills": [
       "Busy people",
-      "Active people",
-      "Parents",
       "People living with persistent stiffness or pain",
+      "Parents",
+      "Active people",
       "Individuals staying active as they age"
     ]
   },
@@ -140,6 +140,17 @@
     "cta": "Book your appointment"
   },
 
+  "aboutMe": {
+    "eyebrow": "About me",
+    "paragraphs": [
+      "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then worked for four years at Health on Hand in Leicester and Mansfield before starting my own private practice here in Loughborough.",
+      "I live locally and outside of chiropractic I enjoy spending time outdoors; long dog walks, golf (currently with more enthusiasm than skill) and socialising.",
+      "In five years of treating patients, I've learned how important it is to truly understand an individual beyond their initial pain. Almost everyone arrives knowing where it hurts, and many have even received treatment before, but far fewer have been taught exactly what's causing their issue. I strive to always uncover the root cause of a patient's pain rather than only treating their symptoms.",
+      "Running my clinic personally means you see me at every appointment. You can contact me directly in between treatments and nothing gets forgotten because your care stays in the hands of one practitioner.",
+      "Getting to know patients properly and being there for every step in their recovery is the reason I became a chiropractor. Taking the time to understand how someone lives, works and moves makes a world of difference to the efficacy of treatment. Seeing how far someone's come by the end of their therapy is the real reward."
+    ]
+  },
+
   "faq": {
     "eyebrow": "Questions people ask me",
     "questions": [
@@ -155,17 +166,6 @@
         "q": "Are chiropractors regulated?",
         "a": "Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic."
       }
-    ]
-  },
-
-  "aboutMe": {
-    "eyebrow": "About me",
-    "paragraphs": [
-      "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then worked for four years at Health on Hand in Leicester and Mansfield before starting my own private practice here in Loughborough.",
-      "I live locally and outside of chiropractic I enjoy spending time outdoors; long dog walks, golf (currently with more enthusiasm than skill) and socialising.",
-      "In five years of treating patients, I've learned how important it is to truly understand an individual beyond their initial pain. Almost everyone arrives knowing where it hurts, and many have even received treatment before, but far fewer have been taught exactly what's causing their issue. I strive to always uncover the root cause of a patient's pain rather than only treating their symptoms.",
-      "Running my clinic personally means you see me at every appointment. You can contact me directly in between treatments and nothing gets forgotten because your care stays in the hands of one practitioner.",
-      "Getting to know patients properly and being there for every step in their recovery is the reason I became a chiropractor. Taking the time to understand how someone lives, works and moves makes a world of difference to the efficacy of treatment. Seeing how far someone's come by the end of their therapy is the real reward."
     ]
   },
 
