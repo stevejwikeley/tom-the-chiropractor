@@ -2,12 +2,12 @@
   "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
   "nav": {
-    "links": ["How it works", "What I treat", "Pricing", "About me", "Chiro vs Physio", "Find me"],
+    "links": ["How it works", "What I treat", "Pricing", "Chiro vs Physio", "Find me"],
     "cta": "Book online"
   },
 
   "hero": {
-    "eyebrow": "Modern chiropractic care in Loughborough",
+    "eyebrow": "Hi, I'm Tom — your chiropractor in Loughborough",
     "heading": "Chiropractic that fits around your life.",
     "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last — with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
@@ -30,7 +30,8 @@
     "strikethrough": "Just another chiropractic clinic.",
     "heading": "A simpler, more personal approach to chiropractic.",
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
-    "quote": "I'll make getting the right care as straightforward as possible — and I'll only recommend what I believe you need."
+    "quote": "I'll make getting the right care as straightforward as possible — and I'll only recommend what I believe you need.",
+    "bio": "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then four years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough."
   },
 
   "valueFramework": {
@@ -140,17 +141,6 @@
     "cta": "Book your appointment"
   },
 
-  "aboutMe": {
-    "eyebrow": "About me",
-    "paragraphs": [
-      "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then worked for four years at Health on Hand in Leicester and Mansfield before starting my own private practice here in Loughborough.",
-      "I live locally and outside of chiropractic I enjoy spending time outdoors; long dog walks, golf (currently with more enthusiasm than skill) and socialising.",
-      "In five years of treating patients, I've learned how important it is to truly understand an individual beyond their initial pain. Almost everyone arrives knowing where it hurts, and many have even received treatment before, but far fewer have been taught exactly what's causing their issue. I strive to always uncover the root cause of a patient's pain rather than only treating their symptoms.",
-      "Running my clinic personally means you see me at every appointment. You can contact me directly in between treatments and nothing gets forgotten because your care stays in the hands of one practitioner.",
-      "Getting to know patients properly and being there for every step in their recovery is the reason I became a chiropractor. Taking the time to understand how someone lives, works and moves makes a world of difference to the efficacy of treatment. Seeing how far someone's come by the end of their therapy is the real reward."
-    ]
-  },
-
   "faq": {
     "eyebrow": "Questions people ask me",
     "questions": [
@@ -165,6 +155,10 @@
       {
         "q": "Are chiropractors regulated?",
         "a": "Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic."
+      },
+      {
+        "q": "Who will I see at my appointments?",
+        "a": "You'll see me, Tom, every time. In five years of treating patients I've learned it's just as important to understand the person as the pain, so I focus on finding the root cause rather than just easing symptoms — and I'm with you for every step of your recovery, not just the first visit."
       }
     ]
   },
@@ -189,6 +183,7 @@
     "eyebrow": "Find me",
     "heading": "Your chiropractor in central Loughborough.",
     "description": "You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.",
+    "personalNote": "I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.",
     "parking": {
       "title": "Parking",
       "text": "Beehive Lane Car Park is just opposite the clinic — around a 30-second walk."
