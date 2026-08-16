@@ -316,6 +316,20 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--cream-b3);
 }
 
+/* ABOUT */
+.about{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
+.about__inner{max-width:680px;}
+.about__inner h2{
+  margin:0 0 24px;
+  font:var(--type-h2);
+}
+.about__inner p{
+  margin:0 0 20px;
+  font:var(--type-body-loose);
+  color:var(--ink-b3);
+}
+.about__inner p:last-child{margin-bottom:0;}
+
 /* BOOKING */
 .booking{padding:var(--space-section-y) var(--space-section-x);}
 .booking h2{
@@ -459,8 +473,8 @@ h1,h2,h3,p,ul{margin:0;}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
-  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.booking,.book,.find{padding-left:20px;padding-right:20px;}
-  .why h2,.treat h2,.pricing h2,.booking h2,.book h2,.find h2{font-size:28px;}
+  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.about,.booking,.book,.find{padding-left:20px;padding-right:20px;}
+  .why h2,.treat h2,.pricing h2,.about__inner h2,.booking h2,.book h2,.find h2{font-size:28px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .site-footer{flex-direction:column;gap:12px;}

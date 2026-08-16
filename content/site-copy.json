@@ -2,7 +2,7 @@
   "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
   "nav": {
-    "links": ["How it works", "What I treat", "Pricing", "Chiro vs physio", "Find me"],
+    "links": ["How it works", "What I treat", "Pricing", "Chiro vs physio", "About me", "Find me"],
     "cta": "Book online"
   },
 
@@ -21,11 +21,13 @@
       "Busy people",
       "Active people",
       "Parents",
-      "People living with persistent pain"
+      "People living with persistent stiffness or pain",
+      "Individuals staying active as they age"
     ]
   },
 
   "why": {
+    "strikethrough": "Just another chiropractic clinic.",
     "heading": "A simpler, more personal approach to chiropractic.",
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
     "quote": "I'll make getting the right care as straightforward as possible — and I'll only recommend what I believe you need."
@@ -86,6 +88,7 @@
         "items": [
           "A thorough first consultation",
           "Understand what's contributing to your pain",
+          "Specific targets to work toward",
           "Treatment where appropriate",
           "Clear advice on what to do next",
           "Always see the same chiropractor"
@@ -97,7 +100,7 @@
         "items": [
           "A clear plan based on your needs",
           "Personal exercises and advice",
-          "Review your progress together",
+          "Review your progress together to further your goals",
           "Reduce treatment as you improve",
           "Referral elsewhere if chiropractic isn't the right option"
         ]
@@ -112,11 +115,11 @@
       "Neck pain",
       "Back pain",
       "Shoulder pain",
-      "Joint pain",
+      "Joint and muscle pain",
       "Headaches",
       "Sciatica"
     ],
-    "note": "Pain can come from work, sport, parenting, poor sleep, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly — including when another professional is the better choice."
+    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly — including when another professional is the better choice."
   },
 
   "pricing": {
@@ -126,12 +129,12 @@
       {
         "label": "Initial consultation",
         "amount": "£70",
-        "description": "A 60-minute assessment to understand your problem, explain what's going on and provide treatment where appropriate."
+        "description": "A 60-minute assessment to understand your problem, explain what's going on, how many sessions I would recommend and treatment where appropriate."
       },
       {
         "label": "Follow-up treatment",
-        "amount": "£50",
-        "description": "Focused follow-up appointments based on your individual plan and how you're progressing."
+        "amount": "£45",
+        "description": "Focused follow-up appointments based on your individual plan and how you're progressing with regular reassessments to understand your improvement."
       }
     ],
     "cta": "Book your appointment"
@@ -142,7 +145,7 @@
     "questions": [
       {
         "q": "What is a chiropractor?",
-        "a": "A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints and spine. Treatment can include hands-on techniques, movement advice and exercises."
+        "a": "A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine. Treatment can include hands-on techniques, movement advice, education and exercises."
       },
       {
         "q": "Chiropractor or physio?",
@@ -152,6 +155,18 @@
         "q": "Are chiropractors regulated?",
         "a": "Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic."
       }
+    ]
+  },
+
+  "aboutMe": {
+    "eyebrow": "About me",
+    "greeting": "Hello! I'm Tom.",
+    "paragraphs": [
+      "I trained at the Welsh Institute of Chiropractic, graduating in 2021. Spending my first year practicing in Cornwall, then worked for four years at Health on Hand in Leicester and Mansfield before starting my own private practice here in Loughborough.",
+      "I live locally and outside of chiropractic I enjoy spending time outdoors; long dog walks, golf (with currently more enthusiasm than skill) and socialising.",
+      "In five years of treating patients, I've learned how important it is to truly understand an individual beyond their initial pain. Almost everyone arrives knowing where it hurts, and many have even received treatment before, but far fewer have been taught exactly what's causing their issue. I strive to always uncover the root cause of a patient's pain rather than only treating their symptoms.",
+      "Running my clinic personally means you see me at every appointment. You can contact me directly in between treatments and nothing gets forgotten because your care stays in the hands of one practitioner.",
+      "Getting to know patients properly and being there for every step in their recovery is the reason I became a chiropractor. Taking the time to understand how someone lives, works and moves makes a world of difference to the efficacy of treatment. Seeing how far someone's come by the end of their therapy is the real reward."
     ]
   },
 
