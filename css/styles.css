@@ -319,10 +319,6 @@ h1,h2,h3,p,ul{margin:0;}
 /* ABOUT */
 .about{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
 .about__inner{max-width:680px;}
-.about__inner h2{
-  margin:0 0 24px;
-  font:var(--type-h2);
-}
 .about__inner p{
   margin:0 0 20px;
   font:var(--type-body-loose);
@@ -474,7 +470,7 @@ h1,h2,h3,p,ul{margin:0;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
   .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.about,.booking,.book,.find{padding-left:20px;padding-right:20px;}
-  .why h2,.treat h2,.pricing h2,.about__inner h2,.booking h2,.book h2,.find h2{font-size:28px;}
+  .why h2,.treat h2,.pricing h2,.booking h2,.book h2,.find h2{font-size:28px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .site-footer{flex-direction:column;gap:12px;}
