@@ -31,7 +31,8 @@
     "heading": "A simpler, more personal approach to chiropractic.",
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
     "quote": "I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need.",
-    "bio": "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then four years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough."
+    "bioLabel": "My background",
+    "bio": "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then four years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends."
   },
 
   "valueFramework": {
@@ -183,7 +184,6 @@
     "eyebrow": "Find me",
     "heading": "Your chiropractor in central Loughborough.",
     "description": "You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.",
-    "personalNote": "I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.",
     "parking": {
       "title": "Parking",
       "text": "Beehive Lane Car Park is just opposite the clinic, around a 30-second walk."

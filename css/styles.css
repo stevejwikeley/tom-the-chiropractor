@@ -194,10 +194,21 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--cream-cc);
 }
 .why__bio{
-  margin-top:20px;
+  margin-top:24px;
+  padding-top:24px;
+  border-top:1px solid var(--cream-33);
+  max-width:560px;
+}
+.why__bio-label{
+  font:var(--type-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase;
+  color:var(--color-teal);
+  margin-bottom:10px;
+}
+.why__bio-text{
   font:400 15px/1.6 var(--font-family);
   color:var(--cream-80);
-  max-width:560px;
 }
 
 /* VALUE FRAMEWORK */
