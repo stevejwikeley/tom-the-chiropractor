@@ -7,9 +7,9 @@
   },
 
   "hero": {
-    "eyebrow": "Hi, I'm Tom — your chiropractor in Loughborough",
+    "eyebrow": "Hi, I'm Tom, your chiropractor in Loughborough",
     "heading": "Chiropractic that fits around your life.",
-    "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last — with evening and Saturday appointments available.",
+    "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
     "secondaryCta": "See how it works →",
     "note": "New here? Your first appointment is a 60-minute consultation, with treatment where appropriate."
@@ -30,7 +30,7 @@
     "strikethrough": "Just another chiropractic clinic.",
     "heading": "A simpler, more personal approach to chiropractic.",
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
-    "quote": "I'll make getting the right care as straightforward as possible — and I'll only recommend what I believe you need.",
+    "quote": "I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need.",
     "bio": "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then four years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough."
   },
 
@@ -120,7 +120,7 @@
       "Headaches",
       "Sciatica"
     ],
-    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly — including when another professional is the better choice."
+    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice."
   },
 
   "pricing": {
@@ -158,7 +158,7 @@
       },
       {
         "q": "Who will I see at my appointments?",
-        "a": "You'll see me, Tom, every time. In five years of treating patients I've learned it's just as important to understand the person as the pain, so I focus on finding the root cause rather than just easing symptoms — and I'm with you for every step of your recovery, not just the first visit."
+        "a": "You'll see me, Tom, every time. In five years of treating patients I've learned it's just as important to understand the person as the pain, so I focus on finding the root cause rather than just easing symptoms, and I'm with you for every step of your recovery, not just the first visit."
       }
     ]
   },
@@ -186,7 +186,7 @@
     "personalNote": "I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.",
     "parking": {
       "title": "Parking",
-      "text": "Beehive Lane Car Park is just opposite the clinic — around a 30-second walk."
+      "text": "Beehive Lane Car Park is just opposite the clinic, around a 30-second walk."
     },
     "address": {
       "title": "Address",
