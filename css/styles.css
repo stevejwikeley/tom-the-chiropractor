@@ -227,6 +227,7 @@ h1,h2,h3,p,ul{margin:0;}
 .pillar-card{display:flex;flex-direction:column;gap:14px;}
 .pillar-card__num{font:400 34px/1 var(--font-family);}
 .pillar-card__num--teal{color:var(--color-teal);}
+.pillar-card__num--yellow{color:var(--color-yellow);}
 .pillar-card h3{
   margin:0;
   font:700 20px/1.3 var(--font-family);
