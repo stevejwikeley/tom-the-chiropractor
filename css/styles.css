@@ -356,6 +356,15 @@ a.condition-card:hover span{color:var(--color-teal);}
 .condition-callout p,
 .condition-callout .condition-list{margin-bottom:16px;}
 .condition-callout > *:last-child{margin-bottom:0;}
+.condition-callout--urgent{border-left-color:var(--color-red);}
+.condition-callout__flag{
+  font:var(--type-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase;
+  color:var(--color-red);
+  margin-bottom:10px;
+}
+.condition-callout + .condition-callout{margin-top:20px;}
 
 .condition-stats{
   display:flex;
