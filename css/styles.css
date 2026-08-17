@@ -144,6 +144,17 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--ink-b3);
   max-width:560px;
 }
+.confirm__details{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:24px 28px;
+  margin-bottom:28px;
+}
+.confirm__details h2{
+  margin:0 0 16px;
+  font:var(--type-h3);
+}
+.confirm__details .condition-list{margin:0;}
 .confirm__actions{
   display:flex;
   gap:14px;
