@@ -53,7 +53,7 @@ Nothing is live on the actual website until you publish it. This is deliberate �
 
 That's it. The live website updates automatically within a minute or two — Vercel is already connected to this project and handles that part for you.
 
-**Live site:** https://tom-the-chiropractor-website.vercel.app
+**Live site:** https://www.tomthechiropractor.co.uk
 
 ## If something goes wrong
 
@@ -62,6 +62,21 @@ Nothing is permanently lost — every change you've ever pushed is saved in GitH
 ## Editing a lot of text at once
 
 The file `content/site-copy.json` lists most of the website's text in one place, which can be easier to work through than asking for changes one at a time. Open it, edit the wording however you like, save it, then tell Claude Code: *"I've updated content/site-copy.json, can you update the website to match?"*
+
+## Keeping Google and AI tools (ChatGPT, Gemini, etc.) up to date
+
+There are a handful of files whose whole job is helping search engines and AI assistants find the site and describe it accurately — not things visitors see directly. You won't touch these often, but it's worth knowing they exist:
+
+- **`robots.txt`** and **`sitemap.xml`** — tell search engines and AI crawlers which pages exist and that they're welcome to read them.
+- **`llms.txt`** — a short plain-English summary of the business (what you do, where, pricing, hours) written specifically for AI tools like ChatGPT and Claude to read.
+- **Structured data** (inside each page, not something you'll see) — a machine-readable version of your address, prices, credentials and FAQ, so Google can show things like your price range directly in search results. It deliberately doesn't include opening hours yet — exact times weren't confirmed when this was set up — so if you give Claude Code your real hours, ask it to add them here too.
+- **`og-image.png`** and **`favicon.svg`** — the preview image shown when a link is shared (WhatsApp, Facebook, etc.) and the little icon shown in browser tabs. Both are placeholders built from the site's colours, not real photos — worth asking Claude Code to replace them once you have a proper logo or photo.
+
+**The important bit:** several key facts — your address, phone number, prices, and opening hours — are repeated in more than one of these files, as well as in the visible page text. When you ask Claude Code to change one of these, it's good practice to say so explicitly, e.g. *"Change the WhatsApp number everywhere, including the SEO and AI files"* — that way nothing gets missed and the business details stay consistent everywhere they appear.
+
+A couple of other times you'd want to mention these files:
+- **Adding a new page** (e.g. a new condition page) — ask Claude Code to add it to `sitemap.xml` and `llms.txt` too, so it's actually discoverable.
+- **Changing the domain** (e.g. moving to a different web address) — the `robots.txt`, `sitemap.xml`, `llms.txt` and structured data all reference the live URL directly, so ask Claude Code to update those alongside everything else.
 
 ## Things you don't need to worry about
 
