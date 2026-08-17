@@ -22,7 +22,7 @@ Single-page site, one scrolling column, max content width unconstrained (full-bl
 - **Three pillars ("How it works")** — light tan band (`#e6dfd0`). 3-column grid, each column: large numeral (34px, alternating teal/yellow) → bold uppercase title → bulleted list of points (em-dash prefixed).
 - **What we treat** — eyebrow + H2, then 5-column grid of white cards (1px border, centered bold label: Neck pain, Back pain, Shoulder pain, Headaches, Sciatica). Disclaimer line below.
 - **Chiro vs physio FAQ** — dark band, 3-column grid of Q&A blocks (bold question, muted answer).
-- **Booking** — 2-column grid. Left: eyebrow, H2, address line, checklist (teal check + line), then CTA row (yellow "Book online now" + dark "WhatsApp us" with inline SVG icon, links to `https://wa.me/447597965111`). Right: map placeholder — diagonal-striped block, clickable, links to Google Maps search for the address, centered pin + address text + "Open in Google Maps →".
+- **Booking** — 2-column grid. Left: eyebrow, H2, address line, checklist (teal check + line), then CTA row (yellow "Book online now" + dark "WhatsApp us" with inline SVG icon, links to `https://wa.me/447871283457`). Right: map placeholder — diagonal-striped block, clickable, links to Google Maps search for the address, centered pin + address text + "Open in Google Maps →".
 - **Footer** — thin top border, logo mark + "Tom the Chiropractor · Loughborough" left, "Brand guidelines →" link right (points to the brand board file).
 
 ### 2. Brand board (`styleguide.dc.html`)
@@ -31,7 +31,7 @@ A scrollable brand guideline document (cover, logo, color, type, photography dir
 ## Interactions & Behavior
 - Nav links are in-page anchor scrolls (`#treat`, `#pillars`, `#faq`, `#find`).
 - "Book online" / "Book your appointment" / "Book online now" buttons are CTAs with no wired destination in the prototype — link to the real booking system/URL in production.
-- WhatsApp button opens `https://wa.me/447597965111` in a new tab.
+- WhatsApp button opens `https://wa.me/447871283457` in a new tab.
 - Map block opens a Google Maps search for "Southfield Rd, Loughborough LE11 2TY" in a new tab.
 - No animations; nav bar has a subtle blur-on-scroll (backdrop-filter, always on — not scroll-triggered).
 - Fully desktop-width prototype; no responsive/mobile breakpoints defined yet — target implementation should design its own mobile layout (stack all grids to 1 column, collapse nav to a menu) following the same visual language.
