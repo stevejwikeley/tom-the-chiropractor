@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "tomthechiropractor.co.uk" }],
+      "destination": "https://www.tomthechiropractor.co.uk/:path*",
+      "permanent": true
+    }
+  ]
+}
