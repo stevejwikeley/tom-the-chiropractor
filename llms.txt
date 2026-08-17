@@ -1,6 +1,6 @@
 # Tom the Chiropractor
 
-> Chiropractic clinic in central Loughborough, Leicestershire, UK. GCC-registered chiropractor (MChiro, Welsh Institute of Chiropractic), fully insured, 5 years in practice. Treats neck, back, shoulder, joint and muscle pain, headaches and sciatica. Same chiropractor at every appointment, with evening (until 7pm) and Saturday appointments. Initial consultation £70 (60 minutes), follow-up treatment £45.
+> Chiropractic clinic in central Loughborough, Leicestershire, UK. GCC-registered chiropractor (MChiro, Welsh Institute of Chiropractic), fully insured. Treats neck, back, shoulder, joint and muscle pain, headaches and sciatica. Same chiropractor at every appointment, with evening (until 7pm) and Saturday appointments. Initial consultation £70 (60 minutes), follow-up treatment £45.
 
 ## Key facts
 
