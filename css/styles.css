@@ -390,7 +390,15 @@ a.condition-card:hover span{color:var(--color-teal);}
   text-align:center;
   padding:56px var(--space-section-x) 72px;
   border-top:1px solid var(--ink-1a);
+  max-width:720px;
+  margin:0 auto;
 }
+.condition-cta h2{
+  margin:0 0 24px;
+  font:var(--type-h2);
+  font-size:26px;
+}
+.condition-cta .book__widget{text-align:left;}
 .condition-cta__note{
   margin-top:18px;
   font:400 14px/1.5 var(--font-family);
