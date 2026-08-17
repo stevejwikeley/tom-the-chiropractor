@@ -34,6 +34,20 @@
     "bio": "I trained at the Welsh Institute of Chiropractic, graduating in 2021. I spent my first year practicing in Cornwall, then four years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends."
   },
 
+  "whatITreat": {
+    "eyebrow": "What I treat",
+    "heading": "Care for the aches, pains and injuries that get in the way.",
+    "conditions": [
+      "Neck pain",
+      "Back pain",
+      "Shoulder pain",
+      "Joint and muscle pain",
+      "Headaches",
+      "Sciatica"
+    ],
+    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice."
+  },
+
   "valueFramework": {
     "eyebrow": "A better experience",
     "columns": [
@@ -67,20 +81,6 @@
         ]
       }
     ]
-  },
-
-  "whatITreat": {
-    "eyebrow": "What I treat",
-    "heading": "Care for the aches, pains and injuries that get in the way.",
-    "conditions": [
-      "Neck pain",
-      "Back pain",
-      "Shoulder pain",
-      "Joint and muscle pain",
-      "Headaches",
-      "Sciatica"
-    ],
-    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice."
   },
 
   "howItWorks": {
