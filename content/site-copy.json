@@ -1,6 +1,11 @@
 {
   "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
+  "meta": {
+    "title": "Chiropractor in Loughborough | Tom the Chiropractor",
+    "description": "Back, neck and shoulder pain treated in central Loughborough. Book online in under a minute. Evening and Saturday appointments. £70 first visit."
+  },
+
   "nav": {
     "links": ["What I treat", "How it works", "Pricing", "Chiro vs Physio", "Find me"],
     "cta": "Book online"
@@ -8,8 +13,8 @@
 
   "hero": {
     "eyebrow": "Hi, I'm Tom, your chiropractor in Loughborough",
-    "heading": "Get out of pain and back to what you enjoy.",
-    "lead": "Neck, back, shoulder or joint pain? Get expert, personal care without the hassle. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
+    "heading": "Chiropractor in Loughborough",
+    "lead": "Get out of pain and back to what you enjoy. Expert, personal care for neck, back, shoulder and joint pain, book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
     "secondaryCta": "See how it works →",
     "note": "New here? Your first appointment is a 60-minute consultation, with treatment where appropriate."

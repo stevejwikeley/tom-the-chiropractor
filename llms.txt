@@ -1,0 +1,21 @@
+# Tom the Chiropractor
+
+> Chiropractic clinic in central Loughborough, Leicestershire, UK. GCC-registered chiropractor (MChiro, Welsh Institute of Chiropractic), fully insured, 5 years in practice. Treats neck, back, shoulder, joint and muscle pain, headaches and sciatica. Same chiropractor at every appointment, with evening (until 7pm) and Saturday appointments. Initial consultation £70 (60 minutes), follow-up treatment £45.
+
+## Key facts
+
+- Practitioner: Tom, MChiro, Welsh Institute of Chiropractic (graduated 2021), registered with the General Chiropractic Council (GCC), fully insured
+- Location: The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2WN
+- Booking: online booking widget at https://www.tomthechiropractor.co.uk/#book, or WhatsApp +44 7871 283457
+- Pricing: initial consultation £70, follow-up treatment £45
+- Hours: evening appointments until 7pm on weekdays, Saturday mornings
+
+## Pages
+
+- [Home](https://www.tomthechiropractor.co.uk/): overview, how it works, pricing, chiropractor-vs-physio FAQ, booking and location
+- [Neck pain](https://www.tomthechiropractor.co.uk/conditions/neck-pain.html)
+- [Back pain](https://www.tomthechiropractor.co.uk/conditions/back-pain.html)
+- [Shoulder pain](https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html)
+- [Joint and muscle pain](https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html)
+- [Headaches](https://www.tomthechiropractor.co.uk/conditions/headaches.html)
+- [Sciatica](https://www.tomthechiropractor.co.uk/conditions/sciatica.html)

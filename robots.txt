@@ -1,0 +1,43 @@
+# Tom the Chiropractor — https://www.tomthechiropractor.co.uk
+# Public marketing site. Everything is open to crawl; nothing here is
+# private, so there's no reason to restrict any bot, human-search or AI.
+
+User-agent: *
+Allow: /
+
+# Explicitly allowed AI crawlers (also covered by the wildcard above,
+# listed here so the intent is unambiguous rather than implicit).
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.tomthechiropractor.co.uk/sitemap.xml
