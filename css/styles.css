@@ -181,7 +181,7 @@ h1,h2,h3,p,ul{margin:0;}
 }
 
 /* WHO IT'S FOR */
-.who-for{padding:0 var(--space-section-x) var(--space-section-y);}
+.who-for{padding:40px var(--space-section-x) var(--space-section-y);}
 .pill-row{display:flex;flex-wrap:wrap;gap:var(--space-gap-sm);}
 .pill{
   background:#fff;
