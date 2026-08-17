@@ -264,7 +264,10 @@ h1,h2,h3,p,ul{margin:0;}
   margin-bottom:24px;
 }
 .condition-card{
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   background:#fff;
   border:1px solid var(--ink-14);
   padding:28px 20px;
@@ -273,9 +276,15 @@ h1,h2,h3,p,ul{margin:0;}
   color:inherit;
   transition:border-color .15s ease;
 }
-.condition-card span{font:600 15px/1.3 var(--font-family);}
+.condition-card span:first-child{font:600 15px/1.3 var(--font-family);}
+.condition-card__arrow{
+  font:600 15px/1 var(--font-family);
+  color:var(--color-teal);
+  transition:transform .15s ease;
+}
 a.condition-card:hover{border-color:var(--color-teal);}
-a.condition-card:hover span{color:var(--color-teal);}
+a.condition-card:hover span:first-child{color:var(--color-teal);}
+a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .treat__note{
   font:var(--type-body-sm);
   color:var(--ink-99);
