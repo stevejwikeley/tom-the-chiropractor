@@ -156,6 +156,19 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--ink-99);
 }
 
+/* TRUST STRIP */
+.trust-strip{
+  padding:16px var(--space-section-x);
+  border-top:1px solid var(--ink-1a);
+  border-bottom:1px solid var(--ink-1a);
+  text-align:center;
+}
+.trust-strip p{
+  font:500 13px/1.5 var(--font-family);
+  color:var(--ink-99);
+  letter-spacing:0.02em;
+}
+
 /* WHO IT'S FOR */
 .who-for{padding:0 var(--space-section-x) var(--space-section-y);}
 .pill-row{display:flex;flex-wrap:wrap;gap:var(--space-gap-sm);}
@@ -622,7 +635,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
-  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.condition-page__hero,.condition-page__body,.condition-cta,.condition-layout{padding-left:20px;padding-right:20px;}
+  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.condition-page__hero,.condition-page__body,.condition-cta,.condition-layout{padding-left:20px;padding-right:20px;}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
