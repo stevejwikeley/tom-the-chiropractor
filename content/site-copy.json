@@ -2,7 +2,7 @@
   "_readme": "Refined website copy. Positioning: modern, convenient, personal chiropractic care designed around busy lives. Working professionals are a natural audience, but the messaging is intentionally broad enough to include pain from sport, family life, sleep, repetitive activity and everyday life.",
 
   "nav": {
-    "links": ["How it works", "What I treat", "Pricing", "Chiro vs Physio", "Find me"],
+    "links": ["What I treat", "How it works", "Pricing", "Chiro vs Physio", "Find me"],
     "cta": "Book online"
   },
 
@@ -69,6 +69,20 @@
     ]
   },
 
+  "whatITreat": {
+    "eyebrow": "What I treat",
+    "heading": "Care for the aches, pains and injuries that get in the way.",
+    "conditions": [
+      "Neck pain",
+      "Back pain",
+      "Shoulder pain",
+      "Joint and muscle pain",
+      "Headaches",
+      "Sciatica"
+    ],
+    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice."
+  },
+
   "howItWorks": {
     "eyebrow": "How it works",
     "pillars": [
@@ -106,20 +120,6 @@
         ]
       }
     ]
-  },
-
-  "whatITreat": {
-    "eyebrow": "What I treat",
-    "heading": "Care for the aches, pains and injuries that get in the way.",
-    "conditions": [
-      "Neck pain",
-      "Back pain",
-      "Shoulder pain",
-      "Joint and muscle pain",
-      "Headaches",
-      "Sciatica"
-    ],
-    "note": "Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice."
   },
 
   "pricing": {
