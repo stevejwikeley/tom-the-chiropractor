@@ -441,8 +441,6 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   text-align:center;
   padding:56px var(--space-section-x) 72px;
   border-top:1px solid var(--ink-1a);
-  max-width:720px;
-  margin:0 auto;
 }
 .condition-cta h2{
   margin:0 0 24px;
