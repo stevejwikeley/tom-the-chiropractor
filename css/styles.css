@@ -525,7 +525,12 @@ a.condition-card:hover span{color:var(--color-teal);}
   color:var(--ink-b3);
   max-width:460px;
 }
-.find-info__whatsapp{margin-bottom:24px;}
+.find-info__whatsapp{margin-bottom:10px;}
+.find-info__whatsapp-number{
+  margin:0 0 24px;
+  font:400 13px/1.5 var(--font-family);
+  color:var(--ink-99);
+}
 .find-info h3{
   font:var(--type-eyebrow);
   letter-spacing:0.08em;
