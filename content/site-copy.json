@@ -7,7 +7,7 @@
   },
 
   "nav": {
-    "links": ["What I treat", "How it works", "Pricing", "Chiro vs Physio", "Find me"],
+    "links": ["How it works", "What I treat", "Pricing", "Chiro vs Physio", "Find me"],
     "cta": "Book online"
   },
 
@@ -37,6 +37,45 @@
     "quote": "I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need.",
     "bioLabel": "My background",
     "bio": "I trained at the Welsh Institute of Chiropractic. I spent some time practicing in Cornwall, then several years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends."
+  },
+
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "pillars": [
+      {
+        "number": "01",
+        "title": "Book & understand",
+        "items": [
+          "Book online in under a minute",
+          "Complete your forms before you arrive",
+          "Choose an appointment that suits you",
+          "Easy parking just 30 seconds away"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Assess & treat",
+        "items": [
+          "A thorough first consultation",
+          "Understand what's contributing to your pain",
+          "Specific targets to work toward",
+          "Treatment where appropriate",
+          "Clear advice on what to do next",
+          "Always see the same chiropractor"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Move forward",
+        "items": [
+          "A clear plan based on your needs",
+          "Personal exercises and advice",
+          "Review your progress together to further your goals",
+          "Reduce treatment as you improve",
+          "Referral elsewhere if chiropractic isn't the right option"
+        ]
+      }
+    ]
   },
 
   "whatITreat": {
@@ -83,45 +122,6 @@
           "No unnecessary appointments",
           "No pressure into open-ended treatment plans",
           "No need to keep explaining your history"
-        ]
-      }
-    ]
-  },
-
-  "howItWorks": {
-    "eyebrow": "How it works",
-    "pillars": [
-      {
-        "number": "01",
-        "title": "Book & understand",
-        "items": [
-          "Book online in under a minute",
-          "Complete your forms before you arrive",
-          "Choose an appointment that suits you",
-          "Easy parking just 30 seconds away"
-        ]
-      },
-      {
-        "number": "02",
-        "title": "Assess & treat",
-        "items": [
-          "A thorough first consultation",
-          "Understand what's contributing to your pain",
-          "Specific targets to work toward",
-          "Treatment where appropriate",
-          "Clear advice on what to do next",
-          "Always see the same chiropractor"
-        ]
-      },
-      {
-        "number": "03",
-        "title": "Move forward",
-        "items": [
-          "A clear plan based on your needs",
-          "Personal exercises and advice",
-          "Review your progress together to further your goals",
-          "Reduce treatment as you improve",
-          "Referral elsewhere if chiropractic isn't the right option"
         ]
       }
     ]
