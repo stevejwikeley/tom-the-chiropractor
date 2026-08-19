@@ -14,7 +14,7 @@
   "hero": {
     "eyebrow": "Hi, I'm Tom, your chiropractor in Loughborough",
     "heading": "Chiropractor in Loughborough",
-    "lead": "Get out of pain and back to what you enjoy. Expert, personal care for neck, back, shoulder and joint pain, book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
+    "lead": "Get out of pain and back to what you enjoy. Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with evening and Saturday appointments available.",
     "primaryCta": "Book your appointment",
     "secondaryCta": "See how it works →",
     "note": "New here? Your first appointment is a 60-minute consultation, with treatment where appropriate."
@@ -36,7 +36,7 @@
     "pills": ["Convenient", "Personal", "Clear", "Honest"],
     "quote": "I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need.",
     "bioLabel": "My background",
-    "bio": "I trained at the Welsh Institute of Chiropractic. I spent some time practicing in Cornwall, then several years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends."
+    "bio": "I trained at the Welsh Institute of Chiropractic. I spent some time practising in Cornwall, then several years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends."
   },
 
   "whatITreat": {
@@ -107,7 +107,7 @@
         "items": [
           "A thorough first consultation",
           "Understand what's contributing to your pain",
-          "Specific targets to work toward",
+          "Specific targets to work towards",
           "Treatment where appropriate",
           "Clear advice on what to do next",
           "Always see the same chiropractor"
@@ -134,7 +134,7 @@
       {
         "label": "Initial consultation",
         "amount": "£70",
-        "description": "A 60-minute assessment to understand your problem, explain what's going on, how many sessions I would recommend and treatment where appropriate."
+        "description": "A 60-minute assessment to understand your problem, explain what's going on, and set out how many sessions I'd recommend and what treatment would be appropriate."
       },
       {
         "label": "Follow-up treatment",
