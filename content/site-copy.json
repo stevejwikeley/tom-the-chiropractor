@@ -119,7 +119,7 @@
         "items": [
           "A clear plan based on your needs",
           "Personal exercises and advice",
-          "Review your progress together to further your goals",
+          "Review your progress together and adjust the plan towards your goals",
           "Reduce treatment as you improve",
           "Referral elsewhere if chiropractic isn't the right option"
         ]
@@ -139,7 +139,7 @@
       {
         "label": "Follow-up treatment",
         "amount": "£45",
-        "description": "Focused follow-up appointments based on your individual plan and how you're progressing with regular reassessments to understand your improvement."
+        "description": "Focused follow-up appointments based on your individual plan, with regular reassessments to measure your progress and adjust treatment where needed."
       }
     ],
     "cta": "Book your appointment"
@@ -162,7 +162,7 @@
       },
       {
         "q": "Who will I see at my appointments?",
-        "a": "You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on finding the root cause rather than just easing symptoms, and I'm with you for every step of your recovery, not just the first visit."
+        "a": "You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit."
       }
     ]
   },
