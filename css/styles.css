@@ -728,6 +728,30 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 .map-embed__directions:hover{color:var(--color-yellow);}
 
+/* OPENING HOURS */
+.hours{
+  border-collapse:collapse;
+  margin-bottom:10px;
+}
+.hours th,
+.hours td{
+  text-align:left;
+  padding:4px 0;
+  font:var(--type-body-sm);
+  color:var(--ink-b3);
+}
+.hours th{
+  font-weight:600;
+  color:var(--color-ink);
+  padding-right:28px;
+  white-space:nowrap;
+}
+.hours__note{
+  font:400 13px/1.55 var(--font-family);
+  color:var(--ink-99);
+  margin:0 0 8px;
+}
+
 /* CONTACT */
 .contact{
   padding:var(--space-section-y) var(--space-section-x);
