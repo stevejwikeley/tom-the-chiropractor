@@ -314,6 +314,106 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   max-width:600px;
 }
 
+/* REVIEWS */
+.reviews{
+  padding:var(--space-section-y) var(--space-section-x);
+  background:var(--color-tan);
+}
+.reviews__inner{max-width:720px;margin:0 auto;text-align:center;}
+.reviews__head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:28px;
+}
+.reviews__head-rating{
+  font:700 15px/1 var(--font-family);
+}
+.reviews__head-count{
+  font:400 14px/1 var(--font-family);
+  color:var(--ink-99);
+}
+
+/* Without JS every review is simply listed; JS turns this into a carousel. */
+.reviews__track{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.reviews__track.is-enhanced{
+  display:block;
+  position:relative;
+  gap:0;
+}
+.review-card{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:32px 28px;
+  text-align:left;
+}
+.reviews__track.is-enhanced .review-card{
+  display:none;
+}
+.reviews__track.is-enhanced .review-card.is-active{
+  display:block;
+  animation:reviewFade .5s ease;
+}
+/* Reviews vary a lot in length; a floor keeps short ones from looking sparse. */
+.reviews__track.is-enhanced .review-card{min-height:230px;}
+.review-card__text + .review-card__text{margin-top:-4px;}
+@keyframes reviewFade{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:none;}
+}
+.review-card__stars{
+  color:var(--color-yellow);
+  font:400 16px/1 var(--font-family);
+  letter-spacing:2px;
+  margin-bottom:14px;
+}
+.review-card__text{
+  font:400 16px/1.65 var(--font-family);
+  color:var(--ink-b3);
+  margin-bottom:18px;
+}
+.review-card__author{
+  font:600 14px/1.4 var(--font-family);
+}
+.review-card__date{
+  font:400 13px/1.4 var(--font-family);
+  color:var(--ink-99);
+  margin-top:2px;
+}
+.reviews__dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:22px;
+}
+.reviews__dot{
+  width:9px;
+  height:9px;
+  padding:0;
+  border:none;
+  border-radius:50%;
+  background:var(--ink-1a);
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.reviews__dot:hover{background:var(--ink-99);}
+.reviews__dot.is-active{background:var(--color-teal);}
+.reviews__link{
+  display:inline-block;
+  margin-top:24px;
+  font:600 14px/1 var(--font-family);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reviews__track.is-enhanced .review-card.is-active{animation:none;}
+}
+
 /* CONDITION DETAIL PAGE */
 .condition-page__hero{
   padding:var(--space-hero-y-top) var(--space-section-x) 40px;
@@ -715,7 +815,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
-  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
+  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.reviews,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
