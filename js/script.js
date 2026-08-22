@@ -52,6 +52,16 @@ function initReviews() {
     return dot;
   });
 
+  // Fade only the cards whose text actually overflows the fixed height,
+  // so short reviews don't get a pointless gradient across the bottom.
+  function markClipped() {
+    slides.forEach((slide) => {
+      const body = slide.querySelector('.review-card__body');
+      if (!body) return;
+      body.classList.toggle('is-clipped', body.scrollHeight > body.clientHeight + 1);
+    });
+  }
+
   function show(next) {
     index = (next + slides.length) % slides.length;
     slides.forEach((slide, i) => {
@@ -64,6 +74,8 @@ function initReviews() {
       dot.classList.toggle('is-active', active);
       dot.setAttribute('aria-current', String(active));
     });
+    // Hidden cards measure zero, so re-check once this one is on screen.
+    markClipped();
   }
 
   function start() {
@@ -91,6 +103,8 @@ function initReviews() {
   });
 
   show(0);
+  markClipped();
+  window.addEventListener('resize', markClipped);
   start();
 
   // Reviews vary in length, so an off-screen slide change would shift the page

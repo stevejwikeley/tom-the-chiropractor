@@ -320,6 +320,12 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   background:var(--color-tan);
 }
 .reviews__inner{max-width:720px;margin:0 auto;text-align:center;}
+/* This label does heading duty here, so it runs larger than a normal eyebrow. */
+.reviews .eyebrow{
+  font-size:22px;
+  letter-spacing:0.06em;
+  margin-bottom:20px;
+}
 .reviews__head{
   display:flex;
   flex-wrap:wrap;
@@ -356,12 +362,29 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .reviews__track.is-enhanced .review-card{
   display:none;
 }
+/* Reviews vary a lot in length. Fixing the card height stops the page jumping
+   as the carousel cycles; longer reviews fade out rather than being edited.
+   Height only — setting display here would override the display:none above. */
+.reviews__track.is-enhanced .review-card{
+  height:360px;
+}
 .reviews__track.is-enhanced .review-card.is-active{
-  display:block;
+  display:flex;
+  flex-direction:column;
   animation:reviewFade .5s ease;
 }
-/* Reviews vary a lot in length; a floor keeps short ones from looking sparse. */
-.reviews__track.is-enhanced .review-card{min-height:230px;}
+.review-card__body{min-width:0;}
+.reviews__track.is-enhanced .review-card__body{
+  flex:1;
+  overflow:hidden;
+  min-height:0;
+}
+/* Only faded when there is genuinely more text below the cut. */
+.reviews__track.is-enhanced .review-card__body.is-clipped{
+  -webkit-mask-image:linear-gradient(to bottom, #000 76%, transparent 100%);
+  mask-image:linear-gradient(to bottom, #000 76%, transparent 100%);
+}
+.reviews__track.is-enhanced .review-card__author{margin-top:14px;}
 .review-card__text + .review-card__text{margin-top:-4px;}
 @keyframes reviewFade{
   from{opacity:0;transform:translateY(6px);}
@@ -920,6 +943,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
+  /* Narrower column means more wrapping, so allow a taller card here. */
+  .reviews__track.is-enhanced .review-card{height:430px;}
+  .reviews .eyebrow{font-size:19px;}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .site-footer{flex-direction:column;gap:12px;}
 }
