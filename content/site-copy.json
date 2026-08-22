@@ -163,6 +163,22 @@
       {
         "q": "Who will I see at my appointments?",
         "a": "You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit."
+      },
+      {
+        "q": "Will it hurt?",
+        "a": "Most people find treatment comfortable, and some feel relief straight away. It's normal to feel a bit achy for a day or so afterwards, much like you might after exercise. I'll explain what I'm going to do before I do it, and nothing happens that you're not happy with."
+      },
+      {
+        "q": "What's the clicking noise?",
+        "a": "That sound is gas releasing from within the joint, the same thing that happens when you crack your knuckles. It isn't bone, and it isn't a sign of damage. If you'd rather avoid that technique altogether, just say so and I'll use something else. There's usually more than one way to treat a problem."
+      },
+      {
+        "q": "What should I wear?",
+        "a": "Something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you."
+      },
+      {
+        "q": "What if I need to cancel?",
+        "a": "Just let me know as early as you can, ideally at least 24 hours before. You can use the link in your confirmation email or message me directly. There's more detail in my cancellation policy."
       }
     ]
   },
