@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free desk check | Tom the Chiropractor, Loughborough</title>
+<meta name="description" content="A two minute check of your desk setup, based on the Rapid Office Strain Assessment used by ergonomists. Get your score and what to change, free.">
+<link rel="canonical" href="https://www.tomthechiropractor.co.uk/desk-check.html">
+<!-- TEMPORARY: remove this line once Resend is configured and the email actually sends.
+     Until then the page works but the results email fails, so it should stay out of search. -->
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BRAND COLOURS. Matched to css/tokens.css, the rest of the site.
+   ============================================================ */
+:root{
+  --brand:#00A6A6;          /* --color-teal */
+  --brand-dark:#007a7a;     /* --color-teal-hover */
+  --brand-tint:#DDEFEF;     /* pale wash of the teal */
+  --ink:#00262A;            /* --color-ink */
+  --page:#EFEADF;           /* --color-cream */
+}
+/* ============================================================ */
+
+:root{
+  --surface:#FFFFFF;
+  --line:#E3E1DD;
+  --line-2:#CFCCC6;
+  --muted:#5F6470;
+  --muted-2:#8A8F9A;
+  --good:#1E6B4F;   --good-bg:#E4F1EA;
+  --warn:#8A5A08;   --warn-bg:#FBF0DC;
+  --high:#A23F2C;   --high-bg:#FAE7E2;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(21,26,34,.05), 0 10px 30px -18px rgba(21,26,34,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important;animation:none!important} }
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:"Rubik",sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Rubik",sans-serif;font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+a{color:var(--brand)}
+
+/* hero */
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:44px 0 38px}
+.kicker{
+  display:inline-block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brand);background:var(--brand-tint);padding:5px 11px;border-radius:999px;margin-bottom:16px;
+}
+.hero h1{font-size:clamp(30px,6vw,44px);line-height:1.08}
+.hero .lede{font-size:17.5px;color:var(--muted);margin:14px 0 0;max-width:60ch}
+.hero .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fact{font-size:13.5px;color:var(--muted);background:var(--page);border:1px solid var(--line);
+  border-radius:999px;padding:6px 13px}
+
+/* progress */
+.progress{position:sticky;top:0;z-index:20;background:rgba(251,250,249,.94);
+  backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+.progress-in{max-width:720px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
+.bar{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--brand);border-radius:99px;transition:width .25s ease}
+.progress .count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* questions */
+main{padding:26px 0 60px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.q .num{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+.q h2{font-size:19px;margin:6px 0 3px;line-height:1.25}
+.q .help{font-size:14.5px;color:var(--muted);margin:0 0 14px}
+.opts{display:flex;flex-direction:column;gap:8px}
+label.opt{
+  display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:1.5px solid var(--line);
+  border-radius:9px;cursor:pointer;font-size:15.5px;background:var(--surface);
+  transition:border-color .12s ease, background .12s ease;
+}
+label.opt:hover{border-color:var(--line-2);background:var(--page)}
+label.opt input{margin:4px 0 0;accent-color:var(--brand);flex:none;width:17px;height:17px}
+label.opt input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+label.opt.on{border-color:var(--brand);background:var(--brand-tint)}
+.optional{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:8px}
+
+/* result */
+.result{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;margin-top:26px;scroll-margin-top:70px}
+.result.hidden{display:none}
+.result-top{padding:26px 22px 22px;border-bottom:1px solid var(--line);text-align:center}
+.score-row{display:flex;align-items:baseline;justify-content:center;gap:8px}
+.score{font-family:"Rubik",sans-serif;font-size:66px;font-weight:700;line-height:.9}
+.score-of{font-size:17px;color:var(--muted)}
+.badge{display:inline-block;margin-top:12px;padding:6px 15px;border-radius:999px;font-size:14.5px;font-weight:600}
+.badge.low{background:var(--good-bg);color:var(--good)}
+.badge.mid{background:var(--warn-bg);color:var(--warn)}
+.badge.high{background:var(--high-bg);color:var(--high)}
+.verdict{margin:14px auto 0;max-width:48ch;color:var(--muted);font-size:15.5px}
+.meter{display:flex;gap:4px;margin:20px auto 0;max-width:340px}
+.meter span{flex:1;height:9px;border-radius:2px;background:var(--line)}
+.meter span.on.low{background:var(--good)} .meter span.on.mid{background:var(--warn)} .meter span.on.high{background:var(--high)}
+.meter-key{display:flex;justify-content:space-between;max-width:340px;margin:6px auto 0;
+  font-size:11.5px;color:var(--muted-2)}
+
+.fix-head{padding:18px 22px 4px;font-size:12px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted-2)}
+ol.fixes{list-style:none;margin:0;padding:0 22px 20px;counter-reset:f}
+ol.fixes li{counter-increment:f;display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+ol.fixes li:last-child{border-bottom:0}
+ol.fixes li::before{
+  content:counter(f);flex:none;width:24px;height:24px;border-radius:50%;background:var(--brand-tint);
+  color:var(--brand);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+ol.fixes b{display:block;font-weight:600}
+ol.fixes span{color:var(--muted);font-size:14.5px}
+
+/* email capture */
+.capture{background:var(--brand-tint);border-top:1px solid var(--line);padding:22px}
+.capture h3{font-family:"Rubik",sans-serif;font-size:20px;margin:0 0 4px}
+.capture p.sub{margin:0 0 16px;font-size:14.5px;color:var(--muted)}
+.frow{display:flex;gap:10px;flex-wrap:wrap}
+.frow > div{flex:1;min-width:190px}
+.capture label.fl{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.capture input[type=text],.capture input[type=email]{
+  width:100%;font:inherit;font-size:15.5px;padding:11px 13px;border:1.5px solid var(--line-2);
+  border-radius:9px;background:var(--surface);color:var(--ink);
+}
+.capture input:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.5}
+.consent input{margin:3px 0 0;accent-color:var(--brand);flex:none;width:17px;height:17px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+button{font:inherit;font-size:15.5px;font-weight:600;border-radius:9px;cursor:pointer;padding:12px 20px;border:1.5px solid transparent}
+button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-dark)}
+.btn-primary[disabled]{opacity:.55;cursor:not-allowed}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{background:var(--surface)}
+.status{font-size:14px;margin:12px 0 0;min-height:1.2em}
+.status.ok{color:var(--good);font-weight:600}
+.status.err{color:var(--high)}
+.preview-note{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 13px;
+  font-size:13.5px;margin:0 0 16px;font-weight:500}
+.preview-note.hidden{display:none}
+
+/* cta */
+.cta{margin-top:22px;background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px 22px;text-align:center}
+.cta h2{font-size:24px;color:#fff}
+.cta p{color:#C3C7CF;margin:10px auto 18px;max-width:44ch;font-size:15.5px}
+.cta .btn-primary{background:#fff;color:var(--ink);display:inline-block;text-decoration:none;padding:13px 24px;border-radius:9px;font-weight:600}
+.cta .btn-primary:hover{background:#EFEFEF}
+.cta .alt{display:block;margin-top:14px;font-size:14px;color:#C3C7CF}
+.cta .alt a{color:#fff}
+
+.smallprint{font-size:13px;color:var(--muted-2);margin:26px 0 0;line-height:1.6}
+.smallprint a{color:var(--muted)}
+
+@media print{
+  .progress,.q,.capture,.cta,.hero .facts{display:none}
+  body{background:#fff}
+  .result{box-shadow:none;border-color:#999}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Free, two minutes, no booking needed</span>
+    <h1>Is your desk the reason your neck hurts?</h1>
+    <p class="lede">Answer ten quick questions about where you sit and what you look at. You will get a strain score out of 10 and the three changes that will make the biggest difference, based on the Rapid Office Strain Assessment that ergonomists use.</p>
+    <div class="facts">
+      <span class="fact">Ten questions</span>
+      <span class="fact">No cost</span>
+      <span class="fact">Results on screen straight away</span>
+    </div>
+  </div>
+</header>
+
+<div class="progress">
+  <div class="progress-in">
+    <div class="bar"><i id="bar"></i></div>
+    <span class="count" id="count">0 of 9</span>
+  </div>
+</div>
+
+<main class="wrap">
+  <form id="quiz" novalidate></form>
+
+  <section class="result hidden" id="result" tabindex="-1">
+    <div class="result-top">
+      <div class="score-row"><span class="score" id="score">0</span><span class="score-of">out of 10</span></div>
+      <span class="badge low" id="badge">Low strain</span>
+      <p class="verdict" id="verdict"></p>
+      <div class="meter" id="meter"></div>
+      <div class="meter-key"><span>Set up well</span><span>Needs changing</span></div>
+    </div>
+
+    <div class="fix-head">What to change first</div>
+    <ol class="fixes" id="fixes"></ol>
+
+    <div class="capture">
+      <p class="preview-note hidden" id="preview-note">Preview mode. Emailing is switched off until this page is live on tomthechiropractor.co.uk.</p>
+      <h3>Want this emailed to you?</h3>
+      <p class="sub">I will send your score and your list of changes so you can work through them at your desk. Tom will get a copy so he can help if you get stuck.</p>
+      <div class="frow">
+        <div>
+          <label class="fl" for="c-name">First name</label>
+          <input type="text" id="c-name" name="name" autocomplete="given-name" placeholder="Alex">
+        </div>
+        <div>
+          <label class="fl" for="c-email">Email</label>
+          <input type="email" id="c-email" name="email" autocomplete="email" placeholder="alex@example.com">
+        </div>
+      </div>
+      <div class="hp"><label>Leave this empty <input type="text" id="c-hp" tabindex="-1" autocomplete="off"></label></div>
+      <label class="consent">
+        <input type="checkbox" id="c-consent">
+        <span>Email me my results and let Tom the Chiropractor contact me about them. Your details are used for this and nothing else, and you can ask for them to be deleted at any time. See the <a href="/privacy-policy.html">privacy policy</a>.</span>
+      </label>
+      <div class="btnrow">
+        <button type="button" class="btn-primary" id="send">Email me my results</button>
+        <button type="button" class="btn-ghost" id="print">Print this page</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="cta result hidden" id="cta">
+    <h2>Some of it is not the desk</h2>
+    <p>If the pain has been there for weeks, or it wakes you up, or it goes down an arm or a leg, a better chair will not fix it on its own. That is worth an appointment.</p>
+    <a class="btn-primary" href="https://www.tomthechiropractor.co.uk/#book">Book an appointment</a>
+    <span class="alt">Or message me on <a href="https://wa.me/447871283457">WhatsApp</a> or call <a href="tel:+447871283457">07871 283457</a>.</span>
+  </section>
+
+  <p class="smallprint">
+    This check is based on the Rapid Office Strain Assessment (Sonne, Villalta and Andrews, 2012), an ergonomics screening tool for computer workstations. It is a guide to how your desk is set up, not a diagnosis, and it cannot tell you what is causing your pain. If something hurts, get it looked at.
+  </p>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  var Q = [
+    { id:"seatHeight", n:"Your chair", title:"When you sit right back in your chair, where are your feet?",
+      help:"Look down without moving. Do not correct yourself first.",
+      opts:[
+        {t:"Flat on the floor, knees roughly level with my hips", v:1},
+        {t:"Flat on the floor, but my knees are higher than my hips", v:2,
+         fix:["Raise your seat", "Lift the seat until your hips sit slightly above your knees, then add a footrest, or a ream of paper, if your feet leave the floor."]},
+        {t:"On tiptoes, or dangling", v:3,
+         fix:["Get your feet supported", "Lower the seat until both feet are flat, or keep the height and put a footrest under them. Dangling feet drag on your lower back all day."], first:true},
+        {t:"Tucked under the chair or wrapped round the legs", v:3,
+         fix:["Get your feet supported", "Feet tucked away means the seat is the wrong height. Lower it until both feet rest flat, or add a footrest."], first:true}
+      ]},
+
+    { id:"seatDepth", n:"Your chair", title:"Can you fit three fingers between the front of the seat and the back of your knee?",
+      help:"Sit right back first, then check.",
+      opts:[
+        {t:"Yes, about three fingers", v:1},
+        {t:"No, the seat edge presses into the back of my leg", v:2,
+         fix:["Shorten your seat", "Slide the seat pan forward if it moves, or put a firm cushion behind your lower back. Pressure behind the knee is a circulation problem, not just a comfort one."]},
+        {t:"There is a big gap, more than a hand's width", v:2,
+         fix:["Lengthen your seat", "The seat is too short to hold your thighs, so your weight lands on a smaller area. Slide the pan back if it moves, or try a different chair."]},
+        {t:"I sit on the front edge, not right back", v:2,
+         fix:["Use the whole seat", "Perching forward means the backrest does nothing. Sit right back, and if that feels wrong the chair is the wrong size for you."]}
+      ]},
+
+    { id:"backSupport", n:"Your chair", title:"What is supporting your lower back right now?",
+      help:"The curve just above your belt line.",
+      opts:[
+        {t:"The chair's lumbar support, sitting in the small of my back", v:1},
+        {t:"The backrest, but nothing pushing into the curve of my lower back", v:2,
+         fix:["Fill the gap in your lower back", "Roll up a towel or buy a lumbar cushion and put it at belt height. It is the cheapest change on this list and often the one people feel first."]},
+        {t:"Nothing, I lean forward or the backrest is too far back", v:3,
+         fix:["Get your back onto the backrest", "Set the recline so you are leaning back very slightly, around 100 degrees, and support the lower curve. Leaning forward all day loads the discs."], first:true},
+        {t:"I am on a stool, a dining chair, or the sofa", v:3,
+         fix:["Get a chair with a back", "A stool or a dining chair for a full working day is the single biggest thing on this page. Even a cheap adjustable office chair is a large improvement."], first:true}
+      ]},
+
+    { id:"armrests", n:"Your chair", title:"What are your forearms doing while you type?",
+      help:"Shoulders relaxed and down, not hitched up.",
+      opts:[
+        {t:"Resting on armrests or the desk, elbows at about a right angle", v:1},
+        {t:"Armrests are too high, my shoulders are pushed up", v:2,
+         fix:["Drop your armrests", "Lower them until your shoulders sit down naturally. If they do not adjust, take them off. Shrugged shoulders for hours is a headache waiting to happen."]},
+        {t:"Armrests are too low, or in the way, so I do not use them", v:2,
+         fix:["Support your forearms", "Raise the armrests to elbow height, or pull the chair in so your forearms rest lightly on the desk instead."]},
+        {t:"Nothing supports them, they hang from my shoulders", v:2,
+         fix:["Support your forearms", "Unsupported arms hang about 4kg off each shoulder blade all day. Pull the chair in so your forearms rest on the desk, or add armrests."]}
+      ]},
+
+    { id:"monitor", n:"Your screen", title:"Where is the top of your screen compared with your eyes?",
+      help:"Sit normally and look straight ahead.",
+      opts:[
+        {t:"Level with my eyes, or just below", v:1},
+        {t:"A bit lower, I look down slightly", v:2,
+         fix:["Raise your screen", "Put it on a stand or a stack of books until the top of the screen is level with your eyes. Every centimetre lower is more load on your neck."]},
+        {t:"Well below, I look down a lot", v:3,
+         fix:["Raise your screen", "Looking down 30 degrees or more roughly triples the load your neck muscles carry. A stand or a box under the monitor fixes it in a minute."], first:true},
+        {t:"I work on a laptop with no separate screen", v:3,
+         fix:["Split your laptop up", "You cannot fix a laptop: the screen and the keyboard are stuck together, so either your neck bends or your wrists do. Put the laptop on a stand at eye level and use a separate keyboard and mouse."], first:true},
+        {t:"Higher than my eyes, I look up", v:3,
+         fix:["Lower your screen", "Looking up tips your head back and closes down the joints at the top of your neck. Drop it so the top of the screen is at eye level."], first:true}
+      ]},
+
+    { id:"monitorMods", n:"Your screen", title:"Any of these apply to your screen?", multi:true,
+      help:"Tick all that are true. Skip if none are.",
+      opts:[
+        {t:"I turn my head to one side to see it", v:1,
+         fix:["Put your screen straight in front of you", "A turned head holds the muscles on one side short for hours. Square the screen up with your body, even if it means moving the desk."], first:true},
+        {t:"There is glare or reflection on it", v:1,
+         fix:["Kill the glare", "Turn the desk so the window is to your side rather than behind you or facing you. Glare makes people crane forward without noticing."]},
+        {t:"It is further away than my outstretched arm", v:1,
+         fix:["Bring the screen closer", "About an arm's length is right. Further than that and you lean in, which undoes everything else."]},
+        {t:"I read paper documents flat on the desk while typing", v:1,
+         fix:["Prop your paperwork up", "A document holder next to the screen stops the repeated look down, look up, look down."]},
+        {t:"None of these", v:0, none:true}
+      ]},
+
+    { id:"phone", n:"Your phone", title:"How do you take calls at your desk?",
+      opts:[
+        {t:"Headset, or I barely take calls", v:1},
+        {t:"Handset held to my ear with one hand", v:1},
+        {t:"Tucked between my ear and my shoulder so I can type", v:2,
+         fix:["Get a headset", "Cradling a phone is the worst neck position on this whole page, and people do it for the length of a call without noticing. Any cheap headset solves it."], first:true},
+        {t:"Speakerphone or earbuds", v:1}
+      ]},
+
+    { id:"mouseKeyboard", n:"Your keyboard and mouse", title:"Where is your mouse?",
+      opts:[
+        {t:"Right next to the keyboard, elbow close to my side", v:1},
+        {t:"Out to the side, past the number pad, I reach for it", v:2,
+         fix:["Bring the mouse in", "Reaching out means your shoulder holds your arm up all day. A keyboard without a number pad is the usual fix, and it is about fifteen pounds."], first:true},
+        {t:"On a different surface or height from the keyboard", v:2,
+         fix:["Get both hands level", "Mouse and keyboard on different levels twists one shoulder higher than the other for hours at a time."]},
+        {t:"I use a laptop trackpad", v:2,
+         fix:["Use a proper mouse", "A trackpad keeps your wrist bent and your fingers pinched. A separate mouse is a few pounds and takes the strain off."]}
+      ]},
+
+    { id:"keyboard", n:"Your keyboard and mouse", title:"What are your wrists doing while you type?",
+      help:"Look at the line from your forearm to your knuckles.",
+      opts:[
+        {t:"Straight, roughly in line with my forearms", v:1},
+        {t:"Bent upwards, fingers higher than my wrists", v:2,
+         fix:["Flatten your keyboard", "Fold the little legs at the back down, not up. Most people prop them up, which bends the wrist the wrong way for hours."], first:true},
+        {t:"Bent outwards to the sides", v:2,
+         fix:["Square up your keyboard", "Move it directly in front of you rather than off to one side, and keep your elbows close in."]},
+        {t:"Resting on the desk edge while I type", v:2,
+         fix:["Get your wrists off the edge", "A hard desk edge presses on the nerves and tendons at the wrist. Move back slightly, or add a soft rest to lean on between bursts of typing."]}
+      ]},
+
+    { id:"hours", n:"Your day", title:"How long are you at that desk on a normal working day?",
+      duration:true,
+      opts:[
+        {t:"Under an hour", v:-1},
+        {t:"One to four hours", v:0},
+        {t:"More than four hours", v:1,
+         fix:["Break the sitting up", "Set something to make you stand every 30 to 45 minutes, even for a minute. Length of time in one position matters as much as the position itself."]}
+      ]},
+
+    { id:"symptoms", n:"Optional", title:"Where do you notice it, if anywhere?", multi:true, optional:true, noScore:true,
+      help:"This does not change your score. It just helps me tell you which changes matter most for you.",
+      opts:[
+        {t:"Neck or between the shoulder blades", v:0},
+        {t:"Lower back", v:0},
+        {t:"Shoulders", v:0},
+        {t:"Wrists, hands or forearms", v:0},
+        {t:"Headaches by the afternoon", v:0},
+        {t:"Nothing yet, I am just checking", v:0, none:true}
+      ]}
+  ];
+
+  var SCORED = Q.filter(function(q){ return !q.noScore && !q.multi; }).length
+             + Q.filter(function(q){ return q.multi && !q.noScore; }).length;
+  var state = {};
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+  function render(){
+    var h = "", n = 0;
+    Q.forEach(function(q, qi){
+      if(!q.noScore) n++;
+      h += '<section class="q" id="q-'+q.id+'">';
+      h += '<div class="num">'+esc(q.n)+(q.optional?'<span class="optional">optional</span>':'')+'</div>';
+      h += '<h2>'+esc(q.title)+'</h2>';
+      if(q.help) h += '<p class="help">'+esc(q.help)+'</p>';
+      h += '<div class="opts">';
+      q.opts.forEach(function(o, oi){
+        var type = q.multi ? "checkbox" : "radio";
+        var key = q.multi ? (q.id+"-"+oi) : q.id;
+        var on = q.multi ? !!state[key] : state[q.id] === oi;
+        h += '<label class="opt'+(on?" on":"")+'">'+
+             '<input type="'+type+'" name="'+esc(key)+'" value="'+oi+'"'+(on?" checked":"")+'>'+
+             '<span>'+esc(o.t)+'</span></label>';
+      });
+      h += '</div></section>';
+    });
+    document.getElementById("quiz").innerHTML = h;
+  }
+
+  function multiAnswered(q){
+    for(var i=0;i<q.opts.length;i++){ if(state[q.id+"-"+i]) return true; }
+    return false;
+  }
+
+  function answeredCount(){
+    var c = 0;
+    Q.forEach(function(q){
+      if(q.noScore) return;
+      if(q.multi){ if(multiAnswered(q)) c++; }
+      else if(state[q.id] !== undefined) c++;
+    });
+    return c;
+  }
+
+  function totalQuestions(){ return Q.filter(function(q){ return !q.noScore; }).length; }
+
+  function combine(a,b,cap){
+    var hi = Math.max(a,b), lo = Math.min(a,b);
+    return Math.min(cap, hi + Math.floor((lo - 1) / 2));
+  }
+
+  function pick(q){ var i = state[q.id]; return q.opts[i === undefined ? 0 : i]; }
+  function byId(id){ for(var i=0;i<Q.length;i++){ if(Q[i].id === id) return Q[i]; } return null; }
+
+  function modsTotal(q){
+    var t = 0;
+    q.opts.forEach(function(o, oi){ if(state[q.id+"-"+oi]) t += o.v; });
+    return t;
+  }
+
+  function compute(){
+    var dur = pick(byId("hours")).v;
+
+    var seatHeight = pick(byId("seatHeight")).v;
+    var seatDepth  = pick(byId("seatDepth")).v;
+    var back       = pick(byId("backSupport")).v;
+    var arms       = pick(byId("armrests")).v;
+
+    var axis1 = Math.min(8, seatHeight + seatDepth);
+    var axis2 = Math.min(8, back + arms);
+    var A = Math.max(1, Math.min(9, combine(axis1, axis2, 9) + dur));
+
+    var mon = Math.max(1, Math.min(8, pick(byId("monitor")).v + modsTotal(byId("monitorMods")) + dur));
+    var ph  = Math.max(1, Math.min(8, pick(byId("phone")).v + dur));
+    var B = combine(mon, ph, 9);
+
+    var ms = Math.max(1, Math.min(8, pick(byId("mouseKeyboard")).v + dur));
+    var kb = Math.max(1, Math.min(8, pick(byId("keyboard")).v + dur));
+    var C = combine(ms, kb, 9);
+
+    var P = combine(B, C, 9);
+    var final = Math.max(1, Math.min(10, combine(A, P, 11) - 1));
+    return {A:A, B:B, C:C, final:final};
+  }
+
+  function fixes(){
+    var out = [];
+    Q.forEach(function(q){
+      if(q.multi){
+        q.opts.forEach(function(o, oi){
+          if(state[q.id+"-"+oi] && o.fix) out.push({first:!!o.first, title:o.fix[0], body:o.fix[1]});
+        });
+      } else if(state[q.id] !== undefined){
+        var o = q.opts[state[q.id]];
+        if(o.fix) out.push({first:!!o.first, title:o.fix[0], body:o.fix[1]});
+      }
+    });
+    var seen = {};
+    out = out.filter(function(f){ if(seen[f.title]) return false; seen[f.title] = 1; return true; });
+    out.sort(function(a,b){ return (b.first?1:0) - (a.first?1:0); });
+    return out;
+  }
+
+  function bandFor(f){
+    if(f <= 3) return {cls:"low", label:"Set up well",
+      text:"Your desk is not the problem. Keep it that way, and if something still hurts it is worth looking at what else is going on."};
+    if(f <= 5) return {cls:"mid", label:"Room to improve",
+      text:"A few things are working against you. None of them are expensive to fix, and the list below is in the order that will help most."};
+    if(f <= 7) return {cls:"mid", label:"Needs changing",
+      text:"This is the range where people start getting recurring neck and back pain from their desk. Work down the list below, starting at the top."};
+    return {cls:"high", label:"Working against you",
+      text:"Your setup is loading your spine hard, every day. Fix the first two items below this week. If you are already in pain, the desk alone will not undo it."};
+  }
+
+  function symptomList(){
+    var q = byId("symptoms"), out = [];
+    q.opts.forEach(function(o, oi){ if(state[q.id+"-"+oi]) out.push(o.t); });
+    return out;
+  }
+
+  function show(){
+    var r = compute(), b = bandFor(r.final);
+    document.getElementById("score").textContent = r.final;
+    var badge = document.getElementById("badge");
+    badge.className = "badge " + b.cls;
+    badge.textContent = b.label;
+    document.getElementById("verdict").textContent = b.text;
+
+    var m = "";
+    for(var i=1;i<=10;i++){ m += '<span class="'+(i<=r.final?("on "+b.cls):"")+'"></span>'; }
+    document.getElementById("meter").innerHTML = m;
+
+    var f = fixes();
+    document.getElementById("fixes").innerHTML = f.length
+      ? f.map(function(x){ return '<li><div><b>'+esc(x.title)+'</b><span>'+esc(x.body)+'</span></div></li>'; }).join("")
+      : '<li><div><b>Nothing to change</b><span>Everything you told me about is already set up the way it should be.</span></div></li>';
+
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("cta").classList.remove("hidden");
+  }
+
+  function updateProgress(){
+    var done = answeredCount(), total = totalQuestions();
+    document.getElementById("bar").style.width = Math.round(done / total * 100) + "%";
+    document.getElementById("count").textContent = done + " of " + total;
+    if(done === total){
+      var first = document.getElementById("result").classList.contains("hidden");
+      show();
+      if(first){
+        var el = document.getElementById("result");
+        setTimeout(function(){ el.scrollIntoView({behavior:"smooth", block:"start"}); el.focus({preventScroll:true}); }, 120);
+      }
+    }
+  }
+
+  document.addEventListener("change", function(e){
+    var t = e.target;
+    if(!t.name) return;
+
+    if(t.type === "checkbox"){
+      state[t.name] = t.checked;
+      var sec = t.closest(".q");
+      var def = sec ? byId(sec.id.replace("q-","")) : null;
+      if(def && def.multi && t.checked){
+        var idx = parseInt(t.value, 10);
+        var isNone = !!def.opts[idx].none;
+        def.opts.forEach(function(o, oi){
+          var clash = isNone ? (oi !== idx) : !!o.none;
+          if(clash && state[def.id + "-" + oi]){
+            state[def.id + "-" + oi] = false;
+            var other = sec.querySelector('input[name="' + def.id + "-" + oi + '"]');
+            if(other){ other.checked = false; other.closest("label.opt").classList.remove("on"); }
+          }
+        });
+      }
+    } else if(t.type === "radio"){
+      state[t.name] = parseInt(t.value, 10);
+    } else return;
+
+    var lab = t.closest("label.opt");
+    if(lab){
+      if(t.type === "radio"){
+        lab.parentNode.querySelectorAll("label.opt").forEach(function(l){ l.classList.remove("on"); });
+      }
+      lab.classList.toggle("on", t.checked);
+    }
+    updateProgress();
+  });
+
+  document.getElementById("print").addEventListener("click", function(){ window.print(); });
+
+  var LIVE_HOSTS = ["tomthechiropractor.co.uk", "www.tomthechiropractor.co.uk"];
+  var isLive = LIVE_HOSTS.indexOf(location.hostname) !== -1 || location.hostname === "localhost";
+  if(!isLive){ document.getElementById("preview-note").classList.remove("hidden"); }
+
+  document.getElementById("send").addEventListener("click", function(){
+    var btn = this;
+    var st = document.getElementById("status");
+    var name = document.getElementById("c-name").value.trim();
+    var email = document.getElementById("c-email").value.trim();
+    var consent = document.getElementById("c-consent").checked;
+    var hp = document.getElementById("c-hp").value;
+
+    st.className = "status";
+    if(!name){ st.className = "status err"; st.textContent = "Please add your first name."; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ st.className = "status err"; st.textContent = "That email address does not look right."; return; }
+    if(!consent){ st.className = "status err"; st.textContent = "Please tick the box so I know it is alright to email you."; return; }
+
+    if(!isLive){
+      st.className = "status err";
+      st.textContent = "Preview mode: nothing was sent. This works once the page is live on your own site.";
+      return;
+    }
+
+    var r = compute(), b = bandFor(r.final);
+    var payload = {
+      name: name, email: email, consent: true, website: hp,
+      score: r.final, band: b.label,
+      sections: {chair: r.A, screenAndPhone: r.B, keyboardAndMouse: r.C},
+      fixes: fixes().map(function(f){ return {title: f.title, body: f.body, first: f.first}; }),
+      symptoms: symptomList(),
+      answers: Q.filter(function(q){ return !q.multi; }).map(function(q){
+        return {question: q.title, answer: (state[q.id] === undefined ? "not answered" : q.opts[state[q.id]].t)};
+      })
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Sending";
+    st.textContent = "";
+
+    fetch("/api/send-assessment", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      return res.json().catch(function(){ return {}; }).then(function(data){
+        if(!res.ok) throw new Error(data.error || "Something went wrong at our end.");
+        return data;
+      });
+    }).then(function(){
+      st.className = "status ok";
+      st.textContent = "Sent. Check your inbox, and your spam folder if it is not there in a few minutes.";
+      btn.textContent = "Sent";
+    }).catch(function(err){
+      st.className = "status err";
+      st.textContent = "Could not send it just now. Your results are on screen, so print or screenshot this page. " + (err.message || "");
+      btn.disabled = false;
+      btn.textContent = "Try again";
+    });
+  });
+
+  render();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
