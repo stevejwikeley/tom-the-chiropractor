@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReviews();
+  initContactForm();
 });
 
 function initNav() {
@@ -100,4 +101,43 @@ function initReviews() {
       entries[0].isIntersecting ? start() : stop();
     }, { threshold: 0.2 }).observe(carousel);
   }
+}
+
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('contactStatus');
+  if (!form || !status || !window.fetch) return;
+
+  const button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    status.className = 'contact-form__status';
+    status.textContent = 'Sending…';
+    button.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && result.success) {
+        form.reset();
+        status.className = 'contact-form__status is-success';
+        status.textContent = 'Thanks, your message has been sent. I’ll get back to you soon.';
+      } else {
+        throw new Error(result.message || 'Send failed');
+      }
+    } catch (err) {
+      status.className = 'contact-form__status is-error';
+      status.innerHTML = 'Sorry, that didn’t send. Please email me directly at ' +
+        '<a href="mailto:hello@tomthechiropractor.co.uk">hello@tomthechiropractor.co.uk</a>.';
+    } finally {
+      button.disabled = false;
+    }
+  });
 }

@@ -436,6 +436,50 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="contact__inner">
+      <p class="eyebrow eyebrow--teal">Get in touch</p>
+      <h2>Have a question before you book?</h2>
+      <p class="contact__lead">Send me a message and I'll get back to you. If you'd rather just book, you can <a href="#book">book online</a> or message me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener">WhatsApp</a>.</p>
+
+      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New enquiry from tomthechiropractor.co.uk">
+        <input type="hidden" name="from_name" value="Tom the Chiropractor website">
+        <!-- Spam honeypot: hidden from people, tempting to bots. -->
+        <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off">
+
+        <div class="contact-form__row">
+          <label class="contact-form__field">
+            <span class="contact-form__label">Your name</span>
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label class="contact-form__field">
+            <span class="contact-form__label">Email</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+        </div>
+
+        <label class="contact-form__field">
+          <span class="contact-form__label">Phone <span class="contact-form__optional">(optional)</span></span>
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+
+        <label class="contact-form__field">
+          <span class="contact-form__label">Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <p class="contact-form__note">Please keep messages general rather than describing your symptoms or medical history in detail. We'll go through all of that properly at your appointment.</p>
+
+        <button type="submit" class="btn btn--dark">Send message</button>
+        <p class="contact-form__status" id="contactStatus" role="status" aria-live="polite"></p>
+        <p class="contact-form__privacy">Your details are used only to reply to your enquiry. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER -->

@@ -728,6 +728,81 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 .map-embed__directions:hover{color:var(--color-yellow);}
 
+/* CONTACT */
+.contact{
+  padding:var(--space-section-y) var(--space-section-x);
+  background:var(--color-tan);
+}
+.contact__inner{max-width:640px;margin:0 auto;}
+.contact h2{
+  margin:0 0 16px;
+  font:var(--type-h2);
+}
+.contact__lead{
+  margin:0 0 32px;
+  font:var(--type-body-loose);
+  color:var(--ink-b3);
+}
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.contact-form__row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.contact-form__field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.contact-form__label{
+  font:600 13px/1.3 var(--font-family);
+}
+.contact-form__optional{
+  font-weight:400;
+  color:var(--ink-99);
+}
+.contact-form input,
+.contact-form textarea{
+  font:400 15px/1.5 var(--font-family);
+  color:var(--color-ink);
+  background:#fff;
+  border:1px solid var(--ink-1a);
+  padding:12px 14px;
+  width:100%;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{
+  outline:2px solid var(--color-teal);
+  outline-offset:-1px;
+}
+.contact-form textarea{resize:vertical;}
+/* Honeypot: kept out of sight and out of the tab order, not display:none,
+   so bots that skip hidden fields still fill it in. */
+.contact-form__botcheck{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  height:0;
+  width:0;
+}
+.contact-form__note,
+.contact-form__privacy{
+  font:400 13px/1.55 var(--font-family);
+  color:var(--ink-99);
+  margin:0;
+}
+.contact-form .btn{align-self:flex-start;}
+.contact-form__status{
+  margin:0;
+  font:600 14px/1.5 var(--font-family);
+}
+.contact-form__status.is-success{color:var(--color-teal-hover);}
+.contact-form__status.is-error{color:var(--color-red);}
+
 /* FOOTER */
 .site-footer{
   padding:28px var(--space-section-x);
@@ -815,7 +890,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
-  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.reviews,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
+  .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.reviews,.contact,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
+  .contact-form__row{grid-template-columns:1fr;}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
