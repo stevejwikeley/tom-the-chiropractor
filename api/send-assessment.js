@@ -169,8 +169,15 @@ export default async function handler(req, res) {
   const clinic = process.env.CLINIC_EMAIL;
 
   if (!apiKey || !from || !clinic) {
-    console.error("send-assessment: missing RESEND_API_KEY, FROM_EMAIL or CLINIC_EMAIL");
-    return res.status(500).json({ error: "Email is not switched on yet." });
+    // Report which names are absent so misconfiguration can be diagnosed without
+    // guesswork. Names only, never values, so nothing sensitive is exposed.
+    const missing = [
+      !apiKey && "RESEND_API_KEY",
+      !from && "FROM_EMAIL",
+      !clinic && "CLINIC_EMAIL"
+    ].filter(Boolean);
+    console.error("send-assessment: missing env vars:", missing.join(", "));
+    return res.status(500).json({ error: "Email is not switched on yet.", missing });
   }
 
   const safe = {
