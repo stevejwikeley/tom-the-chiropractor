@@ -438,6 +438,31 @@
     </div>
   </section>
 
+  <!-- BOOK ONLINE (WIDGET) -->
+  <section id="book" class="book">
+    <p class="eyebrow eyebrow--teal">Book online</p>
+    <h2>Book your appointment.</h2>
+    <div class="book__widget">
+      <!-- Booking Widget -->
+      <div id="ph_online_bookings_widget"></div>
+
+      <!-- Configuration Script -->
+      <script>
+        window.BookingTrackerConfig = {
+          domain: "tomthechiro.neptune.practicehub.io"
+        };
+
+        const phob_embed_version = Math.floor(Date.now()/600000);
+        const phob_embed_script = document.createElement('script');
+        phob_embed_script.id = 'ph-embed';
+        phob_embed_script.setAttribute('data-ph-embed', '');
+        phob_embed_script.type = 'text/javascript';
+        phob_embed_script.src = `https://tomthechiro.neptune.practicehub.io/assets/js/booking-form-embed.js?v=${phob_embed_version}`;
+        document.currentScript.parentNode.insertBefore(phob_embed_script, document.currentScript.nextSibling);
+      </script>
+    </div>
+  </section>
+
   <!-- FAQS / TRUST -->
   <section id="faq" class="faq">
     <p class="eyebrow eyebrow--yellow">Questions people ask me</p>
@@ -477,35 +502,21 @@
     </div>
   </section>
 
-  <!-- BOOK ONLINE (WIDGET) -->
-  <section id="book" class="book">
-    <p class="eyebrow eyebrow--teal">Book online</p>
-    <h2>Book your appointment.</h2>
-    <div class="book__widget">
-      <!-- Booking Widget -->
-      <div id="ph_online_bookings_widget"></div>
-
-      <!-- Configuration Script -->
-      <script>
-        window.BookingTrackerConfig = {
-          domain: "tomthechiro.neptune.practicehub.io"
-        };
-
-        const phob_embed_version = Math.floor(Date.now()/600000);
-        const phob_embed_script = document.createElement('script');
-        phob_embed_script.id = 'ph-embed';
-        phob_embed_script.setAttribute('data-ph-embed', '');
-        phob_embed_script.type = 'text/javascript';
-        phob_embed_script.src = `https://tomthechiro.neptune.practicehub.io/assets/js/booking-form-embed.js?v=${phob_embed_version}`;
-        document.currentScript.parentNode.insertBefore(phob_embed_script, document.currentScript.nextSibling);
-      </script>
-    </div>
-  </section>
-
-  <!-- FIND ME -->
+  <!-- FIND ME + GET IN TOUCH -->
   <section id="find" class="find">
     <p class="eyebrow eyebrow--teal">Find me</p>
-    <h2>Your chiropractor in central Loughborough.</h2>
+    <h2>Come and see me, or send a message first.</h2>
+    <div class="find-map">
+      <div class="map-embed">
+        <iframe
+          class="map-embed__frame"
+          src="https://www.google.com/maps?q=The+Work+Lounge%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing Tom the Chiropractor at The Work Lounge, 1 Beehive Lane, Loughborough LE11 2FJ"></iframe>
+        <a class="map-embed__directions" href="https://www.google.com/maps/dir/?api=1&destination=The+Work+Lounge%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ" target="_blank" rel="noopener">Get directions →</a>
+      </div>
+    </div>
     <div class="find-grid">
       <div class="find-info">
         <p>You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.</p>
@@ -537,60 +548,49 @@
           Leicestershire<br>
           LE11 2FJ
         </address>
+        <p class="find-info__directions"><a href="https://www.google.com/maps/dir/?api=1&destination=The+Work+Lounge%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ" target="_blank" rel="noopener">Get directions →</a></p>
       </div>
-      <div class="map-embed">
-        <iframe
-          class="map-embed__frame"
-          src="https://www.google.com/maps?q=The+Work+Lounge%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Map showing Tom the Chiropractor at The Work Lounge, 1 Beehive Lane, Loughborough LE11 2FJ"></iframe>
-        <a class="map-embed__directions" href="https://www.google.com/maps/dir/?api=1&destination=The+Work+Lounge%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ" target="_blank" rel="noopener">Get directions →</a>
+
+      <div class="find-contact" id="contact">
+        <p class="eyebrow eyebrow--teal">Get in touch</p>
+        <h3 class="find-contact__title">Have a question before you book?</h3>
+        <p class="contact__lead">Send me a message and I'll get back to you. If you'd rather just book, you can <a href="#book">book online</a> or message me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener">WhatsApp</a>.</p>
+
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="c8228673-a7c3-490f-91b1-a8f5e5a88ff7">
+          <input type="hidden" name="subject" value="New enquiry from tomthechiropractor.co.uk">
+          <input type="hidden" name="from_name" value="Tom the Chiropractor website">
+          <!-- Spam honeypot: hidden from people, tempting to bots. -->
+          <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off">
+
+          <div class="contact-form__row">
+            <label class="contact-form__field">
+              <span class="contact-form__label">Your name</span>
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label class="contact-form__field">
+              <span class="contact-form__label">Email</span>
+              <input type="email" name="email" required autocomplete="email">
+            </label>
+          </div>
+
+          <label class="contact-form__field">
+            <span class="contact-form__label">Phone <span class="contact-form__optional">(optional)</span></span>
+            <input type="tel" name="phone" autocomplete="tel">
+          </label>
+
+          <label class="contact-form__field">
+            <span class="contact-form__label">Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <p class="contact-form__note">Please keep messages general rather than describing your symptoms or medical history in detail. We'll go through all of that properly at your appointment.</p>
+
+          <button type="submit" class="btn btn--dark">Send message</button>
+          <p class="contact-form__status" id="contactStatus" role="status" aria-live="polite"></p>
+          <p class="contact-form__privacy">Your details are used only to reply to your enquiry. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        </form>
       </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="contact__inner">
-      <p class="eyebrow eyebrow--teal">Get in touch</p>
-      <h2>Have a question before you book?</h2>
-      <p class="contact__lead">Send me a message and I'll get back to you. If you'd rather just book, you can <a href="#book">book online</a> or message me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener">WhatsApp</a>.</p>
-
-      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="c8228673-a7c3-490f-91b1-a8f5e5a88ff7">
-        <input type="hidden" name="subject" value="New enquiry from tomthechiropractor.co.uk">
-        <input type="hidden" name="from_name" value="Tom the Chiropractor website">
-        <!-- Spam honeypot: hidden from people, tempting to bots. -->
-        <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off">
-
-        <div class="contact-form__row">
-          <label class="contact-form__field">
-            <span class="contact-form__label">Your name</span>
-            <input type="text" name="name" required autocomplete="name">
-          </label>
-          <label class="contact-form__field">
-            <span class="contact-form__label">Email</span>
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-        </div>
-
-        <label class="contact-form__field">
-          <span class="contact-form__label">Phone <span class="contact-form__optional">(optional)</span></span>
-          <input type="tel" name="phone" autocomplete="tel">
-        </label>
-
-        <label class="contact-form__field">
-          <span class="contact-form__label">Message</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-
-        <p class="contact-form__note">Please keep messages general rather than describing your symptoms or medical history in detail. We'll go through all of that properly at your appointment.</p>
-
-        <button type="submit" class="btn btn--dark">Send message</button>
-        <p class="contact-form__status" id="contactStatus" role="status" aria-live="polite"></p>
-        <p class="contact-form__privacy">Your details are used only to reply to your enquiry. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
-      </form>
     </div>
   </section>
 

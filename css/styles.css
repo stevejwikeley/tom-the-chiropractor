@@ -754,6 +754,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-h2);
   max-width:640px;
 }
+/* Full-width map band above the two columns. */
+.find-map{margin:0 0 48px;}
+.find-map .map-embed{aspect-ratio:auto;height:320px;}
 .find-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -767,6 +770,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   max-width:460px;
 }
 .find-info__whatsapp{margin-bottom:10px;}
+.find-info__directions{margin:16px 0 0;font:400 14px/1.5 var(--font-family);}
 .find-info__whatsapp-number{
   margin:0 0 24px;
   font:400 13px/1.5 var(--font-family);
@@ -834,18 +838,19 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   margin:0 0 8px;
 }
 
-/* CONTACT */
-.contact{
-  padding:var(--space-section-y) var(--space-section-x);
-  background:var(--color-tan);
+/* CONTACT (sits in the right-hand column of the Find me section) */
+.find-contact{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:32px;
 }
-.contact__inner{max-width:640px;margin:0 auto;}
-.contact h2{
-  margin:0 0 16px;
-  font:var(--type-h2);
+.find-contact__title{
+  margin:0 0 14px;
+  font:400 24px/1.3 var(--font-family);
+  color:var(--color-ink);
 }
 .contact__lead{
-  margin:0 0 32px;
+  margin:0 0 28px;
   font:var(--type-body-loose);
   color:var(--ink-b3);
 }
@@ -974,7 +979,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .value-col:last-child{border-bottom:none;padding-bottom:0 !important;}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
   .find-grid{grid-template-columns:1fr;}
-  .map-embed{aspect-ratio:16/9;}
+  .find-map .map-embed{height:240px;}
   /* 70% of a narrow screen is too cramped to read. */
   .faq-grid,.faq .eyebrow{width:100%;}
 }
@@ -1008,5 +1013,6 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .reviews__track.is-enhanced .review-card{height:430px;}
   .reviews .eyebrow{font-size:19px;}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
+  .find-contact{padding:22px;}
   .site-footer{flex-direction:column;gap:12px;}
 }
