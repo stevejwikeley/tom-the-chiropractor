@@ -107,14 +107,14 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* HERO */
 .hero{padding:var(--space-hero-y-top) var(--space-section-x) var(--space-hero-y-bottom);}
-.hero__inner{max-width:760px;margin:0 auto;text-align:center;}
+.hero__inner{max-width:760px;}
 .hero h1{
   margin:0 0 26px;
   font:var(--type-h1);
   letter-spacing:var(--tracking-h1);
 }
 .hero__lead{
-  margin:0 auto 34px;
+  margin:0 0 34px;
   font:var(--type-body-lg);
   color:var(--ink-b3);
   max-width:600px;
@@ -123,7 +123,6 @@ h1,h2,h3,p,ul{margin:0;}
   display:flex;
   gap:14px;
   align-items:center;
-  justify-content:center;
   flex-wrap:wrap;
 }
 .hero__note{
