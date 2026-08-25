@@ -107,7 +107,22 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* HERO */
 .hero{padding:var(--space-hero-y-top) var(--space-section-x) var(--space-hero-y-bottom);}
+/* Text left, photo right. Collapses to a single column on narrow screens. */
+.hero__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:56px;
+  align-items:center;
+  max-width:1180px;
+  margin:0 auto;
+}
 .hero__inner{max-width:760px;}
+.hero__media img{
+  display:block;
+  width:100%;
+  max-width:330px;
+  height:auto;
+}
 .hero h1{
   margin:0 0 26px;
   font:var(--type-h1);
@@ -681,12 +696,21 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .faq-item summary{
   display:flex;
   align-items:center;
-  justify-content:space-between;
   gap:20px;
   padding:18px 2px;
   cursor:pointer;
   list-style:none;
 }
+/* Question fills the row so it centres, leaving the chevron at the right.
+   The spacer matches the chevron so the text sits truly central. */
+.faq-item summary h3{flex:1;text-align:center;}
+.faq-item summary::before{
+  content:"";
+  flex:none;
+  width:10px;
+  margin-left:6px;
+}
+.faq-item__answer{text-align:center;}
 .faq-item summary::-webkit-details-marker{display:none;}
 .faq-item summary:hover h3{color:var(--color-teal);}
 .faq-item summary:focus-visible{
@@ -711,6 +735,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .faq-item__answer{
   padding:0 2px 20px;
   max-width:68ch;
+  margin:0 auto;
 }
 .faq-grid h3{
   margin:0;
@@ -967,6 +992,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .map-embed{aspect-ratio:16/9;}
   /* 70% of a narrow screen is too cramped to read. */
   .faq-grid,.faq .eyebrow{width:100%;}
+  /* Photo drops below the text rather than squeezing it. */
+  .hero__grid{grid-template-columns:1fr;gap:32px;}
+  .hero__media img{max-width:280px;margin:0 auto;}
 }
 
 @media (max-width: 700px){
