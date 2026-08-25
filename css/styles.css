@@ -622,16 +622,17 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 
 /* PRICING */
-/* Teal band. Separates pricing from the tan "How it works" section above it. */
-.pricing{padding:var(--space-section-y) var(--space-section-x);background:var(--color-teal);}
-/* A teal eyebrow would vanish here, and white text on this teal falls short
-   of the 4.5:1 contrast minimum, so ink carries both. */
-.pricing .eyebrow{color:var(--color-ink);}
+/* Dark band, matching the "Why" and FAQ sections. Also separates pricing
+   from the tan "How it works" section above it. */
+.pricing{
+  padding:var(--space-section-y) var(--space-section-x);
+  background:var(--color-ink);
+  color:var(--color-cream);
+}
 .pricing h2{
   margin:0 0 40px;
   font:var(--type-h2);
   max-width:640px;
-  color:var(--color-ink);
 }
 .pricing-grid{
   display:grid;
@@ -644,6 +645,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   background:#fff;
   border:1px solid var(--ink-14);
   padding:32px 28px;
+  /* The section sets cream text; the white cards need it back to ink. */
+  color:var(--color-ink);
 }
 .price-card__label{
   font:var(--type-eyebrow);
