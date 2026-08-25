@@ -663,7 +663,14 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
    without JavaScript. Single column, since expanding one item in a two-column
    grid stretches whatever sits beside it. */
 .faq-grid{
-  max-width:760px;
+  width:70%;
+  margin:0 auto;
+}
+/* Keep the section label lined up with the accordion's left edge. */
+.faq .eyebrow{
+  width:70%;
+  margin-left:auto;
+  margin-right:auto;
 }
 .faq-item{
   border-top:1px solid var(--cream-33);
@@ -958,6 +965,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
   .find-grid{grid-template-columns:1fr;}
   .map-embed{aspect-ratio:16/9;}
+  /* 70% of a narrow screen is too cramped to read. */
+  .faq-grid,.faq .eyebrow{width:100%;}
 }
 
 @media (max-width: 700px){
