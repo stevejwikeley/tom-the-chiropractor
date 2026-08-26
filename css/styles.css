@@ -636,10 +636,10 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 .pricing-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:var(--space-gap-md);
   margin-bottom:32px;
-  max-width:720px;
+  max-width:1080px;
 }
 .price-card{
   background:#fff;
@@ -988,6 +988,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
   .find-grid{grid-template-columns:1fr;}
   .find-map .map-embed{height:240px;}
+  /* Three price cards get cramped below this, so drop to two and let the
+     block booking wrap onto its own row. */
+  .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:720px;}
   /* 70% of a narrow screen is too cramped to read. */
   .faq-grid,.faq .eyebrow{width:100%;}
 }
