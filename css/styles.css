@@ -664,6 +664,22 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-body-sm);
   color:var(--ink-b3);
 }
+/* The amount doubles as the link to the block terms, so it keeps the price
+   styling and only picks up an underline. */
+.price-card__link{
+  color:inherit;
+  text-decoration:underline;
+  text-decoration-color:var(--color-teal);
+  text-underline-offset:6px;
+  text-decoration-thickness:2px;
+}
+.price-card__link:hover,
+.price-card__link:focus-visible{color:var(--color-teal-hover);}
+.price-card__terms{
+  margin:14px 0 0;
+  font:600 13px/1.5 var(--font-family);
+}
+.price-card__terms a{color:var(--color-teal-hover);}
 
 /* FAQ */
 .faq{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
@@ -839,6 +855,17 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--color-ink);
   padding-right:28px;
   white-space:nowrap;
+}
+/* Three columns of figures, so the middle one needs its own gutter and the
+   header row needs to read as headers. */
+.hours--refunds td{padding-right:28px;}
+.hours--refunds td:last-child{padding-right:0;}
+.hours--refunds thead th{
+  font:var(--type-eyebrow);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--color-teal);
+  padding-bottom:10px;
 }
 .hours__note{
   font:400 13px/1.55 var(--font-family);
