@@ -6,9 +6,6 @@
 <title>Free desk check | Tom the Chiropractor, Loughborough</title>
 <meta name="description" content="A two minute check of your desk setup, based on the Rapid Office Strain Assessment used by ergonomists. Get your score and what to change, free.">
 <link rel="canonical" href="https://www.tomthechiropractor.co.uk/desk-check.html">
-<!-- TEMPORARY: remove this line once Resend is configured and the email actually sends.
-     Until then the page works but the results email fails, so it should stay out of search. -->
-<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -64,15 +61,19 @@ a{color:var(--brand)}
 /* progress */
 .progress{position:sticky;top:0;z-index:20;background:rgba(251,250,249,.94);
   backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
-.progress-in{max-width:720px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
-.bar{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.progress.hidden{display:none}
+.progress-in{max-width:720px;margin:0 auto;padding:11px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.bar{flex:1;min-width:100%;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--brand);border-radius:99px;transition:width .25s ease}
 .progress .count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.scorechip{font-size:12.5px;font-weight:600;color:var(--brand-dark);background:var(--brand-tint);
+  padding:4px 11px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums;margin-left:auto}
 
 /* questions */
 main{padding:26px 0 60px}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
+  padding:20px;margin-bottom:14px;box-shadow:var(--shadow);scroll-margin-top:76px}
+#quiz.hidden{display:none}
 .q .num{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
 .q h2{font-size:19px;margin:6px 0 3px;line-height:1.25}
 .q .help{font-size:14.5px;color:var(--muted);margin:0 0 14px}
@@ -88,6 +89,17 @@ label.opt input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 label.opt.on{border-color:var(--brand);background:var(--brand-tint)}
 .optional{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--muted-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:8px}
+
+/* inline per-question feedback */
+.feedback{margin-top:14px;border-radius:9px;padding:12px 14px;font-size:14.5px}
+.feedback.ok{background:var(--good-bg);color:var(--good);display:flex;gap:9px;align-items:flex-start;font-weight:600}
+.feedback.warn{background:var(--warn-bg)}
+.feedback .fb-item + .fb-item{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08)}
+.feedback .fb-item b{display:block;color:var(--warn);font-weight:600;font-size:14.5px}
+.feedback .fb-item span{display:block;color:var(--ink);opacity:.82;font-size:14px;margin-top:2px}
+
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}
+.edit-row{margin-top:16px}
 
 /* result */
 .result{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -184,10 +196,11 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   </div>
 </header>
 
-<div class="progress">
+<div class="progress" id="progress">
   <div class="progress-in">
     <div class="bar"><i id="bar"></i></div>
-    <span class="count" id="count">0 of 9</span>
+    <span class="count" id="count">Question 1 of 10</span>
+    <span class="scorechip" id="scorechip">Score so far <b id="scorechip-val">1</b>/10</span>
   </div>
 </div>
 
@@ -201,6 +214,7 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
       <p class="verdict" id="verdict"></p>
       <div class="meter" id="meter"></div>
       <div class="meter-key"><span>Set up well</span><span>Needs changing</span></div>
+      <div class="edit-row"><button type="button" class="btn-ghost" id="edit-answers">Change an answer</button></div>
     </div>
 
     <div class="fix-head">What to change first</div>
@@ -379,51 +393,22 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
       ]}
   ];
 
-  var SCORED = Q.filter(function(q){ return !q.noScore && !q.multi; }).length
-             + Q.filter(function(q){ return q.multi && !q.noScore; }).length;
   var state = {};
+  var current = 0;
+  var COUNTED = Q.filter(function(q){ return !q.optional; }).length;
 
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
-
-  function render(){
-    var h = "", n = 0;
-    Q.forEach(function(q, qi){
-      if(!q.noScore) n++;
-      h += '<section class="q" id="q-'+q.id+'">';
-      h += '<div class="num">'+esc(q.n)+(q.optional?'<span class="optional">optional</span>':'')+'</div>';
-      h += '<h2>'+esc(q.title)+'</h2>';
-      if(q.help) h += '<p class="help">'+esc(q.help)+'</p>';
-      h += '<div class="opts">';
-      q.opts.forEach(function(o, oi){
-        var type = q.multi ? "checkbox" : "radio";
-        var key = q.multi ? (q.id+"-"+oi) : q.id;
-        var on = q.multi ? !!state[key] : state[q.id] === oi;
-        h += '<label class="opt'+(on?" on":"")+'">'+
-             '<input type="'+type+'" name="'+esc(key)+'" value="'+oi+'"'+(on?" checked":"")+'>'+
-             '<span>'+esc(o.t)+'</span></label>';
-      });
-      h += '</div></section>';
-    });
-    document.getElementById("quiz").innerHTML = h;
-  }
 
   function multiAnswered(q){
     for(var i=0;i<q.opts.length;i++){ if(state[q.id+"-"+i]) return true; }
     return false;
   }
 
-  function answeredCount(){
-    var c = 0;
-    Q.forEach(function(q){
-      if(q.noScore) return;
-      if(q.multi){ if(multiAnswered(q)) c++; }
-      else if(state[q.id] !== undefined) c++;
-    });
-    return c;
+  function canProceed(q){
+    if(q.optional) return true;
+    return q.multi ? multiAnswered(q) : state[q.id] !== undefined;
   }
-
-  function totalQuestions(){ return Q.filter(function(q){ return !q.noScore; }).length; }
 
   function combine(a,b,cap){
     var hi = Math.max(a,b), lo = Math.min(a,b);
@@ -520,36 +505,127 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
     document.getElementById("cta").classList.remove("hidden");
   }
 
-  function updateProgress(){
-    var done = answeredCount(), total = totalQuestions();
-    document.getElementById("bar").style.width = Math.round(done / total * 100) + "%";
-    document.getElementById("count").textContent = done + " of " + total;
-    if(done === total){
-      var first = document.getElementById("result").classList.contains("hidden");
-      show();
-      if(first){
-        var el = document.getElementById("result");
-        setTimeout(function(){ el.scrollIntoView({behavior:"smooth", block:"start"}); el.focus({preventScroll:true}); }, 120);
+  /* --- feedback shown straight after each answer --- */
+
+  function feedbackFor(q){
+    if(q.multi){
+      if(!multiAnswered(q)) return null;
+      if(q.noScore){
+        var noneOn = false;
+        q.opts.forEach(function(o, oi){ if(state[q.id+"-"+oi] && o.none) noneOn = true; });
+        return {ok:true, text: noneOn ? "Good, no symptoms yet." : "Thanks, noted. I'll flag the changes that matter most for that."};
       }
+      var items = [], noneOn2 = false;
+      q.opts.forEach(function(o, oi){
+        if(state[q.id+"-"+oi]){
+          if(o.none) noneOn2 = true; else if(o.fix) items.push(o.fix);
+        }
+      });
+      if(noneOn2 || items.length === 0) return {ok:true, text:"Good, none of those apply."};
+      return {ok:false, items:items};
+    }
+    if(state[q.id] === undefined) return null;
+    var o = q.opts[state[q.id]];
+    if(!o.fix) return {ok:true, text:"Good, that's set up well."};
+    return {ok:false, items:[o.fix]};
+  }
+
+  function feedbackHTML(fb){
+    if(!fb) return "";
+    if(fb.ok) return '<div class="feedback ok"><span aria-hidden="true">&#10003;</span><span>'+esc(fb.text)+'</span></div>';
+    var body = fb.items.map(function(it){ return '<div class="fb-item"><b>'+esc(it[0])+'</b><span>'+esc(it[1])+'</span></div>'; }).join("");
+    return '<div class="feedback warn">'+body+'</div>';
+  }
+
+  /* --- one question at a time --- */
+
+  function renderQuestion(idx){
+    var q = Q[idx];
+    var h = '<section class="q" id="q-'+q.id+'">';
+    h += '<div class="num">'+esc(q.n)+(q.optional?'<span class="optional">optional</span>':'')+'</div>';
+    h += '<h2>'+esc(q.title)+'</h2>';
+    if(q.help) h += '<p class="help">'+esc(q.help)+'</p>';
+    h += '<div class="opts">';
+    q.opts.forEach(function(o, oi){
+      var type = q.multi ? "checkbox" : "radio";
+      var key = q.multi ? (q.id+"-"+oi) : q.id;
+      var on = q.multi ? !!state[key] : state[q.id] === oi;
+      h += '<label class="opt'+(on?" on":"")+'">'+
+           '<input type="'+type+'" name="'+esc(key)+'" value="'+oi+'"'+(on?" checked":"")+'>'+
+           '<span>'+esc(o.t)+'</span></label>';
+    });
+    h += '</div>';
+    h += '<div id="fb">'+feedbackHTML(feedbackFor(q))+'</div>';
+    h += '<div class="qnav">';
+    h += idx > 0 ? '<button type="button" class="btn-ghost" id="back">Back</button>' : '<span></span>';
+    h += '<button type="button" class="btn-primary" id="next"'+(canProceed(q)?"":" disabled")+'>'+(idx === Q.length-1 ? "See my results" : "Next")+'</button>';
+    h += '</div>';
+    h += '</section>';
+    document.getElementById("quiz").innerHTML = h;
+    updateHeader();
+  }
+
+  function updateHeader(){
+    var q = Q[current];
+    document.getElementById("bar").style.width = Math.round(Math.min(current, COUNTED - 1) / (COUNTED - 1) * 100) + "%";
+    document.getElementById("count").textContent = q.optional ? "Optional" : "Question " + (current + 1) + " of " + COUNTED;
+    document.getElementById("scorechip-val").textContent = compute().final;
+  }
+
+  function syncCurrentQuestion(){
+    var q = Q[current];
+    document.getElementById("fb").innerHTML = feedbackHTML(feedbackFor(q));
+    var next = document.getElementById("next");
+    if(next) next.disabled = !canProceed(q);
+    updateHeader();
+  }
+
+  function scrollToQuiz(){
+    var el = document.querySelector(".q");
+    if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function finish(){
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("progress").classList.add("hidden");
+    show();
+    var el = document.getElementById("result");
+    setTimeout(function(){ el.scrollIntoView({behavior:"smooth", block:"start"}); el.focus({preventScroll:true}); }, 60);
+  }
+
+  function goNext(){
+    if(current < Q.length - 1){
+      current++;
+      renderQuestion(current);
+      scrollToQuiz();
+    } else {
+      finish();
     }
   }
 
-  document.addEventListener("change", function(e){
+  function goBack(){
+    if(current > 0){
+      current--;
+      renderQuestion(current);
+      scrollToQuiz();
+    }
+  }
+
+  document.getElementById("quiz").addEventListener("change", function(e){
     var t = e.target;
     if(!t.name) return;
+    var q = Q[current];
 
     if(t.type === "checkbox"){
       state[t.name] = t.checked;
-      var sec = t.closest(".q");
-      var def = sec ? byId(sec.id.replace("q-","")) : null;
-      if(def && def.multi && t.checked){
+      if(q.multi && t.checked){
         var idx = parseInt(t.value, 10);
-        var isNone = !!def.opts[idx].none;
-        def.opts.forEach(function(o, oi){
+        var isNone = !!q.opts[idx].none;
+        q.opts.forEach(function(o, oi){
           var clash = isNone ? (oi !== idx) : !!o.none;
-          if(clash && state[def.id + "-" + oi]){
-            state[def.id + "-" + oi] = false;
-            var other = sec.querySelector('input[name="' + def.id + "-" + oi + '"]');
+          if(clash && state[q.id + "-" + oi]){
+            state[q.id + "-" + oi] = false;
+            var other = document.querySelector('input[name="' + q.id + "-" + oi + '"]');
             if(other){ other.checked = false; other.closest("label.opt").classList.remove("on"); }
           }
         });
@@ -565,7 +641,22 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
       }
       lab.classList.toggle("on", t.checked);
     }
-    updateProgress();
+    syncCurrentQuestion();
+  });
+
+  document.getElementById("quiz").addEventListener("click", function(e){
+    if(e.target.id === "next") goNext();
+    else if(e.target.id === "back") goBack();
+  });
+
+  document.getElementById("edit-answers").addEventListener("click", function(){
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("cta").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+    document.getElementById("progress").classList.remove("hidden");
+    current = 0;
+    renderQuestion(current);
+    window.scrollTo({top:0, behavior:"smooth"});
   });
 
   document.getElementById("print").addEventListener("click", function(){ window.print(); });
@@ -630,8 +721,7 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
     });
   });
 
-  render();
-  updateProgress();
+  renderQuestion(current);
 })();
 </script>
 </body>
