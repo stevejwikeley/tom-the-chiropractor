@@ -140,8 +140,22 @@ async function sendEmail(apiKey, payload) {
 }
 
 export default async function handler(req, res) {
+  // Setup check. Reports which of the three environment variables Vercel can
+  // see -- names only, never values -- so the email config can be verified
+  // without putting a real submission through and emailing someone.
+  if (req.method === "GET") {
+    return res.status(200).json({
+      configured: Boolean(process.env.RESEND_API_KEY && process.env.FROM_EMAIL && process.env.CLINIC_EMAIL),
+      present: {
+        RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
+        FROM_EMAIL: Boolean(process.env.FROM_EMAIL),
+        CLINIC_EMAIL: Boolean(process.env.CLINIC_EMAIL)
+      }
+    });
+  }
+
   if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+    res.setHeader("Allow", "GET, POST");
     return res.status(405).json({ error: "Method not allowed" });
   }
 
