@@ -314,6 +314,18 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   max-width:600px;
 }
 
+/* DESK CHECK */
+.desk-check{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
+.desk-check__inner{max-width:640px;}
+.desk-check__inner h2{margin:0 0 16px;font:var(--type-h2);}
+.desk-check__lead{
+  margin:0 0 28px;
+  font:var(--type-body-lg);
+  color:var(--ink-b3);
+  max-width:600px;
+}
+.desk-check__inner .pill-row{margin-bottom:28px;}
+
 /* REVIEWS */
 .reviews{
   padding:var(--space-section-y) var(--space-section-x);
