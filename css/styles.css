@@ -685,16 +685,14 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .faq{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
 /* Accordion built on <details>/<summary>: keyboard accessible and works
    without JavaScript. Single column, since expanding one item in a two-column
-   grid stretches whatever sits beside it. */
+   grid stretches whatever sits beside it. Capped to a readable measure and
+   left-aligned in the section, matching every other section's containers
+   (rather than floating as a centred block on wide screens). */
 .faq-grid{
-  width:70%;
-  margin:0 auto;
+  max-width:760px;
 }
-/* Keep the section label lined up with the accordion's left edge. */
 .faq .eyebrow{
-  width:70%;
-  margin-left:auto;
-  margin-right:auto;
+  max-width:760px;
 }
 .faq-item{
   border-top:1px solid var(--cream-33);
@@ -710,16 +708,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   cursor:pointer;
   list-style:none;
 }
-/* Question fills the row so it centres, leaving the chevron at the right.
-   The spacer matches the chevron so the text sits truly central. */
-.faq-item summary h3{flex:1;text-align:center;}
-.faq-item summary::before{
-  content:"";
-  flex:none;
-  width:10px;
-  margin-left:6px;
-}
-.faq-item__answer{text-align:center;}
+.faq-item summary h3{flex:1;}
 .faq-item summary::-webkit-details-marker{display:none;}
 .faq-item summary:hover h3{color:var(--color-teal);}
 .faq-item summary:focus-visible{
@@ -744,7 +733,6 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .faq-item__answer{
   padding:0 2px 20px;
   max-width:68ch;
-  margin:0 auto;
 }
 .faq-grid h3{
   margin:0;
@@ -1018,8 +1006,6 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   /* Three price cards get cramped below this, so drop to two and let the
      block booking wrap onto its own row. */
   .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:720px;}
-  /* 70% of a narrow screen is too cramped to read. */
-  .faq-grid,.faq .eyebrow{width:100%;}
 }
 
 @media (max-width: 700px){
