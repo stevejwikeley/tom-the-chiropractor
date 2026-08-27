@@ -7,15 +7,17 @@
 - Practitioner: Tom, MChiro, Welsh Institute of Chiropractic, registered with the General Chiropractic Council (GCC), fully insured
 - Location: The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2FJ
 - Booking: online booking widget at https://www.tomthechiropractor.co.uk/#book, or WhatsApp +44 7871 283457
-- Pricing: initial consultation £70, follow-up treatment £45
+- Pricing: initial consultation £70 (60 minutes), follow-up treatment £45, block of 5 follow-ups £200 (£40/visit)
 - Hours: Thursday 9am-7pm. From October 2026: Monday 9am-7pm, Thursday 9am-7pm, Saturday 9am-2pm.
 
 ## Pages
 
 - [Home](https://www.tomthechiropractor.co.uk/): overview, how it works, pricing, chiropractor-vs-physio FAQ, booking and location
-- [Neck pain](https://www.tomthechiropractor.co.uk/conditions/neck-pain.html)
-- [Back pain](https://www.tomthechiropractor.co.uk/conditions/back-pain.html)
-- [Shoulder pain](https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html)
-- [Joint and muscle pain](https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html)
-- [Headaches](https://www.tomthechiropractor.co.uk/conditions/headaches.html)
-- [Sciatica](https://www.tomthechiropractor.co.uk/conditions/sciatica.html)
+- [Neck pain](https://www.tomthechiropractor.co.uk/conditions/neck-pain.html): causes of neck pain and how chiropractic treatment helps
+- [Back pain](https://www.tomthechiropractor.co.uk/conditions/back-pain.html): causes of back pain and how chiropractic treatment helps
+- [Shoulder pain](https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html): causes of shoulder pain and how chiropractic treatment helps
+- [Joint and muscle pain](https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html): hip, knee, ankle and elbow pain, causes and treatment
+- [Headaches](https://www.tomthechiropractor.co.uk/conditions/headaches.html): cervicogenic (neck-related) headaches and how chiropractic treatment helps
+- [Sciatica](https://www.tomthechiropractor.co.uk/conditions/sciatica.html): causes of leg pain from the lower back and how chiropractic treatment helps
+- [Free desk check](https://www.tomthechiropractor.co.uk/desk-check.html): free two-minute self-assessment of desk and workstation setup, scored out of 10, based on the Rapid Office Strain Assessment, with an optional emailed results summary
+- [Block booking terms](https://www.tomthechiropractor.co.uk/block-booking-terms.html): terms for the block of 5 treatments
