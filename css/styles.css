@@ -1051,4 +1051,13 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .find-contact{padding:22px;}
   .site-footer{flex-direction:column;gap:12px;}
+  /* The booking widget's own content can run much taller than a phone
+     screen, so cap it to the viewport and let it scroll internally
+     rather than stretching the whole page. */
+  .book__widget{
+    max-height:calc(100vh - 120px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
 }
