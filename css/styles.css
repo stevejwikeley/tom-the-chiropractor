@@ -679,14 +679,12 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-body-sm);
   color:var(--ink-b3);
 }
-/* The amount doubles as the link to the block terms, so it keeps the price
-   styling and only picks up an underline. */
+/* The amount doubles as the link to the block terms. No underline: the
+   "Block booking terms" link under the copy is the visible affordance, and
+   underlining a price as well reads as a typo more than a link. */
 .price-card__link{
   color:inherit;
-  text-decoration:underline;
-  text-decoration-color:var(--color-teal);
-  text-underline-offset:6px;
-  text-decoration-thickness:2px;
+  text-decoration:none;
 }
 .price-card__link:hover,
 .price-card__link:focus-visible{color:var(--color-teal-hover);}
