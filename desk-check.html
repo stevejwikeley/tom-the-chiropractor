@@ -59,6 +59,22 @@ h1,h2,h3{font-family:"Rubik",sans-serif;font-weight:600;margin:0;text-wrap:balan
 .wrap{max-width:720px;margin:0 auto;padding:0 20px}
 a{color:var(--brand)}
 
+
+/* site bar */
+/* This page is reached straight from search and from links, so it needs its
+   own way back to the site. The rest of the site's nav lives in styles.css,
+   which this page deliberately does not load, so the brand link is rebuilt
+   here from the same tokens. */
+.sitebar{background:var(--surface);border-bottom:1px solid var(--line)}
+.sitebar .wrap{display:flex;align-items:center;min-height:58px}
+.sitebar__brand{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Rubik",sans-serif;font-size:16px;font-weight:600;
+  color:var(--ink);text-decoration:none;letter-spacing:-.01em;
+}
+.sitebar__brand:hover,.sitebar__brand:focus-visible{color:var(--brand-dark)}
+.sitebar__brand svg{width:22px;height:22px;flex:none;color:var(--brand)}
+
 /* hero */
 .hero{background:var(--surface);border-bottom:1px solid var(--line);padding:44px 0 38px}
 .kicker{
@@ -190,13 +206,19 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .smallprint a{color:var(--muted)}
 
 @media print{
-  .progress,.q,.capture,.cta,.hero .facts{display:none}
+  .progress,.q,.capture,.cta,.hero .facts,.sitebar{display:none}
   body{background:#fff}
   .result{box-shadow:none;border-color:#999}
 }
 </style>
 </head>
 <body>
+
+<div class="sitebar">
+  <div class="wrap">
+    <a href="/" class="sitebar__brand">Tom the Chiropractor</a>
+  </div>
+</div>
 
 <header class="hero">
   <div class="wrap">
