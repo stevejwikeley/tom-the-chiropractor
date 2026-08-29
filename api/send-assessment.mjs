@@ -51,6 +51,7 @@ function patientEmail({ name, score, band, fixes }) {
         </div>
         <div style="font:700 50px/1 Georgia,serif;color:#00262A;margin:14px 0 6px">${score}<span
           style="font:400 16px/1 Arial,sans-serif;color:#5F6470"> out of 10</span></div>
+        <div style="font:600 13px/1.4 Arial,sans-serif;color:#8A8F9A;margin:0 0 12px">Lower is better. 1 means a desk that is set up well, 10 means one that is working against you.</div>
         <div style="display:inline-block;background:${c.bg};color:${c.fg};border-radius:99px;
                     padding:6px 14px;font:600 14px/1 Arial,sans-serif">${escapeHtml(band)}</div>
       </td></tr>

@@ -122,6 +122,8 @@ label.opt.on{border-color:var(--brand);background:var(--brand-tint)}
 .score-row{display:flex;align-items:baseline;justify-content:center;gap:8px}
 .score{font-family:"Rubik",sans-serif;font-size:66px;font-weight:700;line-height:.9}
 .score-of{font-size:17px;color:var(--muted)}
+.score-note{margin:8px auto 0;max-width:46ch;font-size:13px;font-weight:600;color:var(--muted-2);
+  letter-spacing:.02em}
 .badge{display:inline-block;margin-top:12px;padding:6px 15px;border-radius:999px;font-size:14.5px;font-weight:600}
 .badge.low{background:var(--good-bg);color:var(--good)}
 .badge.mid{background:var(--warn-bg);color:var(--warn)}
@@ -223,6 +225,7 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   <section class="result hidden" id="result" tabindex="-1">
     <div class="result-top">
       <div class="score-row"><span class="score" id="score">0</span><span class="score-of">out of 10</span></div>
+      <p class="score-note">Lower is better. 1 means a desk that is set up well, 10 means one that is working against you.</p>
       <span class="badge low" id="badge">Low strain</span>
       <p class="verdict" id="verdict"></p>
       <div class="meter" id="meter"></div>
