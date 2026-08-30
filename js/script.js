@@ -3,7 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviews();
   initCarousels();
   initContactForm();
+  initStickyCta();
 });
+
+// Hides the fixed mobile "Book" bar once the actual booking widget it
+// points to is already on screen, so there's never two book CTAs stacked.
+function initStickyCta() {
+  const cta = document.querySelector('.sticky-cta');
+  const btn = cta && cta.querySelector('.sticky-cta__btn');
+  if (!btn || !('IntersectionObserver' in window)) return;
+
+  const href = btn.getAttribute('href');
+  const target = href.startsWith('#') ? document.querySelector(href) : null;
+  if (!target) return;
+
+  new IntersectionObserver((entries) => {
+    cta.classList.toggle('is-hidden', entries[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(target);
+}
 
 function initNav() {
   const toggle = document.getElementById('navToggle');
@@ -102,6 +119,28 @@ function initReviews() {
   document.addEventListener('visibilitychange', () => {
     document.hidden ? stop() : start();
   });
+
+  // Swipe left/right to change review. Doesn't preventDefault, so a mostly
+  // vertical drag still scrolls the page as normal.
+  const SWIPE_THRESHOLD = 40;
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    stop();
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (e) => {
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)) {
+      show(index + (deltaX < 0 ? 1 : -1));
+    }
+    restart();
+  }, { passive: true });
 
   show(0);
   markClipped();
