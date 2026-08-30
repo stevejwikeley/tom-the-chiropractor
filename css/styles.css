@@ -1263,6 +1263,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .why h2,.why .pill-row--outline,.why__quote{display:none;}
   .pillars{display:none;}
   .hero__note{display:none;}
+  .trust-strip{display:none;}
+  .who-for{display:none;}
   .why{padding-top:32px;padding-bottom:32px;}
   .why__layout{grid-template-columns:1fr;gap:20px;}
   .why__aside{order:-1;width:90%;margin:0 auto;}
