@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReviews();
+  initCarousels();
   initContactForm();
 });
 
@@ -115,6 +116,63 @@ function initReviews() {
       entries[0].isIntersecting ? start() : stop();
     }, { threshold: 0.2 }).observe(carousel);
   }
+}
+
+function initCarousels() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const INTERVAL = 4500;
+
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll('.carousel__slide'));
+    const dots = Array.from(root.querySelectorAll('[data-dot]'));
+    if (slides.length < 2) return;
+
+    let index = 0;
+    let timer = null;
+
+    function show(next) {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    }
+
+    function start() {
+      if (reduceMotion || timer) return;
+      timer = setInterval(() => show(index + 1), INTERVAL);
+    }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function restart() {
+      stop();
+      start();
+    }
+
+    const prev = root.querySelector('[data-prev]');
+    const next = root.querySelector('[data-next]');
+    if (prev) prev.addEventListener('click', () => { show(index - 1); restart(); });
+    if (next) next.addEventListener('click', () => { show(index + 1); restart(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restart(); }));
+
+    // Don't cycle away from a photo someone is looking at or tabbing through.
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+
+    show(0);
+    start();
+
+    // Pause off-screen carousels rather than burning cycles nobody sees.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries[0].isIntersecting ? start() : stop();
+      }, { threshold: 0.2 }).observe(root);
+    }
+  });
 }
 
 function initContactForm() {

@@ -22,6 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
 <style>
 /* ============================================================
    BRAND COLOURS. Matched to css/tokens.css, the rest of the site.
@@ -59,28 +61,8 @@ h1,h2,h3{font-family:"Rubik",sans-serif;font-weight:600;margin:0;text-wrap:balan
 .wrap{max-width:720px;margin:0 auto;padding:0 20px}
 a{color:var(--brand)}
 
-
-/* site bar */
-/* This page is reached straight from search and from links, so it needs its
-   own way back to the site. The rest of the site's nav lives in styles.css,
-   which this page deliberately does not load, so the brand link is rebuilt
-   here from the same tokens. */
-.sitebar{background:var(--surface);border-bottom:1px solid var(--line)}
-.sitebar .wrap{display:flex;align-items:center;min-height:58px}
-.sitebar__brand{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:"Rubik",sans-serif;font-size:16px;font-weight:600;
-  color:var(--ink);text-decoration:none;letter-spacing:-.01em;
-}
-.sitebar__brand:hover,.sitebar__brand:focus-visible{color:var(--brand-dark)}
-.sitebar__brand svg{width:22px;height:22px;flex:none;color:var(--brand)}
-
 /* hero */
-.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:44px 0 38px}
-.kicker{
-  display:inline-block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--brand);background:var(--brand-tint);padding:5px 11px;border-radius:999px;margin-bottom:16px;
-}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:40px 0}
 .hero h1{font-size:clamp(30px,6vw,44px);line-height:1.08}
 .hero .lede{font-size:17.5px;color:var(--muted);margin:14px 0 0;max-width:60ch}
 .hero .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
@@ -88,8 +70,7 @@ a{color:var(--brand)}
   border-radius:999px;padding:6px 13px}
 
 /* progress */
-.progress{position:sticky;top:0;z-index:20;background:rgba(251,250,249,.94);
-  backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+.progress{position:sticky;top:83px;z-index:20;background:var(--page);border-bottom:1px solid var(--line)}
 .progress.hidden{display:none}
 .progress-in{max-width:720px;margin:0 auto;padding:11px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
 .bar{flex:1;min-width:100%;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
@@ -101,7 +82,7 @@ a{color:var(--brand)}
 /* questions */
 main{padding:26px 0 60px}
 .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:20px;margin-bottom:14px;box-shadow:var(--shadow);scroll-margin-top:76px}
+  padding:20px;margin-bottom:14px;box-shadow:var(--shadow);scroll-margin-top:160px}
 #quiz.hidden{display:none}
 .q .num{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
 .q h2{font-size:19px;margin:6px 0 3px;line-height:1.25}
@@ -132,7 +113,7 @@ label.opt.on{border-color:var(--brand);background:var(--brand-tint)}
 
 /* result */
 .result{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);overflow:hidden;margin-top:26px;scroll-margin-top:70px}
+  box-shadow:var(--shadow);overflow:hidden;margin-top:26px;scroll-margin-top:95px}
 .result.hidden{display:none}
 .result-top{padding:26px 22px 22px;border-bottom:1px solid var(--line);text-align:center}
 .score-row{display:flex;align-items:baseline;justify-content:center;gap:8px}
@@ -206,42 +187,94 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .smallprint a{color:var(--muted)}
 
 @media print{
-  .progress,.q,.capture,.cta,.hero .facts,.sitebar{display:none}
+  .progress,.q,.capture,.cta,.hero .facts,.nav{display:none}
   body{background:#fff}
   .result{box-shadow:none;border-color:#999}
+}
+
+/* Two-column desktop layout: a narrow, sticky intro card beside the quiz.
+   Below this width the page is untouched — .hero/.wrap keep their
+   original single-column, full-bleed styling exactly as before. */
+@media (min-width:701px){
+  .dc-layout{
+    max-width:1160px;
+    margin:0 auto;
+    padding:32px 20px 0;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  .dc-intro{
+    position:sticky;
+    top:83px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .dc-intro .wrap{max-width:none;margin:0;padding:12px 24px;}
+  .dc-intro h1{font-size:26px;line-height:1.2}
+  .dc-intro .lede{font-size:15px;max-width:none}
+  .dc-intro .facts{flex-direction:column;align-items:flex-start}
+  .dc-main{min-width:0}
+  .dc-main .wrap{max-width:none;margin:0;padding:0}
+  .progress-in{max-width:none;padding:11px 0}
 }
 </style>
 </head>
 <body>
 
-<div class="sitebar">
-  <div class="wrap">
-    <a href="/" class="sitebar__brand">Tom the Chiropractor</a>
-  </div>
-</div>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="lp-mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="7"></circle>
+      <rect x="34" y="32" width="32" height="15" rx="5" fill="none" stroke="currentColor" stroke-width="5.5"></rect>
+      <rect x="36" y="47" width="28" height="7" rx="3.5" fill="#00A6A6"></rect>
+      <rect x="34" y="54" width="32" height="15" rx="5" fill="none" stroke="currentColor" stroke-width="5.5"></rect>
+    </symbol>
+  </defs>
+</svg>
 
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Free, two minutes, no booking needed</span>
-    <h1>Get your desk working for you</h1>
-    <p class="lede">Answer ten quick questions about where you sit and what you look at. You will get a score out of 10, where lower is better, and the changes that will make the biggest difference, based on the Rapid Office Strain Assessment that ergonomists use.</p>
-    <div class="facts">
-      <span class="fact">Ten questions</span>
-      <span class="fact">No cost</span>
-      <span class="fact">Results on screen straight away</span>
-    </div>
-  </div>
+<header class="nav">
+  <a href="index.html" class="nav__brand">
+    <svg class="nav__logo" viewBox="0 0 100 100" aria-hidden="true" style="display:none"><use href="#lp-mark"></use></svg>
+    <span>Tom the Chiropractor</span>
+  </a>
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links" id="navLinks">
+    <a href="index.html#treat">What I treat</a>
+    <a href="index.html#pillars">How it works</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#faq">FAQs</a>
+    <a href="index.html#find">Find me</a>
+    <a href="index.html#book" class="btn btn--yellow">Book online</a>
+  </nav>
 </header>
 
-<div class="progress" id="progress">
-  <div class="progress-in">
-    <div class="bar"><i id="bar"></i></div>
-    <span class="count" id="count">Question 1 of 10</span>
-    <span class="scorechip" id="scorechip">Score so far <b id="scorechip-val">1</b>/10</span>
-  </div>
-</div>
+<div class="dc-layout">
+  <header class="hero dc-intro">
+    <div class="wrap">
+      <h1>Get your desk working for you</h1>
+      <p class="lede">Answer ten quick questions about where you sit and what you look at. You will get a score out of 10, where lower is better, and the changes that will make the biggest difference, based on the Rapid Office Strain Assessment that ergonomists use.</p>
+      <div class="facts">
+        <span class="fact">Ten questions</span>
+        <span class="fact">No cost</span>
+        <span class="fact">Results on screen straight away</span>
+      </div>
+    </div>
+  </header>
 
-<main class="wrap">
+  <div class="dc-main">
+    <div class="progress" id="progress">
+      <div class="progress-in">
+        <div class="bar"><i id="bar"></i></div>
+        <span class="count" id="count">Question 1 of 10</span>
+        <span class="scorechip" id="scorechip">Score so far <b id="scorechip-val">1</b>/10</span>
+      </div>
+    </div>
+
+    <main class="wrap">
   <form id="quiz" novalidate></form>
 
   <section class="result hidden" id="result" tabindex="-1">
@@ -295,7 +328,9 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   <p class="smallprint">
     This check is based on the Rapid Office Strain Assessment (Sonne, Villalta and Andrews, 2012), an ergonomics screening tool for computer workstations. It is a guide to how your desk is set up, not a diagnosis, and it cannot tell you what is causing your pain. If something hurts, get it looked at.
   </p>
-</main>
+    </main>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -759,8 +794,18 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
     });
   });
 
+  /* A homepage teaser links here with the first answer already picked,
+     e.g. desk-check.html?q1=2, so clicking it drops straight onto
+     question 2 instead of repeating a question they already answered. */
+  var preAnswer = parseInt(new URLSearchParams(location.search).get("q1"), 10);
+  if(!isNaN(preAnswer) && Q[0].opts[preAnswer]){
+    state[Q[0].id] = preAnswer;
+    current = 1;
+  }
+
   renderQuestion(current);
 })();
 </script>
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -110,7 +110,34 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* HERO */
 .hero{padding:var(--space-hero-y-top) var(--space-section-x) var(--space-hero-y-bottom);}
+.hero__grid{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:56px;
+  align-items:center;
+}
 .hero__inner{max-width:760px;}
+.hero__media{position:relative;max-width:78%;margin-left:auto;}
+.hero__media::before{
+  content:"";
+  position:absolute;
+  top:6px;
+  left:-6px;
+  right:6px;
+  bottom:-6px;
+  background:var(--color-ink);
+  z-index:0;
+}
+.hero__media img{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+}
 .hero h1{
   margin:0 0 26px;
   font:var(--type-h1);
@@ -202,10 +229,35 @@ h1,h2,h3,p,ul{margin:0;}
 
 /* WHY */
 .why{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
-.why__inner{max-width:760px;}
+.why__layout{
+  display:grid;
+  grid-template-columns:660px 1fr;
+  gap:56px;
+  align-items:start;
+}
+.why__inner{}
+.why__aside{width:400px;max-width:100%;margin:0 auto;}
+.why__float{
+  border:1px solid var(--cream-33);
+  padding:5px;
+  background:#fff;
+}
+.why__float img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+}
+.why__float figcaption{
+  padding-top:8px;
+  font:400 12px/1.4 var(--font-family);
+  color:var(--ink-99);
+  text-align:center;
+}
 .why h2{
   margin:0 0 28px;
   font:var(--type-h2-quote);
+  max-width:640px;
 }
 .why .pill-row{margin-bottom:32px;}
 .why__quote{
@@ -213,6 +265,7 @@ h1,h2,h3,p,ul{margin:0;}
   padding-top:24px;
   font:400 17px/1.6 var(--font-family);
   color:var(--cream-cc);
+  max-width:640px;
 }
 .why__bio{
   margin-top:24px;
@@ -233,7 +286,7 @@ h1,h2,h3,p,ul{margin:0;}
 }
 
 /* VALUE FRAMEWORK */
-.value-framework{padding:var(--space-section-y) var(--space-section-x);}
+.value-framework{padding:var(--space-section-y) var(--space-section-x);border-top:1px solid var(--ink-1a);}
 .value-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -291,25 +344,43 @@ h1,h2,h3,p,ul{margin:0;}
 }
 .condition-card{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+  flex-direction:column;
   background:#fff;
   border:1px solid var(--ink-14);
-  padding:28px 20px;
-  text-align:center;
   text-decoration:none;
   color:inherit;
   transition:border-color .15s ease;
 }
-.condition-card span:first-child{font:600 15px/1.3 var(--font-family);}
+.condition-card img{
+  width:100%;
+  aspect-ratio:3/2;
+  object-fit:cover;
+  display:block;
+}
+.condition-card__body{
+  padding:18px 16px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex:1;
+}
+.condition-card h3{
+  font:600 15px/1.3 var(--font-family);
+  margin:0;
+}
+.condition-card p{
+  font:400 13px/1.5 var(--font-family);
+  color:var(--ink-99);
+  margin:0;
+  flex:1;
+}
 .condition-card__arrow{
-  font:600 15px/1 var(--font-family);
+  font:600 13px/1 var(--font-family);
   color:var(--color-teal);
   transition:transform .15s ease;
 }
 a.condition-card:hover{border-color:var(--color-teal);}
-a.condition-card:hover span:first-child{color:var(--color-teal);}
+a.condition-card:hover h3{color:var(--color-teal);}
 a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .treat__note{
   font:var(--type-body-sm);
@@ -318,16 +389,56 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 
 /* DESK CHECK */
-.desk-check{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
-.desk-check__inner{max-width:640px;}
+.desk-check{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
+.desk-check__layout{display:grid;grid-template-columns:640px 1fr;gap:56px;align-items:start;}
+.desk-check__inner{}
 .desk-check__inner h2{margin:0 0 16px;font:var(--type-h2);}
 .desk-check__lead{
   margin:0 0 28px;
   font:var(--type-body-lg);
-  color:var(--ink-b3);
+  color:var(--cream-cc);
   max-width:600px;
 }
 .desk-check__inner .pill-row{margin-bottom:28px;}
+.desk-check__aside{width:420px;max-width:100%;margin:0 auto;}
+
+/* Teaser preview of the desk-check.html quiz card — deliberately matches
+   that page's own light, rounded, shadowed style (not the main site's
+   square/no-shadow rule) since it's a live preview of a separate tool,
+   not a site component. Clicking an option jumps into the real quiz with
+   that answer already picked. */
+.dc-teaser{
+  background:#fff;
+  color:var(--color-ink);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 1px 2px rgba(21,26,34,.05), 0 10px 30px -18px rgba(21,26,34,.28);
+}
+.dc-teaser__num{
+  font:700 12px/1 var(--font-family);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#8A8F9A;
+  margin-bottom:6px;
+}
+.dc-teaser__title{font:600 19px/1.25 var(--font-family);margin:0 0 3px;}
+.dc-teaser__help{font:400 14.5px/1.5 var(--font-family);color:#5F6470;margin:0 0 14px;}
+.dc-teaser__opts{display:flex;flex-direction:column;gap:8px;}
+.dc-teaser__opt{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border:1.5px solid var(--ink-14);
+  border-radius:9px;
+  font:400 15.5px/1.4 var(--font-family);
+  color:var(--color-ink);
+  text-decoration:none;
+  transition:border-color .12s ease, background .12s ease;
+}
+.dc-teaser__opt span:last-child{flex:none;color:var(--color-teal);}
+.dc-teaser__opt:hover{border-color:var(--color-teal);background:#DDEFEF;}
 
 /* REVIEWS */
 .reviews{
@@ -559,31 +670,18 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .condition-related{
   max-width:720px;
   margin:0 auto;
-  padding:32px var(--space-section-x) 0;
+  padding:32px var(--space-section-x) 64px;
 }
 .condition-related h2{
   margin:0 0 16px;
   font:var(--type-h2);
   font-size:20px;
 }
-.condition-related__links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
+.condition-related__cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
 }
-.condition-related__links a{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#fff;
-  border:1px solid var(--ink-14);
-  padding:10px 16px;
-  font:600 14px/1 var(--font-family);
-  color:var(--color-ink);
-  text-decoration:none;
-  transition:border-color .15s ease;
-}
-.condition-related__links a:hover{border-color:var(--color-teal);color:var(--color-teal);}
 
 .condition-cta{
   text-align:center;
@@ -601,6 +699,81 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:400 14px/1.5 var(--font-family);
   color:var(--ink-99);
 }
+
+/* CONDITION CAROUSEL — photo carousel + CTA, reused across every condition page */
+.carousel__frame{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:var(--color-ink);
+  border:1px solid var(--ink-14);
+}
+.carousel__slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .8s ease-in-out, visibility 0s linear .8s;
+}
+.carousel__slide.is-active{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .8s ease-in-out, visibility 0s linear 0s;
+}
+.carousel__slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.carousel__btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:var(--cream-f2);
+  color:var(--color-ink);
+  font:700 17px/1 var(--font-family);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.carousel__btn:hover{background:#fff;}
+.carousel__btn--prev{left:12px;}
+.carousel__btn--next{right:12px;}
+.carousel__dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.carousel__dot{
+  width:8px;
+  height:8px;
+  padding:0;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:var(--ink-14);
+}
+.carousel__dot.is-active{background:var(--color-teal);}
+
+.condition-carousel__cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-top:24px;
+  flex-wrap:wrap;
+}
+.condition-carousel__cta p{
+  font:var(--type-body);
+  color:var(--ink-b3);
+  margin:0;
+  max-width:320px;
+}
+.condition-carousel__cta .btn{flex:none;white-space:nowrap;}
 
 /* Variant B: sticky sidebar layout */
 .condition-layout{
@@ -701,6 +874,14 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
    grid stretches whatever sits beside it. Capped to a readable measure and
    left-aligned in the section, matching every other section's containers
    (rather than floating as a centred block on wide screens). */
+.faq-layout{
+  display:grid;
+  grid-template-columns:760px 1fr;
+  gap:56px;
+  align-items:start;
+}
+.faq-aside{width:408px;max-width:100%;margin:31px auto 0;}
+.faq-aside .carousel__frame{border-color:var(--cream-33);}
 .faq-grid{
   max-width:760px;
 }
@@ -1011,6 +1192,10 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 /* RESPONSIVE */
 @media (max-width: 900px){
   .value-grid,.pillars-grid{grid-template-columns:1fr;}
+  .faq-layout{display:block;}
+  .faq-aside{display:none;}
+  .desk-check__layout{display:block;}
+  .desk-check__aside{display:none;}
   .value-col{padding:0 0 32px !important;border-bottom:1px solid var(--ink-1a);}
   .value-col:last-child{border-bottom:none;padding-bottom:0 !important;}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
@@ -1040,12 +1225,17 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .hero{padding:56px 20px 48px;}
   .hero h1{font-size:40px;}
   .hero__lead{font-size:17px;}
+  .hero__grid{grid-template-columns:1fr;gap:32px;}
+  .hero__media{max-width:60%;margin:0 auto;order:-1;}
   .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.reviews,.contact,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
   .contact-form__row{grid-template-columns:1fr;}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
+  .why__layout{grid-template-columns:1fr;}
+  .why__aside{order:-1;width:65%;margin:0 auto 24px;}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
+  .condition-related__cards{grid-template-columns:1fr;}
   /* Narrower column means more wrapping, so allow a taller card here. */
   .reviews__track.is-enhanced .review-card{height:430px;}
   .reviews .eyebrow{font-size:19px;}

@@ -209,15 +209,20 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__inner">
-      <p class="eyebrow eyebrow--teal">Hi, I'm Tom, your chiropractor in Loughborough</p>
-      <h1>Chiropractor in Loughborough</h1>
-      <p class="hero__lead"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with appointments until 7pm.</p>
-      <div class="hero__actions">
-        <a href="#book" class="btn btn--dark">Book your appointment</a>
-        <a href="#pillars" class="link-arrow">See how it works →</a>
+    <div class="hero__grid">
+      <div class="hero__inner">
+        <p class="eyebrow eyebrow--teal">Hi, I'm Tom, your chiropractor in Loughborough</p>
+        <h1>Chiropractor in Loughborough</h1>
+        <p class="hero__lead"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with appointments until 7pm.</p>
+        <div class="hero__actions">
+          <a href="#book" class="btn btn--dark">Book your appointment</a>
+          <a href="#pillars" class="link-arrow">See how it works →</a>
+        </div>
+        <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
       </div>
-      <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
+      <div class="hero__media">
+        <img src="images/headshots/1Z5A8513-yellow.jpg" alt="Tom Wikeley, chiropractor in Loughborough">
+      </div>
     </div>
   </section>
 
@@ -240,18 +245,26 @@
 
   <!-- WHY / DIFFERENTIATION -->
   <section class="why">
-    <div class="why__inner">
-      <h2>"A simpler, more personal approach to chiropractic."</h2>
-      <div class="pill-row pill-row--outline">
-        <span class="pill pill--outline">Convenient</span>
-        <span class="pill pill--outline">Personal</span>
-        <span class="pill pill--outline">Clear</span>
-        <span class="pill pill--outline">Honest</span>
+    <div class="why__layout">
+      <div class="why__inner">
+        <h2>"A simpler, more personal approach to chiropractic."</h2>
+        <div class="pill-row pill-row--outline">
+          <span class="pill pill--outline">Convenient</span>
+          <span class="pill pill--outline">Personal</span>
+          <span class="pill pill--outline">Clear</span>
+          <span class="pill pill--outline">Honest</span>
+        </div>
+        <p class="why__quote">"I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need."</p>
+        <div class="why__bio">
+          <p class="why__bio-label">My background</p>
+          <p class="why__bio-text">I trained at the Welsh Institute of Chiropractic. I spent some time practising in Cornwall, then several years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.</p>
+        </div>
       </div>
-      <p class="why__quote">"I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need."</p>
-      <div class="why__bio">
-        <p class="why__bio-label">My background</p>
-        <p class="why__bio-text">I trained at the Welsh Institute of Chiropractic. I spent some time practising in Cornwall, then several years at Health on Hand in Leicester and Mansfield, before opening my own clinic here in Loughborough. I live locally myself, and outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.</p>
+      <div class="why__aside">
+        <figure class="why__float">
+          <img src="images/action/1Z5A8790.jpg" alt="Tom assessing a patient's range of movement">
+          <figcaption>The same hands-on approach, every visit</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -261,29 +274,56 @@
     <p class="eyebrow eyebrow--teal">What I treat</p>
     <h2>Care for the aches, pains and injuries that get in the way.</h2>
     <div class="conditions-grid">
-      <a href="conditions/neck-pain.html" class="condition-card"><span>Neck pain</span><span class="condition-card__arrow">→</span></a>
-      <a href="conditions/back-pain.html" class="condition-card"><span>Back pain</span><span class="condition-card__arrow">→</span></a>
-      <a href="conditions/shoulder-pain.html" class="condition-card"><span>Shoulder pain</span><span class="condition-card__arrow">→</span></a>
-      <a href="conditions/joint-and-muscle-pain.html" class="condition-card"><span>Joint and muscle pain</span><span class="condition-card__arrow">→</span></a>
-      <a href="conditions/headaches.html" class="condition-card"><span>Headaches</span><span class="condition-card__arrow">→</span></a>
-      <a href="conditions/sciatica.html" class="condition-card"><span>Sciatica</span><span class="condition-card__arrow">→</span></a>
+      <a href="conditions/neck-pain.html" class="condition-card">
+        <img src="images/action/1Z5A8819.jpg" alt="Tom examining a patient">
+        <div class="condition-card__body">
+          <h3>Neck pain</h3>
+          <p>Stiffness or pain that limits how far you can turn or tilt your head.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/back-pain.html" class="condition-card">
+        <img src="images/action/1Z5A8871.jpg" alt="Tom performing hands-on treatment">
+        <div class="condition-card__body">
+          <h3>Back pain</h3>
+          <p>From a nagging ache to pain that stops you standing up straight.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/shoulder-pain.html" class="condition-card">
+        <img src="images/action/1Z5A8852.jpg" alt="Tom treating a patient">
+        <div class="condition-card__body">
+          <h3>Shoulder pain</h3>
+          <p>Restricted movement, or pain that flares when reaching or lifting.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/joint-and-muscle-pain.html" class="condition-card">
+        <img src="images/action/1Z5A9469.jpg" alt="Tom treating a patient">
+        <div class="condition-card__body">
+          <h3>Joint and muscle pain</h3>
+          <p>Aches and stiffness in the joints and muscles that slow you down.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/headaches.html" class="condition-card">
+        <img src="images/action/1Z5A8694.jpg" alt="Tom performing hands-on treatment">
+        <div class="condition-card__body">
+          <h3>Headaches</h3>
+          <p>Tension headaches and migraines often linked to neck and upper back tightness.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/sciatica.html" class="condition-card">
+        <img src="images/action/1Z5A9101.jpg" alt="Tom performing an adjustment">
+        <div class="condition-card__body">
+          <h3>Sciatica</h3>
+          <p>Sharp, shooting pain that travels from your lower back down your leg.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
     </div>
     <p class="treat__note">Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice.</p>
-  </section>
-
-  <!-- DESK CHECK -->
-  <section id="desk-check" class="desk-check">
-    <div class="desk-check__inner">
-      <p class="eyebrow eyebrow--teal">Desk setup</p>
-      <h2>Is your desk setup causing your pain?</h2>
-      <p class="desk-check__lead">A lot of the neck, back and shoulder pain I see traces back to hours spent at a desk that isn't quite set up for you: a screen too low, a chair that doesn't support your back, a mouse just out of reach. Take my free desk check to find out where yours is going wrong, and what to change first.</p>
-      <div class="pill-row">
-        <span class="pill">Two minutes</span>
-        <span class="pill">No booking needed</span>
-        <span class="pill">Results straight away</span>
-      </div>
-      <a href="desk-check.html" class="btn btn--yellow">Take the free desk check →</a>
-    </div>
   </section>
 
   <!-- VALUE FRAMEWORK -->
@@ -316,6 +356,36 @@
     </div>
   </section>
 
+  <!-- DESK CHECK -->
+  <section id="desk-check" class="desk-check">
+    <div class="desk-check__layout">
+      <div class="desk-check__inner">
+        <p class="eyebrow eyebrow--teal">Desk setup</p>
+        <h2>Is your desk setup causing your pain?</h2>
+        <p class="desk-check__lead">A lot of the neck, back and shoulder pain I see traces back to hours spent at a desk that isn't quite set up for you: a screen too low, a chair that doesn't support your back, a mouse just out of reach. Take my free desk check to find out where yours is going wrong, and what to change first.</p>
+        <div class="pill-row pill-row--outline">
+          <span class="pill pill--outline">Two minutes</span>
+          <span class="pill pill--outline">No booking needed</span>
+          <span class="pill pill--outline">Results straight away</span>
+        </div>
+        <a href="desk-check.html" class="btn btn--yellow">Take the free desk check →</a>
+      </div>
+      <div class="desk-check__aside">
+        <div class="dc-teaser">
+          <div class="dc-teaser__num">Your chair</div>
+          <h3 class="dc-teaser__title">When you sit right back in your chair, where are your feet?</h3>
+          <p class="dc-teaser__help">Look down without moving. Do not correct yourself first.</p>
+          <div class="dc-teaser__opts">
+            <a class="dc-teaser__opt" href="desk-check.html?q1=0"><span>Flat on the floor, knees roughly level with my hips</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=1"><span>Flat on the floor, but my knees are higher than my hips</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=2"><span>On tiptoes, or dangling</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=3"><span>Tucked under the chair or wrapped round the legs</span><span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- THREE PILLARS -->
   <section id="pillars" class="pillars">
     <p class="eyebrow eyebrow--teal">How it works</p>
@@ -331,10 +401,9 @@
       <div class="pillar-card">
         <span class="pillar-card__num pillar-card__num--teal">02</span>
         <h3>Assess &amp; treat</h3>
-        <p>— A thorough first consultation</p>
-        <p>— Understand what's contributing to your pain</p>
+        <p>— A thorough 60-minute initial consultation to understand your pain</p>
         <p>— Specific targets to work towards</p>
-        <p>— Treatment where appropriate</p>
+        <p>— Shorter follow-up appointments for treatment</p>
         <p>— Clear advice on what to do next</p>
         <p>— Always see the same chiropractor</p>
       </div>
@@ -486,40 +555,60 @@
 
   <!-- FAQS / TRUST -->
   <section id="faq" class="faq">
-    <p class="eyebrow eyebrow--yellow">Questions people ask me</p>
-    <div class="faq-grid">
-      <details class="faq-item" name="faq">
-        <summary><h3>What is a chiropractor?</h3></summary>
-        <div class="faq-item__answer"><p>A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine. Treatment can include hands-on techniques, movement advice, education and exercises.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>Chiropractor or physio?</h3></summary>
-        <div class="faq-item__answer"><p>Both can help with musculoskeletal pain, and there is overlap between the two. My approach combines hands-on treatment with advice and exercises. If I think a physio, GP or another professional would be more appropriate, I'll tell you and help point you in the right direction.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>Are chiropractors regulated?</h3></summary>
-        <div class="faq-item__answer"><p>Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>Who will I see at my appointments?</h3></summary>
-        <div class="faq-item__answer"><p>You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>Will it hurt?</h3></summary>
-        <div class="faq-item__answer"><p>Honestly, parts of it can be uncomfortable. Where muscles have tightened up protectively, working through them can bring tenderness in the muscle and the structures around it. That's temporary, and easing those areas is usually what starts to settle things down. Joint work tends to be easier, and some people feel relief straight away. Afterwards it's normal to feel a bit achy for a day or so, much like after exercise.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>What's the clicking noise?</h3></summary>
-        <div class="faq-item__answer"><p>That sound is gas releasing from within the joint, the same thing that happens when you crack your knuckles. It isn't bone, and it isn't a sign of damage. If you'd rather avoid that technique altogether, just say so and I'll use something else. There's usually more than one way to treat a problem.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>What should I wear?</h3></summary>
-        <div class="faq-item__answer"><p>Something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you.</p></div>
-      </details>
-      <details class="faq-item" name="faq">
-        <summary><h3>What if I need to cancel?</h3></summary>
-        <div class="faq-item__answer"><p>Just let me know as early as you can, ideally at least 24 hours before. You can use the link in your confirmation email or message me directly. There's more detail in my <a href="cancellation-policy.html">cancellation policy</a>.</p></div>
-      </details>
+    <div class="faq-layout">
+      <div class="faq-main">
+        <p class="eyebrow eyebrow--yellow">Questions people ask me</p>
+        <div class="faq-grid">
+          <details class="faq-item" name="faq">
+            <summary><h3>What is a chiropractor?</h3></summary>
+            <div class="faq-item__answer"><p>A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine. Treatment can include hands-on techniques, movement advice, education and exercises.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Chiropractor or physio?</h3></summary>
+            <div class="faq-item__answer"><p>Both can help with musculoskeletal pain, and there is overlap between the two. My approach combines hands-on treatment with advice and exercises. If I think a physio, GP or another professional would be more appropriate, I'll tell you and help point you in the right direction.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Are chiropractors regulated?</h3></summary>
+            <div class="faq-item__answer"><p>Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Who will I see at my appointments?</h3></summary>
+            <div class="faq-item__answer"><p>You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Will it hurt?</h3></summary>
+            <div class="faq-item__answer"><p>Honestly, parts of it can be uncomfortable. Where muscles have tightened up protectively, working through them can bring tenderness in the muscle and the structures around it. That's temporary, and easing those areas is usually what starts to settle things down. Joint work tends to be easier, and some people feel relief straight away. Afterwards it's normal to feel a bit achy for a day or so, much like after exercise.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What's the clicking noise?</h3></summary>
+            <div class="faq-item__answer"><p>That sound is gas releasing from within the joint, the same thing that happens when you crack your knuckles. It isn't bone, and it isn't a sign of damage. If you'd rather avoid that technique altogether, just say so and I'll use something else. There's usually more than one way to treat a problem.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What should I wear?</h3></summary>
+            <div class="faq-item__answer"><p>Something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What if I need to cancel?</h3></summary>
+            <div class="faq-item__answer"><p>Just let me know as early as you can, ideally at least 24 hours before. You can use the link in your confirmation email or message me directly. There's more detail in my <a href="cancellation-policy.html">cancellation policy</a>.</p></div>
+          </details>
+        </div>
+      </div>
+      <div class="faq-aside">
+        <div class="carousel" data-carousel>
+          <div class="carousel__frame">
+            <div class="carousel__slide is-active"><img src="images/action/1Z5A8973.jpg" alt="Tom performing an adjustment"></div>
+            <div class="carousel__slide"><img src="images/action/1Z5A9146.jpg" alt="Tom in the treatment room with a patient"></div>
+            <div class="carousel__slide"><img src="images/action/1Z5A9449.jpg" alt="Tom examining a patient's shoulder"></div>
+            <button class="carousel__btn carousel__btn--prev" type="button" data-prev aria-label="Previous photo">‹</button>
+            <button class="carousel__btn carousel__btn--next" type="button" data-next aria-label="Next photo">›</button>
+          </div>
+          <div class="carousel__dots" data-dots>
+            <button class="carousel__dot is-active" type="button" data-dot="0" aria-label="Photo 1"></button>
+            <button class="carousel__dot" type="button" data-dot="1" aria-label="Photo 2"></button>
+            <button class="carousel__dot" type="button" data-dot="2" aria-label="Photo 3"></button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
