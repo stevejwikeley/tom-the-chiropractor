@@ -1,5 +1,13 @@
 *{box-sizing:border-box;}
 
+/* Every image on the site is sized by CSS (width/aspect-ratio/object-fit
+   per component), not by its width/height HTML attributes. Those attributes
+   are there purely so the browser can reserve the right space before CSS
+   loads (avoids layout shift) -- without this reset, a browser treats the
+   height attribute as a fixed pixel height once CSS sets width alone,
+   ignoring aspect-ratio and badly distorting the image. */
+img{height:auto;}
+
 html{scroll-behavior:smooth;}
 
 section[id]{scroll-margin-top:100px;}
