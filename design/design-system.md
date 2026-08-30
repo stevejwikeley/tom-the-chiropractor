@@ -17,7 +17,12 @@ Muted/hairline variants: `--ink-14` / `--ink-1a` / `--ink-99` / `--ink-b3` (ink 
 
 ## Photography
 
-Source images live in `images/action/` and `images/headshots/` (resized to a 1600px long edge, JPEG + WebP, from the original shoot). Reaching for a new photo on a page:
+Source images live in `images/action/` and `images/headshots/`, resized to a 1600px long edge, JPEG only, quality 80. Adding a new photo:
+
+1. Run `images/resize.sh action your-photo.jpg` (or `headshots` instead of `action`) from the project root. It resizes and compresses the photo the same way every time and saves it into the right folder — see `images/resize.sh` for exactly what it does, or the full write-up in `images/README.md`.
+2. Reference it from a page as `images/action/your-photo.jpg` (or `../images/action/...` from a page inside `conditions/`).
+
+Some older files in `images/` also have a matching `.webp` copy from an earlier pass — none of those are actually referenced by any page, so ignore them; only the `.jpg` matters. Reaching for a photo on a page:
 
 - Pick a photo whose crop suits the component's `object-fit: cover` box — a portrait shot for a tall frame, a landscape one for a wide banner — rather than fighting a bad crop with `object-position`.
 - Follow the "no border-radius, no box-shadow" rule for the photo itself and its frame. The two established exceptions are small circular controls (carousel dots, nav dots) and floating chrome that needs to lift off variable content underneath it (the carousel's prev/next buttons, matching the existing `.map-embed__directions` shadow) — never a shadow on a card or a photo purely for decoration.
