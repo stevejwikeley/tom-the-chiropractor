@@ -1270,6 +1270,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
   .why h2,.why .pill-row--outline,.why__quote{display:none;}
   .pillars{display:none;}
+  .nav__link--pillars{display:none;}
   .hero__note{display:none;}
   /* Hiding .pillars above puts desk-check and pricing directly together,
      and both use the same dark background, so add a line between them. */
