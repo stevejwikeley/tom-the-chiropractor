@@ -1234,8 +1234,10 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .why h2,.why .pill-row--outline,.why__quote{display:none;}
   .pillars{display:none;}
   .hero__note{display:none;}
-  .why__layout{grid-template-columns:1fr;}
-  .why__aside{order:-1;width:65%;margin:0 auto 24px;}
+  .why{padding-top:32px;padding-bottom:32px;}
+  .why__layout{grid-template-columns:1fr;gap:20px;}
+  .why__aside{order:-1;width:90%;margin:0 auto;}
+  .why__bio{margin-top:0;padding-top:16px;}
   .condition-page__hero h1{font-size:40px;}
   .condition-page__lead{font-size:17px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
