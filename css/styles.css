@@ -307,6 +307,7 @@ h1,h2,h3,p,ul{margin:0;}
   font:var(--type-body);
   color:var(--ink-b3);
 }
+.value-framework__dots{display:none;}
 
 /* PILLARS */
 .pillars{padding:var(--space-section-y) var(--space-section-x);background:var(--color-tan);}
@@ -1273,6 +1274,40 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   /* Narrower column means more wrapping, so allow a taller card here. */
   .reviews__track.is-enhanced .review-card{height:430px;}
   .reviews .eyebrow{font-size:19px;}
+  /* A better experience: swap the 3-column comparison for a swipeable
+     white-card carousel, one column per card. */
+  .value-grid.is-enhanced{
+    display:block;
+    background:none;
+  }
+  .value-grid.is-enhanced .value-col{
+    display:none;
+    background:#fff;
+    border:1px solid var(--ink-14);
+    padding:28px 24px !important;
+  }
+  .value-grid.is-enhanced .value-col.is-active{
+    display:block;
+    animation:reviewFade .5s ease;
+  }
+  .value-framework__dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:22px;
+  }
+  .value-framework__dot{
+    width:9px;
+    height:9px;
+    padding:0;
+    border:none;
+    border-radius:50%;
+    background:var(--ink-1a);
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .value-framework__dot:hover{background:var(--ink-99);}
+  .value-framework__dot.is-active{background:var(--color-teal);}
   .pricing-grid{grid-template-columns:1fr;max-width:360px;}
   .find-contact{padding:22px;}
   .site-footer{flex-direction:column;gap:12px;}

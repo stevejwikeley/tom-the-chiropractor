@@ -1,10 +1,106 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReviews();
+  initValueCarousel();
   initCarousels();
   initContactForm();
   initStickyCta();
 });
+
+// On mobile the "A better experience" 3-column comparison becomes a
+// swipeable, auto-advancing carousel of white cards, one column per card.
+// At wider widths the CSS ignores the .is-enhanced/.is-active classes this
+// sets and the columns just show side by side as normal, so this always
+// runs regardless of viewport.
+function initValueCarousel() {
+  const carousel = document.getElementById('valueCarousel');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.value-col'));
+  if (slides.length < 2) return;
+
+  const dotsWrap = carousel.parentElement.querySelector('.value-framework__dots');
+  const INTERVAL = 6000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let index = 0;
+  let timer = null;
+
+  carousel.classList.add('is-enhanced');
+
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'value-framework__dot';
+    dot.setAttribute('aria-label', `Show card ${i + 1} of ${slides.length}`);
+    dot.addEventListener('click', () => {
+      show(i);
+      restart();
+    });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function show(next) {
+    index = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+  }
+
+  function start() {
+    if (reduceMotion || timer) return;
+    timer = setInterval(() => show(index + 1), INTERVAL);
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function restart() {
+    stop();
+    start();
+  }
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
+
+  // Swipe left/right to change card. Doesn't preventDefault, so a mostly
+  // vertical drag still scrolls the page as normal.
+  const SWIPE_THRESHOLD = 40;
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    stop();
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (e) => {
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)) {
+      show(index + (deltaX < 0 ? 1 : -1));
+    }
+    restart();
+  }, { passive: true });
+
+  show(0);
+  start();
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      entries[0].isIntersecting ? start() : stop();
+    }, { threshold: 0.2 }).observe(carousel);
+  }
+}
 
 // Hides the fixed mobile "Book" bar once the actual booking widget it
 // points to is already on screen, so there's never two book CTAs stacked.
