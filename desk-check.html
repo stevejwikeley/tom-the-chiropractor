@@ -187,8 +187,13 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .smallprint a{color:var(--muted)}
 
 @media print{
-  .progress,.q,.capture,.cta,.hero .facts,.nav{display:none}
+  .nav,.progress,.q,.capture,.cta,.hero,.edit-row{display:none}
   body{background:#fff}
+  /* The two-column layout (sidebar + quiz) only exists for the on-screen
+     experience. For print, drop the sidebar's column entirely so the
+     result card gets the full page width instead of being squeezed into
+     the narrower "main content" column beside a now-hidden sidebar. */
+  .dc-layout{display:block;max-width:none;padding:0}
   .result{box-shadow:none;border-color:#999}
 }
 
