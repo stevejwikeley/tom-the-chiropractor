@@ -795,12 +795,12 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   });
 
   /* A homepage teaser links here with the first answer already picked,
-     e.g. desk-check.html?q1=2, so clicking it drops straight onto
-     question 2 instead of repeating a question they already answered. */
+     e.g. desk-check.html?q1=2, so clicking it lands straight on question 1
+     with that option selected and its feedback showing, rather than making
+     them pick it again. */
   var preAnswer = parseInt(new URLSearchParams(location.search).get("q1"), 10);
   if(!isNaN(preAnswer) && Q[0].opts[preAnswer]){
     state[Q[0].id] = preAnswer;
-    current = 1;
   }
 
   renderQuestion(current);
