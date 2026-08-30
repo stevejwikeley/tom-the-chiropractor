@@ -1192,12 +1192,13 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 /* RESPONSIVE */
 @media (max-width: 900px){
   .value-grid,.pillars-grid{grid-template-columns:1fr;}
+  .value-grid{gap:0;background:none;}
   .faq-layout{display:block;}
   .faq-aside{display:none;}
   .desk-check__layout{display:block;}
   .desk-check__aside{display:none;}
-  .value-col{padding:0 0 32px !important;border-bottom:1px solid var(--ink-1a);}
-  .value-col:last-child{border-bottom:none;padding-bottom:0 !important;}
+  .value-col{padding:0 0 32px !important;}
+  .value-col:last-child{padding-bottom:0 !important;}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
   .find-grid{grid-template-columns:1fr;}
   .find-map .map-embed{height:240px;}
@@ -1230,6 +1231,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .who-for,.why,.value-framework,.pillars,.treat,.pricing,.faq,.book,.find,.trust-strip,.reviews,.contact,.condition-page__hero,.condition-page__body,.condition-cta,.condition-related,.condition-layout{padding-left:20px;padding-right:20px;}
   .contact-form__row{grid-template-columns:1fr;}
   .why h2,.treat h2,.pricing h2,.book h2,.find h2{font-size:28px;}
+  .why h2,.why .pill-row--outline,.why__quote{display:none;}
+  .pillars{display:none;}
+  .hero__note{display:none;}
   .why__layout{grid-template-columns:1fr;}
   .why__aside{order:-1;width:65%;margin:0 auto 24px;}
   .condition-page__hero h1{font-size:40px;}

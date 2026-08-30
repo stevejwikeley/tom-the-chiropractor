@@ -1,12 +1,21 @@
 // Receives a completed desk check from /desk-check.html and emails it out:
-// one copy to the person who filled it in, one copy to the clinic.
+// one copy to the person who filled it in, one copy to the clinic. Anyone
+// who consents also gets added to a Resend Audience, so their email is kept
+// on file for future campaigns rather than only living in the clinic inbox.
 //
 // Needs three environment variables in Vercel:
 //   RESEND_API_KEY   the key from resend.com
 //   FROM_EMAIL       e.g. Tom the Chiropractor <hello@send.tomthechiropractor.co.uk>
 //   CLINIC_EMAIL     where your copy goes, e.g. hello@tomthechiropractor.co.uk
+//
+// Optional, to also save signups for future emails:
+//   RESEND_AUDIENCE_ID   the ID of an Audience created under resend.com/audiences.
+//                        Without this set, emails still send as normal --
+//                        signups just aren't saved anywhere beyond the
+//                        clinic copy of each submission.
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+const RESEND_AUDIENCES_ENDPOINT = "https://api.resend.com/audiences";
 
 function escapeHtml(value) {
   return String(value == null ? "" : value).replace(/[&<>"']/g, (c) => ({
@@ -140,6 +149,19 @@ async function sendEmail(apiKey, payload) {
   return res.json();
 }
 
+async function addToAudience(apiKey, audienceId, { email, name }) {
+  const res = await fetch(`${RESEND_AUDIENCES_ENDPOINT}/${audienceId}/contacts`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ email, first_name: name, unsubscribed: false })
+  });
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(`Resend audience responded ${res.status}: ${detail.slice(0, 300)}`);
+  }
+  return res.json();
+}
+
 export default async function handler(req, res) {
   // Setup check. Reports which of the three environment variables Vercel can
   // see -- names only, never values -- so the email config can be verified
@@ -234,6 +256,18 @@ export default async function handler(req, res) {
   } catch (err) {
     // The person already has their copy, so this is not worth failing the request over.
     console.error("send-assessment: clinic copy failed", err);
+  }
+
+  // They've already ticked the consent box for this, so save them for future
+  // emails too. Best-effort: a signup not being saved shouldn't stop them
+  // getting their results.
+  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  if (audienceId) {
+    try {
+      await addToAudience(apiKey, audienceId, { email: safe.email, name: safe.name });
+    } catch (err) {
+      console.error("send-assessment: saving to audience failed", err);
+    }
   }
 
   return res.status(200).json({ ok: true });
