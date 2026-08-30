@@ -1263,6 +1263,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .why h2,.why .pill-row--outline,.why__quote{display:none;}
   .pillars{display:none;}
   .hero__note{display:none;}
+  /* Hiding .pillars above puts desk-check and pricing directly together,
+     and both use the same dark background, so add a line between them. */
+  .pricing{border-top:1px solid var(--cream-33);}
   .trust-strip{display:none;}
   .who-for{display:none;}
   .why{padding-top:32px;padding-bottom:32px;}
