@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Component library — Tom the Chiropractor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  /* This page is reference material only (see design/README.md) — it is
+     not part of the live site and isn't linked to make sure. It loads the
+     real tokens.css/styles.css, so every example below is styled by the
+     site's actual CSS, not a copy of it. Change styles.css and this page
+     updates with it. */
+
+  body{padding-bottom:120px;}
+
+  .cl-guide-head{max-width:760px;padding:56px var(--space-section-x) 0;}
+  .cl-guide-head p{font:var(--type-body-lg);color:var(--ink-b3);margin-top:12px;}
+
+  .cl-section{padding:64px var(--space-section-x) 0;border-top:1px solid var(--ink-1a);margin-top:64px;}
+  .cl-section:first-of-type{border-top:none;margin-top:40px;}
+  .cl-section h2{font:400 30px/1.3 var(--font-family);margin:0 0 8px;}
+  .cl-section > p.cl-desc{font:var(--type-body);color:var(--ink-b3);max-width:640px;margin:0 0 32px;}
+
+  .cl-block{margin-bottom:48px;}
+  .cl-block h3{font:var(--type-h3);margin:0 0 4px;}
+  .cl-block .cl-note{font:var(--type-body-sm);color:var(--ink-99);margin:0 0 20px;max-width:640px;}
+
+  .cl-row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;}
+  .cl-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .cl-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .cl-swatch-label{font:600 12px/1.4 var(--font-family);margin-top:8px;}
+  .cl-swatch-value{font:400 12px/1.4 monospace;color:var(--ink-99);}
+
+  .cl-swatch{width:140px;}
+  .cl-swatch__block{height:90px;border:1px solid var(--ink-14);}
+
+  .cl-type-row{padding:16px 0;border-bottom:1px solid var(--ink-14);}
+  .cl-type-row:last-child{border-bottom:none;}
+  .cl-type-row .cl-type-token{font:600 12px/1.4 var(--font-family);color:var(--color-teal);margin-bottom:8px;}
+  .cl-type-row .cl-type-css{font:400 12px/1.4 monospace;color:var(--ink-99);margin-top:8px;}
+
+  .cl-space-row{display:flex;align-items:center;gap:16px;margin-bottom:10px;}
+  .cl-space-bar{height:16px;background:var(--color-teal);}
+  .cl-space-label{font:400 13px/1.4 monospace;color:var(--ink-99);width:220px;flex:none;}
+
+  .cl-swatch-hover-note{font:var(--type-body-sm);color:var(--ink-99);}
+
+  .cl-frame{background:#fff;border:1px solid var(--ink-14);padding:24px;}
+  .cl-frame--tan{background:var(--color-tan);}
+  .cl-frame--ink{background:var(--color-ink);}
+
+  /* jump nav, built from the same look as .nav but scoped to this page */
+  .cl-jumpnav{position:sticky;top:0;z-index:20;background:var(--cream-f2);backdrop-filter:blur(6px);border-bottom:1px solid var(--ink-14);}
+  .cl-jumpnav__row{display:flex;gap:4px;overflow-x:auto;padding:0 var(--space-section-x);max-width:100%;}
+  .cl-jumpnav a{white-space:nowrap;font:var(--type-nav);color:var(--ink-b3);padding:16px 12px;display:inline-block;}
+  .cl-jumpnav a:hover{color:var(--color-ink);}
+
+  /* "explored, not yet built" photo patterns — same one-off CSS used in the
+     photo-treatments review; kept scoped to .cl- so it never leaks into the
+     real site's shared classes. */
+  .cl-polaroid{background:#fff;padding:10px 10px 38px;box-shadow:0 16px 30px rgba(0,38,42,0.2);transform:rotate(-2.5deg);max-width:260px;position:relative;}
+  .cl-polaroid img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;}
+  .cl-polaroid figcaption{position:absolute;bottom:11px;left:12px;right:12px;font:500 12px/1.3 var(--font-family);color:var(--ink-99);text-align:center;}
+
+  .cl-banner{position:relative;border-radius:0;overflow:hidden;}
+  .cl-banner img{display:block;width:100%;aspect-ratio:21/9;object-fit:cover;}
+  .cl-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg, rgba(0,38,42,0.93) 0%, rgba(0,38,42,0.8) 40%, rgba(0,38,42,0.2) 78%);}
+  .cl-banner__cap{position:absolute;left:28px;top:50%;transform:translateY(-50%);max-width:46%;z-index:1;}
+  .cl-banner__cap p{font:700 11px/1 var(--font-family);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-yellow);margin:0 0 8px;}
+  .cl-banner__cap h3{font:300 26px/1.25 var(--font-family);letter-spacing:-0.01em;color:var(--color-cream);margin:0;}
+
+  .cl-editorial{max-width:560px;font:var(--type-body-loose);color:var(--ink-b3);}
+  .cl-editorial figure{float:right;width:42%;margin:2px 0 14px 22px;border:1px solid var(--ink-14);padding:5px;background:#fff;}
+  .cl-editorial figure img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;}
+  .cl-editorial figure figcaption{font:var(--type-body-sm);color:var(--ink-99);padding-top:6px;text-align:center;}
+  .cl-editorial h3{font:var(--type-h3);color:var(--color-ink);margin:0 0 10px;}
+  .cl-editorial p{margin:0 0 10px;}
+
+  .cl-callout-avatar{display:flex;align-items:center;gap:18px;background:#fff;border-left:4px solid var(--color-teal);border-radius:0;padding:18px 22px;max-width:640px;}
+  .cl-callout-avatar img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;}
+  .cl-callout-avatar p{font:var(--type-body-sm);color:var(--ink-b3);margin:0;}
+
+  @media (max-width:700px){
+    .cl-grid-2,.cl-grid-3{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="cl-jumpnav" aria-label="Jump to section">
+  <div class="cl-jumpnav__row">
+    <a href="#foundations">Foundations</a>
+    <a href="#buttons">Buttons &amp; links</a>
+    <a href="#labels">Labels</a>
+    <a href="#cards">Cards &amp; content</a>
+    <a href="#hero">Hero</a>
+    <a href="#photography">Photography</a>
+  </div>
+</nav>
+
+<div class="cl-guide-head">
+  <p class="eyebrow eyebrow--teal">Reference only — not part of the live site</p>
+  <h1 style="font:400 40px/1.15 var(--font-family);margin:0;">Component library</h1>
+  <p>Every core style and component the site actually uses, rendered with the real <code>css/tokens.css</code> and <code>css/styles.css</code> — change those files and this page changes with them. For brand identity (logo, colour story, ad mockups) see <code>styleguide.dc.html</code> instead; this page is the working developer/design reference for what's actually built.</p>
+</div>
+
+<!-- FOUNDATIONS -->
+<section class="cl-section" id="foundations">
+  <h2>Foundations</h2>
+  <p class="cl-desc">The tokens in <code>css/tokens.css</code> that everything else is built from. Always reach for one of these instead of a hardcoded value.</p>
+
+  <div class="cl-block">
+    <h3>Colour</h3>
+    <p class="cl-note">Core palette, plus ink-at-opacity (for text/hairlines on light backgrounds) and cream-at-opacity (for text/hairlines on dark backgrounds).</p>
+    <div class="cl-row" id="colorSwatches"></div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Type scale</h3>
+    <p class="cl-note">Font is Rubik throughout, weights 300–700. Each role below is a single shorthand token — use as <code>font:var(--type-h2)</code>.</p>
+    <div id="typeScale"></div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Spacing</h3>
+    <p class="cl-note">Section padding and grid gaps, so spacing stays consistent section to section.</p>
+    <div id="spaceScale"></div>
+  </div>
+</section>
+
+<!-- BUTTONS & LINKS -->
+<section class="cl-section" id="buttons">
+  <h2>Buttons &amp; links</h2>
+  <p class="cl-desc">Buttons are flat, square-cornered, uppercase, no exceptions. See <code>design-system.md</code> for the "no border-radius, no box-shadow" rule and its two narrow exceptions (small circular controls, floating chrome).</p>
+  <div class="cl-row" style="align-items:center;">
+    <a href="#" class="btn btn--dark" onclick="return false">Book your appointment</a>
+    <a href="#" class="btn btn--yellow" onclick="return false">Take the free desk check →</a>
+    <a href="#" class="btn btn--dark btn--small" onclick="return false">Accept</a>
+    <a href="#" class="link-arrow">See how it works →</a>
+  </div>
+</section>
+
+<!-- LABELS -->
+<section class="cl-section" id="labels">
+  <h2>Labels</h2>
+  <div class="cl-block">
+    <h3>Eyebrows</h3>
+    <p class="cl-note">Small uppercase kicker above a heading. Teal on light backgrounds, yellow on dark.</p>
+    <div class="cl-row" style="align-items:center;">
+      <p class="eyebrow eyebrow--teal" style="margin:0;">What I treat</p>
+      <div class="cl-frame--ink" style="padding:12px 16px;"><p class="eyebrow eyebrow--yellow" style="margin:0;">Questions people ask me</p></div>
+    </div>
+  </div>
+  <div class="cl-block">
+    <h3>Pills</h3>
+    <p class="cl-note"><code>.pill</code> for light backgrounds, <code>.pill--outline</code> (inside <code>.pill-row--outline</code>) for dark backgrounds.</p>
+    <div class="cl-row" style="align-items:center;">
+      <div class="pill-row">
+        <span class="pill">Two minutes</span>
+        <span class="pill">No booking needed</span>
+      </div>
+      <div class="cl-frame--ink" style="padding:16px;">
+        <div class="pill-row pill-row--outline">
+          <span class="pill pill--outline">Convenient</span>
+          <span class="pill pill--outline">Personal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS & CONTENT -->
+<section class="cl-section" id="cards">
+  <h2>Cards &amp; content</h2>
+
+  <div class="cl-block">
+    <h3>Condition callout</h3>
+    <p class="cl-note">Left-border flag box for red-flag advice on condition pages. Yellow border for "see your GP", red for "go to A&amp;E".</p>
+    <div class="cl-grid-2">
+      <div class="condition-callout condition-callout--urgent">
+        <p class="condition-callout__flag">Go to A&amp;E immediately</p>
+        <ul class="condition-list">
+          <li>Numbness or tingling around your back passage, genitals or inner thighs</li>
+          <li>Difficulty passing urine, or loss of bladder or bowel control</li>
+        </ul>
+      </div>
+      <div class="condition-callout">
+        <p class="condition-callout__flag">See your GP</p>
+        <ul class="condition-list">
+          <li>Fever</li>
+          <li>Unexplained weight loss</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Condition stats</h3>
+    <div class="condition-stats">
+      <div class="condition-stat">
+        <div class="condition-stat__label">Duration</div>
+        <div class="condition-stat__value">60 minutes</div>
+      </div>
+      <div class="condition-stat">
+        <div class="condition-stat__label">Cost</div>
+        <div class="condition-stat__value">£70</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Price card</h3>
+    <div class="cl-grid-3">
+      <div class="price-card">
+        <div class="price-card__label">Initial consultation</div>
+        <div class="price-card__amount">£70</div>
+        <p class="price-card__desc">A 60-minute assessment to understand your problem and set out a plan.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Follow-up treatment</div>
+        <div class="price-card__amount">£45</div>
+        <p class="price-card__desc">Focused follow-ups based on your individual plan.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Block of 5 treatments</div>
+        <div class="price-card__amount"><a href="#" class="price-card__link" onclick="return false">£200</a></div>
+        <p class="price-card__desc">Five follow-ups paid up front, saving £5 a visit.</p>
+        <p class="price-card__terms"><a href="#" onclick="return false">Block booking terms →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Pillar card</h3>
+    <div class="cl-frame--tan" style="padding:32px;">
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <span class="pillar-card__num pillar-card__num--teal">01</span>
+          <h3>Book &amp; understand</h3>
+          <p>— Book online in under a minute</p>
+          <p>— Choose an appointment that suits you</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-card__num pillar-card__num--teal">02</span>
+          <h3>Assess &amp; treat</h3>
+          <p>— A thorough initial consultation</p>
+          <p>— Always see the same chiropractor</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Value column</h3>
+    <div class="value-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <div class="value-col">
+        <h3>You want</h3>
+        <p>A clear understanding of what's causing your pain</p>
+      </div>
+      <div class="value-col">
+        <h3 class="value-col__title--teal">I provide</h3>
+        <p>Evidence-informed chiropractic care</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Review card</h3>
+    <p class="cl-note">Star rating is plain text characters (★), not an icon font or SVG.</p>
+    <article class="review-card" style="max-width:340px;background:#fff;border:1px solid var(--ink-14);padding:24px;">
+      <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <div class="review-card__body">
+        <p class="review-card__text">Tom listened, explained what was going on in plain English, and I felt better after the first session.</p>
+      </div>
+      <p class="review-card__author">Carolyn Quinn</p>
+      <p class="review-card__date">Google review</p>
+    </article>
+  </div>
+
+  <div class="cl-block">
+    <h3>FAQ item</h3>
+    <p class="cl-note">Built on native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> — keyboard accessible, works without JS. Every item shares <code>name="faq"</code> so opening one closes the others.</p>
+    <div class="cl-frame--ink" style="padding:8px 24px;max-width:640px;">
+      <details class="faq-item" name="faq-demo" open>
+        <summary><h3>What is a chiropractor?</h3></summary>
+        <div class="faq-item__answer"><p>A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine.</p></div>
+      </details>
+      <details class="faq-item" name="faq-demo">
+        <summary><h3>Will it hurt?</h3></summary>
+        <div class="faq-item__answer"><p>Honestly, parts of it can be uncomfortable, but it settles quickly.</p></div>
+      </details>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Condition card (photo)</h3>
+    <p class="cl-note">Homepage "What I treat" grid and each condition page's "Related conditions" — photo, name, one-line description, arrow.</p>
+    <div class="cl-grid-3">
+      <a href="#" class="condition-card" onclick="return false">
+        <img src="../images/action/1Z5A8819.jpg" alt="Tom examining a patient">
+        <div class="condition-card__body">
+          <h3>Neck pain</h3>
+          <p>Stiffness or pain that limits how far you can turn or tilt your head.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="#" class="condition-card" onclick="return false">
+        <img src="../images/action/1Z5A8871.jpg" alt="Tom performing hands-on treatment">
+        <div class="condition-card__body">
+          <h3>Back pain</h3>
+          <p>From a nagging ache to pain that stops you standing up straight.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="#" class="condition-card" onclick="return false">
+        <img src="../images/action/1Z5A8852.jpg" alt="Tom treating a patient">
+        <div class="condition-card__body">
+          <h3>Shoulder pain</h3>
+          <p>Restricted movement, or pain that flares when reaching or lifting.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HERO -->
+<section class="cl-section" id="hero">
+  <h2>Hero</h2>
+  <p class="cl-desc">The homepage split hero: photo framed against a small teal offset block, text left. This is the only hero treatment currently built — see Photography below for others that were reviewed but not adopted.</p>
+  <div class="cl-frame--ink" style="padding:0;overflow:hidden;">
+    <div class="hero__grid" style="padding:48px 32px;">
+      <div class="hero__inner">
+        <p class="eyebrow eyebrow--teal" style="color:var(--color-teal);">Hi, I'm Tom, your chiropractor in Loughborough</p>
+        <h1 style="color:var(--color-cream);">Chiropractor in Loughborough</h1>
+        <p class="hero__lead" style="color:var(--cream-cc);"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain.</p>
+        <a href="#" class="btn btn--dark" onclick="return false">Book your appointment</a>
+      </div>
+      <div class="hero__media">
+        <img src="../images/headshots/1Z5A8513.jpg" alt="Tom Wikeley, chiropractor">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="cl-section" id="photography">
+  <h2>Photography</h2>
+  <p class="cl-desc">Source photos live in <code>images/action/</code> and <code>images/headshots/</code> — see <code>images/README.md</code> for how to add and resize new ones. Full usage rules are in <code>design-system.md</code>.</p>
+
+  <div class="cl-block">
+    <h3>Built and in use</h3>
+    <p class="cl-note">Condition carousel: 3 photos, autoplay, pauses on hover/focus/off-screen. Used on every condition page and beside the homepage FAQ.</p>
+    <div style="max-width:480px;">
+      <div class="carousel" data-carousel>
+        <div class="carousel__frame">
+          <div class="carousel__slide is-active"><img src="../images/action/1Z5A8973.jpg" alt="Tom performing an adjustment"></div>
+          <div class="carousel__slide"><img src="../images/action/1Z5A9146.jpg" alt="Tom in the treatment room with a patient"></div>
+          <div class="carousel__slide"><img src="../images/action/1Z5A9449.jpg" alt="Tom examining a patient's shoulder"></div>
+          <button class="carousel__btn carousel__btn--prev" type="button" data-prev aria-label="Previous photo">‹</button>
+          <button class="carousel__btn carousel__btn--next" type="button" data-next aria-label="Next photo">›</button>
+        </div>
+        <div class="carousel__dots" data-dots>
+          <button class="carousel__dot is-active" type="button" data-dot="0" aria-label="Photo 1"></button>
+          <button class="carousel__dot" type="button" data-dot="1" aria-label="Photo 2"></button>
+          <button class="carousel__dot" type="button" data-dot="2" aria-label="Photo 3"></button>
+        </div>
+      </div>
+      <div class="condition-carousel__cta">
+        <p>Every session is tailored to what's actually going on.</p>
+        <a href="#" class="btn btn--dark" onclick="return false">Book your appointment</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-block">
+    <h3>Explored, not yet built</h3>
+    <p class="cl-note">From the photo-treatments design review. Reach for these if a page needs a different feel than the carousel or condition card above — not defaults, deliberate choices.</p>
+
+    <div class="cl-row" style="align-items:flex-start;gap:32px;margin-bottom:32px;">
+      <figure class="cl-polaroid" style="margin:0;">
+        <img src="../images/action/1Z5A9146.jpg" alt="Tom in the treatment room">
+        <figcaption>In the treatment room</figcaption>
+      </figure>
+      <div style="max-width:320px;">
+        <p style="font:600 13px/1.4 var(--font-family);margin:0 0 6px;">Polaroid</p>
+        <p class="cl-note" style="margin:0;">Single pinned, rotated photo — warmer and more informal than the standard card. Note the shadow and rotation here are a deliberate one-off exception to the no-shadow rule, not a precedent.</p>
+      </div>
+    </div>
+
+    <div style="margin-bottom:32px;">
+      <p style="font:600 13px/1.4 var(--font-family);margin:0 0 6px;">Full-width banner</p>
+      <p class="cl-note" style="margin:0 0 16px;">Same diagonal gradient as the hero, heading overlaid — a section break for a long page.</p>
+      <figure class="cl-banner" style="margin:0;max-width:800px;">
+        <img src="../images/action/1Z5A9101.jpg" alt="Tom performing an adjustment">
+        <div class="cl-banner__cap">
+          <p>Back pain</p>
+          <h3>What treatment actually looks like</h3>
+        </div>
+      </figure>
+    </div>
+
+    <div style="margin-bottom:32px;">
+      <p style="font:600 13px/1.4 var(--font-family);margin:0 0 6px;">Editorial float</p>
+      <p class="cl-note" style="margin:0 0 16px;">Photo floated inside body copy, magazine-style — for a "what to expect" style paragraph.</p>
+      <div class="cl-editorial">
+        <figure>
+          <img src="../images/action/1Z5A9449.jpg" alt="Tom examining a patient's shoulder">
+          <figcaption>A typical first assessment</figcaption>
+        </figure>
+        <h3>What to expect at your first visit</h3>
+        <p>Your first appointment is a 60-minute consultation. Tom will take a full history, examine the area causing you pain, and explain what's likely going on in plain English.</p>
+      </div>
+    </div>
+
+    <div>
+      <p style="font:600 13px/1.4 var(--font-family);margin:0 0 6px;">Callout avatar</p>
+      <p class="cl-note" style="margin:0 0 16px;">Circular photo inside the existing callout pattern, for a tip that's clearly coming from Tom personally. Needs a photo pre-cropped to face-and-shoulders — a circular crop of a full-body shot doesn't work.</p>
+      <div class="cl-callout-avatar">
+        <img src="../images/headshots/1Z5A8572-avatar.jpg" alt="Tom, chiropractor">
+        <p><strong>Tom's tip:</strong> most shoulder pain settles faster with gentle movement than with total rest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reads the real custom properties from tokens.css, so this page can
+  // never silently drift out of date with the values it's documenting.
+  (function(){
+    var root = getComputedStyle(document.documentElement);
+    function val(name){ return root.getPropertyValue(name).trim(); }
+
+    var colors = [
+      ["--color-ink","Ink"], ["--color-cream","Cream"], ["--color-tan","Tan"],
+      ["--color-teal","Teal"], ["--color-teal-hover","Teal hover"],
+      ["--color-yellow","Yellow"], ["--color-red","Red"],
+      ["--ink-14","Ink 14%"], ["--ink-1a","Ink 1a"], ["--ink-99","Ink 99"], ["--ink-b3","Ink b3"],
+      ["--cream-33","Cream 33"], ["--cream-4d","Cream 4d"], ["--cream-80","Cream 80"],
+      ["--cream-b3","Cream b3"], ["--cream-cc","Cream cc"], ["--cream-f2","Cream f2"]
+    ];
+    var swatchHtml = colors.map(function(c){
+      var isDarkText = c[0].indexOf("cream") !== -1 && c[0] !== "--color-cream" ? "" : "";
+      return '<div class="cl-swatch">' +
+        '<div class="cl-swatch__block" style="background:var(' + c[0] + ')"></div>' +
+        '<div class="cl-swatch-label">' + c[1] + '</div>' +
+        '<div class="cl-swatch-value">' + val(c[0]) + '</div>' +
+      '</div>';
+    }).join("");
+    document.getElementById("colorSwatches").innerHTML = swatchHtml;
+
+    var types = [
+      ["--type-eyebrow","Eyebrow"], ["--type-h1","H1"], ["--type-h2","H2"],
+      ["--type-h2-quote","H2 quote"], ["--type-h3","H3"], ["--type-body-lg","Body large"],
+      ["--type-body","Body"], ["--type-body-loose","Body loose"], ["--type-body-sm","Body small"],
+      ["--type-nav","Nav"], ["--type-button","Button"]
+    ];
+    var typeHtml = types.map(function(t){
+      return '<div class="cl-type-row">' +
+        '<div class="cl-type-token">' + t[0] + '</div>' +
+        '<div style="font:var(' + t[0] + ')">The quick brown fox jumps</div>' +
+        '<div class="cl-type-css">' + val(t[0]) + '</div>' +
+      '</div>';
+    }).join("");
+    document.getElementById("typeScale").innerHTML = typeHtml;
+
+    var spaces = [
+      "--space-section-x","--space-section-y","--space-hero-y-top","--space-hero-y-bottom",
+      "--space-gap-lg","--space-gap-md","--space-gap-sm"
+    ];
+    var spaceHtml = spaces.map(function(s){
+      var px = parseInt(val(s), 10) || 0;
+      return '<div class="cl-space-row">' +
+        '<div class="cl-space-label">' + s + ' = ' + val(s) + '</div>' +
+        '<div class="cl-space-bar" style="width:' + px + 'px"></div>' +
+      '</div>';
+    }).join("");
+    document.getElementById("spaceScale").innerHTML = spaceHtml;
+  })();
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 # Design system
 
-Source of truth for the site's look is [`styleguide.dc.html`](styleguide.dc.html) (see [`README.md`](README.md) for the full handoff notes). It's a design reference only — not meant to be served — so its colors, type scale and spacing are implemented as CSS custom properties in [`css/tokens.css`](../css/tokens.css), which [`css/styles.css`](../css/styles.css) builds on.
+Source of truth for the site's look is [`styleguide.dc.html`](styleguide.dc.html) (see [`README.md`](README.md) for the full handoff notes) — brand identity: logo, colour story, print/ad mockups. It's a design reference only — not meant to be served — so its colors, type scale and spacing are implemented as CSS custom properties in [`css/tokens.css`](../css/tokens.css), which [`css/styles.css`](../css/styles.css) builds on.
+
+For the components actually built out of those tokens — buttons, cards, the carousel, condition callouts, every photography treatment — see [`component-library.html`](component-library.html). It loads the real stylesheets, so it's always in sync with what's live; open it in a browser rather than reading the source.
 
 ## Using the tokens
 
