@@ -186,17 +186,6 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .smallprint{font-size:13px;color:var(--muted-2);margin:26px 0 0;line-height:1.6}
 .smallprint a{color:var(--muted)}
 
-@media print{
-  .nav,.progress,.q,.capture,.cta,.hero,.edit-row{display:none}
-  body{background:#fff}
-  /* The two-column layout (sidebar + quiz) only exists for the on-screen
-     experience. For print, drop the sidebar's column entirely so the
-     result card gets the full page width instead of being squeezed into
-     the narrower "main content" column beside a now-hidden sidebar. */
-  .dc-layout{display:block;max-width:none;padding:0}
-  .result{box-shadow:none;border-color:#999}
-}
-
 /* Two-column desktop layout: a narrow, sticky intro card beside the quiz.
    Below this width the page is untouched — .hero/.wrap keep their
    original single-column, full-bleed styling exactly as before. */
@@ -223,6 +212,20 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   .dc-main{min-width:0}
   .dc-main .wrap{max-width:none;margin:0;padding:0}
   .progress-in{max-width:none;padding:11px 0}
+}
+
+/* Placed after the desktop layout block above so it wins the cascade there
+   too: print pages are almost always wider than 701px, so without this
+   ordering the desktop .dc-layout grid rule would override these. */
+@media print{
+  .nav,.progress,.q,.capture,.cta,.hero,.edit-row{display:none}
+  body{background:#fff}
+  /* The two-column layout (sidebar + quiz) only exists for the on-screen
+     experience. For print, drop the sidebar's column entirely so the
+     result card gets the full page width instead of being squeezed into
+     the narrower "main content" column beside a now-hidden sidebar. */
+  .dc-layout{display:block;max-width:none;padding:0}
+  .result{box-shadow:none;border-color:#999}
 }
 </style>
 </head>
