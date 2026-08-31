@@ -1093,9 +1093,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-h2);
   max-width:640px;
 }
-/* Full-width map band above the two columns. */
-.find-map{margin:0 0 48px;}
-.find-map .map-embed{aspect-ratio:auto;height:320px;}
+/* Sits at the top of the left-hand column, alongside the map. */
+.find-map{margin:0 0 32px;}
 .find-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
