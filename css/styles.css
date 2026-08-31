@@ -73,6 +73,21 @@ h1,h2,h3,p,ul{margin:0;}
   z-index:10;
   gap:16px;
 }
+
+/* Announcement bar. Sits above the sticky nav so it scrolls away once
+   you are into the page, rather than eating height on every screen. */
+.notice-bar{
+  background:var(--color-teal);
+  color:var(--color-cream);
+  padding:10px var(--space-section-x);
+  text-align:center;
+}
+.notice-bar p{
+  font:var(--type-body-sm);
+  color:inherit;
+  margin:0;
+}
+.notice-bar strong{font-weight:600;}
 .nav__brand{
   display:flex;
   align-items:center;
@@ -1342,4 +1357,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
     overscroll-behavior:contain;
     -webkit-overflow-scrolling:touch;
   }
+}
+
+@media (max-width: 700px){
+  .notice-bar{padding:9px 16px;}
+  .notice-bar p{font-size:13px;line-height:1.5;}
 }
