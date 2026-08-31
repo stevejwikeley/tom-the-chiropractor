@@ -298,13 +298,17 @@
   <!-- REVIEWS -->
   <section id="reviews" class="reviews">
     <div class="reviews__inner">
-      <p class="eyebrow eyebrow--teal">Reviews</p>
       <div class="reviews__head">
         <span class="review-card__stars" aria-hidden="true">★★★★★</span>
         <span class="reviews__head-rating">5.0 on Google</span>
         <span class="reviews__head-count">from 8 reviews</span>
       </div>
-      <div class="reviews__track" id="reviewsCarousel">
+    </div>
+
+    <div class="reviews__carousel">
+      <button class="reviews__arrow reviews__arrow--prev" type="button" data-reviews-prev aria-label="Previous reviews">‹</button>
+      <div class="reviews__viewport">
+        <div class="reviews__track" id="reviewsCarousel">
 
         <article class="review-card">
           <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -393,8 +397,12 @@
           <p class="review-card__date">Google review</p>
         </article>
 
+        </div>
       </div>
-      <div class="reviews__dots"></div>
+      <button class="reviews__arrow reviews__arrow--next" type="button" data-reviews-next aria-label="Next reviews">›</button>
+    </div>
+
+    <div class="reviews__inner">
       <a class="reviews__link" href="https://www.google.com/maps?cid=12034629052113884996" target="_blank" rel="noopener">Read all reviews on Google →</a>
     </div>
   </section>

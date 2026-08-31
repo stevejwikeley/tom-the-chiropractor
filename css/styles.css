@@ -478,12 +478,6 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   background:var(--color-tan);
 }
 .reviews__inner{max-width:720px;margin:0 auto;text-align:center;}
-/* This label does heading duty here, so it runs larger than a normal eyebrow. */
-.reviews .eyebrow{
-  font-size:22px;
-  letter-spacing:0.06em;
-  margin-bottom:20px;
-}
 .reviews__head{
   display:flex;
   flex-wrap:wrap;
@@ -500,64 +494,69 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--ink-99);
 }
 
-/* Without JS every review is simply listed; JS turns this into a carousel. */
+/* Without JS every review is simply listed; JS turns this into a
+   sliding, 3-up carousel flanked by prev/next arrows. */
+.reviews__carousel{
+  width:88%;
+  max-width:1600px;
+  margin:24px auto 0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.reviews__viewport{
+  flex:1;
+  min-width:0;
+}
+.reviews__carousel.is-enhanced .reviews__viewport{
+  overflow:hidden;
+}
 .reviews__track{
   display:flex;
   flex-direction:column;
   gap:20px;
 }
-.reviews__track.is-enhanced{
-  display:block;
-  position:relative;
-  gap:0;
+.reviews__carousel.is-enhanced .reviews__track{
+  flex-direction:row;
+  transition:transform .5s ease;
 }
 .review-card{
   background:#fff;
   border:1px solid var(--ink-14);
-  padding:32px 28px;
+  padding:24px 22px;
   text-align:left;
 }
-.reviews__track.is-enhanced .review-card{
-  display:none;
-}
-/* Reviews vary a lot in length. Fixing the card height stops the page jumping
-   as the carousel cycles; longer reviews fade out rather than being edited.
-   Height only — setting display here would override the display:none above. */
-.reviews__track.is-enhanced .review-card{
-  height:360px;
-}
-.reviews__track.is-enhanced .review-card.is-active{
+/* Fixing the card height keeps every slide the same size as the track
+   slides; longer reviews fade out below the cut rather than being edited. */
+.reviews__carousel.is-enhanced .review-card{
+  flex:0 0 calc((100% - 40px) / 3);
   display:flex;
   flex-direction:column;
-  animation:reviewFade .5s ease;
+  height:260px;
 }
 .review-card__body{min-width:0;}
-.reviews__track.is-enhanced .review-card__body{
+.reviews__carousel.is-enhanced .review-card__body{
   flex:1;
   overflow:hidden;
   min-height:0;
 }
 /* Only faded when there is genuinely more text below the cut. */
-.reviews__track.is-enhanced .review-card__body.is-clipped{
+.reviews__carousel.is-enhanced .review-card__body.is-clipped{
   -webkit-mask-image:linear-gradient(to bottom, #000 76%, transparent 100%);
   mask-image:linear-gradient(to bottom, #000 76%, transparent 100%);
 }
-.reviews__track.is-enhanced .review-card__author{margin-top:14px;}
+.reviews__carousel.is-enhanced .review-card__author{margin-top:10px;}
 .review-card__text + .review-card__text{margin-top:-4px;}
-@keyframes reviewFade{
-  from{opacity:0;transform:translateY(6px);}
-  to{opacity:1;transform:none;}
-}
 .review-card__stars{
   color:var(--color-yellow);
   font:400 16px/1 var(--font-family);
   letter-spacing:2px;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 .review-card__text{
   font:400 16px/1.65 var(--font-family);
   color:var(--ink-b3);
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 .review-card__author{
   font:600 14px/1.4 var(--font-family);
@@ -567,32 +566,27 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--ink-99);
   margin-top:2px;
 }
-.reviews__dots{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin-top:22px;
-}
-.reviews__dot{
-  width:9px;
-  height:9px;
-  padding:0;
-  border:none;
+.reviews__arrow{
+  display:none;
+  flex:none;
+  width:38px;
+  height:38px;
   border-radius:50%;
-  background:var(--ink-1a);
+  border:none;
   cursor:pointer;
-  transition:background .15s ease;
+  background:var(--cream-f2);
+  color:var(--color-ink);
+  font:700 17px/1 var(--font-family);
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
 }
-.reviews__dot:hover{background:var(--ink-99);}
-.reviews__dot.is-active{background:var(--color-teal);}
+.reviews__carousel.is-enhanced .reviews__arrow{display:flex;}
+.reviews__arrow:hover{background:#fff;}
 .reviews__link{
   display:inline-block;
   margin-top:24px;
   font:600 14px/1 var(--font-family);
-}
-
-@media (prefers-reduced-motion: reduce){
-  .reviews__track.is-enhanced .review-card.is-active{animation:none;}
 }
 
 /* CONDITION DETAIL PAGE */
@@ -1265,6 +1259,11 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   /* Three price cards get cramped below this, so drop to two and let the
      block booking wrap onto its own row. */
   .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:720px;}
+  /* Same logic for the reviews carousel: two cards fit better than three. */
+  .reviews__carousel.is-enhanced .review-card{
+    flex-basis:calc((100% - 20px) / 2);
+    height:240px;
+  }
 }
 
 @media (max-width: 700px){
@@ -1308,9 +1307,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .condition-page__lead{font-size:17px;}
   .conditions-grid{grid-template-columns:1fr 1fr;}
   .condition-related__cards{grid-template-columns:1fr;}
-  /* Narrower column means more wrapping, so allow a taller card here. */
-  .reviews__track.is-enhanced .review-card{height:430px;}
-  .reviews .eyebrow{font-size:19px;}
+  /* One card at a time and narrower still, so allow a taller card here. */
+  .reviews__carousel.is-enhanced .review-card{flex-basis:100%;height:280px;}
+  .reviews__carousel{gap:6px;}
   /* A better experience: swap the 3-column comparison for a swipeable
      white-card carousel, one column per card. */
   .value-grid.is-enhanced{

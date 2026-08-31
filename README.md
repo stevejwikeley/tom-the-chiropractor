@@ -55,6 +55,14 @@ That's it. The live website updates automatically within a minute or two — Ver
 
 **Live site:** https://www.tomthechiropractor.co.uk
 
+### Want to check a change before it goes live?
+
+For anything bigger than a quick wording tweak, you can ask Claude Code to **"deploy this to a preview link first."** It'll give you a private URL — not linked from anywhere, not indexed by Google — where you can look at the change exactly as it'll appear on the real site, including on your phone.
+
+Once you're happy, say **"make that live"** and Claude Code will publish that exact same version to the real site (no rebuilding, so what you previewed is exactly what goes live). If you're not happy, just describe what to change and ask for a new preview.
+
+You can always skip this and go straight to "Publishing your changes" above — the preview step is there for when you want a second look first.
+
 ## If something goes wrong
 
 Nothing is permanently lost — every change you've ever pushed is saved in GitHub Desktop's history, so an earlier version can always be restored. If you're not sure what happened, just ask Claude Code — "something looks broken, can you check?" — or ask Steve.

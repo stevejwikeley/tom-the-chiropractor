@@ -154,16 +154,23 @@ function initNav() {
   });
 }
 
+// Shows 3 review cards at once on desktop (2 on tablet, 1 on mobile) and
+// slides the track by one card per step, so it reads as a normal row of
+// cards rather than the old single-card fade carousel.
 function initReviews() {
-  const carousel = document.getElementById('reviewsCarousel');
+  const track = document.getElementById('reviewsCarousel');
+  const carousel = track && track.closest('.reviews__carousel');
   if (!carousel) return;
 
-  const slides = Array.from(carousel.querySelectorAll('.review-card'));
+  const slides = Array.from(track.querySelectorAll('.review-card'));
   if (slides.length < 2) return;
 
-  const dotsWrap = carousel.parentElement.querySelector('.reviews__dots');
+  const prevBtn = carousel.querySelector('[data-reviews-prev]');
+  const nextBtn = carousel.querySelector('[data-reviews-next]');
   const INTERVAL = 7000;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mqTablet = window.matchMedia('(max-width: 900px)');
+  const mqMobile = window.matchMedia('(max-width: 700px)');
 
   let index = 0;
   let timer = null;
@@ -171,18 +178,15 @@ function initReviews() {
   // JS is available, so switch from the stacked no-JS fallback to the carousel.
   carousel.classList.add('is-enhanced');
 
-  const dots = slides.map((_, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'reviews__dot';
-    dot.setAttribute('aria-label', `Show review ${i + 1} of ${slides.length}`);
-    dot.addEventListener('click', () => {
-      show(i);
-      restart();
-    });
-    dotsWrap.appendChild(dot);
-    return dot;
-  });
+  function cardsPerView() {
+    if (mqMobile.matches) return 1;
+    if (mqTablet.matches) return 2;
+    return 3;
+  }
+
+  function maxIndex() {
+    return Math.max(0, slides.length - cardsPerView());
+  }
 
   // Fade only the cards whose text actually overflows the fixed height,
   // so short reviews don't get a pointless gradient across the bottom.
@@ -194,20 +198,21 @@ function initReviews() {
     });
   }
 
-  function show(next) {
-    index = (next + slides.length) % slides.length;
+  function update() {
+    index = Math.min(index, maxIndex());
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const step = slides[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${index * step}px)`;
+    const visibleCount = cardsPerView();
     slides.forEach((slide, i) => {
-      const active = i === index;
-      slide.classList.toggle('is-active', active);
-      slide.setAttribute('aria-hidden', String(!active));
+      slide.setAttribute('aria-hidden', String(i < index || i >= index + visibleCount));
     });
-    dots.forEach((dot, i) => {
-      const active = i === index;
-      dot.classList.toggle('is-active', active);
-      dot.setAttribute('aria-current', String(active));
-    });
-    // Hidden cards measure zero, so re-check once this one is on screen.
-    markClipped();
+  }
+
+  function show(next) {
+    const max = maxIndex();
+    index = next > max ? 0 : next < 0 ? max : next;
+    update();
   }
 
   function start() {
@@ -224,6 +229,15 @@ function initReviews() {
     stop();
     start();
   }
+
+  prevBtn.addEventListener('click', () => {
+    show(index - 1);
+    restart();
+  });
+  nextBtn.addEventListener('click', () => {
+    show(index + 1);
+    restart();
+  });
 
   // Don't cycle away from a review someone is reading or tabbing through.
   carousel.addEventListener('mouseenter', stop);
@@ -256,9 +270,12 @@ function initReviews() {
     restart();
   }, { passive: true });
 
-  show(0);
+  update();
   markClipped();
-  window.addEventListener('resize', markClipped);
+  window.addEventListener('resize', () => {
+    update();
+    markClipped();
+  });
   start();
 
   // Reviews vary in length, so an off-screen slide change would shift the page
