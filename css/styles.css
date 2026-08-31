@@ -1078,6 +1078,7 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-h2);
   max-width:600px;
 }
+.book__hours{margin:0 0 40px;}
 .book__widget{
   background:#fff;
   border:1px solid var(--ink-14);
@@ -1101,30 +1102,43 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   gap:48px;
   align-items:start;
 }
+.find__lead{
+  margin:0 0 40px;
+  font:var(--type-body-loose);
+  color:var(--ink-b3);
+  max-width:640px;
+}
 .find-info p{
   margin:0 0 24px;
   font:var(--type-body-loose);
   color:var(--ink-b3);
   max-width:460px;
 }
-.find-info__whatsapp{margin-bottom:10px;}
-.find-info__directions{margin:16px 0 0;font:400 14px/1.5 var(--font-family);}
-.find-info__whatsapp-number{
-  margin:0 0 24px;
-  font:400 13px/1.5 var(--font-family);
-  color:var(--ink-99);
+.find-info__contact{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:0 0 28px;
 }
-.find-info h3{
+.find-info__call{
+  font:600 14px/1.4 var(--font-family);
+  color:var(--color-ink);
+}
+.find-info__call:hover{color:var(--color-teal-hover);}
+.find-info h3,
+.book__hours h3{
   font:var(--type-eyebrow);
   letter-spacing:0.08em;
   text-transform:uppercase;
   color:var(--color-teal);
   margin:0 0 12px;
 }
-.find-info address{
-  font:var(--type-body-loose);
+.find-map__address{
+  margin:12px 0 0;
+  font:var(--type-body-sm);
   font-style:normal;
-  color:var(--color-ink);
+  color:var(--ink-99);
 }
 .map-embed{
   position:relative;
