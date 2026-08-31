@@ -194,6 +194,15 @@
         </div>
       </div>
 
+      <div class="field">
+        <label for="actionPhoto">Photography image</label>
+        <select id="actionPhoto"></select>
+      </div>
+      <div class="field">
+        <label for="portraitPhoto">Yellow-style portrait</label>
+        <select id="portraitPhoto"></select>
+      </div>
+
       <div class="field field--wide checkbox-row">
         <input type="checkbox" id="safeZone">
         <label for="safeZone">Show profile-photo safe zone (guide only, not exported)</label>
@@ -213,7 +222,7 @@
       </div>
       <div class="field field--wide">
         <label for="footer">Footer / website</label>
-        <input type="text" id="footer" value="tomthechiropractor.co.uk">
+        <input type="text" id="footer" value="Appointments around your working day · tomthechiropractor.co.uk">
       </div>
     </div>
 
@@ -230,13 +239,39 @@
 // default 1584×396 LinkedIn size — still shown as a guide at other sizes.
 const SAFE_ZONE = { x: 0, y: 0, w: 300, h: 300 };
 
-// Same treatment as the site's action photography — 1600x1066 landscape
-// shot, cover-fit into the banner and cropped to a horizontal band.
-const PHOTO_SRC = '../images/action/1Z5A8688.jpg';
+// The site's full image library, so any shot can be picked for either
+// style rather than hardcoding one. Photography uses the landscape action
+// shots (cover-fit and cropped to a horizontal band); Yellow uses the
+// headshots (shown full-height, uncropped, flush right).
+const ACTION_DIR = '../images/action/';
+const ACTION_PHOTOS = [
+  '1Z5A8646.jpg','1Z5A8648.jpg','1Z5A8650.jpg','1Z5A8688.jpg','1Z5A8694.jpg',
+  '1Z5A8695.jpg','1Z5A8703.jpg','1Z5A8721.jpg','1Z5A8725.jpg','1Z5A8735.jpg',
+  '1Z5A8737.jpg','1Z5A8741.jpg','1Z5A8745.jpg','1Z5A8758.jpg','1Z5A8790.jpg',
+  '1Z5A8802.jpg','1Z5A8817.jpg','1Z5A8819.jpg','1Z5A8829.jpg','1Z5A8852.jpg',
+  '1Z5A8854.jpg','1Z5A8858.jpg','1Z5A8871.jpg','1Z5A8873.jpg','1Z5A8884.jpg',
+  '1Z5A8897.jpg','1Z5A8900.jpg','1Z5A8919.jpg','1Z5A8928.jpg','1Z5A8932.jpg',
+  '1Z5A8941.jpg','1Z5A8952.jpg','1Z5A8973.jpg','1Z5A8978.jpg','1Z5A9031.jpg',
+  '1Z5A9040.jpg','1Z5A9044.jpg','1Z5A9051.jpg','1Z5A9065.jpg','1Z5A9069.jpg',
+  '1Z5A9078.jpg','1Z5A9094.jpg','1Z5A9101.jpg','1Z5A9108.jpg','1Z5A9112.jpg',
+  '1Z5A9142.jpg','1Z5A9146.jpg','1Z5A9152.jpg','1Z5A9164.jpg','1Z5A9449.jpg',
+  '1Z5A9453.jpg','1Z5A9468.jpg','1Z5A9469.jpg'
+];
+const DEFAULT_ACTION_PHOTO = '1Z5A8695.jpg';
 
-// Tom's yellow-backdrop headshot, used full-height and uncropped on the
-// "Yellow" style so the portrait's own background reads as part of the banner.
-const PORTRAIT_SRC = '../images/headshots/1Z5A8513-yellow.jpg';
+const HEADSHOT_DIR = '../images/headshots/';
+const HEADSHOT_PHOTOS = [
+  '1Z5A8263.jpg','1Z5A8270.jpg','1Z5A8287.jpg','1Z5A8292.jpg','1Z5A8300.jpg',
+  '1Z5A8339.jpg','1Z5A8355.jpg','1Z5A8376.jpg','1Z5A8379.jpg','1Z5A8388.jpg',
+  '1Z5A8416.jpg','1Z5A8434-2.jpg','1Z5A8443.jpg','1Z5A8456.jpg','1Z5A8459.jpg',
+  '1Z5A8472.jpg','1Z5A8487.jpg','1Z5A8494.jpg','1Z5A8503.jpg',
+  '1Z5A8513-yellow-avatar.jpg','1Z5A8513-yellow.jpg','1Z5A8513.jpg',
+  '1Z5A8541.jpg','1Z5A8546.jpg','1Z5A8563.jpg','1Z5A8564.jpg',
+  '1Z5A8572-avatar.jpg','1Z5A8572.jpg','1Z5A8576.jpg','1Z5A8588.jpg',
+  '1Z5A8598.jpg','1Z5A8610.jpg','1Z5A8616.jpg','1Z5A8622.jpg','1Z5A8627.jpg',
+  '1Z5A8633.jpg'
+];
+const DEFAULT_HEADSHOT_PHOTO = '1Z5A8513-yellow.jpg';
 
 const INK = '#00262A';
 const CREAM = '#EFEADF';
@@ -258,11 +293,21 @@ const els = {
   headline: document.getElementById('headline'),
   subtext: document.getElementById('subtext'),
   footer: document.getElementById('footer'),
+  actionPhoto: document.getElementById('actionPhoto'),
+  portraitPhoto: document.getElementById('portraitPhoto'),
   safeZone: document.getElementById('safeZone'),
   formatSize: document.getElementById('formatSize'),
   download: document.getElementById('download'),
   styleButtons: Array.from(document.querySelectorAll('.style-toggle button'))
 };
+
+function populateImageSelect(select, files, selected){
+  select.innerHTML = files.map(f =>
+    `<option value="${f}"${f === selected ? ' selected' : ''}>${f}</option>`
+  ).join('');
+}
+populateImageSelect(els.actionPhoto, ACTION_PHOTOS, DEFAULT_ACTION_PHOTO);
+populateImageSelect(els.portraitPhoto, HEADSHOT_PHOTOS, DEFAULT_HEADSHOT_PHOTO);
 
 let currentStyle = 'typography';
 const imageCache = {};
@@ -290,13 +335,21 @@ const colorSampleCache = {};
 
 function sampleBackgroundColor(img, src){
   if (colorSampleCache[src]) return colorSampleCache[src];
-  const off = document.createElement('canvas');
-  off.width = img.width;
-  off.height = img.height;
-  const octx = off.getContext('2d');
-  octx.drawImage(img, 0, 0);
-  const [r, g, b] = octx.getImageData(10, 10, 1, 1).data;
-  const color = `rgb(${r},${g},${b})`;
+  // Reading pixels back can throw (e.g. a tainted canvas when this page is
+  // opened straight from disk via file:// instead of a local server) —
+  // fall back to the brand yellow token rather than breaking the whole draw.
+  let color = YELLOW;
+  try {
+    const off = document.createElement('canvas');
+    off.width = img.width;
+    off.height = img.height;
+    const octx = off.getContext('2d');
+    octx.drawImage(img, 0, 0);
+    const [r, g, b] = octx.getImageData(10, 10, 1, 1).data;
+    color = `rgb(${r},${g},${b})`;
+  } catch (err) {
+    console.warn('Could not sample portrait background colour, using brand yellow instead.', err);
+  }
   colorSampleCache[src] = color;
   return color;
 }
@@ -408,7 +461,8 @@ async function draw(){
   ctx.clearRect(0, 0, w, h);
 
   if (currentStyle === 'photography'){
-    const img = await loadImage(PHOTO_SRC);
+    const photoSrc = ACTION_DIR + els.actionPhoto.value;
+    const img = await loadImage(photoSrc);
     ctx.fillStyle = INK;
     ctx.fillRect(0, 0, w, h);
     ctx.filter = 'saturate(0.85) contrast(1.05)';
@@ -430,11 +484,13 @@ async function draw(){
 
     drawTextBlock(padX, w, h, SCHEMES.dark);
   } else if (currentStyle === 'yellow'){
-    const img = await loadImage(PORTRAIT_SRC);
+    const portraitSrc = HEADSHOT_DIR + els.portraitPhoto.value;
+    const img = await loadImage(portraitSrc);
 
     // Fill with the portrait's own backdrop colour (sampled from the photo
-    // itself) rather than the brand yellow token, so the join is seamless.
-    ctx.fillStyle = sampleBackgroundColor(img, PORTRAIT_SRC);
+    // itself) rather than a fixed token, so the join is seamless whichever
+    // headshot is picked.
+    ctx.fillStyle = sampleBackgroundColor(img, portraitSrc);
     ctx.fillRect(0, 0, w, h);
 
     const imgW = h * (img.width / img.height);
@@ -482,7 +538,7 @@ function download(){
   }, 'image/png');
 }
 
-[els.width, els.height, els.eyebrow, els.headline, els.subtext, els.footer, els.safeZone].forEach(el => {
+[els.width, els.height, els.eyebrow, els.headline, els.subtext, els.footer, els.actionPhoto, els.portraitPhoto, els.safeZone].forEach(el => {
   el.addEventListener('input', draw);
 });
 els.styleButtons.forEach(btn => btn.addEventListener('click', () => setStyle(btn.dataset.style)));
