@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
+<script src="js/cookie-consent.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free desk check | Tom the Chiropractor, Loughborough</title>
@@ -230,6 +231,13 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 </style>
 </head>
 <body>
+<div id="cookieBanner" class="cookie-banner" hidden>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="cookie-policy.html">Learn more</a>.</p>
+  <div class="cookie-banner__actions">
+    <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
+    <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
+  </div>
+</div>
 
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <defs>
@@ -256,7 +264,7 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
     <a href="index.html#pricing">Pricing</a>
     <a href="index.html#faq">FAQs</a>
     <a href="index.html#find">Find me</a>
-    <a href="index.html#book" class="btn btn--yellow">Book online</a>
+    <a href="index.html#book" class="btn btn--yellow" data-cta="desk-check_nav">Book online</a>
   </nav>
 </header>
 
@@ -329,7 +337,7 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   <section class="cta result hidden" id="cta">
     <h2>Some of it is not the desk</h2>
     <p>If the pain has been there for weeks, or it wakes you up, or it goes down an arm or a leg, a better chair will not fix it on its own. That is worth an appointment.</p>
-    <a class="btn-primary" href="https://www.tomthechiropractor.co.uk/#book">Book an appointment</a>
+    <a class="btn-primary" href="https://www.tomthechiropractor.co.uk/#book" data-cta="desk-check_result">Book an appointment</a>
     <span class="alt">Or message me on <a href="https://wa.me/447871283457">WhatsApp</a> or call <a href="tel:+447871283457">07871 283457</a>.</span>
   </section>
 

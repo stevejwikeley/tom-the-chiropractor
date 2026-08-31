@@ -5,7 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousels();
   initContactForm();
   initStickyCta();
+  initBookingCtaTracking();
 });
+
+// Every "Book" link on the site carries a data-cta value unique to its page
+// and position (e.g. "home_hero", "back-pain_mid-page"). Clicking one fires a
+// GA4 event carrying that value, so Analytics can report which CTA actually
+// drives bookings rather than just showing "book online" clicked N times.
+function initBookingCtaTracking() {
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('[data-cta]');
+    if (!link || typeof window.gtag !== 'function') return;
+
+    window.gtag('event', 'book_cta_click', {
+      cta_id: link.dataset.cta,
+      cta_text: link.textContent.trim(),
+      page_path: window.location.pathname
+    });
+  });
+}
 
 // On mobile the "A better experience" 3-column comparison becomes a
 // swipeable, auto-advancing carousel of white cards, one column per card.
