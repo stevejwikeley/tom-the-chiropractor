@@ -63,6 +63,14 @@ Once you're happy, say **"make that live"** and Claude Code will publish that ex
 
 You can always skip this and go straight to "Publishing your changes" above — the preview step is there for when you want a second look first.
 
+### A note for Claude Code (not Tom): how production deploys actually work
+
+This project's Vercel deployment is Git-linked with `main` as the production branch, which means **any push to `main` immediately becomes the live production deployment** — including a push from Tom via GitHub Desktop while you're mid-session. Deploying straight to production from the CLI (`vercel --prod`, or `vercel promote <preview-url>`) is not durable: it creates a deployment and aliases it to production, but the very next push to `main` — from Tom, from another Claude Code session, from anyone — silently replaces it, even if that push is unrelated and older than your change.
+
+So once a change is actually ready to go live, commit it and push to `main` yourself (`git add` the files you changed, commit, `git push origin main`) rather than stopping at `vercel --prod`/`vercel promote`. That way your change becomes part of the same history everything else deploys from, instead of a side channel that the next ordinary commit overwrites. Preview deploys (plain `vercel`, no flag) are fine as-is and don't need committing — they're throwaway by nature and don't touch production.
+
+Before pushing, run `git status` and only stage the files your own change actually touched — someone else (Tom, another session) may have unrelated uncommitted work sitting in the same working tree, and it isn't yours to commit.
+
 ## If something goes wrong
 
 Nothing is permanently lost — every change you've ever pushed is saved in GitHub Desktop's history, so an earlier version can always be restored. If you're not sure what happened, just ask Claude Code — "something looks broken, can you check?" — or ask Steve.
