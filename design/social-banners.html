@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social banners — Tom the Chiropractor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<style>
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--color-tan);
+    color:var(--color-ink);
+    font:var(--type-body);
+  }
+  .page{
+    max-width:1100px;
+    margin:0 auto;
+    padding:var(--space-section-y) var(--space-section-x) 96px;
+  }
+  h1{
+    font:var(--type-h2);
+    margin:0 0 4px;
+  }
+  .lede{
+    color:var(--ink-99);
+    margin:0 0 32px;
+    max-width:640px;
+  }
+  .tool{
+    background:var(--color-cream);
+    border:1px solid var(--ink-1a);
+  }
+  .canvas-wrap{
+    padding:24px;
+    border-bottom:1px solid var(--ink-1a);
+    overflow-x:auto;
+  }
+  canvas{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:1584px;
+  }
+  .format-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:12px;
+  }
+  .format-label strong{
+    font:var(--type-h3);
+  }
+  .format-label span{
+    font:var(--type-body-sm);
+    color:var(--ink-99);
+  }
+  .controls{
+    padding:24px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 24px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .field--wide{
+    grid-column:1 / -1;
+  }
+  label{
+    font:var(--type-body-sm);
+    font-weight:500;
+    color:var(--ink-b3);
+  }
+  input[type="text"], input[type="number"], select{
+    font:var(--type-body);
+    padding:10px 12px;
+    border:1px solid var(--ink-1a);
+    background:#fff;
+    color:var(--color-ink);
+  }
+  input[type="text"]:focus, input[type="number"]:focus, select:focus{
+    outline:2px solid var(--color-teal);
+    outline-offset:-1px;
+  }
+  .dims-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .dims-row input{
+    width:90px;
+  }
+  .dims-row span{
+    color:var(--ink-99);
+  }
+  .style-toggle{
+    display:flex;
+    border:1px solid var(--ink-1a);
+    width:fit-content;
+  }
+  .style-toggle button{
+    font:var(--type-button);
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    padding:10px 18px;
+    border:none;
+    background:#fff;
+    color:var(--ink-b3);
+    cursor:pointer;
+  }
+  .style-toggle button + button{
+    border-left:1px solid var(--ink-1a);
+  }
+  .style-toggle button[aria-pressed="true"]{
+    background:var(--color-ink);
+    color:var(--color-cream);
+  }
+  .checkbox-row{
+    flex-direction:row;
+    align-items:center;
+    gap:8px;
+  }
+  .checkbox-row input{
+    width:16px;
+    height:16px;
+  }
+  .checkbox-row label{
+    color:var(--color-ink);
+  }
+  .actions{
+    padding:20px 24px;
+    border-top:1px solid var(--ink-1a);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .hint{
+    font:var(--type-body-sm);
+    color:var(--ink-99);
+  }
+  .btn{
+    font:var(--type-button);
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    padding:13px 22px;
+    border:none;
+    cursor:pointer;
+    background:var(--color-yellow);
+    color:var(--color-ink);
+  }
+  .btn:hover{
+    background:#d9b806;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Social banners</h1>
+  <p class="lede">Generates on-brand cover images at each platform's exact pixel size. Edit the text, then download — nothing here is served on the live site (excluded from the Vercel deploy, same as the rest of <code>design/</code>).</p>
+
+  <div class="tool">
+    <div class="canvas-wrap">
+      <div class="format-label">
+        <strong>Banner</strong>
+        <span id="formatSize">1584 × 396 px</span>
+      </div>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+      <div class="field">
+        <label for="widthInput">Dimensions (px)</label>
+        <div class="dims-row">
+          <input type="number" id="widthInput" value="1584" min="200" max="4000">
+          <span>×</span>
+          <input type="number" id="heightInput" value="396" min="100" max="4000">
+        </div>
+      </div>
+      <div class="field">
+        <label id="styleLabel">Style</label>
+        <div class="style-toggle" role="group" aria-labelledby="styleLabel">
+          <button type="button" data-style="typography" aria-pressed="true">Typography</button>
+          <button type="button" data-style="photography" aria-pressed="false">Photography</button>
+          <button type="button" data-style="yellow" aria-pressed="false">Yellow</button>
+        </div>
+      </div>
+
+      <div class="field field--wide checkbox-row">
+        <input type="checkbox" id="safeZone">
+        <label for="safeZone">Show profile-photo safe zone (guide only, not exported)</label>
+      </div>
+
+      <div class="field field--wide">
+        <label for="eyebrow">Eyebrow</label>
+        <input type="text" id="eyebrow" value="TOM THE CHIROPRACTOR">
+      </div>
+      <div class="field field--wide">
+        <label for="headline">Headline</label>
+        <input type="text" id="headline" value="Chiropractor in Loughborough">
+      </div>
+      <div class="field field--wide">
+        <label for="subtext">Subtext</label>
+        <input type="text" id="subtext" value="Neck pain · Back pain · Tension headaches">
+      </div>
+      <div class="field field--wide">
+        <label for="footer">Footer / website</label>
+        <input type="text" id="footer" value="tomthechiropractor.co.uk">
+      </div>
+    </div>
+
+    <div class="actions">
+      <span class="hint">Downloads a PNG at the exact size shown above.</span>
+      <button class="btn" id="download">Download PNG</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// LinkedIn overlaps the profile photo on the bottom-left corner of the
+// cover image; keep primary content clear of this box. Calibrated for the
+// default 1584×396 LinkedIn size — still shown as a guide at other sizes.
+const SAFE_ZONE = { x: 0, y: 0, w: 300, h: 300 };
+
+// Same treatment as the site's action photography — 1600x1066 landscape
+// shot, cover-fit into the banner and cropped to a horizontal band.
+const PHOTO_SRC = '../images/action/1Z5A8688.jpg';
+
+// Tom's yellow-backdrop headshot, used full-height and uncropped on the
+// "Yellow" style so the portrait's own background reads as part of the banner.
+const PORTRAIT_SRC = '../images/headshots/1Z5A8513-yellow.jpg';
+
+const INK = '#00262A';
+const CREAM = '#EFEADF';
+const TEAL = '#00A6A6';
+const YELLOW = '#EFCA07';
+
+const SCHEMES = {
+  dark: { eyebrow: YELLOW, headline: CREAM, subtext: TEAL, footer: 'rgba(239,234,223,0.55)' },
+  onYellow: { eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.68)', footer: 'rgba(0,38,42,0.55)' }
+};
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const els = {
+  width: document.getElementById('widthInput'),
+  height: document.getElementById('heightInput'),
+  eyebrow: document.getElementById('eyebrow'),
+  headline: document.getElementById('headline'),
+  subtext: document.getElementById('subtext'),
+  footer: document.getElementById('footer'),
+  safeZone: document.getElementById('safeZone'),
+  formatSize: document.getElementById('formatSize'),
+  download: document.getElementById('download'),
+  styleButtons: Array.from(document.querySelectorAll('.style-toggle button'))
+};
+
+let currentStyle = 'typography';
+const imageCache = {};
+
+function loadImage(src){
+  if (imageCache[src]) return imageCache[src];
+  imageCache[src] = new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.src = src;
+  });
+  return imageCache[src];
+}
+
+function drawImageCover(img, x, y, w, h){
+  const scale = Math.max(w / img.width, h / img.height);
+  const sw = w / scale;
+  const sh = h / scale;
+  const sx = (img.width - sw) / 2;
+  const sy = (img.height - sh) / 2;
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+}
+
+const colorSampleCache = {};
+
+function sampleBackgroundColor(img, src){
+  if (colorSampleCache[src]) return colorSampleCache[src];
+  const off = document.createElement('canvas');
+  off.width = img.width;
+  off.height = img.height;
+  const octx = off.getContext('2d');
+  octx.drawImage(img, 0, 0);
+  const [r, g, b] = octx.getImageData(10, 10, 1, 1).data;
+  const color = `rgb(${r},${g},${b})`;
+  colorSampleCache[src] = color;
+  return color;
+}
+
+function drawTracked(text, x, y, tracking){
+  let cursor = x;
+  for (const ch of text){
+    ctx.fillText(ch, cursor, y);
+    cursor += ctx.measureText(ch).width + tracking;
+  }
+}
+
+// Assumes ctx.font is already set to the wrapping text's font.
+function wrapText(text, maxWidth){
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words){
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && ctx.measureText(candidate).width > maxWidth){
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function drawTextBlock(padX, w, h, scheme){
+  // Size type off the smaller of height and a quarter of the width, so
+  // wider/taller-than-LinkedIn dimensions don't blow the text out —
+  // at the default 1584x396 this equals h.
+  const scale = Math.min(h, w / 4);
+  const centerY = h / 2;
+  const textX = padX;
+  const maxTextWidth = w - textX - Math.max(32, w * 0.03);
+
+  ctx.textBaseline = 'alphabetic';
+
+  const eyebrowSize = Math.round(scale * 0.045);
+  const ruleThickness = Math.max(2, scale * 0.008);
+  const headlineSize = Math.round(scale * 0.115);
+  const headlineLineHeight = headlineSize * 1.14;
+  const subSize = Math.round(scale * 0.05);
+  const footSize = Math.round(scale * 0.038);
+  const hasFooter = els.footer.value.trim().length > 0;
+
+  ctx.font = `600 ${headlineSize}px Rubik`;
+  const headlineLines = wrapText(els.headline.value, maxTextWidth).slice(0, 2);
+
+  // Baseline-to-baseline gaps, tuned relative to scale.
+  const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.06;
+  const gapHeadlineToSub = headlineSize * 0.5;
+  const gapSubToFooter = subSize * 1.1;
+  const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
+
+  // Stack everything by baseline gaps, then centre the whole block
+  // vertically — robust to line count and whether a footer is present,
+  // instead of anchoring the footer to the bottom edge separately.
+  const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
+    + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8
+    + (hasFooter ? gapSubToFooter + footSize * 0.8 : 0);
+
+  let cursorY = centerY - totalHeight / 2 + eyebrowSize * 0.8;
+
+  ctx.font = `700 ${eyebrowSize}px Rubik`;
+  ctx.fillStyle = scheme.eyebrow;
+  drawTracked(els.eyebrow.value.toUpperCase(), textX, cursorY, 0.12 * eyebrowSize);
+
+  ctx.fillRect(textX, cursorY + eyebrowSize * 0.35, scale * 0.16, ruleThickness);
+
+  cursorY += gapEyebrowToHeadline + headlineSize * 0.8;
+  ctx.font = `600 ${headlineSize}px Rubik`;
+  ctx.fillStyle = scheme.headline;
+  headlineLines.forEach((line, i) => {
+    drawTracked(line, textX, cursorY + i * headlineLineHeight, -0.01 * headlineSize);
+  });
+
+  cursorY += headlineBlockHeight + gapHeadlineToSub + subSize * 0.8;
+  ctx.font = `500 ${subSize}px Rubik`;
+  ctx.fillStyle = scheme.subtext;
+  ctx.fillText(els.subtext.value, textX, cursorY);
+
+  if (hasFooter){
+    cursorY += gapSubToFooter + footSize * 0.8;
+    ctx.font = `400 ${footSize}px Rubik`;
+    ctx.fillStyle = scheme.footer;
+    ctx.fillText(els.footer.value, textX, cursorY);
+  }
+}
+
+async function draw(){
+  const w = Math.max(200, parseInt(els.width.value, 10) || 1584);
+  const h = Math.max(100, parseInt(els.height.value, 10) || 396);
+  els.formatSize.textContent = `${w} × ${h} px`;
+
+  canvas.width = w;
+  canvas.height = h;
+
+  await document.fonts.load(`700 20px Rubik`);
+  await document.fonts.load(`600 60px Rubik`);
+  await document.fonts.load(`400 24px Rubik`);
+  await document.fonts.ready;
+
+  const padX = Math.max(64, SAFE_ZONE.w + 40);
+
+  ctx.clearRect(0, 0, w, h);
+
+  if (currentStyle === 'photography'){
+    const img = await loadImage(PHOTO_SRC);
+    ctx.fillStyle = INK;
+    ctx.fillRect(0, 0, w, h);
+    ctx.filter = 'saturate(0.85) contrast(1.05)';
+    drawImageCover(img, 0, 0, w, h);
+    ctx.filter = 'none';
+
+    // Ink wash over the whole frame so the photo reads as branded rather
+    // than raw, then a diagonal dark gradient — same treatment as the
+    // site's full-width photo banners — for the heading to sit on.
+    ctx.fillStyle = 'rgba(0,38,42,0.35)';
+    ctx.fillRect(0, 0, w, h);
+    const grad = ctx.createLinearGradient(0, 0, w * 0.62, h);
+    grad.addColorStop(0, 'rgba(0,38,42,0.97)');
+    grad.addColorStop(0.5, 'rgba(0,38,42,0.88)');
+    grad.addColorStop(0.8, 'rgba(0,38,42,0.25)');
+    grad.addColorStop(1, 'rgba(0,38,42,0.1)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    drawTextBlock(padX, w, h, SCHEMES.dark);
+  } else if (currentStyle === 'yellow'){
+    const img = await loadImage(PORTRAIT_SRC);
+
+    // Fill with the portrait's own backdrop colour (sampled from the photo
+    // itself) rather than the brand yellow token, so the join is seamless.
+    ctx.fillStyle = sampleBackgroundColor(img, PORTRAIT_SRC);
+    ctx.fillRect(0, 0, w, h);
+
+    const imgW = h * (img.width / img.height);
+    const imgX = w - imgW;
+    ctx.drawImage(img, imgX, 0, imgW, h);
+
+    drawTextBlock(padX, w, h, SCHEMES.onYellow);
+  } else {
+    ctx.fillStyle = INK;
+    ctx.fillRect(0, 0, w, h);
+    drawTextBlock(padX, w, h, SCHEMES.dark);
+  }
+
+  if (els.safeZone.checked){
+    const guideColor = currentStyle === 'yellow' ? '0,38,42' : '255,255,255';
+    ctx.save();
+    ctx.strokeStyle = `rgba(${guideColor},0.55)`;
+    ctx.setLineDash([8, 6]);
+    ctx.lineWidth = 2;
+    ctx.strokeRect(SAFE_ZONE.x + 6, SAFE_ZONE.y + 6, SAFE_ZONE.w - 12, SAFE_ZONE.h - 12);
+    ctx.font = `500 ${Math.round(h * 0.035)}px Rubik`;
+    ctx.fillStyle = `rgba(${guideColor},0.7)`;
+    ctx.setLineDash([]);
+    ctx.fillText('profile photo overlap', 16, SAFE_ZONE.h + 28);
+    ctx.restore();
+  }
+}
+
+function setStyle(style){
+  currentStyle = style;
+  els.styleButtons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.style === style)));
+  draw();
+}
+
+function download(){
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `tom-the-chiropractor-${canvas.width}x${canvas.height}-${currentStyle}-banner.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+}
+
+[els.width, els.height, els.eyebrow, els.headline, els.subtext, els.footer, els.safeZone].forEach(el => {
+  el.addEventListener('input', draw);
+});
+els.styleButtons.forEach(btn => btn.addEventListener('click', () => setStyle(btn.dataset.style)));
+els.download.addEventListener('click', download);
+
+draw();
+</script>
+</body>
+</html>
