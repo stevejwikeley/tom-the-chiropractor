@@ -1,6 +1,6 @@
 # Adding photos to the site
 
-Photos of Tom in action go in `images/action/`, headshots go in `images/headshots/`. Whichever folder they go in, every photo on the site is resized and compressed the same way before it's added, so pages load quickly and nothing looks out of place next to the others.
+Photos of Tom in action go in `images/action/`, headshots go in `images/headshots/`. Action photos that are used on the site are sorted into a sub-folder by what the photo actually shows — `back/`, `neck/`, `shoulder/`, `nerve/`, `joints/`, `room/` — and given a plain-English name, e.g. `images/action/neck/neck-adjustment.jpg`. Photos still loose in `images/action/` are the ones not yet used anywhere. Whichever folder they go in, every photo on the site is resized and compressed the same way before it's added, so pages load quickly and nothing looks out of place next to the others.
 
 ## The easy way: run the script
 
