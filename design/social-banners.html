@@ -307,15 +307,15 @@ const SCHEMES = {
 // colour field and a heavy display headline. The invert checkbox swaps it
 // to the business card's dark-background treatment.
 const AD_SCHEMES = {
-  normal: { bg: YELLOW, eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.78)' },
-  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM, subtext: 'rgba(239,234,223,0.78)' }
+  normal: { bg: YELLOW, eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.78)', footer: 'rgba(0,38,42,0.55)' },
+  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM, subtext: 'rgba(239,234,223,0.78)', footer: 'rgba(239,234,223,0.55)' }
 };
 
 // OG Image style — the flat-field half of AD_SCHEMES, reused for the
 // eyebrow/headline-only top-left layout.
 const OG_SCHEMES = {
-  normal: { bg: YELLOW, eyebrow: INK, headline: INK },
-  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM }
+  normal: { bg: YELLOW, eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.7)', footer: 'rgba(0,38,42,0.5)' },
+  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM, subtext: 'rgba(239,234,223,0.7)', footer: 'rgba(239,234,223,0.5)' }
 };
 
 const canvas = document.getElementById('canvas');
@@ -444,6 +444,11 @@ function drawTextBlock(padX, w, h, scheme){
   // Calibrated so the default 1584x396 LinkedIn banner renders the same
   // size as before; other aspect ratios fill proportionally from here.
   const boxH = h * 0.424;
+  // Each field is optional — a blank one is skipped entirely (no gap, no
+  // reserved space) so the remaining fields grow to fill the room instead
+  // of leaving a hole where it used to sit.
+  const hasEyebrow = els.eyebrow.value.trim().length > 0;
+  const hasSubtext = els.subtext.value.trim().length > 0;
   const hasFooter = els.footer.value.trim().length > 0;
   const eyebrowText = els.eyebrow.value.toUpperCase();
 
@@ -466,35 +471,38 @@ function drawTextBlock(padX, w, h, scheme){
       // onto however many lines the real available width needs.
       headlineLines = wrapText(els.headline.value, wrapWidth);
     }
-    let headlineMaxWidth = 0;
-    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+    let maxWidth = 0;
+    headlineLines.forEach(line => { maxWidth = Math.max(maxWidth, ctx.measureText(line).width); });
 
-    ctx.font = `700 ${eyebrowSize}px Rubik`;
-    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
-
-    ctx.font = `500 ${subSize}px Rubik`;
-    const subWidth = ctx.measureText(els.subtext.value).width;
-
-    let footWidth = 0;
+    if (hasEyebrow){
+      ctx.font = `700 ${eyebrowSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize));
+    }
+    if (hasSubtext){
+      ctx.font = `500 ${subSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.subtext.value).width);
+    }
     if (hasFooter){
       ctx.font = `400 ${footSize}px Rubik`;
-      footWidth = ctx.measureText(els.footer.value).width;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.footer.value).width);
     }
 
-    // Baseline-to-baseline gaps, tuned relative to scale.
+    // Baseline-to-baseline gaps, tuned relative to scale. gapHeadlineToNext
+    // is reused for headline->footer when subtext is blank.
     const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.06;
-    const gapHeadlineToSub = headlineSize * 0.5;
+    const gapHeadlineToNext = headlineSize * 0.5;
     const gapSubToFooter = subSize * 1.1;
     const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
 
-    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
-      + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8
-      + (hasFooter ? gapSubToFooter + footSize * 0.8 : 0);
+    let totalHeight = (hasEyebrow ? eyebrowSize + gapEyebrowToHeadline : 0)
+      + headlineSize * 0.8 + headlineBlockHeight;
+    if (hasSubtext) totalHeight += gapHeadlineToNext + subSize * 0.8;
+    if (hasFooter) totalHeight += (hasSubtext ? gapSubToFooter : gapHeadlineToNext) + footSize * 0.8;
 
     return {
-      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth, subWidth, footWidth),
+      totalHeight, maxWidth,
       eyebrowSize, ruleThickness, headlineSize, headlineLineHeight, headlineLines,
-      subSize, footSize, gapEyebrowToHeadline, gapHeadlineToSub, gapSubToFooter, headlineBlockHeight
+      subSize, footSize, gapEyebrowToHeadline, gapHeadlineToNext, gapSubToFooter, headlineBlockHeight
     };
   }
 
@@ -504,30 +512,36 @@ function drawTextBlock(padX, w, h, scheme){
   ctx.textBaseline = 'alphabetic';
 
   // Stack everything by baseline gaps, then centre the whole block
-  // vertically — robust to line count and whether a footer is present,
-  // instead of anchoring the footer to the bottom edge separately.
-  let cursorY = centerY - L.totalHeight / 2 + L.eyebrowSize * 0.8;
+  // vertically — robust to which fields are present, instead of anchoring
+  // the footer to the bottom edge separately.
+  let cursorY = centerY - L.totalHeight / 2;
 
-  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
-  ctx.fillStyle = scheme.eyebrow;
-  drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
+  if (hasEyebrow){
+    cursorY += L.eyebrowSize * 0.8;
+    ctx.font = `700 ${L.eyebrowSize}px Rubik`;
+    ctx.fillStyle = scheme.eyebrow;
+    drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
+    ctx.fillRect(textX, cursorY + L.eyebrowSize * 0.35, scale * 0.16, L.ruleThickness);
+    cursorY += L.gapEyebrowToHeadline;
+  }
 
-  ctx.fillRect(textX, cursorY + L.eyebrowSize * 0.35, scale * 0.16, L.ruleThickness);
-
-  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  cursorY += L.headlineSize * 0.8;
   ctx.font = `600 ${L.headlineSize}px Rubik`;
   ctx.fillStyle = scheme.headline;
   L.headlineLines.forEach((line, i) => {
     drawTracked(line, textX, cursorY + i * L.headlineLineHeight, -0.01 * L.headlineSize);
   });
+  cursorY += L.headlineBlockHeight;
 
-  cursorY += L.headlineBlockHeight + L.gapHeadlineToSub + L.subSize * 0.8;
-  ctx.font = `500 ${L.subSize}px Rubik`;
-  ctx.fillStyle = scheme.subtext;
-  ctx.fillText(els.subtext.value, textX, cursorY);
+  if (hasSubtext){
+    cursorY += L.gapHeadlineToNext + L.subSize * 0.8;
+    ctx.font = `500 ${L.subSize}px Rubik`;
+    ctx.fillStyle = scheme.subtext;
+    ctx.fillText(els.subtext.value, textX, cursorY);
+  }
 
   if (hasFooter){
-    cursorY += L.gapSubToFooter + L.footSize * 0.8;
+    cursorY += (hasSubtext ? L.gapSubToFooter : L.gapHeadlineToNext) + L.footSize * 0.8;
     ctx.font = `400 ${L.footSize}px Rubik`;
     ctx.fillStyle = scheme.footer;
     ctx.fillText(els.footer.value, textX, cursorY);
@@ -547,6 +561,9 @@ function drawAdStyle(padX, w, h, scheme){
   const refMaxTextWidth = w - Math.max(40, w * 0.05) - rightMargin;
   // Calibrated so the default 1584x396 banner matches its previous size.
   const boxH = h * 0.512;
+  const hasEyebrow = els.eyebrow.value.trim().length > 0;
+  const hasSubtext = els.subtext.value.trim().length > 0;
+  const hasFooter = els.footer.value.trim().length > 0;
   const eyebrowText = els.eyebrow.value.toUpperCase();
 
   function layout(scale, wrapWidth, strict){
@@ -554,6 +571,7 @@ function drawAdStyle(padX, w, h, scheme){
     const headlineSize = Math.round(scale * 0.145);
     const headlineLineHeight = headlineSize * 1.05;
     const subSize = Math.round(scale * 0.055);
+    const footSize = Math.round(scale * 0.04);
 
     ctx.font = `900 ${headlineSize}px Rubik`;
     let headlineLines;
@@ -564,26 +582,36 @@ function drawAdStyle(padX, w, h, scheme){
     } else {
       headlineLines = wrapText(els.headline.value, wrapWidth);
     }
-    let headlineMaxWidth = 0;
-    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+    let maxWidth = 0;
+    headlineLines.forEach(line => { maxWidth = Math.max(maxWidth, ctx.measureText(line).width); });
 
-    ctx.font = `700 ${eyebrowSize}px Rubik`;
-    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
-
-    ctx.font = `600 ${subSize}px Rubik`;
-    const subWidth = ctx.measureText(els.subtext.value).width;
+    if (hasEyebrow){
+      ctx.font = `700 ${eyebrowSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize));
+    }
+    if (hasSubtext){
+      ctx.font = `600 ${subSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.subtext.value).width);
+    }
+    if (hasFooter){
+      ctx.font = `600 ${footSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.footer.value).width);
+    }
 
     const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.05;
-    const gapHeadlineToSub = headlineSize * 0.45;
+    const gapHeadlineToNext = headlineSize * 0.45;
+    const gapSubToFooter = subSize * 1.0;
     const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
 
-    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
-      + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8;
+    let totalHeight = (hasEyebrow ? eyebrowSize + gapEyebrowToHeadline : 0)
+      + headlineSize * 0.8 + headlineBlockHeight;
+    if (hasSubtext) totalHeight += gapHeadlineToNext + subSize * 0.8;
+    if (hasFooter) totalHeight += (hasSubtext ? gapSubToFooter : gapHeadlineToNext) + footSize * 0.8;
 
     return {
-      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth, subWidth),
-      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, subSize,
-      gapEyebrowToHeadline, gapHeadlineToSub, headlineBlockHeight
+      totalHeight, maxWidth,
+      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, subSize, footSize,
+      gapEyebrowToHeadline, gapHeadlineToNext, gapSubToFooter, headlineBlockHeight
     };
   }
 
@@ -591,23 +619,37 @@ function drawAdStyle(padX, w, h, scheme){
   const L = layout(scale, maxTextWidth, false);
 
   ctx.textBaseline = 'alphabetic';
-  let cursorY = centerY - L.totalHeight / 2 + L.eyebrowSize * 0.8;
+  let cursorY = centerY - L.totalHeight / 2;
 
-  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
-  ctx.fillStyle = scheme.eyebrow;
-  drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
+  if (hasEyebrow){
+    cursorY += L.eyebrowSize * 0.8;
+    ctx.font = `700 ${L.eyebrowSize}px Rubik`;
+    ctx.fillStyle = scheme.eyebrow;
+    drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
+    cursorY += L.gapEyebrowToHeadline;
+  }
 
-  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  cursorY += L.headlineSize * 0.8;
   ctx.font = `900 ${L.headlineSize}px Rubik`;
   ctx.fillStyle = scheme.headline;
   L.headlineLines.forEach((line, i) => {
     ctx.fillText(line, textX, cursorY + i * L.headlineLineHeight);
   });
+  cursorY += L.headlineBlockHeight;
 
-  cursorY += L.headlineBlockHeight + L.gapHeadlineToSub + L.subSize * 0.8;
-  ctx.font = `600 ${L.subSize}px Rubik`;
-  ctx.fillStyle = scheme.subtext;
-  ctx.fillText(els.subtext.value, textX, cursorY);
+  if (hasSubtext){
+    cursorY += L.gapHeadlineToNext + L.subSize * 0.8;
+    ctx.font = `600 ${L.subSize}px Rubik`;
+    ctx.fillStyle = scheme.subtext;
+    ctx.fillText(els.subtext.value, textX, cursorY);
+  }
+
+  if (hasFooter){
+    cursorY += (hasSubtext ? L.gapSubToFooter : L.gapHeadlineToNext) + L.footSize * 0.8;
+    ctx.font = `600 ${L.footSize}px Rubik`;
+    ctx.fillStyle = scheme.footer;
+    ctx.fillText(els.footer.value, textX, cursorY);
+  }
 }
 
 // OG Image / link preview style — Tom's photo full-height and flush right
@@ -626,7 +668,10 @@ function drawOgStyle(padX, w, h, img, scheme){
   // Type is sized against the minimal left margin, not whichever margin is
   // actually in effect -- see the matching comment in drawTextBlock.
   const refMaxTextWidth = imgX - Math.max(40, w * 0.05) - rightMargin;
-  const boxH = h * 0.34;
+  const boxH = h * 0.5;
+  const hasEyebrow = els.eyebrow.value.trim().length > 0;
+  const hasSubtext = els.subtext.value.trim().length > 0;
+  const hasFooter = els.footer.value.trim().length > 0;
   const eyebrowText = els.eyebrow.value.toUpperCase();
 
   ctx.drawImage(img, imgX, 0, imgW, h);
@@ -635,6 +680,8 @@ function drawOgStyle(padX, w, h, img, scheme){
     const eyebrowSize = Math.round(scale * 0.045);
     const headlineSize = Math.round(scale * 0.11);
     const headlineLineHeight = headlineSize * 1.1;
+    const subSize = Math.round(scale * 0.05);
+    const footSize = Math.round(scale * 0.038);
 
     ctx.font = `900 ${headlineSize}px Rubik`;
     let headlineLines;
@@ -645,19 +692,36 @@ function drawOgStyle(padX, w, h, img, scheme){
     } else {
       headlineLines = wrapText(els.headline.value, wrapWidth);
     }
-    let headlineMaxWidth = 0;
-    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+    let maxWidth = 0;
+    headlineLines.forEach(line => { maxWidth = Math.max(maxWidth, ctx.measureText(line).width); });
 
-    ctx.font = `700 ${eyebrowSize}px Rubik`;
-    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
+    if (hasEyebrow){
+      ctx.font = `700 ${eyebrowSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize));
+    }
+    if (hasSubtext){
+      ctx.font = `500 ${subSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.subtext.value).width);
+    }
+    if (hasFooter){
+      ctx.font = `400 ${footSize}px Rubik`;
+      maxWidth = Math.max(maxWidth, ctx.measureText(els.footer.value).width);
+    }
 
     const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.05;
+    const gapHeadlineToNext = headlineSize * 0.45;
+    const gapSubToFooter = subSize * 1.0;
     const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
-    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8 + headlineBlockHeight;
+
+    let totalHeight = (hasEyebrow ? eyebrowSize + gapEyebrowToHeadline : 0)
+      + headlineSize * 0.8 + headlineBlockHeight;
+    if (hasSubtext) totalHeight += gapHeadlineToNext + subSize * 0.8;
+    if (hasFooter) totalHeight += (hasSubtext ? gapSubToFooter : gapHeadlineToNext) + footSize * 0.8;
 
     return {
-      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth),
-      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, gapEyebrowToHeadline
+      totalHeight, maxWidth,
+      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, subSize, footSize,
+      gapEyebrowToHeadline, gapHeadlineToNext, gapSubToFooter, headlineBlockHeight
     };
   }
 
@@ -665,17 +729,37 @@ function drawOgStyle(padX, w, h, img, scheme){
   const L = layout(scale, maxTextWidth, false);
 
   ctx.textBaseline = 'alphabetic';
-  let cursorY = topPad + L.eyebrowSize * 0.8;
-  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
-  ctx.fillStyle = scheme.eyebrow;
-  drawTracked(eyebrowText, padX, cursorY, 0.12 * L.eyebrowSize);
+  let cursorY = topPad;
 
-  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  if (hasEyebrow){
+    cursorY += L.eyebrowSize * 0.8;
+    ctx.font = `700 ${L.eyebrowSize}px Rubik`;
+    ctx.fillStyle = scheme.eyebrow;
+    drawTracked(eyebrowText, padX, cursorY, 0.12 * L.eyebrowSize);
+    cursorY += L.gapEyebrowToHeadline;
+  }
+
+  cursorY += L.headlineSize * 0.8;
   ctx.font = `900 ${L.headlineSize}px Rubik`;
   ctx.fillStyle = scheme.headline;
   L.headlineLines.forEach((line, i) => {
     ctx.fillText(line, padX, cursorY + i * L.headlineLineHeight);
   });
+  cursorY += L.headlineBlockHeight;
+
+  if (hasSubtext){
+    cursorY += L.gapHeadlineToNext + L.subSize * 0.8;
+    ctx.font = `500 ${L.subSize}px Rubik`;
+    ctx.fillStyle = scheme.subtext;
+    ctx.fillText(els.subtext.value, padX, cursorY);
+  }
+
+  if (hasFooter){
+    cursorY += (hasSubtext ? L.gapSubToFooter : L.gapHeadlineToNext) + L.footSize * 0.8;
+    ctx.font = `400 ${L.footSize}px Rubik`;
+    ctx.fillStyle = scheme.footer;
+    ctx.fillText(els.footer.value, padX, cursorY);
+  }
 }
 
 // Guards against overlapping calls: draw() awaits font/image loads, so a
