@@ -1070,6 +1070,22 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-body-sm);
   color:var(--cream-b3);
 }
+.faq-more{
+  max-width:760px;
+  margin-top:24px;
+  padding-top:24px;
+  border-top:1px solid var(--cream-33);
+  display:flex;
+  flex-wrap:wrap;
+  column-gap:24px;
+}
+.faq-more__label{
+  width:100%;
+  margin:0 0 4px;
+  font:var(--type-body-sm);
+  color:var(--cream-b3);
+}
+.faq-more .link-arrow{padding:8px 4px;}
 
 /* BOOK ONLINE (WIDGET) */
 .book{padding:var(--space-section-y) var(--space-section-x);}
