@@ -58,6 +58,8 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--color-ink);
   padding:16px 4px;
 }
+.link-arrow--light{color:var(--color-teal);}
+.link-arrow--light:hover{color:var(--color-teal-hover);}
 
 /* NAV */
 .nav{
