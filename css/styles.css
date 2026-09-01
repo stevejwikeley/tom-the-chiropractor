@@ -727,6 +727,30 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--ink-b3);
   margin-bottom:16px;
 }
+.about-intro{
+  display:flex;
+  gap:32px;
+  align-items:flex-start;
+}
+.about-intro__photo{
+  width:160px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  flex:none;
+}
+.about-intro__text h2{margin:0 0 12px;}
+.about-intro__text p{margin:0;}
+.about-quote{
+  border-left:3px solid var(--color-teal);
+  padding:4px 0 4px 20px;
+  margin:0 0 24px;
+  font:italic 400 19px/1.5 var(--font-family);
+  color:var(--ink-99);
+}
+@media (max-width: 560px){
+  .about-intro{flex-direction:column;}
+  .about-intro__photo{width:120px;}
+}
 .condition-section p:last-child{margin-bottom:0;}
 
 .condition-list{

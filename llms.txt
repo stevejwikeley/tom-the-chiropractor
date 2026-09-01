@@ -13,6 +13,7 @@
 ## Pages
 
 - [Home](https://www.tomthechiropractor.co.uk/): overview, how it works, pricing, chiropractor-vs-physio FAQ, booking and location
+- [About Tom](https://www.tomthechiropractor.co.uk/about.html): Tom's qualifications, GCC registration, where he's trained and practised, and his approach to treatment
 - [Neck pain](https://www.tomthechiropractor.co.uk/conditions/neck-pain.html): causes of neck pain and how chiropractic treatment helps
 - [Back pain](https://www.tomthechiropractor.co.uk/conditions/back-pain.html): causes of back pain and how chiropractic treatment helps
 - [Shoulder pain](https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html): causes of shoulder pain and how chiropractic treatment helps
