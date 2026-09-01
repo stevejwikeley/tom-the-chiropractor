@@ -6,7 +6,7 @@
 <title>Social banners — Tom the Chiropractor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/tokens.css">
 <style>
   *{box-sizing:border-box;}
@@ -100,6 +100,10 @@
   .dims-row span{
     color:var(--ink-99);
   }
+  .preset-select{
+    margin-top:8px;
+    font-size:13px;
+  }
   .style-toggle{
     display:flex;
     border:1px solid var(--ink-1a);
@@ -182,8 +186,27 @@
         <div class="dims-row">
           <input type="number" id="widthInput" value="1584" min="200" max="4000">
           <span>×</span>
-          <input type="number" id="heightInput" value="396" min="100" max="4000">
+          <input type="number" id="heightInput" value="396" min="50" max="4000">
         </div>
+        <select id="presetSize" class="preset-select">
+          <optgroup label="Social covers">
+            <option value="1584,396" selected>LinkedIn personal cover — 1584×396</option>
+            <option value="1128,191">LinkedIn company page cover — 1128×191</option>
+            <option value="820,312">Facebook page cover — 820×312</option>
+            <option value="1500,500">X (Twitter) header — 1500×500</option>
+            <option value="1546,423">YouTube channel banner (safe area) — 1546×423</option>
+          </optgroup>
+          <optgroup label="Link previews">
+            <option value="1200,630">Open Graph / link preview (Facebook, X, Slack, iMessage) — 1200×630</option>
+          </optgroup>
+          <optgroup label="Google Display ads">
+            <option value="300,250">Medium rectangle — 300×250</option>
+            <option value="728,90">Leaderboard — 728×90</option>
+          </optgroup>
+          <optgroup label="Forms">
+            <option value="1680,1050">Typeform cover — 1680×1050</option>
+          </optgroup>
+        </select>
       </div>
       <div class="field">
         <label id="styleLabel">Style</label>
@@ -191,6 +214,7 @@
           <button type="button" data-style="typography" aria-pressed="true">Typography</button>
           <button type="button" data-style="photography" aria-pressed="false">Photography</button>
           <button type="button" data-style="yellow" aria-pressed="false">Yellow</button>
+          <button type="button" data-style="social" aria-pressed="false">OG Image</button>
         </div>
       </div>
 
@@ -198,9 +222,13 @@
         <label for="actionPhoto">Photography image</label>
         <select id="actionPhoto"></select>
       </div>
-      <div class="field">
-        <label for="portraitPhoto">Yellow-style portrait</label>
-        <select id="portraitPhoto"></select>
+      <div class="field checkbox-row" style="align-self:end;">
+        <input type="checkbox" id="invert">
+        <label for="invert">Invert colours (dark background)</label>
+      </div>
+      <div class="field checkbox-row" style="align-self:end;">
+        <input type="checkbox" id="ogLinkedinGap">
+        <label for="ogLinkedinGap">Use LinkedIn avatar-safe left margin</label>
       </div>
 
       <div class="field field--wide checkbox-row">
@@ -214,11 +242,11 @@
       </div>
       <div class="field field--wide">
         <label for="headline">Headline</label>
-        <input type="text" id="headline" value="Chiropractor in Loughborough">
+        <input type="text" id="headline" value="Neck, back or joint pain that won't shift?">
       </div>
       <div class="field field--wide">
         <label for="subtext">Subtext</label>
-        <input type="text" id="subtext" value="Neck pain · Back pain · Tension headaches">
+        <input type="text" id="subtext" value="Evening &amp; Saturday appointments. Get help from a local chiropractor.">
       </div>
       <div class="field field--wide">
         <label for="footer">Footer / website</label>
@@ -239,10 +267,9 @@
 // default 1584×396 LinkedIn size — still shown as a guide at other sizes.
 const SAFE_ZONE = { x: 0, y: 0, w: 300, h: 300 };
 
-// The site's full image library, so any shot can be picked for either
-// style rather than hardcoding one. Photography uses the landscape action
-// shots (cover-fit and cropped to a horizontal band); Yellow uses the
-// headshots (shown full-height, uncropped, flush right).
+// The site's full image library, so any shot can be picked for the
+// Photography style rather than hardcoding one — cover-fit and cropped to
+// a horizontal band.
 const ACTION_DIR = '../images/action/';
 const ACTION_PHOTOS = [
   '1Z5A8646.jpg','1Z5A8648.jpg','1Z5A8650.jpg','1Z5A8688.jpg','1Z5A8694.jpg',
@@ -259,28 +286,36 @@ const ACTION_PHOTOS = [
 ];
 const DEFAULT_ACTION_PHOTO = '1Z5A8695.jpg';
 
-const HEADSHOT_DIR = '../images/headshots/';
-const HEADSHOT_PHOTOS = [
-  '1Z5A8263.jpg','1Z5A8270.jpg','1Z5A8287.jpg','1Z5A8292.jpg','1Z5A8300.jpg',
-  '1Z5A8339.jpg','1Z5A8355.jpg','1Z5A8376.jpg','1Z5A8379.jpg','1Z5A8388.jpg',
-  '1Z5A8416.jpg','1Z5A8434-2.jpg','1Z5A8443.jpg','1Z5A8456.jpg','1Z5A8459.jpg',
-  '1Z5A8472.jpg','1Z5A8487.jpg','1Z5A8494.jpg','1Z5A8503.jpg',
-  '1Z5A8513-yellow-avatar.jpg','1Z5A8513-yellow.jpg','1Z5A8513.jpg',
-  '1Z5A8541.jpg','1Z5A8546.jpg','1Z5A8563.jpg','1Z5A8564.jpg',
-  '1Z5A8572-avatar.jpg','1Z5A8572.jpg','1Z5A8576.jpg','1Z5A8588.jpg',
-  '1Z5A8598.jpg','1Z5A8610.jpg','1Z5A8616.jpg','1Z5A8622.jpg','1Z5A8627.jpg',
-  '1Z5A8633.jpg'
-];
-const DEFAULT_HEADSHOT_PHOTO = '1Z5A8513-yellow.jpg';
+// For the OG Image style — a proper cutout (real alpha transparency, no
+// baked-in backdrop) so it sits over the yellow fill with no colour-match
+// seam to worry about, unlike the yellow-backdrop photos used elsewhere.
+const OG_PORTRAIT_SRC = '../images/headshots/1Z5A8513-cutout.png';
 
 const INK = '#00262A';
 const CREAM = '#EFEADF';
 const TEAL = '#00A6A6';
 const YELLOW = '#EFCA07';
 
+// Typography/Photography's text colours — "dark" is the ink-background
+// default, "light" is what the invert checkbox switches to.
 const SCHEMES = {
   dark: { eyebrow: YELLOW, headline: CREAM, subtext: TEAL, footer: 'rgba(239,234,223,0.55)' },
-  onYellow: { eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.68)', footer: 'rgba(0,38,42,0.55)' }
+  light: { eyebrow: TEAL, headline: INK, subtext: 'rgba(0,38,42,0.7)', footer: 'rgba(0,38,42,0.5)' }
+};
+
+// Yellow style — matches Tom's print ads (postcard/business card): a flat
+// colour field and a heavy display headline. The invert checkbox swaps it
+// to the business card's dark-background treatment.
+const AD_SCHEMES = {
+  normal: { bg: YELLOW, eyebrow: INK, headline: INK, subtext: 'rgba(0,38,42,0.78)' },
+  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM, subtext: 'rgba(239,234,223,0.78)' }
+};
+
+// OG Image style — the flat-field half of AD_SCHEMES, reused for the
+// eyebrow/headline-only top-left layout.
+const OG_SCHEMES = {
+  normal: { bg: YELLOW, eyebrow: INK, headline: INK },
+  inverted: { bg: INK, eyebrow: YELLOW, headline: CREAM }
 };
 
 const canvas = document.getElementById('canvas');
@@ -294,11 +329,13 @@ const els = {
   subtext: document.getElementById('subtext'),
   footer: document.getElementById('footer'),
   actionPhoto: document.getElementById('actionPhoto'),
-  portraitPhoto: document.getElementById('portraitPhoto'),
+  invert: document.getElementById('invert'),
+  ogLinkedinGap: document.getElementById('ogLinkedinGap'),
   safeZone: document.getElementById('safeZone'),
   formatSize: document.getElementById('formatSize'),
   download: document.getElementById('download'),
-  styleButtons: Array.from(document.querySelectorAll('.style-toggle button'))
+  styleButtons: Array.from(document.querySelectorAll('.style-toggle button')),
+  presetSize: document.getElementById('presetSize')
 };
 
 function populateImageSelect(select, files, selected){
@@ -307,7 +344,6 @@ function populateImageSelect(select, files, selected){
   ).join('');
 }
 populateImageSelect(els.actionPhoto, ACTION_PHOTOS, DEFAULT_ACTION_PHOTO);
-populateImageSelect(els.portraitPhoto, HEADSHOT_PHOTOS, DEFAULT_HEADSHOT_PHOTO);
 
 let currentStyle = 'typography';
 const imageCache = {};
@@ -331,35 +367,19 @@ function drawImageCover(img, x, y, w, h){
   ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
 }
 
-const colorSampleCache = {};
-
-function sampleBackgroundColor(img, src){
-  if (colorSampleCache[src]) return colorSampleCache[src];
-  // Reading pixels back can throw (e.g. a tainted canvas when this page is
-  // opened straight from disk via file:// instead of a local server) —
-  // fall back to the brand yellow token rather than breaking the whole draw.
-  let color = YELLOW;
-  try {
-    const off = document.createElement('canvas');
-    off.width = img.width;
-    off.height = img.height;
-    const octx = off.getContext('2d');
-    octx.drawImage(img, 0, 0);
-    const [r, g, b] = octx.getImageData(10, 10, 1, 1).data;
-    color = `rgb(${r},${g},${b})`;
-  } catch (err) {
-    console.warn('Could not sample portrait background colour, using brand yellow instead.', err);
-  }
-  colorSampleCache[src] = color;
-  return color;
-}
-
 function drawTracked(text, x, y, tracking){
   let cursor = x;
   for (const ch of text){
     ctx.fillText(ch, cursor, y);
     cursor += ctx.measureText(ch).width + tracking;
   }
+}
+
+// Assumes ctx.font is already set to the text's font.
+function measureTrackedWidth(text, tracking){
+  let total = 0;
+  for (const ch of text) total += ctx.measureText(ch).width + tracking;
+  return total - tracking;
 }
 
 // Assumes ctx.font is already set to the wrapping text's font.
@@ -380,72 +400,293 @@ function wrapText(text, maxWidth){
   return lines;
 }
 
+// Like wrapText, but flags when the text genuinely needs more lines than
+// maxLines allows — used inside fitScale's search so a scale that would
+// silently truncate text gets rejected as infeasible, instead of shrinking
+// the measured block height and letting the scale grow past what the full
+// text actually fits in.
+function wrapTextCapped(text, maxWidth, maxLines){
+  const lines = wrapText(text, maxWidth);
+  return { lines: lines.slice(0, maxLines), overflowed: lines.length > maxLines };
+}
+
+// Binary-searches the largest `scale` for which layoutFn(scale) still fits
+// within boxW x boxH, so every style's type scales up or down to
+// proportionally fill whatever composition it's given — a fixed formula
+// tuned for one aspect ratio (e.g. LinkedIn's 4:1) left type looking
+// cramped on squarer or smaller formats (an Open Graph or Google Display
+// size) instead of filling them.
+function fitScale(layoutFn, boxW, boxH){
+  let lo = 4, hi = Math.max(boxW, boxH) * 2, best = lo;
+  for (let i = 0; i < 26; i++){
+    const mid = (lo + hi) / 2;
+    const { totalHeight, maxWidth } = layoutFn(mid);
+    if (totalHeight <= boxH && maxWidth <= boxW){
+      best = mid;
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+  return best;
+}
+
 function drawTextBlock(padX, w, h, scheme){
-  // Size type off the smaller of height and a quarter of the width, so
-  // wider/taller-than-LinkedIn dimensions don't blow the text out —
-  // at the default 1584x396 this equals h.
-  const scale = Math.min(h, w / 4);
   const centerY = h / 2;
   const textX = padX;
-  const maxTextWidth = w - textX - Math.max(32, w * 0.03);
+  const rightMargin = Math.max(32, w * 0.03);
+  const maxTextWidth = w - textX - rightMargin;
+  // Type is sized against the minimal left margin, not whichever margin is
+  // actually in effect -- so turning on the LinkedIn avatar-safe margin
+  // narrows the space the headline wraps into instead of shrinking the
+  // type itself. See the matching comment in drawAdStyle/drawOgStyle.
+  const refMaxTextWidth = w - Math.max(40, w * 0.05) - rightMargin;
+  // Calibrated so the default 1584x396 LinkedIn banner renders the same
+  // size as before; other aspect ratios fill proportionally from here.
+  const boxH = h * 0.424;
+  const hasFooter = els.footer.value.trim().length > 0;
+  const eyebrowText = els.eyebrow.value.toUpperCase();
+
+  function layout(scale, wrapWidth, strict){
+    const eyebrowSize = Math.round(scale * 0.045);
+    const ruleThickness = Math.max(2, scale * 0.008);
+    const headlineSize = Math.round(scale * 0.115);
+    const headlineLineHeight = headlineSize * 1.14;
+    const subSize = Math.round(scale * 0.05);
+    const footSize = Math.round(scale * 0.038);
+
+    ctx.font = `600 ${headlineSize}px Rubik`;
+    let headlineLines;
+    if (strict){
+      const wrapped = wrapTextCapped(els.headline.value, wrapWidth, 2);
+      if (wrapped.overflowed) return { totalHeight: Infinity, maxWidth: Infinity };
+      headlineLines = wrapped.lines;
+    } else {
+      // Final render, not the scale search: never truncate, just wrap
+      // onto however many lines the real available width needs.
+      headlineLines = wrapText(els.headline.value, wrapWidth);
+    }
+    let headlineMaxWidth = 0;
+    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+
+    ctx.font = `700 ${eyebrowSize}px Rubik`;
+    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
+
+    ctx.font = `500 ${subSize}px Rubik`;
+    const subWidth = ctx.measureText(els.subtext.value).width;
+
+    let footWidth = 0;
+    if (hasFooter){
+      ctx.font = `400 ${footSize}px Rubik`;
+      footWidth = ctx.measureText(els.footer.value).width;
+    }
+
+    // Baseline-to-baseline gaps, tuned relative to scale.
+    const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.06;
+    const gapHeadlineToSub = headlineSize * 0.5;
+    const gapSubToFooter = subSize * 1.1;
+    const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
+
+    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
+      + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8
+      + (hasFooter ? gapSubToFooter + footSize * 0.8 : 0);
+
+    return {
+      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth, subWidth, footWidth),
+      eyebrowSize, ruleThickness, headlineSize, headlineLineHeight, headlineLines,
+      subSize, footSize, gapEyebrowToHeadline, gapHeadlineToSub, gapSubToFooter, headlineBlockHeight
+    };
+  }
+
+  const scale = fitScale((s) => layout(s, refMaxTextWidth, true), refMaxTextWidth, boxH);
+  const L = layout(scale, maxTextWidth, false);
 
   ctx.textBaseline = 'alphabetic';
-
-  const eyebrowSize = Math.round(scale * 0.045);
-  const ruleThickness = Math.max(2, scale * 0.008);
-  const headlineSize = Math.round(scale * 0.115);
-  const headlineLineHeight = headlineSize * 1.14;
-  const subSize = Math.round(scale * 0.05);
-  const footSize = Math.round(scale * 0.038);
-  const hasFooter = els.footer.value.trim().length > 0;
-
-  ctx.font = `600 ${headlineSize}px Rubik`;
-  const headlineLines = wrapText(els.headline.value, maxTextWidth).slice(0, 2);
-
-  // Baseline-to-baseline gaps, tuned relative to scale.
-  const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.06;
-  const gapHeadlineToSub = headlineSize * 0.5;
-  const gapSubToFooter = subSize * 1.1;
-  const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
 
   // Stack everything by baseline gaps, then centre the whole block
   // vertically — robust to line count and whether a footer is present,
   // instead of anchoring the footer to the bottom edge separately.
-  const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
-    + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8
-    + (hasFooter ? gapSubToFooter + footSize * 0.8 : 0);
+  let cursorY = centerY - L.totalHeight / 2 + L.eyebrowSize * 0.8;
 
-  let cursorY = centerY - totalHeight / 2 + eyebrowSize * 0.8;
-
-  ctx.font = `700 ${eyebrowSize}px Rubik`;
+  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
   ctx.fillStyle = scheme.eyebrow;
-  drawTracked(els.eyebrow.value.toUpperCase(), textX, cursorY, 0.12 * eyebrowSize);
+  drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
 
-  ctx.fillRect(textX, cursorY + eyebrowSize * 0.35, scale * 0.16, ruleThickness);
+  ctx.fillRect(textX, cursorY + L.eyebrowSize * 0.35, scale * 0.16, L.ruleThickness);
 
-  cursorY += gapEyebrowToHeadline + headlineSize * 0.8;
-  ctx.font = `600 ${headlineSize}px Rubik`;
+  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  ctx.font = `600 ${L.headlineSize}px Rubik`;
   ctx.fillStyle = scheme.headline;
-  headlineLines.forEach((line, i) => {
-    drawTracked(line, textX, cursorY + i * headlineLineHeight, -0.01 * headlineSize);
+  L.headlineLines.forEach((line, i) => {
+    drawTracked(line, textX, cursorY + i * L.headlineLineHeight, -0.01 * L.headlineSize);
   });
 
-  cursorY += headlineBlockHeight + gapHeadlineToSub + subSize * 0.8;
-  ctx.font = `500 ${subSize}px Rubik`;
+  cursorY += L.headlineBlockHeight + L.gapHeadlineToSub + L.subSize * 0.8;
+  ctx.font = `500 ${L.subSize}px Rubik`;
   ctx.fillStyle = scheme.subtext;
   ctx.fillText(els.subtext.value, textX, cursorY);
 
   if (hasFooter){
-    cursorY += gapSubToFooter + footSize * 0.8;
-    ctx.font = `400 ${footSize}px Rubik`;
+    cursorY += L.gapSubToFooter + L.footSize * 0.8;
+    ctx.font = `400 ${L.footSize}px Rubik`;
     ctx.fillStyle = scheme.footer;
     ctx.fillText(els.footer.value, textX, cursorY);
   }
 }
 
+// Yellow style — a heavy 900-weight headline and bold subtext, matching
+// Tom's postcard/business card print ads rather than the site's own
+// lighter web typography.
+function drawAdStyle(padX, w, h, scheme){
+  const centerY = h / 2;
+  const textX = padX;
+  const rightMargin = Math.max(32, w * 0.03);
+  const maxTextWidth = w - textX - rightMargin;
+  // Type is sized against the minimal left margin, not whichever margin is
+  // actually in effect -- see the matching comment in drawTextBlock.
+  const refMaxTextWidth = w - Math.max(40, w * 0.05) - rightMargin;
+  // Calibrated so the default 1584x396 banner matches its previous size.
+  const boxH = h * 0.512;
+  const eyebrowText = els.eyebrow.value.toUpperCase();
+
+  function layout(scale, wrapWidth, strict){
+    const eyebrowSize = Math.round(scale * 0.045);
+    const headlineSize = Math.round(scale * 0.145);
+    const headlineLineHeight = headlineSize * 1.05;
+    const subSize = Math.round(scale * 0.055);
+
+    ctx.font = `900 ${headlineSize}px Rubik`;
+    let headlineLines;
+    if (strict){
+      const wrapped = wrapTextCapped(els.headline.value, wrapWidth, 2);
+      if (wrapped.overflowed) return { totalHeight: Infinity, maxWidth: Infinity };
+      headlineLines = wrapped.lines;
+    } else {
+      headlineLines = wrapText(els.headline.value, wrapWidth);
+    }
+    let headlineMaxWidth = 0;
+    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+
+    ctx.font = `700 ${eyebrowSize}px Rubik`;
+    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
+
+    ctx.font = `600 ${subSize}px Rubik`;
+    const subWidth = ctx.measureText(els.subtext.value).width;
+
+    const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.05;
+    const gapHeadlineToSub = headlineSize * 0.45;
+    const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
+
+    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8
+      + headlineBlockHeight + gapHeadlineToSub + subSize * 0.8;
+
+    return {
+      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth, subWidth),
+      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, subSize,
+      gapEyebrowToHeadline, gapHeadlineToSub, headlineBlockHeight
+    };
+  }
+
+  const scale = fitScale((s) => layout(s, refMaxTextWidth, true), refMaxTextWidth, boxH);
+  const L = layout(scale, maxTextWidth, false);
+
+  ctx.textBaseline = 'alphabetic';
+  let cursorY = centerY - L.totalHeight / 2 + L.eyebrowSize * 0.8;
+
+  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
+  ctx.fillStyle = scheme.eyebrow;
+  drawTracked(eyebrowText, textX, cursorY, 0.12 * L.eyebrowSize);
+
+  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  ctx.font = `900 ${L.headlineSize}px Rubik`;
+  ctx.fillStyle = scheme.headline;
+  L.headlineLines.forEach((line, i) => {
+    ctx.fillText(line, textX, cursorY + i * L.headlineLineHeight);
+  });
+
+  cursorY += L.headlineBlockHeight + L.gapHeadlineToSub + L.subSize * 0.8;
+  ctx.font = `600 ${L.subSize}px Rubik`;
+  ctx.fillStyle = scheme.subtext;
+  ctx.fillText(els.subtext.value, textX, cursorY);
+}
+
+// OG Image / link preview style — Tom's photo full-height and flush right
+// on a plain field, with a short eyebrow + headline anchored top left
+// (rather than centred), since link-preview crops and tiny thumbnail sizes
+// make top-left the safest place to keep key text legible. The box is
+// deliberately modest (well under half the height) so the type stays
+// restrained and balanced rather than ballooning to fill all the space
+// the photo leaves free.
+function drawOgStyle(padX, w, h, img, scheme){
+  const topPad = Math.max(28, h * 0.08);
+  const imgW = h * (img.width / img.height);
+  const imgX = w - imgW;
+  const rightMargin = Math.max(24, w * 0.03);
+  const maxTextWidth = imgX - padX - rightMargin;
+  // Type is sized against the minimal left margin, not whichever margin is
+  // actually in effect -- see the matching comment in drawTextBlock.
+  const refMaxTextWidth = imgX - Math.max(40, w * 0.05) - rightMargin;
+  const boxH = h * 0.34;
+  const eyebrowText = els.eyebrow.value.toUpperCase();
+
+  ctx.drawImage(img, imgX, 0, imgW, h);
+
+  function layout(scale, wrapWidth, strict){
+    const eyebrowSize = Math.round(scale * 0.045);
+    const headlineSize = Math.round(scale * 0.11);
+    const headlineLineHeight = headlineSize * 1.1;
+
+    ctx.font = `900 ${headlineSize}px Rubik`;
+    let headlineLines;
+    if (strict){
+      const wrapped = wrapTextCapped(els.headline.value, wrapWidth, 3);
+      if (wrapped.overflowed) return { totalHeight: Infinity, maxWidth: Infinity };
+      headlineLines = wrapped.lines;
+    } else {
+      headlineLines = wrapText(els.headline.value, wrapWidth);
+    }
+    let headlineMaxWidth = 0;
+    headlineLines.forEach(line => { headlineMaxWidth = Math.max(headlineMaxWidth, ctx.measureText(line).width); });
+
+    ctx.font = `700 ${eyebrowSize}px Rubik`;
+    const eyebrowWidth = measureTrackedWidth(eyebrowText, 0.12 * eyebrowSize);
+
+    const gapEyebrowToHeadline = eyebrowSize * 0.9 + scale * 0.05;
+    const headlineBlockHeight = headlineLineHeight * (headlineLines.length - 1);
+    const totalHeight = eyebrowSize + gapEyebrowToHeadline + headlineSize * 0.8 + headlineBlockHeight;
+
+    return {
+      totalHeight, maxWidth: Math.max(eyebrowWidth, headlineMaxWidth),
+      eyebrowSize, headlineSize, headlineLineHeight, headlineLines, gapEyebrowToHeadline
+    };
+  }
+
+  const scale = fitScale((s) => layout(s, refMaxTextWidth, true), refMaxTextWidth, boxH);
+  const L = layout(scale, maxTextWidth, false);
+
+  ctx.textBaseline = 'alphabetic';
+  let cursorY = topPad + L.eyebrowSize * 0.8;
+  ctx.font = `700 ${L.eyebrowSize}px Rubik`;
+  ctx.fillStyle = scheme.eyebrow;
+  drawTracked(eyebrowText, padX, cursorY, 0.12 * L.eyebrowSize);
+
+  cursorY += L.gapEyebrowToHeadline + L.headlineSize * 0.8;
+  ctx.font = `900 ${L.headlineSize}px Rubik`;
+  ctx.fillStyle = scheme.headline;
+  L.headlineLines.forEach((line, i) => {
+    ctx.fillText(line, padX, cursorY + i * L.headlineLineHeight);
+  });
+}
+
+// Guards against overlapping calls: draw() awaits font/image loads, so a
+// fast style/dimension change can let an older call resume after a newer
+// one already resized the canvas, painting stale content over it.
+let drawGeneration = 0;
+
 async function draw(){
+  const myGeneration = ++drawGeneration;
   const w = Math.max(200, parseInt(els.width.value, 10) || 1584);
-  const h = Math.max(100, parseInt(els.height.value, 10) || 396);
+  const h = Math.max(50, parseInt(els.height.value, 10) || 396);
   els.formatSize.textContent = `${w} × ${h} px`;
 
   canvas.width = w;
@@ -454,15 +695,27 @@ async function draw(){
   await document.fonts.load(`700 20px Rubik`);
   await document.fonts.load(`600 60px Rubik`);
   await document.fonts.load(`400 24px Rubik`);
+  await document.fonts.load(`900 60px Rubik`);
   await document.fonts.ready;
+  if (myGeneration !== drawGeneration) return;
 
-  const padX = Math.max(64, SAFE_ZONE.w + 40);
+  // Capped relative to width so narrow presets (Google Display ads, the
+  // LinkedIn company banner) don't push text off-canvas entirely — at the
+  // default 1584px LinkedIn width this cap has no effect.
+  const avatarSafePadX = Math.min(Math.max(64, SAFE_ZONE.w + 40), w * 0.25);
+  // A general "make this work as a LinkedIn cover" setting, not tied to
+  // any one style — LinkedIn's circular profile photo overlaps the left
+  // edge of every cover/banner slot on a personal profile, whichever
+  // style you're exporting it in. Unchecked, use a normal, minimal
+  // margin instead.
+  const padX = els.ogLinkedinGap.checked ? avatarSafePadX : Math.max(40, w * 0.05);
 
   ctx.clearRect(0, 0, w, h);
 
   if (currentStyle === 'photography'){
     const photoSrc = ACTION_DIR + els.actionPhoto.value;
     const img = await loadImage(photoSrc);
+    if (myGeneration !== drawGeneration) return;
     ctx.fillStyle = INK;
     ctx.fillRect(0, 0, w, h);
     ctx.filter = 'saturate(0.85) contrast(1.05)';
@@ -484,28 +737,32 @@ async function draw(){
 
     drawTextBlock(padX, w, h, SCHEMES.dark);
   } else if (currentStyle === 'yellow'){
-    const portraitSrc = HEADSHOT_DIR + els.portraitPhoto.value;
-    const img = await loadImage(portraitSrc);
-
-    // Fill with the portrait's own backdrop colour (sampled from the photo
-    // itself) rather than a fixed token, so the join is seamless whichever
-    // headshot is picked.
-    ctx.fillStyle = sampleBackgroundColor(img, portraitSrc);
+    const scheme = els.invert.checked ? AD_SCHEMES.inverted : AD_SCHEMES.normal;
+    ctx.fillStyle = scheme.bg;
     ctx.fillRect(0, 0, w, h);
-
-    const imgW = h * (img.width / img.height);
-    const imgX = w - imgW;
-    ctx.drawImage(img, imgX, 0, imgW, h);
-
-    drawTextBlock(padX, w, h, SCHEMES.onYellow);
+    drawAdStyle(padX, w, h, scheme);
+  } else if (currentStyle === 'social'){
+    const scheme = els.invert.checked ? OG_SCHEMES.inverted : OG_SCHEMES.normal;
+    ctx.fillStyle = scheme.bg;
+    ctx.fillRect(0, 0, w, h);
+    const img = await loadImage(OG_PORTRAIT_SRC);
+    if (myGeneration !== drawGeneration) return;
+    drawOgStyle(padX, w, h, img, scheme);
   } else {
-    ctx.fillStyle = INK;
+    // Photography keeps its dark ink wash regardless of the invert
+    // checkbox — a light overlay wouldn't leave the text legible against
+    // an arbitrary photo, so there's no safe "inverted" version of it.
+    const scheme = els.invert.checked ? SCHEMES.light : SCHEMES.dark;
+    ctx.fillStyle = els.invert.checked ? CREAM : INK;
     ctx.fillRect(0, 0, w, h);
-    drawTextBlock(padX, w, h, SCHEMES.dark);
+    drawTextBlock(padX, w, h, scheme);
   }
 
-  if (els.safeZone.checked){
-    const guideColor = currentStyle === 'yellow' ? '0,38,42' : '255,255,255';
+  if (els.safeZone.checked && currentStyle !== 'social'){
+    const isLightBg = currentStyle === 'yellow'
+      ? !els.invert.checked
+      : currentStyle === 'typography' && els.invert.checked;
+    const guideColor = isLightBg ? '0,38,42' : '255,255,255';
     ctx.save();
     ctx.strokeStyle = `rgba(${guideColor},0.55)`;
     ctx.setLineDash([8, 6]);
@@ -538,13 +795,19 @@ function download(){
   }, 'image/png');
 }
 
-[els.width, els.height, els.eyebrow, els.headline, els.subtext, els.footer, els.actionPhoto, els.portraitPhoto, els.safeZone].forEach(el => {
+[els.width, els.height, els.eyebrow, els.headline, els.subtext, els.footer, els.actionPhoto, els.invert, els.ogLinkedinGap, els.safeZone].forEach(el => {
   el.addEventListener('input', draw);
 });
 els.styleButtons.forEach(btn => btn.addEventListener('click', () => setStyle(btn.dataset.style)));
+els.presetSize.addEventListener('change', () => {
+  const [w, h] = els.presetSize.value.split(',');
+  els.width.value = w;
+  els.height.value = h;
+  draw();
+});
 els.download.addEventListener('click', download);
 
-draw();
+setStyle(currentStyle);
 </script>
 </body>
 </html>
