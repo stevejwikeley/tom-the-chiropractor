@@ -1490,3 +1490,78 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .promo-bar{padding:10px 40px 10px 16px;}
   .promo-bar p{font-size:13px;line-height:1.5;}
 }
+
+/* 404 PAGE — full-yellow, matching the print flyer's bold layout */
+.error-page{
+  min-height:100vh;
+  background:var(--color-yellow);
+  color:var(--color-ink);
+  display:flex;
+  flex-direction:column;
+  padding:32px var(--space-section-x);
+}
+.error-page__brand{
+  font:700 14px/1 var(--font-family);
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--color-ink);
+  text-decoration:none;
+}
+.error-page__body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  max-width:760px;
+  margin:0 auto;
+  padding:48px 0;
+}
+.error-page__eyebrow{
+  margin:0 0 16px;
+  font:700 13px/1 var(--font-family);
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--color-ink);
+  opacity:0.7;
+}
+.error-page__headline{
+  margin:0 0 20px;
+  font:700 56px/1.08 var(--font-family);
+  color:var(--color-ink);
+}
+.error-page__subhead{
+  margin:0 0 36px;
+  font:400 22px/1.4 var(--font-family);
+  color:var(--color-ink);
+  max-width:520px;
+}
+.error-page__actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:24px;
+}
+.error-page__whatsapp{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font:600 15px/1 var(--font-family);
+  color:var(--color-ink);
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.error-page__whatsapp svg{width:18px;height:18px;flex:none;}
+.error-page__whatsapp:hover{color:var(--color-ink);opacity:0.7;}
+.error-page__footer{
+  margin:0;
+  font:600 13px/1 var(--font-family);
+  color:var(--color-ink);
+  opacity:0.7;
+}
+
+@media (max-width: 700px){
+  .error-page{padding:24px 20px;}
+  .error-page__headline{font-size:36px;}
+  .error-page__subhead{font-size:18px;}
+  .error-page__actions{gap:16px 20px;}
+}
