@@ -411,6 +411,9 @@ function initContactForm() {
         form.reset();
         status.className = 'contact-form__status is-success';
         status.textContent = 'Thanks, your message has been sent. I’ll get back to you soon.';
+        if (typeof window.ttcTrackContactFormSubmit === 'function') {
+          window.ttcTrackContactFormSubmit();
+        }
       } else {
         throw new Error(result.message || 'Send failed');
       }

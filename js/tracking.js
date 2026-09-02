@@ -69,4 +69,10 @@
       } catch (err) { /* never let tracking break a click */ }
     }
   }, true);
+
+  // Exposed so js/script.js can fire the "Contact" conversion on a
+  // successful #contactForm submission (Web3Forms), not just mailto: clicks.
+  window.ttcTrackContactFormSubmit = function () {
+    send('contact_form_submit', EVENTS.email_click, {});
+  };
 })();
