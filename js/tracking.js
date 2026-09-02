@@ -1,17 +1,15 @@
 /**
  * Site-wide interaction tracking for tomthechiropractor.co.uk
  *
- * Covers three Google Ads conversion actions that currently show "Inactive"
- * in account 642-795-0400 because nothing on the site ever fires them.
+ * Covers three Google Ads conversion actions in account 642-795-0400:
+ * WhatsApp click, Phone Click (1), and Contact. All three are currently
+ * set as Primary conversion actions in Ads (not Secondary, despite the
+ * enquiry-vs-booking distinction below) — a deliberate call, not an
+ * oversight, so don't "fix" this without checking first.
  *
- * TO COMPLETE: the send_to labels below are placeholders. Get each one from
- * Google Ads → Goals → Conversions → click the action → Manage →
- * "See event snippet", then replace the REPLACE_ME_* values.
- *
- * These should be added as SECONDARY conversions in Google Ads. A WhatsApp
- * click or phone click is an enquiry, not a booking — letting one into
- * Primary would corrupt bidding once the campaign moves to Maximise
- * conversions.
+ * A WhatsApp click or phone click is an enquiry, not a booking — mixing
+ * enquiry and booking signals into the same bidding goal can corrupt
+ * optimisation once the campaign moves to Maximise conversions.
  *
  * Loaded sitewide, after cookie-consent.js. Idempotent; safe to include twice.
  */
@@ -22,17 +20,17 @@
 
   var EVENTS = {
     whatsapp_click: {
-      label: 'REPLACE_ME_WHATSAPP',       // Ads action: "WhatsApp click"
+      label: '0tNICM39kuscEOvbzsNE',      // Ads action: "WhatsApp click"
       match: function (a) {
         return /(?:wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)/i.test(a.href);
       }
     },
     phone_click: {
-      label: 'REPLACE_ME_PHONE',          // Ads action: "Phone Click (1)"
+      label: 'tFAVCPDtkuscEOvbzsNE',      // Ads action: "Phone Click (1)"
       match: function (a) { return /^tel:/i.test(a.getAttribute('href') || ''); }
     },
     email_click: {
-      label: 'REPLACE_ME_CONTACT',        // Ads action: "Contact"
+      label: '2i_2CL2Cn-scEOvbzsNE',      // Ads action: "Contact"
       match: function (a) { return /^mailto:/i.test(a.getAttribute('href') || ''); }
     }
   };
