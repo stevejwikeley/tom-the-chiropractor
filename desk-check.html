@@ -803,6 +803,11 @@ button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
       st.className = "status ok";
       st.textContent = "Sent. Check your inbox, and your spam folder if it is not there in a few minutes.";
       btn.textContent = "Sent";
+      // GA4-only signal, deliberately not an Ads conversion — this is a
+      // quiz lead, not an enquiry or booking, and shouldn't feed bidding.
+      if (typeof gtag === "function") {
+        gtag("event", "desk_check_lead", { score: r.final, band: b.label });
+      }
     }).catch(function(err){
       st.className = "status err";
       st.textContent = "Could not send it just now. Your results are on screen, so print or screenshot this page. " + (err.message || "");
