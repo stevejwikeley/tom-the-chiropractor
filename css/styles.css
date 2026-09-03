@@ -1407,8 +1407,11 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .value-col:last-child{padding-bottom:0 !important;}
   .conditions-grid{grid-template-columns:repeat(2,1fr);}
   .find-grid{grid-template-columns:1fr;}
-  /* Bleeds past the section's own side padding to run edge to edge. */
-  .find-map .map-embed{height:240px;margin:0 -20px;width:auto;}
+  /* Full-bleed to the screen edges. aspect-ratio has to be cleared here:
+     alongside a fixed height it beats width:auto and sizes the map from
+     the ratio instead (240px tall x 5/4 = 300px wide), which left it
+     stranded against the left edge of a 375px phone screen. */
+  .find-map .map-embed{height:240px;aspect-ratio:auto;margin:0 -20px;width:auto;}
   /* Three price cards get cramped below this, so drop to two and let the
      block booking wrap onto its own row. */
   .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:720px;}
