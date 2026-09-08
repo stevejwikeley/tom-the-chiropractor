@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="js/cookie-consent.js"></script>
+<script src="js/tracking.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Online | Tom the Chiropractor, Loughborough</title>
+<meta name="description" content="Back, neck and shoulder pain treated in central Loughborough. Book your appointment online in under a minute.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="promo-bar" id="promoBar" hidden>
+  <p><strong>I'm new to Loughborough:</strong> £25 off your first consultation for the first 50 patients — quote <button type="button" class="promo-bar__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button> when you book.</p>
+  <a href="https://wa.me/447871283457?text=Hi%20Tom%2C%20I%27d%20like%20to%20book%20my%20first%20appointment%20with%20code%20FIRST50" class="promo-bar__cta" target="_blank" rel="noopener" data-cta="book-online_promo-whatsapp">Claim on WhatsApp →</a>
+  <button type="button" class="promo-bar__close" id="promoClose" aria-label="Dismiss offer banner">×</button>
+</div>
+
+<header class="nav">
+  <span class="nav__brand">Tom the Chiropractor</span>
+  <a href="#book" class="btn btn--yellow" data-cta="book-online_nav">Book online</a>
+</header>
+
+<div class="sticky-cta">
+  <a href="#book" class="btn btn--yellow sticky-cta__btn" data-cta="book-online_sticky-mobile">Book</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__grid">
+      <div class="hero__inner">
+        <p class="eyebrow eyebrow--teal">Hi, I'm Tom, your chiropractor in Loughborough</p>
+        <h1>Chiropractor in Loughborough</h1>
+        <p class="hero__lead"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last.</p>
+        <div class="hero__actions">
+          <a href="#book" class="btn btn--dark" data-cta="book-online_hero">Book your appointment</a>
+        </div>
+        <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
+      </div>
+      <div class="hero__media">
+        <img src="images/headshots/1Z5A8513-yellow.jpg" alt="Tom Wikeley, chiropractor in Loughborough" width="1023" height="1279" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <p>★★★★★ 5.0 on Google from 10 reviews · Tom Wikeley, MChiro · GCC-registered chiropractor (No. 05268) · Fully insured</p>
+  </div>
+
+  <!-- BOOK ONLINE (WIDGET) -->
+  <section class="book">
+    <p class="eyebrow eyebrow--teal">Book online</p>
+    <h2>Book your appointment.</h2>
+
+    <div class="book__hours">
+      <h3>Appointment times</h3>
+      <table class="hours">
+        <tbody>
+          <tr><th scope="row">Thursday</th><td>9am – 7pm</td></tr>
+        </tbody>
+      </table>
+      <p class="hours__note"><strong>From October:</strong> Monday 9am – 7pm, Thursday 9am – 7pm, Saturday 9am – 2pm.</p>
+      <p class="hours__note">The Work Lounge, 1 Beehive Lane, Loughborough LE11 2FJ — parking just 30 seconds away.</p>
+      <p class="hours__note">Initial consultation £45 (usually £70) — first 50 patients only, quote <button type="button" class="promo-bar__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button>. Follow-up treatments £45.</p>
+    </div>
+
+    <div id="book" class="book__widget">
+      <!-- Booking Widget -->
+      <div id="ph_online_bookings_widget"></div>
+
+      <!-- Configuration Script -->
+      <script>
+        window.BookingTrackerConfig = {
+          domain: "tomthechiro.neptune.practicehub.io"
+        };
+
+        const phob_embed_version = Math.floor(Date.now()/600000);
+        const phob_embed_script = document.createElement('script');
+        phob_embed_script.id = 'ph-embed';
+        phob_embed_script.setAttribute('data-ph-embed', '');
+        phob_embed_script.type = 'text/javascript';
+        phob_embed_script.src = `https://tomthechiro.neptune.practicehub.io/assets/js/booking-form-embed.js?v=${phob_embed_version}`;
+        document.currentScript.parentNode.insertBefore(phob_embed_script, document.currentScript.nextSibling);
+      </script>
+    </div>
+
+    <p class="condition-cta__note">Prefer to book by message? WhatsApp me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener" data-cta="book-online_whatsapp">+44 7871 283457</a>, or call <a href="tel:+447871283457" data-cta="book-online_phone">07871 283457</a>.</p>
+  </section>
+
+  <!-- REVIEWS (short) -->
+  <section id="reviews" class="reviews">
+    <div class="reviews__inner">
+      <div class="reviews__head">
+        <span class="review-card__stars" aria-hidden="true">★★★★★</span>
+        <span class="reviews__head-rating">5.0 on Google</span>
+        <span class="reviews__head-count">from 10 reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews__carousel">
+      <button class="reviews__arrow reviews__arrow--prev" type="button" data-reviews-prev aria-label="Previous reviews">‹</button>
+      <div class="reviews__viewport">
+        <div class="reviews__track" id="reviewsCarousel">
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I have been seeing Tom, about my back and leg pain, I find my sessions with him to be beneficial in both cases. He is always friendly and understanding. It is one of the best things I have ever done, and I would highly recommend him.</p>
+          </div>
+          <p class="review-card__author">Carolyn Quinn</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Tom has kept me mobile and reduced my pain for a while now. Nicest guy, super professional and helps you feel comfortable. I was nervous about my disability affecting things but Tom talks me through how he changes what he's doing and offers me advice on keeping comfortable long term. Highly recommend!</p>
+          </div>
+          <p class="review-card__author">callan sl</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I came here with abdominal pain. I had been everywhere, tried everything, Tom got me sorted so fast, didn't push for extra sessions! Absolutely unreal… you will not regret this service.</p>
+          </div>
+          <p class="review-card__author">Club Max</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        </div>
+      </div>
+      <button class="reviews__arrow reviews__arrow--next" type="button" data-reviews-next aria-label="Next reviews">›</button>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="find">
+    <h2>Ready when you are.</h2>
+    <p class="find__lead">Book online in under a minute, or <a href="https://wa.me/447871283457" target="_blank" rel="noopener" data-cta="book-online_closing-whatsapp">message me on WhatsApp</a> if you'd rather ask a question first.</p>
+    <a href="#book" class="btn btn--dark" data-cta="book-online_closing">Book your appointment</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__brand">
+    <span>Tom the Chiropractor · Loughborough</span>
+  </div>
+  <div class="site-footer__links">
+    <a href="privacy-policy.html">Privacy</a>
+    <span>·</span>
+    <a href="cookie-policy.html">Cookies</a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
