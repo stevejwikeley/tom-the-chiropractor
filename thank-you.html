@@ -35,6 +35,18 @@
       currency: 'GBP'
     });
   })();
+
+  // ChatGPT/OpenAI Ads conversion — "Complete a booking".
+  (function () {
+    if (typeof oaiq !== 'function') {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        console.error('[tracking] oaiq missing on thank-you page — conversion not sent');
+      }
+      return;
+    }
+
+    oaiq('measure', 'order_created', { type: 'contents' });
+  })();
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -75,4 +75,21 @@
   window.ttcTrackContactFormSubmit = function () {
     send('contact_form_submit', EVENTS.email_click, {});
   };
+
+  // ChatGPT/OpenAI Ads conversion: "Interact with the booking form". Fires
+  // once, on the first click or focus inside #book (the PracticeHub widget
+  // wrapper — htmx injects the actual form into it after page load, so this
+  // has to be delegated the same way the click tracking above is).
+  var bookingInteractSent = false;
+  function sendBookingInteract() {
+    if (bookingInteractSent) return;
+    if (typeof oaiq !== 'function') return;
+    bookingInteractSent = true;
+    oaiq('measure', 'checkout_started', { type: 'contents' });
+  }
+  ['click', 'focusin'].forEach(function (type) {
+    document.addEventListener(type, function (e) {
+      if (e.target && e.target.closest && e.target.closest('#book')) sendBookingInteract();
+    }, true);
+  });
 })();

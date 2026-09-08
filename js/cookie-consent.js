@@ -23,6 +23,7 @@
   var CONSENT_KEY = 'cookieConsent';
   var GTM_ID = 'GTM-KQFB5WPB';
   var GA_ID = 'G-DLL6GMS3S4';
+  var OAIQ_PIXEL_ID = 'QeTofy82ewKqgbGSfjGbwz'; // ChatGPT/OpenAI Ads conversion pixel
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
@@ -62,6 +63,7 @@
       ad_personalization: 'granted',
       analytics_storage: 'granted'
     });
+    if (typeof oaiq === 'function') oaiq('consent', true);
   }
 
   function loadTags() {
@@ -80,6 +82,23 @@
     ga.async = true;
     ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(ga);
+
+    // ChatGPT/OpenAI Ads conversion pixel. Same advanced-consent approach as
+    // the Google tags above: loads on every visit but starts denied, so it
+    // sets no cookies and sends no identifying data until the visitor accepts.
+    !function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () { q.q.push(arguments); };
+      q.q = [];
+      w.oaiq = q;
+      var j = d.createElement(s);
+      j.async = 1;
+      j.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(j, f);
+    }(window, document, 'script', 'https://bzrcdn.openai.com/sdk/oaiq.min.js');
+    oaiq('init', { pixelId: OAIQ_PIXEL_ID });
+    oaiq('consent', stored === 'accepted');
   }
 
   function hideBanner() {
