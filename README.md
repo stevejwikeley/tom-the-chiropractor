@@ -55,6 +55,10 @@ That's it. The live website updates automatically within a minute or two — Ver
 
 **Live site:** https://www.tomthechiropractor.co.uk
 
+### If the change could affect bookings
+
+Before publishing anything that could change how visitors convert — the booking widget, pricing, a call-to-action, page structure, what a Google Ads click lands on — log it in the [Marketing Experiments Log](https://docs.google.com/spreadsheets/d/1Y3OFnQTRzejXlW2bQgwhACjcUZ4hI_kcwWJq2CL8tkY/edit?gid=0#gid=0) (date, what changed, why, what you expect). That way, if bookings move up or down afterwards, it's obvious what to credit or blame instead of guessing. Wording fixes, typos and other changes that don't touch the booking flow don't need an entry.
+
 ### Want to check a change before it goes live?
 
 For anything bigger than a quick wording tweak, you can ask Claude Code to **"deploy this to a preview link first."** It'll give you a private URL — not linked from anywhere, not indexed by Google — where you can look at the change exactly as it'll appear on the real site, including on your phone.
