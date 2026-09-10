@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
+  initNavOffset();
   initReviews();
   initValueCarousel();
   initCarousels();
@@ -425,4 +426,28 @@ function initContactForm() {
       button.disabled = false;
     }
   });
+}
+
+// The sticky nav's height changes with the viewport: 83px on wide screens,
+// 69px once the burger takes over, and ~97px in the band where the links wrap
+// onto two rows. Anchor targets take their scroll-margin-top from --nav-h, so
+// measure the nav rather than trusting a number that's wrong at some widths
+// and leaves a strip of the previous section showing under the nav.
+// The open mobile menu is absolutely positioned, so it doesn't count here.
+function initNavOffset() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+
+  const apply = () => {
+    const height = nav.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--nav-h', height + 'px');
+  };
+
+  apply();
+
+  // Resize covers rotation and the widths where the links wrap or unwrap;
+  // the observer additionally catches the nav reflowing when the webfont
+  // swaps in, which no resize event announces.
+  window.addEventListener('resize', apply);
+  if ('ResizeObserver' in window) new ResizeObserver(apply).observe(nav);
 }

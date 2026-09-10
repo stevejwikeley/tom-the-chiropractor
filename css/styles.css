@@ -10,10 +10,19 @@ img{height:auto;}
 
 html{scroll-behavior:smooth;}
 
-section[id]{scroll-margin-top:100px;}
+/* Anchor links should land with the target's top edge flush against the
+   bottom of the sticky nav. The nav isn't one fixed height -- 83px on wide
+   screens, 69px once the burger takes over, ~97px in the band where the links
+   wrap onto two rows -- so a hard-coded value leaves a strip of the previous
+   section wedged under the nav. initNavOffset() measures the real nav and
+   writes --nav-h; these are the fallback for the first paint before it runs. */
+:root{--nav-h:83px;}
+@media (max-width: 700px){:root{--nav-h:69px;}}
+
+section[id]{scroll-margin-top:var(--nav-h);}
 /* #book now lives on the widget div, not the <section>, so links to it
    land on the booking form itself rather than the heading above it. */
-#book{scroll-margin-top:100px;}
+#book{scroll-margin-top:var(--nav-h);}
 
 body{
   margin:0;
