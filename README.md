@@ -98,6 +98,19 @@ A couple of other times you'd want to mention these files:
 - **Adding a new page** (e.g. a new condition page) — ask Claude Code to add it to `sitemap.xml` and `llms.txt` too, so it's actually discoverable.
 - **Changing the domain** (e.g. moving to a different web address) — the `robots.txt`, `sitemap.xml`, `llms.txt` and structured data all reference the live URL directly, so ask Claude Code to update those alongside everything else.
 
+## "How did you find me?" emails
+
+Once someone has booked, the thank-you page asks them one question: how they
+found you. They tap one of Google, ChatGPT, Google AI search, Google business
+listing, or "something else" and type a few words. Every answer arrives in your
+inbox at `CLINIC_EMAIL` — the same address the desk-check submissions go to,
+using the same Resend account, so there was nothing new to set up.
+
+The answers are anonymous: the thank-you page has no name or email on it, so
+each email is timestamped instead. Match it up against the booking that came
+through moments earlier. Nothing is stored anywhere else — your inbox is the
+record.
+
 ## Things you don't need to worry about
 
 - **The design or code structure.** Claude Code already understands how this site is built and will keep anything new consistent with the current look and feel.

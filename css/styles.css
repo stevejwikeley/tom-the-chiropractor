@@ -331,6 +331,100 @@ h1,h2,h3,p,ul{margin:0;}
   color:var(--ink-99);
 }
 
+/* "How did you find me?" card (thank-you.html) */
+.heard{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:24px 28px;
+  margin-bottom:28px;
+}
+.heard h2{
+  margin:0 0 4px;
+  font:var(--type-h3);
+}
+.heard__sub{
+  margin:0 0 18px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.heard__options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.heard__option{
+  font:500 14px/1.2 var(--font-family);
+  color:var(--color-ink);
+  background:var(--color-cream);
+  border:1px solid var(--ink-1a);
+  border-radius:99px;
+  padding:12px 18px;
+  cursor:pointer;
+}
+.heard__option:hover{
+  background:var(--color-teal);
+  border-color:var(--color-teal);
+  color:#fff;
+}
+.heard__option:focus-visible{
+  outline:2px solid var(--color-teal);
+  outline-offset:2px;
+}
+/* While a choice is in flight every option goes flat, including the one
+   under the cursor -- otherwise the hover state reads as still clickable. */
+.heard__option[disabled],
+.heard__option[disabled]:hover{
+  background:var(--color-cream);
+  border-color:var(--ink-1a);
+  color:var(--color-ink);
+  opacity:0.45;
+  cursor:default;
+}
+.heard__other{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+/* display:flex above would otherwise beat the browser's own [hidden] rule,
+   leaving the free-text box on screen before "Something else" is picked. */
+.heard__other[hidden]{display:none;}
+.heard__other input{
+  flex:1 1 240px;
+  min-width:0;
+  font:400 15px/1.5 var(--font-family);
+  color:var(--color-ink);
+  background:#fff;
+  border:1px solid var(--ink-1a);
+  padding:12px 14px;
+}
+.heard__other input:focus{
+  outline:2px solid var(--color-teal);
+  outline-offset:-1px;
+}
+/* Honeypot: same trick as the contact form -- off screen and out of the tab
+   order, not display:none, so bots that skip hidden fields still fill it in. */
+.heard__botcheck{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  height:0;
+  width:0;
+}
+.heard__status{
+  margin:14px 0 0;
+  font:600 14px/1.5 var(--font-family);
+  color:var(--color-red);
+}
+/* Live region, so it stays in the DOM permanently -- collapse it while it has
+   nothing to say rather than leaving a gap at the foot of the card. */
+.heard__status:empty{display:none;}
+.heard__thanks{
+  margin:0;
+  font:var(--type-body-loose);
+  color:var(--color-teal-hover);
+}
+
 /* TRUST STRIP */
 .trust-strip{
   padding:16px var(--space-section-x);
