@@ -22,6 +22,8 @@ const SOURCES = {
   chatgpt: "ChatGPT",
   google_ai: "Google AI search",
   google_business: "Google Business listing",
+  friend: "From a friend",
+  flyer: "Saw a flyer",
   other: "Other"
 };
 

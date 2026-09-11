@@ -102,9 +102,10 @@ A couple of other times you'd want to mention these files:
 
 Once someone has booked, the thank-you page asks them one question: how they
 found you. They tap one of Google, ChatGPT, Google AI search, Google business
-listing, or "something else" and type a few words. Every answer arrives in your
-inbox at `CLINIC_EMAIL` — the same address the desk-check submissions go to,
-using the same Resend account, so there was nothing new to set up.
+listing, a friend or a flyer — or "something else" and type a few words. Every
+answer arrives in your inbox at `CLINIC_EMAIL` — the same address the desk-check
+submissions go to, using the same Resend account, so there was nothing new to
+set up.
 
 The answers are anonymous: the thank-you page has no name or email on it, so
 each email is timestamped instead. Match it up against the booking that came
