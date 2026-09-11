@@ -1,21 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+  Google Ads landing page. This is a deliberate, near-exact copy of
+  index.html: the lean above-the-fold version that used to live here was
+  not obviously converting, so paid traffic now gets the full homepage
+  while keeping this URL. The URL matters -- it is the final URL on the
+  live ads, and changing it would send them back through review.
+
+  Only four things differ from index.html, all of them required by the
+  fact that this is a second URL serving the same page:
+    - noindex,follow, so the two copies don't compete in search
+    - canonical and og:url point here, not at the homepage
+    - data-cta values use the "book-online_" prefix, so clicks from paid
+      traffic stay distinguishable from homepage clicks in GA4
+
+  Keep it in step when index.html changes, or the comparison is worthless.
+-->
 <head>
 <script src="js/cookie-consent.js"></script>
 <script src="js/tracking.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book Online | Tom the Chiropractor, Loughborough</title>
-<meta name="description" content="Back, neck and shoulder pain treated in central Loughborough. Book your appointment online in under a minute.">
 <meta name="robots" content="noindex,follow">
+<title>Chiropractor in Loughborough | Tom the Chiropractor</title>
+<meta name="description" content="Back, neck and shoulder pain treated in central Loughborough. Book online in under a minute. Thursday appointments until 7pm, with more days from October. £70 first visit.">
+<link rel="canonical" href="https://www.tomthechiropractor.co.uk/book-online.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tom the Chiropractor">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.tomthechiropractor.co.uk/book-online.html">
+<meta property="og:title" content="Chiropractor in Loughborough | Tom the Chiropractor">
+<meta property="og:description" content="Back, neck and shoulder pain treated in central Loughborough. Book online in under a minute. Thursday appointments until 7pm, with more days from October. £70 first visit.">
+<meta property="og:image" content="https://www.tomthechiropractor.co.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chiropractor in Loughborough | Tom the Chiropractor">
+<meta name="twitter:description" content="Back, neck and shoulder pain treated in central Loughborough. Book online in under a minute. Thursday appointments until 7pm, with more days from October. £70 first visit.">
+<meta name="twitter:image" content="https://www.tomthechiropractor.co.uk/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Chiropractic",
+  "name": "Tom the Chiropractor",
+  "description": "Chiropractic care in central Loughborough, treating neck, back, shoulder and joint pain, with appointments until 7pm.",
+  "url": "https://www.tomthechiropractor.co.uk/",
+  "telephone": "+447871283457",
+  "priceRange": "£45-£70",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Work Lounge, 1 Beehive Lane",
+    "addressLocality": "Loughborough",
+    "addressRegion": "Leicestershire",
+    "postalCode": "LE11 2FJ",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.769026,
+    "longitude": -1.206021
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Loughborough"},
+    {"@type": "AdministrativeArea", "name": "Leicestershire"}
+  ],
+  "sameAs": [
+    "https://www.google.com/maps?cid=12034629052113884996"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "bestRating": "5",
+    "ratingCount": "11"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Carolyn Quinn"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I have been seeing Tom, about my back and leg pain, I find my sessions with him to be beneficial in both cases. He is always friendly and understanding. It is one of the best things I have ever done, and I would highly recommend him."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "callan sl"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Tom has kept me mobile and reduced my pain for a while now. Nicest guy, super professional and helps you feel comfortable. I was nervous about my disability affecting things but Tom talks me through how he changes what he's doing and offers me advice on keeping comfortable long term. Highly recommend!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Ramesh Mistry"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "My wife Sue had suffered with chronic migraines for over 40 yrs! She used to get a least 2 in a month which lasted days and some times longer. After a few treatments with Tom they became less frequent. And now she gets the odd headache in the mornings but no migraines. It's such a relief Tom identified the cause and gave treatment advice and exercises. He is very passionate about his work and works with you to get you right. He cares about your health and well being and takes time to listen. Highly recommend his service There is absolutely No pressure to book follow up appointments like other places."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Shivani Vyas"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Tom is honestly more than just a chiropractor to me. From the very beginning, he has supported me through one of the most painful journeys with my back, and I genuinely don't know how I would have managed it without him. He has helped me so much, not only with the pain but also by making every appointment feel so comfortable and positive."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Club Max"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I came here with abdominal pain. I had been everywhere, tried everything, Tom got me sorted so fast, didn't push for extra sessions! Absolutely unreal… you will not regret this service."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Daniel Rabczak"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I first went to see Tom after an accident at work, when I was suffering from a disc herniation and sciatica. At the beginning, I could barely move, and even simple everyday activities were extremely difficult. Within just a couple of weeks of working with Tom, I was moving much more freely and felt a huge improvement in my day-to-day life."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Mark Tebbatt"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Cannot recommend Tom enough- he stepped up at the last minute to sort out a back issue days before a charity ride- definitely a case of customer service above and beyond. - thanks Tom!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Alisonlee520"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Previously working in the office I would have constant neck and upper back pain and headaches for years. He's not only helped manage my pain on the inside but also given me exercises to manage my pain in between. Although a shame to see him leave, I'm glad he's treating everyone in Loughborough well!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Daniel Hammerson"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Tom is an excellent chiropractor, he provides comfortable, effective and relieving adjustments for your aches and pains and has fantastic knowledge of exercises and rehabilitation to follow that up!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Mohammed Mulla"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "As a chiropractor my self I couldn't recommend anyone better than Tom I always get my treatments from him he's very knowledgeable kind and will sort out all of your problems."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Dale Furniss"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I can't recommend Tom enough. He always seems to know what is wrong before I even say a word. When I first went to see Tom I was in a lot of pain and struggling to even sit or lie down. After just two sessions, he has me sitting comfortable again. Tom is so knowledgeable and provided me with specific exercises that have kept the pain from coming back. One of the best things about his practice is I get to see Tom every time. It means he knows my history inside and out and keeps my progress right on track. Tom is so friendly and easy to chat to. I always feel relaxed and comfortable during my appointments. His new clinic is lovely too and there is convenient parking right across the road. If you are looking for a chiropractor, I would definitely recommend Tom. Thanks mate!"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Chiropractic treatment",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Neck pain treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/neck-pain.html"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Back pain treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/back-pain.html"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shoulder pain treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Joint and muscle pain treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Headache treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/headaches.html"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sciatica treatment", "url": "https://www.tomthechiropractor.co.uk/conditions/sciatica.html"}}
+    ]
+  },
+  "employee": {
+    "@type": "Person",
+    "name": "Tom Wikeley",
+    "jobTitle": "Chiropractor",
+    "url": "https://www.tomthechiropractor.co.uk/about.html",
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "MChiro",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Welsh Institute of Chiropractic"
+      }
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "GCC Registration Number",
+      "value": "05268"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/tomthechiropractor/"
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a chiropractor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine. Treatment can include hands-on techniques, movement advice, education and exercises."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a chiropractor cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "My initial consultation is £70 and lasts 60 minutes. Follow-up treatments are £45 each, or £200 for a block of 5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chiropractor or physio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both can help with musculoskeletal pain, and there is overlap between the two. My approach combines hands-on treatment with advice and exercises. If I think a physio, GP or another professional would be more appropriate, I'll tell you and help point you in the right direction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are chiropractors regulated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens at my first appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I'll take a full history, examine how you move, and explain what I think is going on in plain English. Many patients get some treatment on the same visit too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who will I see at my appointments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many appointments will I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It varies from person to person, so I won't promise a number upfront. I'll give you a realistic estimate once I've assessed you, and there's no pressure to keep booking beyond what's actually helping."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it hurt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Honestly, parts of it can be uncomfortable. Where muscles have tightened up protectively, working through them can bring tenderness in the muscle and the structures around it. That's temporary, and easing those areas is usually what starts to settle things down. Joint work tends to be easier, and some people feel relief straight away. Afterwards it's normal to feel a bit achy for a day or so, much like after exercise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the clicking noise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That sound is gas releasing from within the joint, the same thing that happens when you crack your knuckles. It isn't bone, and it isn't a sign of damage. If you'd rather avoid that technique altogether, just say so and I'll use something else. There's usually more than one way to treat a problem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I wear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I need to cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Just let me know as early as you can, ideally at least 24 hours before. You can use the link in your confirmation email or message me directly. Cancelling inside 12 hours or missing an appointment is charged at half price, though I always write off the first one. Full detail in my cancellation policy."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<div id="cookieBanner" class="cookie-banner" hidden>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="cookie-policy.html">Learn more</a>.</p>
+  <div class="cookie-banner__actions">
+    <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
+    <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
+  </div>
+</div>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="lp-mark" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="7"></circle>
+      <rect x="34" y="32" width="32" height="15" rx="5" fill="none" stroke="currentColor" stroke-width="5.5"></rect>
+      <rect x="36" y="47" width="28" height="7" rx="3.5" fill="#00A6A6"></rect>
+      <rect x="34" y="54" width="32" height="15" rx="5" fill="none" stroke="currentColor" stroke-width="5.5"></rect>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="notice-bar" hidden>
+  <p><strong>Currently open Thursdays only.</strong> From October: Monday and Thursday 9am – 7pm, Saturday 9am – 2pm.</p>
+</div>
 
 <div class="promo-bar" id="promoBar" hidden>
   <p><strong>I'm new to Loughborough:</strong> £25 off your first consultation for the first 50 patients — quote <button type="button" class="promo-bar__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button> when you book.</p>
@@ -24,8 +318,21 @@
 </div>
 
 <header class="nav">
-  <span class="nav__brand">Tom the Chiropractor</span>
-  <a href="#book" class="btn btn--yellow" data-cta="book-online_nav">Book online</a>
+  <a href="/" class="nav__brand">
+    <svg class="nav__logo" viewBox="0 0 100 100" aria-hidden="true" style="display:none"><use href="#lp-mark"></use></svg>
+    <span>Tom the Chiropractor</span>
+  </a>
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links" id="navLinks">
+    <a href="#treat">What I treat</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#pillars" class="nav__link--pillars">How it works</a>
+    <a href="#faq">FAQs</a>
+    <a href="#find">Find me</a>
+    <a href="#book" class="btn btn--yellow" data-cta="book-online_nav">Book online</a>
+  </nav>
 </header>
 
 <div class="sticky-cta">
@@ -40,9 +347,10 @@
       <div class="hero__inner">
         <p class="eyebrow eyebrow--teal">Hi, I'm Tom, your chiropractor in Loughborough</p>
         <h1>Chiropractor in Loughborough</h1>
-        <p class="hero__lead"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last.</p>
+        <p class="hero__lead"><strong>Get out of pain and back to what you enjoy.</strong> Expert, personal care for neck, back, shoulder and joint pain. Book online in under a minute, park 30 seconds away, and see the same chiropractor from your first appointment to your last, with appointments until 7pm.</p>
         <div class="hero__actions">
           <a href="#book" class="btn btn--dark" data-cta="book-online_hero">Book your appointment</a>
+          <a href="#pillars" class="link-arrow">See how it works →</a>
         </div>
         <p class="hero__note">New here? Your first appointment is a 60-minute consultation, with treatment where appropriate.</p>
       </div>
@@ -54,8 +362,269 @@
 
   <!-- TRUST STRIP -->
   <div class="trust-strip">
-    <p>★★★★★ 5.0 on Google from 10 reviews · Tom Wikeley, MChiro · GCC-registered chiropractor (No. 05268) · Fully insured</p>
+    <p>Tom Wikeley, MChiro, Welsh Institute of Chiropractic · GCC-registered chiropractor (No. 05268) · Fully insured</p>
   </div>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews">
+    <div class="reviews__inner">
+      <div class="reviews__head">
+        <span class="review-card__stars" aria-hidden="true">★★★★★</span>
+        <span class="reviews__head-rating">5.0 on Google</span>
+        <span class="reviews__head-count">from 11 reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews__carousel">
+      <button class="reviews__arrow reviews__arrow--prev" type="button" data-reviews-prev aria-label="Previous reviews">‹</button>
+      <div class="reviews__viewport">
+        <div class="reviews__track" id="reviewsCarousel">
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I have been seeing Tom, about my back and leg pain, I find my sessions with him to be beneficial in both cases. He is always friendly and understanding. It is one of the best things I have ever done, and I would highly recommend him.</p>
+          </div>
+
+          <p class="review-card__author">Carolyn Quinn</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Tom has kept me mobile and reduced my pain for a while now. Nicest guy, super professional and helps you feel comfortable. I was nervous about my disability affecting things but Tom talks me through how he changes what he's doing and offers me advice on keeping comfortable long term. Highly recommend!</p>
+          </div>
+
+          <p class="review-card__author">callan sl</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">My wife Sue had suffered with chronic migraines for over 40 yrs! She used to get a least 2 in a month which lasted days and some times longer. After a few treatments with Tom they became less frequent. And now she gets the odd headache in the mornings but no migraines. It's such a relief Tom identified the cause and gave treatment advice and exercises. He is very passionate about his work and works with you to get you right. He cares about your health and well being and takes time to listen. Highly recommend his service There is absolutely No pressure to book follow up appointments like other places.</p>
+          </div>
+
+          <p class="review-card__author">Ramesh Mistry</p>
+          <p class="review-card__date">Google review · Local Guide</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Tom is honestly more than just a chiropractor to me. From the very beginning, he has supported me through one of the most painful journeys with my back, and I genuinely don't know how I would have managed it without him.</p>
+          <p class="review-card__text">He has helped me so much, not only with the pain but also by making every appointment feel so comfortable and positive. Somehow, whenever I'm with Tom, I forget about my pain for a while.</p>
+          <p class="review-card__text">He's someone I can talk to about absolutely anything and share what's going on in my life with, and that means so much to me. He's become more like a best friend than just my chiropractor.</p>
+          <p class="review-card__text">I'm so grateful for all the care, support, patience and kindness he has shown me throughout my journey. I couldn't recommend Tom enough — an amazing chiropractor and an even better human being!</p>
+          </div>
+
+          <p class="review-card__author">Shivani Vyas</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I came here with abdominal pain. I had been everywhere, tried everything, Tom got me sorted so fast, didn't push for extra sessions! Absolutely unreal… you will not regret this service.</p>
+          </div>
+
+          <p class="review-card__author">Club Max</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I first went to see Tom after an accident at work, when I was suffering from a disc herniation and sciatica. At the beginning, I could barely move, and even simple everyday activities were extremely difficult. Within just a couple of weeks of working with Tom, I was moving much more freely and felt a huge improvement in my day-to-day life.</p>
+          <p class="review-card__text">Over time, I found out that I also have degenerative changes in my spine, so unfortunately this is something I have to manage long-term. However, every time I see Tom, I get relief that lasts for a very long time. He doesn't just focus on the main problem either — he always takes the time to identify any tension, stiffness or other aches and pains, and works on getting everything moving properly again.</p>
+          <p class="review-card__text">What really stands out is Tom's knowledge and experience. He clearly knows what he is doing, always explains things properly, and gives me practical exercises that genuinely help. His approach is extremely professional, but at the same time, he is genuinely friendly, positive and always has a smile on his face.</p>
+          <p class="review-card__text">If you're dealing with back pain, stiffness, sciatica, or simply feel that something isn't moving the way it should, I would absolutely recommend giving Tom a try.</p>
+          <p class="review-card__text">For me, finding Tom has made a huge difference, and I'm genuinely glad I did. He is honestly the best professional I've ever come across, and I can't recommend him highly enough.</p>
+          </div>
+
+          <p class="review-card__author">Daniel Rabczak</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Cannot recommend Tom enough- he stepped up at the last minute to sort out a back issue days before a charity ride- definitely a case of customer service above and beyond. - thanks Tom!</p>
+          </div>
+
+          <p class="review-card__author">Mark Tebbatt</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Previously working in the office I would have constant neck and upper back pain and headaches for years. He's not only helped manage my pain on the inside but also given me exercises to manage my pain in between. Although a shame to see him leave, I'm glad he's treating everyone in Loughborough well!</p>
+          </div>
+
+          <p class="review-card__author">Alisonlee520</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Tom is an excellent chiropractor, he provides comfortable, effective and relieving adjustments for your aches and pains and has fantastic knowledge of exercises and rehabilitation to follow that up!</p>
+          </div>
+
+          <p class="review-card__author">Daniel Hammerson</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">As a chiropractor my self I couldn't recommend anyone better than Tom I always get my treatments from him he's very knowledgeable kind and will sort out all of your problems.</p>
+          </div>
+
+          <p class="review-card__author">Mohammed Mulla</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I can't recommend Tom enough. He always seems to know what is wrong before I even say a word. When I first went to see Tom I was in a lot of pain and struggling to even sit or lie down. After just two sessions, he has me sitting comfortable again.</p>
+          <p class="review-card__text">Tom is so knowledgeable and provided me with specific exercises that have kept the pain from coming back.</p>
+          <p class="review-card__text">One of the best things about his practice is I get to see Tom every time. It means he knows my history inside and out and keeps my progress right on track.</p>
+          <p class="review-card__text">Tom is so friendly and easy to chat to. I always feel relaxed and comfortable during my appointments. His new clinic is lovely too and there is convenient parking right across the road.</p>
+          <p class="review-card__text">If you are looking for a chiropractor, I would definitely recommend Tom. Thanks mate!</p>
+          </div>
+
+          <p class="review-card__author">Dale Furniss</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        </div>
+      </div>
+      <button class="reviews__arrow reviews__arrow--next" type="button" data-reviews-next aria-label="Next reviews">›</button>
+    </div>
+
+    <div class="reviews__inner">
+      <a class="reviews__link" href="https://www.google.com/maps?cid=12034629052113884996" target="_blank" rel="noopener">Read all reviews on Google →</a>
+    </div>
+  </section>
+
+  <!-- WHAT I TREAT -->
+  <section id="treat" class="treat">
+    <p class="eyebrow eyebrow--teal">What I treat</p>
+    <h2>Care for the aches, pains and injuries that get in the way.</h2>
+    <div class="conditions-grid">
+      <a href="conditions/neck-pain.html" class="condition-card">
+        <img src="images/action/neck/neck-turn-check.jpg" alt="Tom checking how far a patient can turn their head" width="1600" height="1066" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Neck pain</h3>
+          <p>Stiffness or pain that limits how far you can turn or tilt your head.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/back-pain.html" class="condition-card">
+        <img src="images/action/back/mid-back-treatment.jpg" alt="Tom working on a patient's mid-back as they lie face down" width="1066" height="1600" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Back pain</h3>
+          <p>From a nagging ache to pain that stops you standing up straight.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/shoulder-pain.html" class="condition-card">
+        <img src="images/action/shoulder/shoulder-range-of-motion.jpg" alt="Tom moving a patient's arm through its range while supporting the shoulder" width="1066" height="1600" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Shoulder pain</h3>
+          <p>Restricted movement, or pain that flares when reaching or lifting.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/joint-and-muscle-pain.html" class="condition-card">
+        <img src="images/action/nerve/elbow-reflex-test.jpg" alt="Tom testing a patient's reflexes at the elbow" width="1066" height="1600" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Joint and muscle pain</h3>
+          <p>Aches and stiffness in the joints and muscles that slow you down.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/headaches.html" class="condition-card">
+        <img src="images/action/neck/neck-muscle-check.jpg" alt="Tom feeling along the muscles at the base of a patient's neck" width="1066" height="1600" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Headaches</h3>
+          <p>Tension headaches and migraines often linked to neck and upper back tightness.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="conditions/sciatica.html" class="condition-card">
+        <img src="images/action/back/lower-back-adjustment-face-down.jpg" alt="Tom adjusting a patient's lower back as they lie face down" width="1066" height="1600" loading="lazy">
+        <div class="condition-card__body">
+          <h3>Sciatica</h3>
+          <p>Sharp, shooting pain that travels from your lower back down your leg.</p>
+          <span class="condition-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+    <p class="treat__note">Pain can come from work, sport, parenting, poor sleep, stress, repetitive movement or simply everyday life. Not sure if chiropractic is right for you? I'll tell you honestly, including when another professional is the better choice.</p>
+  </section>
+
+  <!-- VALUE FRAMEWORK -->
+  <section class="value-framework">
+    <p class="eyebrow eyebrow--teal">A better experience</p>
+    <div class="value-grid" id="valueCarousel">
+      <div class="value-col">
+        <h3>You want</h3>
+        <p>A clear understanding of what's causing your pain</p>
+        <p>Treatment that fits around your life</p>
+        <p>A plan that helps you move forward</p>
+      </div>
+      <div class="value-col">
+        <h3 class="value-col__title--teal">I provide</h3>
+        <p>Evidence-informed chiropractic care</p>
+        <p>The same chiropractor at every appointment</p>
+        <p>Simple online booking</p>
+        <p>Evening appointments until 7pm</p>
+        <p>Treatment, advice and exercises tailored to you</p>
+        <p>Direct access to me when you need it</p>
+      </div>
+      <div class="value-col">
+        <h3>The difference</h3>
+        <p>No waiting around for a receptionist</p>
+        <p>No being passed between practitioners</p>
+        <p>No unnecessary appointments</p>
+        <p>No pressure into open-ended treatment plans</p>
+        <p>No need to keep explaining your history</p>
+      </div>
+    </div>
+    <div class="value-framework__dots"></div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <p class="eyebrow eyebrow--teal">Pricing</p>
+    <h2>Straightforward pricing. No surprises.</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-card__label">Initial consultation</div>
+        <div class="price-card__amount"><span class="price-card__amount--was">£70</span> £45</div>
+        <p class="price-card__promo">First 50 patients only — quote code <button type="button" class="price-card__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button></p>
+        <p class="price-card__desc">A 60-minute assessment to understand your problem, explain what's going on, and set out how many sessions I'd recommend and what treatment would be appropriate.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Follow-up treatment</div>
+        <div class="price-card__amount">£45</div>
+        <p class="price-card__desc">Focused follow-up appointments based on your individual plan, with regular reassessments to measure your progress and adjust treatment where needed.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Block of 5 follow-up treatments</div>
+        <div class="price-card__amount"><a href="block-booking-terms.html" class="price-card__link">£200</a></div>
+        <p class="price-card__desc">If we have agreed a course of treatment, five paid up front works out at £40 a visit, saving you £5 each time. Expires after 6 months. Stop whenever you like and I refund every treatment you haven't used, at the same £40. Pay by card, or spread the cost with Klarna instalments at checkout.</p>
+        <p class="price-card__terms"><a href="block-booking-terms.html">Block booking terms →</a></p>
+      </div>
+    </div>
+    <a href="#book" class="btn btn--yellow" data-cta="book-online_pricing">Book your appointment</a>
+    <a href="questions/chiropractor-cost-loughborough.html" class="link-arrow link-arrow--light">Full pricing breakdown and what's included →</a>
+  </section>
 
   <!-- BOOK ONLINE (WIDGET) -->
   <section class="book">
@@ -75,8 +644,7 @@
       </table>
       <p class="hours__note"><strong>From October:</strong> Monday 9am – 7pm, Thursday 9am – 7pm, Saturday 9am – 2pm.</p>
       -->
-      <p class="hours__note">The Work Lounge, 1 Beehive Lane, Loughborough LE11 2FJ — parking just 30 seconds away.</p>
-      <p class="hours__note">Initial consultation £45 (usually £70) — first 50 patients only, quote <button type="button" class="promo-bar__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button>. Follow-up treatments £45.</p>
+      <p class="hours__note">Need a day I'm not usually open? <a href="#contact">Send me a message</a> and I'll see what I can do.</p>
     </div>
 
     <div id="book" class="book__widget">
@@ -98,75 +666,288 @@
         document.currentScript.parentNode.insertBefore(phob_embed_script, document.currentScript.nextSibling);
       </script>
     </div>
-
-    <p class="condition-cta__note">Prefer to book by message? WhatsApp me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener" data-cta="book-online_whatsapp">+44 7871 283457</a>, or call <a href="tel:+447871283457" data-cta="book-online_phone">07871 283457</a>.</p>
   </section>
 
-  <!-- REVIEWS (short) -->
-  <section id="reviews" class="reviews">
-    <div class="reviews__inner">
-      <div class="reviews__head">
-        <span class="review-card__stars" aria-hidden="true">★★★★★</span>
-        <span class="reviews__head-rating">5.0 on Google</span>
-        <span class="reviews__head-count">from 10 reviews</span>
-      </div>
-    </div>
-
-    <div class="reviews__carousel">
-      <button class="reviews__arrow reviews__arrow--prev" type="button" data-reviews-prev aria-label="Previous reviews">‹</button>
-      <div class="reviews__viewport">
-        <div class="reviews__track" id="reviewsCarousel">
-
-        <article class="review-card">
-          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-card__body">
-          <p class="review-card__text">I have been seeing Tom, about my back and leg pain, I find my sessions with him to be beneficial in both cases. He is always friendly and understanding. It is one of the best things I have ever done, and I would highly recommend him.</p>
-          </div>
-          <p class="review-card__author">Carolyn Quinn</p>
-          <p class="review-card__date">Google review</p>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-card__body">
-          <p class="review-card__text">Tom has kept me mobile and reduced my pain for a while now. Nicest guy, super professional and helps you feel comfortable. I was nervous about my disability affecting things but Tom talks me through how he changes what he's doing and offers me advice on keeping comfortable long term. Highly recommend!</p>
-          </div>
-          <p class="review-card__author">callan sl</p>
-          <p class="review-card__date">Google review</p>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-card__body">
-          <p class="review-card__text">I came here with abdominal pain. I had been everywhere, tried everything, Tom got me sorted so fast, didn't push for extra sessions! Absolutely unreal… you will not regret this service.</p>
-          </div>
-          <p class="review-card__author">Club Max</p>
-          <p class="review-card__date">Google review</p>
-        </article>
-
+  <!-- WHY / DIFFERENTIATION -->
+  <section class="why">
+    <div class="why__layout">
+      <div class="why__inner">
+        <h2>"A simpler, more personal approach to chiropractic."</h2>
+        <div class="pill-row pill-row--outline">
+          <span class="pill pill--outline">Convenient</span>
+          <span class="pill pill--outline">Personal</span>
+          <span class="pill pill--outline">Clear</span>
+          <span class="pill pill--outline">Honest</span>
+        </div>
+        <p class="why__quote">"I'll make getting the right care as straightforward as possible, and I'll only recommend what I believe you need."</p>
+        <div class="why__bio">
+          <p class="why__bio-label">My background</p>
+          <p class="why__bio-text">I trained at the Welsh Institute of Chiropractic, then spent some time practising in Cornwall before joining <a href="https://www.healthonhand.co.uk/" target="_blank" rel="noopener">Health on Hand</a> in Leicester and Mansfield, where I've practised for over half a decade and still see patients today. I'm gradually moving to work full-time here in Loughborough, close to where I live — for now that means limited days while I build up, with more added as I go. Outside the clinic you'll usually find me on a dog walk, out on the golf course (with more enthusiasm than skill), or catching up with friends.</p>
+          <a href="about.html" class="link-arrow link-arrow--light">More about my background →</a>
         </div>
       </div>
-      <button class="reviews__arrow reviews__arrow--next" type="button" data-reviews-next aria-label="Next reviews">›</button>
+      <div class="why__aside">
+        <figure class="why__float">
+          <img src="images/action/neck/neck-rotation-assessment.jpg" alt="Tom assessing how far a patient can turn their neck" width="1600" height="1066" loading="lazy">
+          <figcaption>The same hands-on approach, every visit</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <!-- CLOSING CTA -->
-  <section class="find">
-    <h2>Ready when you are.</h2>
-    <p class="find__lead">Book online in under a minute, or <a href="https://wa.me/447871283457" target="_blank" rel="noopener" data-cta="book-online_closing-whatsapp">message me on WhatsApp</a> if you'd rather ask a question first.</p>
-    <a href="#book" class="btn btn--dark" data-cta="book-online_closing">Book your appointment</a>
+  <!-- THREE PILLARS -->
+  <section id="pillars" class="pillars">
+    <p class="eyebrow eyebrow--teal">How it works</p>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-card__num pillar-card__num--teal">01</span>
+        <h3>Book &amp; understand</h3>
+        <p>— Book online in under a minute</p>
+        <p>— Complete your forms before you arrive</p>
+        <p>— Choose an appointment that suits you</p>
+        <p>— Easy parking just 30 seconds away</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-card__num pillar-card__num--teal">02</span>
+        <h3>Assess &amp; treat</h3>
+        <p>— A thorough 60-minute initial consultation to understand your pain</p>
+        <p>— Specific targets to work towards</p>
+        <p>— Shorter follow-up appointments for treatment</p>
+        <p>— Clear advice on what to do next</p>
+        <p>— Always see the same chiropractor</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-card__num pillar-card__num--teal">03</span>
+        <h3>Move forward</h3>
+        <p>— A clear plan based on your needs</p>
+        <p>— Personal exercises and advice</p>
+        <p>— Review your progress together and adjust the plan towards your goals</p>
+        <p>— Reduce treatment as you improve</p>
+        <p>— Referral elsewhere if chiropractic isn't the right option</p>
+      </div>
+    </div>
   </section>
 
+  <!-- DESK CHECK -->
+  <section id="desk-check" class="desk-check">
+    <div class="desk-check__layout">
+      <div class="desk-check__inner">
+        <p class="eyebrow eyebrow--teal">Desk setup</p>
+        <h2>Is your desk setup causing your pain?</h2>
+        <p class="desk-check__lead">A lot of the neck, back and shoulder pain I see traces back to hours spent at a desk that isn't quite set up for you: a screen too low, a chair that doesn't support your back, a mouse just out of reach. Take my free desk check to find out where yours is going wrong, and what to change first.</p>
+        <div class="pill-row pill-row--outline">
+          <span class="pill pill--outline">Two minutes</span>
+          <span class="pill pill--outline">No booking needed</span>
+          <span class="pill pill--outline">Results straight away</span>
+        </div>
+        <a href="desk-check.html" class="btn btn--yellow">Take the free desk check →</a>
+      </div>
+      <div class="desk-check__aside">
+        <div class="dc-teaser">
+          <div class="dc-teaser__num">Your chair</div>
+          <h3 class="dc-teaser__title">When you sit right back in your chair, where are your feet?</h3>
+          <p class="dc-teaser__help">Look down without moving. Do not correct yourself first.</p>
+          <div class="dc-teaser__opts">
+            <a class="dc-teaser__opt" href="desk-check.html?q1=0"><span>Flat on the floor, knees roughly level with my hips</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=1"><span>Flat on the floor, but my knees are higher than my hips</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=2"><span>On tiptoes, or dangling</span><span aria-hidden="true">→</span></a>
+            <a class="dc-teaser__opt" href="desk-check.html?q1=3"><span>Tucked under the chair or wrapped round the legs</span><span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="who-for">
+    <p class="eyebrow eyebrow--teal">Who I help</p>
+    <div class="pill-row">
+      <span class="pill">Busy people</span>
+      <span class="pill">People living with persistent stiffness or pain</span>
+      <span class="pill">Parents</span>
+      <span class="pill">Active people</span>
+      <span class="pill">Individuals staying active as they age</span>
+    </div>
+  </section>
+
+  <!-- FAQS / TRUST -->
+  <section id="faq" class="faq">
+    <div class="faq-layout">
+      <div class="faq-main">
+        <p class="eyebrow eyebrow--yellow">Questions people ask me</p>
+        <div class="faq-grid">
+          <details class="faq-item" name="faq">
+            <summary><h3>What is a chiropractor?</h3></summary>
+            <div class="faq-item__answer"><p>A chiropractor is a regulated healthcare professional who assesses and treats problems affecting the muscles, joints, nerves and spine. Treatment can include hands-on techniques, movement advice, education and exercises.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>How much does a chiropractor cost?</h3></summary>
+            <div class="faq-item__answer">
+              <p>My initial consultation is £70 and lasts 60 minutes. Follow-up treatments are £45 each, or £200 for a block of 5.</p>
+              <a href="questions/chiropractor-cost-loughborough.html" class="link-arrow link-arrow--light">Full pricing breakdown and payment options →</a>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Are you new to Loughborough?</h3></summary>
+            <div class="faq-item__answer"><p>I'm currently splitting my time between Loughborough and <a href="https://www.healthonhand.co.uk/" target="_blank" rel="noopener">Health on Hand</a> in Leicester and Mansfield, where I've practised for over half a decade. I'm gradually moving to work here full-time, close to where I live, which is also why my hours are limited for now — they'll expand as I do. If Thursday doesn't suit you, get in touch and I'll let you know as soon as new days open up.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Chiropractor or physio?</h3></summary>
+            <div class="faq-item__answer">
+              <p>Both can help with musculoskeletal pain, and there is overlap between the two. My approach combines hands-on treatment with advice and exercises. If I think a physio, GP or another professional would be more appropriate, I'll tell you and help point you in the right direction.</p>
+              <a href="questions/chiropractor-vs-physiotherapist.html" class="link-arrow link-arrow--light">Read the full comparison →</a>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Are chiropractors regulated?</h3></summary>
+            <div class="faq-item__answer">
+              <p>Yes. Chiropractors in the UK must be registered with the General Chiropractic Council. I'm fully registered and trained at the Welsh Institute of Chiropractic.</p>
+              <a href="questions/is-chiropractic-safe.html" class="link-arrow link-arrow--light">More on safety and regulation →</a>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What happens at my first appointment?</h3></summary>
+            <div class="faq-item__answer">
+              <p>I'll take a full history, examine how you move, and explain what I think is going on in plain English. Many patients get some treatment on the same visit too.</p>
+              <a href="questions/first-appointment.html" class="link-arrow link-arrow--light">Full walkthrough of a first appointment →</a>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Who will I see at my appointments?</h3></summary>
+            <div class="faq-item__answer"><p>You'll see me, Tom, every time. I've learned it's just as important to understand the person as the pain, so I focus on understanding what may be contributing to your pain rather than simply focusing on the symptoms, and I'm with you for every step of your recovery, not just the first visit.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>How many appointments will I need?</h3></summary>
+            <div class="faq-item__answer">
+              <p>It varies from person to person, so I won't promise a number upfront. I'll give you a realistic estimate once I've assessed you, and there's no pressure to keep booking beyond what's actually helping.</p>
+              <a href="questions/how-many-appointments.html" class="link-arrow link-arrow--light">More on what affects recovery time →</a>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>Will it hurt?</h3></summary>
+            <div class="faq-item__answer"><p>Honestly, parts of it can be uncomfortable. Where muscles have tightened up protectively, working through them can bring tenderness in the muscle and the structures around it. That's temporary, and easing those areas is usually what starts to settle things down. Joint work tends to be easier, and some people feel relief straight away. Afterwards it's normal to feel a bit achy for a day or so, much like after exercise.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What's the clicking noise?</h3></summary>
+            <div class="faq-item__answer"><p>That sound is gas releasing from within the joint, the same thing that happens when you crack your knuckles. It isn't bone, and it isn't a sign of damage. If you'd rather avoid that technique altogether, just say so and I'll use something else. There's usually more than one way to treat a problem.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What should I wear?</h3></summary>
+            <div class="faq-item__answer"><p>Something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you.</p></div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary><h3>What if I need to cancel?</h3></summary>
+            <div class="faq-item__answer"><p>Just let me know as early as you can, ideally at least 24 hours before. You can use the link in your confirmation email or message me directly. Cancelling inside 12 hours or missing an appointment is charged at half price, though I always write off the first one. Full detail in my <a href="cancellation-policy.html">cancellation policy</a>.</p></div>
+          </details>
+        </div>
+      </div>
+      <div class="faq-aside">
+        <div class="carousel" data-carousel>
+          <div class="carousel__frame">
+            <div class="carousel__slide is-active"><img src="images/action/neck/neck-and-shoulder-massager.jpg" alt="Tom using a percussion massager on a patient's neck and shoulders" width="1066" height="1600" loading="lazy"></div>
+            <div class="carousel__slide"><img src="images/action/room/treatment-room-posture-check.jpg" alt="Tom checking a patient's posture in the treatment room" width="1066" height="1600" loading="lazy"></div>
+            <div class="carousel__slide"><img src="images/action/back/back-adjustment-with-instrument.jpg" alt="Tom using an adjusting instrument on a patient's back" width="1600" height="1066" loading="lazy"></div>
+            <button class="carousel__btn carousel__btn--prev" type="button" data-prev aria-label="Previous photo">‹</button>
+            <button class="carousel__btn carousel__btn--next" type="button" data-next aria-label="Next photo">›</button>
+          </div>
+          <div class="carousel__dots" data-dots>
+            <button class="carousel__dot is-active" type="button" data-dot="0" aria-label="Photo 1"></button>
+            <button class="carousel__dot" type="button" data-dot="1" aria-label="Photo 2"></button>
+            <button class="carousel__dot" type="button" data-dot="2" aria-label="Photo 3"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="faq-contact-note">Got a question? Just <a href="https://wa.me/447871283457" target="_blank" rel="noopener">WhatsApp me</a>, or <a href="#contact">fill out my contact form</a>.</p>
+  </section>
+
+  <!-- FIND ME + GET IN TOUCH -->
+  <section id="find" class="find">
+    <p class="eyebrow eyebrow--teal">Find me</p>
+    <h2>Where to find me, once you're booked in.</h2>
+    <p class="find__lead">Appointments are booked in advance &mdash; I'm not able to see anyone who turns up on the day, so please <a href="#book" data-cta="book-online_find-inline">book a time</a> before you set off. You'll find me at The Work Lounge on Beehive Lane, right in the centre of Loughborough. The clinic is on the ground floor, with convenient parking just a short walk away.</p>
+
+    <div class="find-grid">
+      <div class="find-info">
+        <div class="find-map">
+          <div class="map-embed">
+            <iframe
+              class="map-embed__frame"
+              src="https://www.google.com/maps?q=Tom+the+Chiropractor%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing Tom the Chiropractor, 1 Beehive Lane, Loughborough LE11 2FJ"></iframe>
+            <a class="map-embed__directions" href="https://www.google.com/maps/dir/?api=1&destination=Tom+the+Chiropractor%2C+1+Beehive+Lane%2C+Loughborough+LE11+2FJ" target="_blank" rel="noopener">Get directions →</a>
+          </div>
+          <address class="find-map__address">
+            <button type="button" class="find-map__address-btn copy-code" data-code="Tom the Chiropractor, The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2FJ" data-tooltip="Copy address">Tom the Chiropractor The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2FJ</button>
+          </address>
+        </div>
+
+        <h3>Parking</h3>
+        <p><a href="https://www.google.com/maps/place/Beehive+Lane+Car+Park/@52.7691176,-1.2062874,162m/data=!3m2!1e3!4b1!4m6!3m5!1s0x4879e0bada13d66d:0xa4cb8ba48bc24856!8m2!3d52.7691176!4d-1.2056423!16s%2Fg%2F11bymz1jqj?entry=ttu" target="_blank" rel="noopener">Beehive Lane Car Park</a> is just opposite the clinic, around a 30-second walk.</p>
+      </div>
+
+      <div class="find-contact" id="contact">
+        <p class="eyebrow eyebrow--teal">Get in touch</p>
+        <h3 class="find-contact__title">Have a question before you book?</h3>
+        <p class="contact__lead">Send me a message and I'll get back to you. If you'd rather just book, you can <a href="#book" data-cta="book-online_contact-inline">book online</a>, message me on <a href="https://wa.me/447871283457" target="_blank" rel="noopener">WhatsApp</a>, or call <a href="tel:+447871283457">07871 283457</a>.</p>
+
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="c8228673-a7c3-490f-91b1-a8f5e5a88ff7">
+          <input type="hidden" name="subject" value="New enquiry from tomthechiropractor.co.uk">
+          <input type="hidden" name="from_name" value="Tom the Chiropractor website">
+          <!-- Spam honeypot: hidden from people, tempting to bots. -->
+          <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off">
+
+          <div class="contact-form__row">
+            <label class="contact-form__field">
+              <span class="contact-form__label">Your name</span>
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label class="contact-form__field">
+              <span class="contact-form__label">Email</span>
+              <input type="email" name="email" required autocomplete="email">
+            </label>
+          </div>
+
+          <label class="contact-form__field">
+            <span class="contact-form__label">Phone <span class="contact-form__optional">(optional)</span></span>
+            <input type="tel" name="phone" autocomplete="tel">
+          </label>
+
+          <label class="contact-form__field">
+            <span class="contact-form__label">Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <p class="contact-form__note">Please keep messages general rather than describing your symptoms or medical history in detail. We'll go through all of that properly at your appointment.</p>
+
+          <button type="submit" class="btn btn--dark">Send message</button>
+          <p class="contact-form__status" id="contactStatus" role="status" aria-live="polite"></p>
+          <p class="contact-form__privacy">Your details are used only to reply to your enquiry. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="site-footer__brand">
+    <svg class="nav__logo nav__logo--small" viewBox="0 0 100 100" aria-hidden="true" style="display:none"><use href="#lp-mark"></use></svg>
     <span>Tom the Chiropractor · Loughborough</span>
   </div>
   <div class="site-footer__links">
+    <a href="about.html">About Tom</a>
+    <span>·</span>
     <a href="privacy-policy.html">Privacy</a>
     <span>·</span>
     <a href="cookie-policy.html">Cookies</a>
+    <span>·</span>
+    <a href="cancellation-policy.html">Cancellation policy</a>
+    <span>·</span>
+    <a href="#find">Contact</a>
   </div>
 </footer>
 
