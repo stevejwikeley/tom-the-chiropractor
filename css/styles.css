@@ -1594,6 +1594,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   /* Three price cards get cramped below this, so drop to two and let the
      block booking wrap onto its own row. */
   .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:720px;}
+  /* The rate list has to step down with it, or the section goes ragged again. */
+  .rate-list{max-width:720px;}
   /* Same logic for the reviews carousel: two cards fit better than three. */
   .reviews__carousel.is-enhanced .review-card{
     flex-basis:calc((100% - 20px) / 2);
