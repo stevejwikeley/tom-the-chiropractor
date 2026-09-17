@@ -1344,7 +1344,14 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   overflow-x:auto;
   margin-bottom:10px;
 }
-.table-scroll .hours{margin-bottom:0;}
+.table-scroll .hours{margin-bottom:0;width:100%;}
+/* Inside the scroll container the table would otherwise size to max-content
+   and need dragging sideways on a phone. width:100% makes it wrap the long
+   headers instead; the container stays as the fallback. */
+@media (max-width: 700px){
+  .hours--refunds td{padding-right:10px;}
+  .hours--refunds thead th{letter-spacing:0.04em;}
+}
 .hours__note{
   font:400 13px/1.55 var(--font-family);
   color:var(--ink-99);
