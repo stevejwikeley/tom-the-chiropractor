@@ -1091,6 +1091,10 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   margin-bottom:32px;
   max-width:1080px;
 }
+/* The concession grid carries four cards, and three-up would leave one
+   stranded on its own row. Two-up keeps it square, at the same card width
+   the main grid falls back to under 900px. */
+.pricing-grid--pair{grid-template-columns:repeat(2,1fr);max-width:720px;}
 .price-card{
   background:#fff;
   border:1px solid var(--ink-14);
