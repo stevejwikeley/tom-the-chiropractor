@@ -1326,8 +1326,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   padding-right:28px;
   white-space:nowrap;
 }
-/* Three columns of figures, so the middle one needs its own gutter and the
-   header row needs to read as headers. */
+/* Four columns of figures, so each needs its own gutter and the header row
+   needs to read as headers. */
 .hours--refunds td{padding-right:28px;}
 .hours--refunds td:last-child{padding-right:0;}
 .hours--refunds thead th{
@@ -1337,20 +1337,22 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--color-teal);
   padding-bottom:10px;
 }
-/* The refunds table carries a column per block rate, which is wider than a
-   phone once the headers are spelled out. Scroll it rather than letting it
-   push the whole page sideways. */
+/* The refunds table carries a column per block rate. On a phone those four
+   columns only fit if the headers wrap, and .hours th sets white-space:nowrap
+   for the opening-hours day names, which held this table at 676px in a 350px
+   window. --type-eyebrow is 13px/1, so wrapped header lines also need room
+   not to collide. The scroll container is the fallback if it still overflows. */
 .table-scroll{
   overflow-x:auto;
   margin-bottom:10px;
 }
 .table-scroll .hours{margin-bottom:0;width:100%;}
-/* Inside the scroll container the table would otherwise size to max-content
-   and need dragging sideways on a phone. width:100% makes it wrap the long
-   headers instead; the container stays as the fallback. */
 @media (max-width: 700px){
-  .hours--refunds td{padding-right:10px;}
-  .hours--refunds thead th{letter-spacing:0.04em;}
+  .hours--refunds th,
+  .hours--refunds td{padding-right:10px;white-space:normal;}
+  .hours--refunds th:last-child,
+  .hours--refunds td:last-child{padding-right:0;}
+  .hours--refunds thead th{letter-spacing:0.04em;line-height:1.25;vertical-align:bottom;}
 }
 .hours__note{
   font:400 13px/1.55 var(--font-family);
