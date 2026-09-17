@@ -1091,10 +1091,54 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   margin-bottom:32px;
   max-width:1080px;
 }
-/* The concession grid carries four cards, and three-up would leave one
-   stranded on its own row. Two-up keeps it square, at the same card width
-   the main grid falls back to under 900px. */
-.pricing-grid--pair{grid-template-columns:repeat(2,1fr);max-width:720px;}
+/* The concession rates are the same three treatments at different prices, not
+   four more products, so they read as a list rather than a second wall of
+   cards. Four cards here left a 66-character one stretched to 341px beside a
+   long neighbour, and a 720px grid stepping in under the 1080px one above. */
+.pricing__note{
+  margin:0 0 20px;
+  max-width:60ch;
+  font:var(--type-body-sm);
+  color:var(--cream-b3);
+}
+.rate-list{
+  list-style:none;
+  margin:0 0 32px;
+  padding:0;
+  max-width:1080px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  column-gap:var(--space-gap-md);
+  border-top:1px solid var(--cream-33);
+}
+.rate-list__row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 0;
+  border-bottom:1px solid var(--cream-33);
+}
+.rate-list__name{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  font:600 16px/1.3 var(--font-family);
+}
+.rate-list__note{
+  font:var(--type-body-sm);
+  color:var(--cream-b3);
+}
+.rate-list__note a{color:inherit;}
+.rate-list__price{
+  font:700 22px/1 var(--font-family);
+  color:var(--color-yellow);
+  white-space:nowrap;
+}
+/* One column on a phone, at the width the price cards fall back to. */
+@media (max-width: 700px){
+  .rate-list{grid-template-columns:1fr;max-width:360px;}
+}
 .price-card{
   background:#fff;
   border:1px solid var(--ink-14);
