@@ -1337,22 +1337,26 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   color:var(--color-teal);
   padding-bottom:10px;
 }
-/* The refunds table carries a column per block rate. On a phone those four
-   columns only fit if the headers wrap, and .hours th sets white-space:nowrap
-   for the opening-hours day names, which held this table at 676px in a 350px
-   window. --type-eyebrow is 13px/1, so wrapped header lines also need room
-   not to collide. The scroll container is the fallback if it still overflows. */
+/* The refunds table carries a column per block rate, and .hours th sets
+   white-space:nowrap so the opening-hours day names don't break. Applied
+   here that pinned the table to 710px -- wider than the 656px content column
+   on desktop and nearly twice the width of a phone -- so these four
+   spelled-out headers have to be allowed to wrap. --type-eyebrow is 13px/1,
+   so the wrapped lines need a line-height that keeps them apart. The scroll
+   container is the fallback if it ever overflows anyway. */
 .table-scroll{
   overflow-x:auto;
   margin-bottom:10px;
 }
 .table-scroll .hours{margin-bottom:0;width:100%;}
+.hours--refunds th{white-space:normal;}
+.hours--refunds thead th{line-height:1.25;vertical-align:bottom;}
 @media (max-width: 700px){
   .hours--refunds th,
-  .hours--refunds td{padding-right:10px;white-space:normal;}
+  .hours--refunds td{padding-right:10px;}
   .hours--refunds th:last-child,
   .hours--refunds td:last-child{padding-right:0;}
-  .hours--refunds thead th{letter-spacing:0.04em;line-height:1.25;vertical-align:bottom;}
+  .hours--refunds thead th{letter-spacing:0.04em;}
 }
 .hours__note{
   font:400 13px/1.55 var(--font-family);
