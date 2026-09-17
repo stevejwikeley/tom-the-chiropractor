@@ -1077,6 +1077,13 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-h2);
   max-width:640px;
 }
+/* Concession rates sit in a second grid under the headline three, so the
+   standard prices stay what you read first and each grid keeps a clean row
+   of three rather than one ragged row of six. */
+.pricing__subhead{
+  margin:16px 0 20px;
+  font:var(--type-h3);
+}
 .pricing-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
