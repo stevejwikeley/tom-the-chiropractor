@@ -1722,3 +1722,165 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .error-page__subhead{font-size:18px;}
   .error-page__actions{gap:16px 20px;}
 }
+
+/* PATIENT GUIDES — /guides/. These pages are long-form reading rather than
+   landing pages, so the body sets its own rhythm instead of borrowing
+   .condition-section, which is built for short blocks separated by rules. */
+.guide-byline{
+  margin-top:16px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.guide-byline a{color:inherit;}
+
+/* The framing block that has to be read before the content. Deliberately not
+   red: the red callout underneath it is for symptoms that need A&E, and if
+   everything shouts, the part that matters stops being visible. */
+.guide-notice{
+  background:var(--color-cream);
+  border-left:4px solid var(--color-teal);
+  padding:24px 28px;
+  margin-bottom:20px;
+}
+.guide-notice p{
+  font:var(--type-body-loose);
+  color:var(--ink-b3);
+  margin:0 0 12px;
+}
+.guide-notice > *:last-child{margin-bottom:0;}
+.guide-notice__flag{
+  font:var(--type-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase;
+  color:var(--color-ink);
+}
+
+.guide-body{padding-top:32px;}
+.guide-body h2{
+  margin:40px 0 16px;
+  padding-top:32px;
+  border-top:1px solid var(--ink-1a);
+  font:var(--type-h2);
+  font-size:26px;
+}
+.guide-body > h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+.guide-body h3{
+  margin:28px 0 12px;
+  font:var(--type-h3);
+}
+.guide-body p{
+  font:var(--type-body-loose);
+  font-size:17px;
+  color:var(--ink-b3);
+  margin:0 0 18px;
+}
+.guide-body .condition-list{margin-bottom:20px;}
+/* 15px over a 656px column runs to ~82 characters a line, which is a long way
+   to track across for a 3,000-word read -- and half these guides are written
+   for people over 60. 17px brings it back to about 72. */
+.guide-body .condition-list li{font-size:17px;}
+.guide-body .condition-list li::before{top:10px;}
+.guide-body a{color:var(--color-teal);}
+.guide-body a:hover{color:var(--color-teal-hover);}
+
+.guide-legal{
+  margin-top:48px;
+  padding-top:28px;
+  border-top:1px solid var(--ink-1a);
+}
+.guide-legal h2{
+  margin:0 0 14px;
+  font:var(--type-h3);
+}
+.guide-legal p{
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+  margin:0 0 12px;
+}
+.guide-legal p:last-child{margin-bottom:0;}
+
+/* Hub listing. Text-only cards, because 21 of them with photos would be a
+   very heavy page and the titles are what people are scanning for. */
+.guide-group{padding-top:40px;}
+.guide-group h2{
+  margin:0 0 8px;
+  font:var(--type-h2);
+  font-size:24px;
+}
+.guide-group__note{
+  margin:0 0 20px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.guide-related__cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.guide-card{
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-areas:
+    "title arrow"
+    "desc desc";
+  column-gap:8px;
+  row-gap:6px;
+  align-content:start;
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:18px 16px 20px;
+  text-decoration:none;
+  color:inherit;
+  transition:border-color .15s ease;
+}
+.guide-card h3{
+  grid-area:title;
+  font:600 15px/1.3 var(--font-family);
+  margin:0;
+}
+.guide-card p{
+  grid-area:desc;
+  font:400 13px/1.5 var(--font-family);
+  color:var(--ink-99);
+  margin:0;
+}
+.guide-card .condition-card__arrow{grid-area:arrow;}
+a.guide-card:hover{border-color:var(--color-teal);}
+a.guide-card:hover h3{color:var(--color-teal);}
+a.guide-card:hover .condition-card__arrow{transform:translateX(3px);}
+.guide-related__all{margin:20px 0 0;}
+
+.condition-cta__lead{
+  max-width:520px;
+  margin:-8px auto 28px;
+  font:var(--type-body-loose);
+  color:var(--ink-99);
+}
+
+@media (max-width: 700px){
+  .guide-related__cards{grid-template-columns:1fr;}
+  .guide-notice{padding:20px;}
+  .guide-body h2{font-size:22px;}
+}
+
+/* People print these, or save them as a PDF, which is the job the emailed PDF
+   used to do. Everything interactive goes, and the disclaimer stays. */
+@media print{
+  .nav,.cookie-banner,.condition-cta,.condition-related,.site-footer{display:none !important;}
+  body{background:#fff;color:#000;}
+  .condition-page__hero,.condition-page__body{padding:0;max-width:none;}
+  .guide-body a{color:#000;text-decoration:underline;}
+  .guide-body a[href^="http"]::after{content:" (" attr(href) ")";font-size:11px;word-break:break-all;}
+  .guide-body h2,.guide-body h3{break-after:avoid;}
+  .guide-body p,.condition-list li{break-inside:avoid;}
+  .guide-notice,.condition-callout{border:1px solid #000;background:#fff;}
+}
+
+/* Between the hamburger breakpoint and ~800px the nav is one link away from
+   wrapping onto a second row, and the Guides link is the one that tips it.
+   Tightening the gaps keeps it on one line instead of moving the breakpoint,
+   which carries a lot of unrelated layout with it. */
+@media (min-width: 701px) and (max-width: 800px){
+  .nav{padding-left:20px;padding-right:20px;}
+  .nav__links{gap:14px;}
+}
