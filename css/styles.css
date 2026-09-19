@@ -1876,11 +1876,3 @@ a.guide-card:hover .condition-card__arrow{transform:translateX(3px);}
   .guide-notice,.condition-callout{border:1px solid #000;background:#fff;}
 }
 
-/* Between the hamburger breakpoint and ~800px the nav is one link away from
-   wrapping onto a second row, and the Guides link is the one that tips it.
-   Tightening the gaps keeps it on one line instead of moving the breakpoint,
-   which carries a lot of unrelated layout with it. */
-@media (min-width: 701px) and (max-width: 800px){
-  .nav{padding-left:20px;padding-right:20px;}
-  .nav__links{gap:14px;}
-}
