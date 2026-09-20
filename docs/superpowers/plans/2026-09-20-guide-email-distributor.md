@@ -370,7 +370,7 @@ OUT="${1:-harness.html}"
 # script block early and leave the rest of it rendered as text. Escaping it
 # changes nothing in JavaScript, where "<\/script>" and "</script>" are the
 # same string, only where the browser thinks the block ends.
-esc() { sed 's|</script|<\/script|g'; }
+esc() { sed 's|</script|<\\/script|g'; }
 
 DATA=$(sed 's/^export default /const GUIDES = /' guides/guides.mjs | esc)
 
