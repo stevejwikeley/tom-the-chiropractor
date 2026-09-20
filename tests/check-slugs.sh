@@ -21,13 +21,13 @@ fi
 SRC=$(tr -d '\r' < guides/guides.mjs)
 
 # Slugs defined as keys of the guides object: lines like   "low-back-pain": {
-DEFINED=$(echo "$SRC" | grep -oE '^    "[a-z0-9-]+":' | tr -d ' ":' | sort)
+DEFINED=$(echo "$SRC" | grep -oE '^    "[a-z0-9-]+":' | tr -d ' ":' | sort || true)
 # Slugs referenced inside group slugs arrays: lines like       "low-back-pain",
-REFERENCED=$(echo "$SRC" | grep -oE '^        "[a-z0-9-]+",?$' | tr -d ' ",' | sort)
+REFERENCED=$(echo "$SRC" | grep -oE '^        "[a-z0-9-]+",?$' | tr -d ' ",' | sort || true)
 
-DEFINED_COUNT=$(echo "$DEFINED" | grep -c .)
-REFERENCED_COUNT=$(echo "$REFERENCED" | grep -c .)
-GROUP_COUNT=$(echo "$SRC" | grep -c '"heading":')
+DEFINED_COUNT=$(echo "$DEFINED" | grep -c . || :)
+REFERENCED_COUNT=$(echo "$REFERENCED" | grep -c . || :)
+GROUP_COUNT=$(echo "$SRC" | grep -c '"heading":' || :)
 
 echo "defined slugs:    $DEFINED_COUNT (expect 21)"
 echo "slug references:  $REFERENCED_COUNT (expect 27)"
