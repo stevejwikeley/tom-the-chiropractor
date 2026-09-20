@@ -132,14 +132,20 @@ if [ ! -f guides/guides.mjs ]; then
   exit 1
 fi
 
+# .gitattributes normalises this repo to CRLF, so carriage returns are
+# stripped before matching. Without this the anchored patterns below match
+# in the working copy but fail on a fresh clone, which is worse than
+# failing outright.
+SRC=$(tr -d '\r' < guides/guides.mjs)
+
 # Slugs defined as keys of the guides object: lines like   "low-back-pain": {
-DEFINED=$(grep -oE '^    "[a-z0-9-]+":' guides/guides.mjs | tr -d ' ":' | sort)
+DEFINED=$(echo "$SRC" | grep -oE '^    "[a-z0-9-]+":' | tr -d ' ":' | sort)
 # Slugs referenced inside group slugs arrays: lines like       "low-back-pain",
-REFERENCED=$(grep -oE '^        "[a-z0-9-]+",?$' guides/guides.mjs | tr -d ' ",' | sort)
+REFERENCED=$(echo "$SRC" | grep -oE '^        "[a-z0-9-]+",?$' | tr -d ' ",' | sort)
 
 DEFINED_COUNT=$(echo "$DEFINED" | grep -c .)
 REFERENCED_COUNT=$(echo "$REFERENCED" | grep -c .)
-GROUP_COUNT=$(grep -c '"heading":' guides/guides.mjs)
+GROUP_COUNT=$(echo "$SRC" | grep -c '"heading":')
 
 echo "defined slugs:    $DEFINED_COUNT (expect 21)"
 echo "slug references:  $REFERENCED_COUNT (expect 27)"
@@ -406,7 +412,7 @@ Create `tests/harness-tests.js`. It runs inside the harness page, where `GUIDES`
     }
   }
 
-  function throws(label, fn) {
+  function runsWithoutThrowing(label, fn) {
     var threw = false;
     try { fn(); } catch (e) { threw = true; }
     check(label, threw === false);
@@ -451,7 +457,8 @@ Create `tests/harness-tests.js`. It runs inside the harness page, where `GUIDES`
   check("unknown slug rejected", validate(GUIDES, { name: "Sarah", email: "s@e.com", slug: "made-up" }).ok === false);
   check("missing slug rejected", validate(GUIDES, { name: "Sarah", email: "s@e.com" }).ok === false);
   check("non string fields rejected", validate(GUIDES, { name: 42, email: {}, slug: [] }).ok === false);
-  throws("validate survives an empty body", function () { validate(GUIDES, {}); });
+  runsWithoutThrowing("validate survives an empty body", function () { validate(GUIDES, {}); });
+  runsWithoutThrowing("validate survives no body at all", function () { validate(GUIDES, undefined); });
 
   // buildSubject
   check("subject names the guide", buildSubject("Neck Pain Over 60") === "Your guide: Neck Pain Over 60");
@@ -642,7 +649,7 @@ sh tests/build-harness.sh "$SCRATCH/harness.html"
 
 Reload the harness in the browser pane and read `#out` again.
 
-Expected first line: `PASS  37/37`. Every line below it begins `pass`. If any line begins `FAIL`, fix the function rather than the assertion, unless the assertion is provably wrong.
+Expected first line: `PASS` followed by two equal numbers, for example `PASS  38/38`. Every line below it begins `pass`. Do not treat a particular total as the target: the count is whatever the assertions above come to. If any line begins `FAIL`, fix the function rather than the assertion, unless the assertion is provably wrong.
 
 - [ ] **Step 6: Commit**
 
@@ -695,7 +702,7 @@ sh tests/build-harness.sh "$SCRATCH/harness.html"
 
 Reload in the browser pane and read `#out`.
 
-Expected: `FAIL 37/43`, with the six new lines failing, or a blank `running` if the `ReferenceError` stops the script. Either is the expected failure.
+Expected: a `FAIL` summary with the six new lines failing, or `#out` still reading `running` if the `ReferenceError` stops the script before it writes. Either is the expected failure.
 
 - [ ] **Step 3: Add the error mapper and the handler**
 
@@ -810,7 +817,7 @@ export default async function handler(req, res) {
 sh tests/build-harness.sh "$SCRATCH/harness.html"
 ```
 
-Expected first line: `PASS  43/43`.
+Expected first line: `PASS` followed by two equal numbers. The total is six higher than it was at the end of Task 3.
 
 - [ ] **Step 5: Verify the file layout the harness depends on**
 
@@ -1048,15 +1055,39 @@ refresh();
 
 Build a self contained copy, because the browser pane cannot resolve the relative import or the stylesheet:
 
+Use awk, not sed. sed cannot take a whole file as replacement text: `css/tokens.css` contains forward slashes, which terminate the expression. awk reads the files instead of interpolating them, which is also how the other inlined previews in this repo are built.
+
 ```bash
 cd "C:/Users/wikel/OneDrive/Documents/GitHub/tom-the-chiropractor"
-{
-  sed 's|<link rel="stylesheet" href="css/tokens.css">|<style>'"$(cat css/tokens.css)"'</style>|' send-guide.html \
-    | sed 's|const data = (await import("./guides/guides.mjs")).default;|const data = window.__GUIDES;|' \
-    | sed 's|<script type="module">|<script>window.__GUIDES='"$(sed 's/^export default //; s/;$//' guides/guides.mjs | tr -d '\n')"';</script><script type="module">|'
-} > "$SCRATCH/page.html"
-echo built
+awk '
+  /<link rel="stylesheet" href="css\/tokens.css">/ {
+    print "<style>";
+    while ((getline line < "css/tokens.css") > 0) print line;
+    close("css/tokens.css");
+    print "</style>";
+    next
+  }
+  /<script type="module">/ {
+    print "<script>window.__GUIDES =";
+    while ((getline line < "guides/guides.mjs") > 0) {
+      sub(/^export default /, "", line);
+      print line;
+    }
+    close("guides/guides.mjs");
+    print "</script>";
+    print "<script type=\"module\">";
+    next
+  }
+  /const data = \(await import\("\.\/guides\/guides\.mjs"\)\)\.default;/ {
+    print "const data = window.__GUIDES;";
+    next
+  }
+  { print }
+' send-guide.html > "$SCRATCH/page.html"
+grep -c "__GUIDES" "$SCRATCH/page.html"
 ```
+
+Expected: `2`, one assignment and one read. A `0` means neither pattern matched and the harness is just a copy of the page, so the checks below would be meaningless.
 
 Open `$SCRATCH/page.html` in the browser pane and measure the DOM rather than relying on a screenshot, which has timed out on this machine before:
 
