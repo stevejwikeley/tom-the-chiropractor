@@ -19,7 +19,8 @@
 - **Reply-to is `hello@tomthechiropractor.co.uk`.** BCC comes from `CLINIC_EMAIL`, never hardcoded.
 - **Guide URLs are absolute:** `https://tomthechiropractor.co.uk/guides/<slug>.html`
 - **Line endings:** `.gitattributes` normalises to CRLF on commit. "LF will be replaced by CRLF" warnings are expected and harmless.
-- **Another session may push to this repo.** Run `git fetch -q origin && git rev-list --left-right --count origin/main...HEAD` before every commit. It must report `0 0`.
+- **Another session may push to this repo.** Run `git fetch -q origin && git rev-list --left-right --count origin/main...HEAD` before every commit. The LEFT number counts commits on origin/main that this branch does not have, and it must be 0. The right number counts this branch's own unmerged work and will grow as the plan proceeds, which is normal.
+- **Work happens on the `send-guide-feature` branch,** never on main. Main is merged into at the end, once the whole feature has passed review.
 - **Email palette, fixed:** ground `#EFEADF`, card `#FFFFFF`, border `#E3E1DD`, ink `#00262A`, teal `#007a7a`, body grey `#5F6470`, muted `#8A8F9A`. Arial for body, Georgia for the greeting. Card `max-width:560px`, `border-radius:12px`.
 
 ### Deviation from the spec
@@ -97,7 +98,9 @@ URL. It records accepted risks and a note about a compromised API key,
 neither of which belongs on the clinic website."
 ```
 
-The `git rev-list` line must print `0	0` before you commit. If it does not, stop and resolve the divergence first.
+The left number from `git rev-list` must be 0 before you commit. If it is not, origin/main has moved: stop and resolve that before going further. The right number is this branch's own commits and is expected to be nonzero.
+
+Confirm you are on the right branch first: `git rev-parse --abbrev-ref HEAD` must print `send-guide-feature`.
 
 ---
 
