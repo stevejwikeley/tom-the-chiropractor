@@ -13,17 +13,24 @@ set -e
 cd "$(dirname "$0")/.."
 OUT="${1:-harness.html}"
 
-DATA=$(sed 's/^export default /const GUIDES = /' guides/guides.mjs)
+# A literal </script anywhere in the inlined source would close the page's
+# script block early and leave the rest of it rendered as text. Escaping it
+# changes nothing in JavaScript, where "<\/script>" and "</script>" are the
+# same string, only where the browser thinks the block ends.
+esc() { sed 's|</script|<\\/script|g'; }
+
+DATA=$(sed 's/^export default /const GUIDES = /' guides/guides.mjs | esc)
 
 if [ -f api/send-guide.mjs ]; then
   PURE=$(sed '/^export default async function handler/,$d' api/send-guide.mjs \
          | sed '/^import /d' \
-         | sed 's/^export function /function /')
+         | sed 's/^export function /function /' \
+         | esc)
 else
   PURE="// api/send-guide.mjs does not exist yet"
 fi
 
-TESTS=$(cat tests/harness-tests.js)
+TESTS=$(esc < tests/harness-tests.js)
 
 cat > "$OUT" <<HTMLEOF
 <!doctype html>
