@@ -910,7 +910,7 @@ Create `send-guide.html` at the repo root:
     border-left:4px solid transparent;border-radius:8px;
   }
   .guide:focus-visible{outline:2px solid var(--color-teal,#00A6A6);outline-offset:1px;}
-  .guide[aria-checked="true"]{
+  .guide[aria-pressed="true"]{
     border-left-color:var(--color-teal,#00A6A6);
     background:var(--cream-cc,#f7f4ee);
     font-weight:700;
@@ -946,7 +946,7 @@ Create `send-guide.html` at the repo root:
     </label>
   </div>
 
-  <div id="list" role="radiogroup" aria-label="Choose a guide">Loading guides...</div>
+  <div id="list">Loading guides...</div>
   <p id="msg" class="msg" hidden></p>
 </main>
 
@@ -982,8 +982,7 @@ for (const group of data.groups) {
     button.type = "button";
     button.className = "guide";
     button.dataset.slug = slug;
-    button.setAttribute("role", "radio");
-    button.setAttribute("aria-checked", "false");
+    button.setAttribute("aria-pressed", "false");
     button.textContent = data.guides[slug].title;
     button.addEventListener("click", () => select(slug));
     list.append(button);
@@ -993,7 +992,7 @@ for (const group of data.groups) {
 function select(slug) {
   selected = slug;
   for (const button of list.querySelectorAll(".guide")) {
-    button.setAttribute("aria-checked", String(button.dataset.slug === slug));
+    button.setAttribute("aria-pressed", String(button.dataset.slug === slug));
   }
   chosen.textContent = data.guides[slug].title;
   bar.hidden = false;
@@ -1046,7 +1045,7 @@ sendButton.addEventListener("click", async () => {
   emailInput.value = "";
   selected = null;
   for (const button of list.querySelectorAll(".guide")) {
-    button.setAttribute("aria-checked", "false");
+    button.setAttribute("aria-pressed", "false");
   }
   bar.hidden = true;
   sendButton.textContent = "Send guide";
@@ -1128,7 +1127,7 @@ In the browser pane:
 ```javascript
 document.querySelector('[data-slug="hip-arthritis-and-low-back-pain"]').click();
 JSON.stringify({
-  checked: document.querySelectorAll('[aria-checked="true"]').length,
+  checked: document.querySelectorAll('[aria-pressed="true"]').length,
   chosen: document.getElementById("chosen").textContent,
   barHidden: document.getElementById("bar").hidden,
   stillDisabled: document.getElementById("send").disabled
