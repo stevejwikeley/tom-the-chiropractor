@@ -115,3 +115,100 @@ export function buildHtml({ name, title, url }) {
 </body>
 </html>`;
 }
+
+// Resend's status code turned into something worth reading, because the
+// fix differs: a bad address is retyped, a dead key is replaced in Vercel,
+// an outage is waited out.
+export function resendErrorMessage(status) {
+  if (status === 401 || status === 403) {
+    return "The Resend API key is missing or has been revoked.";
+  }
+  if (status === 400 || status === 422) {
+    return "Resend would not accept that email address.";
+  }
+  return "Resend could not be reached. Try again in a minute.";
+}
+
+export default async function handler(req, res) {
+  // Setup check. Says which variables Vercel can see, by name only, never
+  // by value, so the configuration can be confirmed without emailing a
+  // real person to find out.
+  if (req.method === "GET") {
+    return res.status(200).json({
+      configured: Boolean(process.env.RESEND_API_KEY && process.env.FROM_EMAIL && process.env.CLINIC_EMAIL),
+      present: {
+        RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
+        FROM_EMAIL: Boolean(process.env.FROM_EMAIL),
+        CLINIC_EMAIL: Boolean(process.env.CLINIC_EMAIL)
+      }
+    });
+  }
+
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  let body;
+  try {
+    body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
+  } catch (err) {
+    return res.status(400).json({ error: "That request did not make sense." });
+  }
+
+  const checked = validate(guidesData, body);
+  if (!checked.ok) return res.status(400).json({ error: checked.error });
+
+  const { name, email, slug, title } = checked.safe;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.FROM_EMAIL;
+  const clinic = process.env.CLINIC_EMAIL;
+
+  if (!apiKey || !from || !clinic) {
+    const missing = [
+      !apiKey && "RESEND_API_KEY",
+      !from && "FROM_EMAIL",
+      !clinic && "CLINIC_EMAIL"
+    ].filter(Boolean);
+    return res.status(500).json({ error: "Email is not switched on yet.", missing });
+  }
+
+  const url = guideUrl(slug);
+  const fields = { name, title, url };
+
+  let response;
+  try {
+    response = await fetch(RESEND_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        bcc: [clinic],
+        reply_to: REPLY_TO,
+        subject: buildSubject(title),
+        text: buildText(fields),
+        html: buildHtml(fields)
+      })
+    });
+  } catch (err) {
+    // Unlike the desk check endpoint, nothing here is swallowed. If the
+    // patient did not get their guide, whoever pressed send needs to know
+    // straight away, because nothing else will tell them.
+    console.error("send-guide: network failure", err);
+    return res.status(502).json({ error: resendErrorMessage(0) });
+  }
+
+  if (!response.ok) {
+    let detail = "";
+    try { detail = await response.text(); } catch (err) { detail = "(no body)"; }
+    console.error("send-guide: resend rejected the send", response.status, detail);
+    return res.status(502).json({ error: resendErrorMessage(response.status) });
+  }
+
+  return res.status(200).json({ ok: true });
+}

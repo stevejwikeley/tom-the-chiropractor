@@ -97,6 +97,15 @@
   check("name is escaped into the html", escaped.indexOf("<script>x</script>") === -1);
   check("title is escaped into the html", escaped.indexOf("T &amp; U") !== -1);
 
+  // The handler is not inlined into this harness, so what is checked here
+  // is the error mapping it depends on, as a pure function.
+  check("401 maps to a key problem", resendErrorMessage(401) === "The Resend API key is missing or has been revoked.");
+  check("403 maps to a key problem", resendErrorMessage(403) === "The Resend API key is missing or has been revoked.");
+  check("422 maps to a bad address", resendErrorMessage(422) === "Resend would not accept that email address.");
+  check("400 maps to a bad address", resendErrorMessage(400) === "Resend would not accept that email address.");
+  check("500 maps to a Resend outage", resendErrorMessage(500) === "Resend could not be reached. Try again in a minute.");
+  check("0 maps to a Resend outage", resendErrorMessage(0) === "Resend could not be reached. Try again in a minute.");
+
   var total = lines.length;
   var summary = (pass === total ? "PASS" : "FAIL") + "  " + pass + "/" + total;
   window.__results = summary + "\n" + lines.join("\n");
