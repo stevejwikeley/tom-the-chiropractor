@@ -1,5 +1,8 @@
 {
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/send-guide", "destination": "/send-guide.html" }
   ]
 }
