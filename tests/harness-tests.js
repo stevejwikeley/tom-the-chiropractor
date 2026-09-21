@@ -36,7 +36,7 @@
 
   // guideUrl
   check("guideUrl builds an absolute url",
-    guideUrl("low-back-pain") === "https://tomthechiropractor.co.uk/guides/low-back-pain.html");
+    guideUrl("low-back-pain") === "https://www.tomthechiropractor.co.uk/guides/low-back-pain.html");
 
   // validate
   var good = validate(GUIDES, { name: "Sarah", email: "sarah@example.com", slug: "low-back-pain" });
@@ -65,10 +65,10 @@
   var text = buildText({
     name: "Sarah",
     title: "Neck Pain Over 60",
-    url: "https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html"
+    url: "https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html"
   });
   check("plain text greets by name", text.indexOf("Hi Sarah,") === 0);
-  check("plain text carries the url", text.indexOf("https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html") !== -1);
+  check("plain text carries the url", text.indexOf("https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html") !== -1);
   check("plain text carries the urgent help line", text.indexOf("When to get urgent help") !== -1);
   check("plain text says no mailing list", text.indexOf("mailing list") !== -1);
   check("plain text has no dashes", text.indexOf("\u2014") === -1 && text.indexOf("\u2013") === -1 && text.indexOf(" - ") === -1);
@@ -77,12 +77,12 @@
   var html = buildHtml({
     name: "Sarah",
     title: "Neck Pain Over 60",
-    url: "https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html"
+    url: "https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html"
   });
   check("html greets by name", html.indexOf("Hi Sarah,") !== -1);
   check("html has a button to the guide",
-    html.indexOf('href="https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html"') !== -1);
-  check("html shows the bare url too", html.indexOf(">https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html<") !== -1);
+    html.indexOf('href="https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html"') !== -1);
+  check("html shows the bare url too", html.indexOf(">https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html<") !== -1);
   check("html uses the teal button colour", html.indexOf("#007a7a") !== -1);
   check("html uses the cream ground", html.indexOf("#EFEADF") !== -1);
   check("html carries the urgent help line", html.indexOf("When to get urgent help") !== -1);

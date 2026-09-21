@@ -17,7 +17,7 @@
 import guidesData from "../guides/guides.mjs";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
-const SITE = "https://tomthechiropractor.co.uk";
+const SITE = "https://www.tomthechiropractor.co.uk";
 const REPLY_TO = "hello@tomthechiropractor.co.uk";
 
 export function escapeHtml(value) {
