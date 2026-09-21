@@ -204,9 +204,11 @@ export default async function handler(req, res) {
   }
 
   if (!response.ok) {
-    let detail = "";
-    try { detail = await response.text(); } catch (err) { detail = "(no body)"; }
-    console.error("send-guide: resend rejected the send", response.status, detail);
+    // The rejection body is deliberately not read or logged. Resend echoes
+    // the recipient address back in some of its errors, and the function log
+    // is not a place patient data belongs. The status is enough to tell a
+    // configuration problem from a rejected address.
+    console.error("send-guide: resend rejected the send", response.status);
     return res.status(502).json({ error: resendErrorMessage(response.status) });
   }
 

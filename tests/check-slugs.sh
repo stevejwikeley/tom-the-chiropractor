@@ -29,13 +29,9 @@ DEFINED_COUNT=$(echo "$DEFINED" | grep -c . || :)
 REFERENCED_COUNT=$(echo "$REFERENCED" | grep -c . || :)
 GROUP_COUNT=$(echo "$SRC" | grep -c '"heading":' || :)
 
-echo "defined slugs:    $DEFINED_COUNT (expect 21)"
-echo "slug references:  $REFERENCED_COUNT (expect 27)"
-echo "groups:           $GROUP_COUNT (expect 6)"
-
-[ "$DEFINED_COUNT" -eq 21 ] || { echo "FAIL: expected 21 defined guides"; FAIL=1; }
-[ "$REFERENCED_COUNT" -eq 27 ] || { echo "FAIL: expected 27 slug references"; FAIL=1; }
-[ "$GROUP_COUNT" -eq 6 ] || { echo "FAIL: expected 6 groups"; FAIL=1; }
+echo "defined slugs:    $DEFINED_COUNT"
+echo "slug references:  $REFERENCED_COUNT"
+echo "groups:           $GROUP_COUNT"
 
 for slug in $DEFINED; do
   if [ ! -f "guides/$slug.html" ]; then

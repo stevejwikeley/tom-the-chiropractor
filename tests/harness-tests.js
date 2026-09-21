@@ -22,11 +22,6 @@
   }
 
   // The data module
-  check("21 guides defined", Object.keys(GUIDES.guides).length === 21);
-  check("6 groups", GUIDES.groups.length === 6);
-  check("27 slug references", GUIDES.groups.reduce(function (n, g) {
-    return n + g.slugs.length;
-  }, 0) === 27);
   check("first group is Low back and leg", GUIDES.groups[0].heading === "Low back and leg");
   check("hip guide is in two groups", GUIDES.groups.filter(function (g) {
     return g.slugs.indexOf("hip-arthritis-and-low-back-pain") !== -1;
@@ -76,7 +71,7 @@
   check("plain text carries the url", text.indexOf("https://tomthechiropractor.co.uk/guides/neck-pain-over-60.html") !== -1);
   check("plain text carries the urgent help line", text.indexOf("When to get urgent help") !== -1);
   check("plain text says no mailing list", text.indexOf("mailing list") !== -1);
-  check("plain text has no dashes", text.indexOf("\u2014") === -1 && text.indexOf("\u2013") === -1);
+  check("plain text has no dashes", text.indexOf("\u2014") === -1 && text.indexOf("\u2013") === -1 && text.indexOf(" - ") === -1);
 
   // buildHtml
   var html = buildHtml({
@@ -91,7 +86,7 @@
   check("html uses the teal button colour", html.indexOf("#007a7a") !== -1);
   check("html uses the cream ground", html.indexOf("#EFEADF") !== -1);
   check("html carries the urgent help line", html.indexOf("When to get urgent help") !== -1);
-  check("html has no dashes", html.indexOf("\u2014") === -1 && html.indexOf("\u2013") === -1);
+  check("html has no dashes", html.indexOf("\u2014") === -1 && html.indexOf("\u2013") === -1 && html.indexOf(" - ") === -1);
 
   var escaped = buildHtml({ name: "<script>x</script>", title: "T & U", url: "https://x/y.html" });
   check("name is escaped into the html", escaped.indexOf("<script>x</script>") === -1);

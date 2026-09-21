@@ -6,9 +6,12 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Send a guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <style>
   *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
   body{
     margin:0;
     padding:0 0 120px;
@@ -76,7 +79,7 @@
   </div>
 
   <div id="list">Loading guides...</div>
-  <p id="msg" class="msg" hidden></p>
+  <p id="msg" class="msg" role="status" hidden></p>
 </main>
 
 <div class="bar" id="bar" hidden>
@@ -85,8 +88,6 @@
 </div>
 
 <script type="module">
-const data = (await import("./guides/guides.mjs")).default;
-
 const list = document.getElementById("list");
 const bar = document.getElementById("bar");
 const chosen = document.getElementById("chosen");
@@ -94,6 +95,14 @@ const sendButton = document.getElementById("send");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const msg = document.getElementById("msg");
+
+let data;
+try {
+  data = (await import("./guides/guides.mjs")).default;
+} catch (err) {
+  list.textContent = "The guide list did not load. Check the browser console.";
+  throw err;
+}
 
 let selected = null;
 
@@ -160,7 +169,12 @@ sendButton.addEventListener("click", async () => {
       body: JSON.stringify({ slug: selected, name, email: emailInput.value.trim() })
     });
     payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(payload.error || "That did not send.");
+    if (!response.ok) {
+      const detail = Array.isArray(payload.missing) && payload.missing.length
+        ? " Missing: " + payload.missing.join(", ")
+        : "";
+      throw new Error((payload.error || "That did not send.") + detail);
+    }
   } catch (error) {
     // Nothing is cleared on failure. A mistyped address is corrected in
     // one field rather than everything being typed again.
