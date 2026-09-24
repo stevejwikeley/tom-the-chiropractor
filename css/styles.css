@@ -1131,6 +1131,34 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 .price-card__terms a{color:var(--color-teal-hover);}
 
+/* The initial consultation card doubles as a link down to the booking
+   widget. The real link sits on the label, so it is reachable by keyboard
+   and reads sensibly to a screen reader, and its ::after stretches over the
+   whole card to make the rest of it clickable. */
+.price-card--linked{
+  position:relative;
+  transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.price-card--linked:hover{
+  transform:translateY(-2px);
+  border-color:var(--color-teal);
+  box-shadow:0 6px 18px rgba(0,38,42,0.12);
+}
+.price-card__cover{color:inherit;text-decoration:none;}
+.price-card__cover::after{content:"";position:absolute;inset:0;}
+/* The ring belongs around the card, not the few words of the label. */
+.price-card__cover:focus-visible{outline:none;}
+.price-card__cover:focus-visible::after{
+  outline:2px solid var(--color-teal);
+  outline-offset:2px;
+}
+/* Raised above the cover so it still copies the code rather than navigating. */
+.price-card--linked .price-card__code{position:relative;z-index:1;}
+@media (prefers-reduced-motion:reduce){
+  .price-card--linked{transition:border-color .15s ease;}
+  .price-card--linked:hover{transform:none;}
+}
+
 /* FAQ */
 .faq{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
 /* Accordion built on <details>/<summary>: keyboard accessible and works
