@@ -10,10 +10,19 @@ img{height:auto;}
 
 html{scroll-behavior:smooth;}
 
-section[id]{scroll-margin-top:100px;}
+/* Anchor links should land with the target's top edge flush against the
+   bottom of the sticky nav. The nav isn't one fixed height -- 83px on wide
+   screens, 69px once the burger takes over, ~97px in the band where the links
+   wrap onto two rows -- so a hard-coded value leaves a strip of the previous
+   section wedged under the nav. initNavOffset() measures the real nav and
+   writes --nav-h; these are the fallback for the first paint before it runs. */
+:root{--nav-h:83px;}
+@media (max-width: 700px){:root{--nav-h:69px;}}
+
+section[id]{scroll-margin-top:var(--nav-h);}
 /* #book now lives on the widget div, not the <section>, so links to it
    land on the booking form itself rather than the heading above it. */
-#book{scroll-margin-top:100px;}
+#book{scroll-margin-top:var(--nav-h);}
 
 body{
   margin:0;
@@ -320,6 +329,100 @@ h1,h2,h3,p,ul{margin:0;}
 .confirm__note{
   font:400 13px/1.5 var(--font-family);
   color:var(--ink-99);
+}
+
+/* "How did you find me?" card (thank-you.html) */
+.heard{
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:24px 28px;
+  margin-bottom:28px;
+}
+.heard h2{
+  margin:0 0 4px;
+  font:var(--type-h3);
+}
+.heard__sub{
+  margin:0 0 18px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.heard__options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.heard__option{
+  font:500 14px/1.2 var(--font-family);
+  color:var(--color-ink);
+  background:var(--color-cream);
+  border:1px solid var(--ink-1a);
+  border-radius:99px;
+  padding:12px 18px;
+  cursor:pointer;
+}
+.heard__option:hover{
+  background:var(--color-teal);
+  border-color:var(--color-teal);
+  color:#fff;
+}
+.heard__option:focus-visible{
+  outline:2px solid var(--color-teal);
+  outline-offset:2px;
+}
+/* While a choice is in flight every option goes flat, including the one
+   under the cursor -- otherwise the hover state reads as still clickable. */
+.heard__option[disabled],
+.heard__option[disabled]:hover{
+  background:var(--color-cream);
+  border-color:var(--ink-1a);
+  color:var(--color-ink);
+  opacity:0.45;
+  cursor:default;
+}
+.heard__other{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+/* display:flex above would otherwise beat the browser's own [hidden] rule,
+   leaving the free-text box on screen before "Something else" is picked. */
+.heard__other[hidden]{display:none;}
+.heard__other input{
+  flex:1 1 240px;
+  min-width:0;
+  font:400 15px/1.5 var(--font-family);
+  color:var(--color-ink);
+  background:#fff;
+  border:1px solid var(--ink-1a);
+  padding:12px 14px;
+}
+.heard__other input:focus{
+  outline:2px solid var(--color-teal);
+  outline-offset:-1px;
+}
+/* Honeypot: same trick as the contact form -- off screen and out of the tab
+   order, not display:none, so bots that skip hidden fields still fill it in. */
+.heard__botcheck{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  height:0;
+  width:0;
+}
+.heard__status{
+  margin:14px 0 0;
+  font:600 14px/1.5 var(--font-family);
+  color:var(--color-red);
+}
+/* Live region, so it stays in the DOM permanently -- collapse it while it has
+   nothing to say rather than leaving a gap at the foot of the card. */
+.heard__status:empty{display:none;}
+.heard__thanks{
+  margin:0;
+  font:var(--type-body-loose);
+  color:var(--color-teal-hover);
 }
 
 /* TRUST STRIP */
@@ -981,6 +1084,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   margin-bottom:32px;
   max-width:1080px;
 }
+/* The student and under-16 rates are a short list that most people do not need,
+   so they live on the pricing page rather than doubling this section. */
+.pricing__student{margin:0 0 28px;}
 .price-card{
   background:#fff;
   border:1px solid var(--ink-14);
@@ -1024,6 +1130,34 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:600 13px/1.5 var(--font-family);
 }
 .price-card__terms a{color:var(--color-teal-hover);}
+
+/* The initial consultation card doubles as a link down to the booking
+   widget. The real link sits on the label, so it is reachable by keyboard
+   and reads sensibly to a screen reader, and its ::after stretches over the
+   whole card to make the rest of it clickable. */
+.price-card--linked{
+  position:relative;
+  transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.price-card--linked:hover{
+  transform:translateY(-2px);
+  border-color:var(--color-teal);
+  box-shadow:0 6px 18px rgba(0,38,42,0.12);
+}
+.price-card__cover{color:inherit;text-decoration:none;}
+.price-card__cover::after{content:"";position:absolute;inset:0;}
+/* The ring belongs around the card, not the few words of the label. */
+.price-card__cover:focus-visible{outline:none;}
+.price-card__cover:focus-visible::after{
+  outline:2px solid var(--color-teal);
+  outline-offset:2px;
+}
+/* Raised above the cover so it still copies the code rather than navigating. */
+.price-card--linked .price-card__code{position:relative;z-index:1;}
+@media (prefers-reduced-motion:reduce){
+  .price-card--linked{transition:border-color .15s ease;}
+  .price-card--linked:hover{transform:none;}
+}
 
 /* FAQ */
 .faq{padding:var(--space-section-y) var(--space-section-x);background:var(--color-ink);color:var(--color-cream);}
@@ -1216,8 +1350,8 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   padding-right:28px;
   white-space:nowrap;
 }
-/* Three columns of figures, so the middle one needs its own gutter and the
-   header row needs to read as headers. */
+/* Four columns of figures, so each needs its own gutter and the header row
+   needs to read as headers. */
 .hours--refunds td{padding-right:28px;}
 .hours--refunds td:last-child{padding-right:0;}
 .hours--refunds thead th{
@@ -1226,6 +1360,27 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   text-transform:uppercase;
   color:var(--color-teal);
   padding-bottom:10px;
+}
+/* The refunds table carries a column per block rate, and .hours th sets
+   white-space:nowrap so the opening-hours day names don't break. Applied
+   here that pinned the table to 710px -- wider than the 656px content column
+   on desktop and nearly twice the width of a phone -- so these four
+   spelled-out headers have to be allowed to wrap. --type-eyebrow is 13px/1,
+   so the wrapped lines need a line-height that keeps them apart. The scroll
+   container is the fallback if it ever overflows anyway. */
+.table-scroll{
+  overflow-x:auto;
+  margin-bottom:10px;
+}
+.table-scroll .hours{margin-bottom:0;width:100%;}
+.hours--refunds th{white-space:normal;}
+.hours--refunds thead th{line-height:1.25;vertical-align:bottom;}
+@media (max-width: 700px){
+  .hours--refunds th,
+  .hours--refunds td{padding-right:10px;}
+  .hours--refunds th:last-child,
+  .hours--refunds td:last-child{padding-right:0;}
+  .hours--refunds thead th{letter-spacing:0.04em;}
 }
 .hours__note{
   font:400 13px/1.55 var(--font-family);
@@ -1595,3 +1750,157 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   .error-page__subhead{font-size:18px;}
   .error-page__actions{gap:16px 20px;}
 }
+
+/* PATIENT GUIDES — /guides/. These pages are long-form reading rather than
+   landing pages, so the body sets its own rhythm instead of borrowing
+   .condition-section, which is built for short blocks separated by rules. */
+.guide-byline{
+  margin-top:16px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.guide-byline a{color:inherit;}
+
+/* The framing block that has to be read before the content. Deliberately not
+   red: the red callout underneath it is for symptoms that need A&E, and if
+   everything shouts, the part that matters stops being visible. */
+.guide-notice{
+  background:var(--color-cream);
+  border-left:4px solid var(--color-teal);
+  padding:24px 28px;
+  margin-bottom:20px;
+}
+.guide-notice p{
+  font:var(--type-body-loose);
+  color:var(--ink-b3);
+  margin:0 0 12px;
+}
+.guide-notice > *:last-child{margin-bottom:0;}
+.guide-notice__flag{
+  font:var(--type-eyebrow);
+  letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase;
+  color:var(--color-ink);
+}
+
+.guide-body{padding-top:32px;}
+.guide-body h2{
+  margin:40px 0 16px;
+  padding-top:32px;
+  border-top:1px solid var(--ink-1a);
+  font:var(--type-h2);
+  font-size:26px;
+}
+.guide-body > h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+.guide-body h3{
+  margin:28px 0 12px;
+  font:var(--type-h3);
+}
+.guide-body p{
+  font:var(--type-body-loose);
+  font-size:17px;
+  color:var(--ink-b3);
+  margin:0 0 18px;
+}
+.guide-body .condition-list{margin-bottom:20px;}
+/* 15px over a 656px column runs to ~82 characters a line, which is a long way
+   to track across for a 3,000-word read -- and half these guides are written
+   for people over 60. 17px brings it back to about 72. */
+.guide-body .condition-list li{font-size:17px;}
+.guide-body .condition-list li::before{top:10px;}
+.guide-body a{color:var(--color-teal);}
+.guide-body a:hover{color:var(--color-teal-hover);}
+
+.guide-legal{
+  margin-top:48px;
+  padding-top:28px;
+  border-top:1px solid var(--ink-1a);
+}
+.guide-legal h2{
+  margin:0 0 14px;
+  font:var(--type-h3);
+}
+.guide-legal p{
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+  margin:0 0 12px;
+}
+.guide-legal p:last-child{margin-bottom:0;}
+
+/* Hub listing. Text-only cards, because 21 of them with photos would be a
+   very heavy page and the titles are what people are scanning for. */
+.guide-group{padding-top:40px;}
+.guide-group h2{
+  margin:0 0 8px;
+  font:var(--type-h2);
+  font-size:24px;
+}
+.guide-group__note{
+  margin:0 0 20px;
+  font:var(--type-body-sm);
+  color:var(--ink-99);
+}
+.guide-related__cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.guide-card{
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-areas:
+    "title arrow"
+    "desc desc";
+  column-gap:8px;
+  row-gap:6px;
+  align-content:start;
+  background:#fff;
+  border:1px solid var(--ink-14);
+  padding:18px 16px 20px;
+  text-decoration:none;
+  color:inherit;
+  transition:border-color .15s ease;
+}
+.guide-card h3{
+  grid-area:title;
+  font:600 15px/1.3 var(--font-family);
+  margin:0;
+}
+.guide-card p{
+  grid-area:desc;
+  font:400 13px/1.5 var(--font-family);
+  color:var(--ink-99);
+  margin:0;
+}
+.guide-card .condition-card__arrow{grid-area:arrow;}
+a.guide-card:hover{border-color:var(--color-teal);}
+a.guide-card:hover h3{color:var(--color-teal);}
+a.guide-card:hover .condition-card__arrow{transform:translateX(3px);}
+.guide-related__all{margin:20px 0 0;}
+
+.condition-cta__lead{
+  max-width:520px;
+  margin:-8px auto 28px;
+  font:var(--type-body-loose);
+  color:var(--ink-99);
+}
+
+@media (max-width: 700px){
+  .guide-related__cards{grid-template-columns:1fr;}
+  .guide-notice{padding:20px;}
+  .guide-body h2{font-size:22px;}
+}
+
+/* People print these, or save them as a PDF, which is the job the emailed PDF
+   used to do. Everything interactive goes, and the disclaimer stays. */
+@media print{
+  .nav,.cookie-banner,.condition-cta,.condition-related,.site-footer{display:none !important;}
+  body{background:#fff;color:#000;}
+  .condition-page__hero,.condition-page__body{padding:0;max-width:none;}
+  .guide-body a{color:#000;text-decoration:underline;}
+  .guide-body a[href^="http"]::after{content:" (" attr(href) ")";font-size:11px;word-break:break-all;}
+  .guide-body h2,.guide-body h3{break-after:avoid;}
+  .guide-body p,.condition-list li{break-inside:avoid;}
+  .guide-notice,.condition-callout{border:1px solid #000;background:#fff;}
+}
+

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Send a guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<style>
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{
+    margin:0;
+    padding:0 0 120px;
+    background:var(--color-cream,#EFEADF);
+    color:var(--color-ink,#00262A);
+    font-family:var(--font-family,'Rubik',sans-serif);
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:28px 20px 0;}
+  h1{font-size:28px;line-height:1.2;margin:0 0 6px;}
+  .sub{margin:0 0 24px;font-size:15px;line-height:1.5;color:var(--ink-b3,rgba(0,38,42,.7));}
+  .fields{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 28px;}
+  .field{flex:1 1 220px;display:flex;flex-direction:column;gap:6px;}
+  .field span{font-size:13px;font-weight:700;letter-spacing:.02em;}
+  input{
+    font:inherit;font-size:16px;padding:12px 14px;border-radius:8px;
+    border:1px solid var(--color-tan,#e6dfd0);background:#fff;color:inherit;
+  }
+  input:focus-visible{outline:2px solid var(--color-teal,#00A6A6);outline-offset:1px;}
+  h2{
+    font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    margin:26px 0 8px;color:var(--ink-b3,rgba(0,38,42,.7));
+  }
+  .guide{
+    display:block;width:100%;text-align:left;font:inherit;font-size:16px;
+    padding:13px 14px;margin:0 0 6px;cursor:pointer;
+    background:#fff;color:inherit;border:1px solid var(--color-tan,#e6dfd0);
+    border-left:4px solid transparent;border-radius:8px;
+  }
+  .guide:focus-visible{outline:2px solid var(--color-teal,#00A6A6);outline-offset:1px;}
+  .guide[aria-pressed="true"]{
+    border-left-color:var(--color-teal,#00A6A6);
+    background:var(--cream-cc,#f7f4ee);
+    font-weight:700;
+  }
+  .bar{
+    position:fixed;left:0;right:0;bottom:0;
+    display:flex;gap:12px;align-items:center;
+    padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));
+    background:#fff;border-top:1px solid var(--color-tan,#e6dfd0);
+  }
+  .bar span{flex:1;font-size:14px;line-height:1.35;}
+  button.send{
+    font:inherit;font-weight:700;font-size:16px;padding:13px 22px;border:0;
+    border-radius:8px;background:var(--color-teal,#00A6A6);color:#fff;cursor:pointer;
+  }
+  button.send:disabled{opacity:.5;cursor:default;}
+  .msg{margin:20px 0 0;padding:13px 15px;border-radius:8px;font-size:15px;line-height:1.5;}
+  .msg.ok{background:#e4f2ef;color:#00524f;}
+  .msg.bad{background:#f8e4e0;color:var(--color-red,#C1432E);}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Send a guide</h1>
+  <p class="sub">Pick a guide, add their first name and email, press send. Nothing is saved anywhere and a copy comes to the clinic inbox.</p>
+
+  <div class="fields">
+    <label class="field"><span>First name</span>
+      <input id="name" type="text" maxlength="80" autocomplete="off" autocapitalize="words">
+    </label>
+    <label class="field"><span>Email</span>
+      <input id="email" type="email" maxlength="200" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </label>
+  </div>
+
+  <div id="list">Loading guides...</div>
+  <p id="msg" class="msg" role="status" hidden></p>
+</main>
+
+<div class="bar" id="bar" hidden>
+  <span id="chosen"></span>
+  <button class="send" id="send" type="button">Send guide</button>
+</div>
+
+<script type="module">
+const list = document.getElementById("list");
+const bar = document.getElementById("bar");
+const chosen = document.getElementById("chosen");
+const sendButton = document.getElementById("send");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const msg = document.getElementById("msg");
+
+let data;
+try {
+  data = (await import("./guides/guides.mjs")).default;
+} catch (err) {
+  list.textContent = "The guide list did not load. Check the browser console.";
+  throw err;
+}
+
+let selected = null;
+
+// A guide in two body areas is rendered twice on purpose, so it is found
+// wherever it is looked for. Selecting either copy marks both, so two
+// identical titles are never ambiguous.
+list.textContent = "";
+for (const group of data.groups) {
+  const heading = document.createElement("h2");
+  heading.textContent = group.heading;
+  list.append(heading);
+
+  for (const slug of group.slugs) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "guide";
+    button.dataset.slug = slug;
+    button.setAttribute("aria-pressed", "false");
+    button.textContent = data.guides[slug].title;
+    button.addEventListener("click", () => select(slug));
+    list.append(button);
+  }
+}
+
+function select(slug) {
+  selected = slug;
+  for (const button of list.querySelectorAll(".guide")) {
+    button.setAttribute("aria-pressed", String(button.dataset.slug === slug));
+  }
+  chosen.textContent = data.guides[slug].title;
+  bar.hidden = false;
+  refresh();
+}
+
+function refresh() {
+  const ready = Boolean(selected)
+    && nameInput.value.trim().length > 0
+    && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+  sendButton.disabled = !ready;
+}
+
+function say(text, kind) {
+  msg.textContent = text;
+  msg.className = "msg " + kind;
+  msg.hidden = false;
+}
+
+nameInput.addEventListener("input", refresh);
+emailInput.addEventListener("input", refresh);
+
+sendButton.addEventListener("click", async () => {
+  const name = nameInput.value.trim();
+  const title = data.guides[selected].title;
+
+  sendButton.disabled = true;
+  sendButton.textContent = "Sending...";
+  msg.hidden = true;
+
+  let payload;
+  try {
+    const response = await fetch("/api/send-guide", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: selected, name, email: emailInput.value.trim() })
+    });
+    payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const detail = Array.isArray(payload.missing) && payload.missing.length
+        ? " Missing: " + payload.missing.join(", ")
+        : "";
+      throw new Error((payload.error || "That did not send.") + detail);
+    }
+  } catch (error) {
+    // Nothing is cleared on failure. A mistyped address is corrected in
+    // one field rather than everything being typed again.
+    sendButton.textContent = "Send guide";
+    refresh();
+    say(error.message, "bad");
+    return;
+  }
+
+  nameInput.value = "";
+  emailInput.value = "";
+  selected = null;
+  for (const button of list.querySelectorAll(".guide")) {
+    button.setAttribute("aria-pressed", "false");
+  }
+  bar.hidden = true;
+  sendButton.textContent = "Send guide";
+  refresh();
+  say("Sent " + title + " to " + name + ".", "ok");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+refresh();
+</script>
+</body>
+</html>
