@@ -12,6 +12,9 @@
 //   RESEND_API_KEY   the key from resend.com
 //   FROM_EMAIL       e.g. Tom the Chiropractor <hello@send.tomthechiropractor.co.uk>
 //   CLINIC_EMAIL     where the answer goes, e.g. hello@tomthechiropractor.co.uk
+//
+// Optional:
+//   HEARD_ABOUT_CC   extra addresses copied on each answer, comma-separated
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
@@ -85,7 +88,8 @@ export default async function handler(req, res) {
       present: {
         RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
         FROM_EMAIL: Boolean(process.env.FROM_EMAIL),
-        CLINIC_EMAIL: Boolean(process.env.CLINIC_EMAIL)
+        CLINIC_EMAIL: Boolean(process.env.CLINIC_EMAIL),
+        HEARD_ABOUT_CC: Boolean(process.env.HEARD_ABOUT_CC)
       }
     });
   }
@@ -117,6 +121,8 @@ export default async function handler(req, res) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.FROM_EMAIL;
   const clinic = process.env.CLINIC_EMAIL;
+  const copies = String(process.env.HEARD_ABOUT_CC || "")
+    .split(",").map((a) => a.trim()).filter(Boolean);
 
   if (!apiKey || !from || !clinic) {
     const missing = [
@@ -134,6 +140,7 @@ export default async function handler(req, res) {
     await sendEmail(apiKey, {
       from,
       to: [clinic],
+      ...(copies.length ? { cc: copies } : {}),
       subject: `How they found you: ${text ? `${label} — ${text.slice(0, 60)}` : label}`,
       html: clinicEmail({ label, detail: text, when })
     });

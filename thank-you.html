@@ -184,6 +184,7 @@
   var botcheck = document.getElementById('heardBotcheck');
   var status = document.getElementById('heardStatus');
   var sending = false;
+  var counted = false;
 
   function stored() {
     try { return localStorage.getItem(STORE_KEY); } catch (err) { return null; }
@@ -209,10 +210,19 @@
     card.innerHTML = '<p class="heard__thanks">Thank you, that is really useful to know. See you at your appointment.</p>';
   }
 
+  // Counted in Analytics as well as emailed, so sources can be tallied
+  // without the inbox. Only the button tapped goes; typed text never does.
+  function count(source) {
+    if (counted || typeof gtag !== 'function') return;
+    counted = true;
+    gtag('event', 'heard_about', { found_via: source });
+  }
+
   function submit(source, detail) {
     if (sending) return;
     setBusy(true);
     status.textContent = '';
+    count(source);
 
     fetch('/api/heard-about', {
       method: 'POST',
