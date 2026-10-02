@@ -70,9 +70,27 @@
     "@type": "AggregateRating",
     "ratingValue": "5.0",
     "bestRating": "5",
-    "ratingCount": "12"
+    "ratingCount": "15"
   },
   "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Lewis Edwards"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I've only recently started seeing Tom due to very long term back pain, and I can already see he's a wealth of knowledge, I've seen chiropractors before and had a very different experience with them to Tom, it's not just an adjustment and go, he is eager to get to and help me finally seek out the root cause and hopefully fix it for good"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Mel"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I have been struggling with hip and leg pain on and off for many years and had been to my GP and a physio but neither could give me a clue on what was causing it or how to fix it. I was in so much pain I bit the bullet and searched for a local chiropractor in the hope of some relief. I got an appointment with Tom the same day, and he provided clear instructions on how to find his office and where to park etc. Within about 20 minutes of my appointment, Tom had pretty much worked out what the issue was, explained it to me in detail that I could understand, and started working on fixing it. After just the first session I felt I was walking on air! I've had 4 sessions with Tom now and each time he has been friendly, professional, very knowledgeable and even my 8 year old enjoys our visits. I would recommend Tom to anyone."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Emma Holloway"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Tom is amazing!! So knowledgeable and really listens to your problems. He has helped me with my shoulder and after only 3 sessions I can really see a big difference."
+    },
     {
       "@type": "Review",
       "author": {"@type": "Person", "name": "Carolyn Quinn"},
@@ -362,7 +380,7 @@
       <div class="reviews__head">
         <span class="review-card__stars" aria-hidden="true">★★★★★</span>
         <span class="reviews__head-rating">5.0 on Google</span>
-        <span class="reviews__head-count">from 12 reviews</span>
+        <span class="reviews__head-count">from 15 reviews</span>
       </div>
     </div>
 
@@ -370,6 +388,36 @@
       <button class="reviews__arrow reviews__arrow--prev" type="button" data-reviews-prev aria-label="Previous reviews">‹</button>
       <div class="reviews__viewport">
         <div class="reviews__track" id="reviewsCarousel">
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I've only recently started seeing Tom due to very long term back pain, and I can already see he's a wealth of knowledge, I've seen chiropractors before and had a very different experience with them to Tom, it's not just an adjustment and go, he is eager to get to and help me finally seek out the root cause and hopefully fix it for good</p>
+          </div>
+
+          <p class="review-card__author">Lewis Edwards</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">I have been struggling with hip and leg pain on and off for many years and had been to my GP and a physio but neither could give me a clue on what was causing it or how to fix it. I was in so much pain I bit the bullet and searched for a local chiropractor in the hope of some relief. I got an appointment with Tom the same day, and he provided clear instructions on how to find his office and where to park etc. Within about 20 minutes of my appointment, Tom had pretty much worked out what the issue was, explained it to me in detail that I could understand, and started working on fixing it. After just the first session I felt I was walking on air! I've had 4 sessions with Tom now and each time he has been friendly, professional, very knowledgeable and even my 8 year old enjoys our visits. I would recommend Tom to anyone.</p>
+          </div>
+
+          <p class="review-card__author">Mel</p>
+          <p class="review-card__date">Google review</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-card__body">
+          <p class="review-card__text">Tom is amazing!! So knowledgeable and really listens to your problems. He has helped me with my shoulder and after only 3 sessions I can really see a big difference.</p>
+          </div>
+
+          <p class="review-card__author">Emma Holloway</p>
+          <p class="review-card__date">Google review</p>
+        </article>
 
         <article class="review-card">
           <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -605,8 +653,8 @@
     <p class="eyebrow eyebrow--teal">Pricing</p>
     <h2>Straightforward pricing. No surprises.</h2>
     <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-card__label">Initial consultation</div>
+      <div class="price-card price-card--linked">
+        <div class="price-card__label"><a href="#book" class="price-card__cover" data-cta="home_pricing-card" aria-label="Book your initial consultation">Initial consultation</a></div>
         <div class="price-card__amount"><span class="price-card__amount--was">£70</span> £45</div>
         <p class="price-card__promo">First 50 patients only — quote code <button type="button" class="price-card__code copy-code" data-code="FIRST50" data-tooltip="Copy code" aria-label="Copy code FIRST50">FIRST50</button></p>
         <p class="price-card__desc">A 60-minute assessment to understand your problem, explain what's going on, and set out how many sessions I'd recommend and what treatment would be appropriate.</p>
@@ -623,6 +671,8 @@
         <p class="price-card__terms"><a href="block-booking-terms.html">Block booking terms →</a></p>
       </div>
     </div>
+
+    <p class="pricing__student"><a href="questions/chiropractor-cost-loughborough.html#student-rates" class="link-arrow link-arrow--light">Student and under-16 pricing →</a></p>
     <a href="#book" class="btn btn--yellow" data-cta="home_pricing">Book your appointment</a>
     <a href="questions/chiropractor-cost-loughborough.html" class="link-arrow link-arrow--light">Full pricing breakdown and what's included →</a>
   </section>
@@ -941,6 +991,8 @@
   </div>
   <div class="site-footer__links">
     <a href="about.html">About Tom</a>
+    <span>·</span>
+    <a href="guides/index.html">Patient guides</a>
     <span>·</span>
     <a href="privacy-policy.html">Privacy</a>
     <span>·</span>

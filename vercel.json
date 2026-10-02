@@ -1,5 +1,9 @@
 {
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/book-online", "destination": "/book-online.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/send-guide", "destination": "/send-guide.html" }
   ]
 }
