@@ -106,7 +106,7 @@ Free Ad Strength/CTR gains — these don't cost anything extra to add.
 **Callouts:**
 "5.0★ on Google (10 reviews)" · "GCC-registered chiropractor" ·
 "Fully insured" · "Appointments until 7pm" · "Park 30 seconds away" ·
-"FIRST50: £25 off your first visit"
+"LAST10: £25 off your first visit"
 
 **Call extension:** `07871 283457`. While you're there, check whether
 "Calls from ads" is set up as its own conversion action (Ads → Goals →
