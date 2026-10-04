@@ -139,12 +139,12 @@ function initStickyCta() {
   }, { threshold: 0.15 }).observe(target);
 }
 
-// Shows the FIRST50 offer bar unless this visitor already dismissed it.
+// Shows the LAST10 offer bar unless this visitor already dismissed it.
 function initPromoBar() {
   const bar = document.getElementById('promoBar');
   if (!bar) return;
 
-  const DISMISS_KEY = 'promoBarDismissed';
+  const DISMISS_KEY = 'promoBarDismissed_last10';
   let dismissed = false;
   try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
   if (dismissed) return;
@@ -160,7 +160,7 @@ function initPromoBar() {
   }
 }
 
-// Every ".copy-code" button (the promo bar's FIRST50 and the pricing card's)
+// Every ".copy-code" button (the promo bar's and the pricing card's)
 // copies its code to the clipboard so it's easy to paste into WhatsApp or
 // the booking widget's notes field.
 function initCopyCodeButtons() {
