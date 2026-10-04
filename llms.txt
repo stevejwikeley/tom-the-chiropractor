@@ -1,29 +1,60 @@
 # Tom the Chiropractor
 
-> Chiropractic clinic in central Loughborough, Leicestershire, UK. GCC-registered chiropractor (MChiro, Welsh Institute of Chiropractic), fully insured. Treats neck, back, shoulder, joint and muscle pain, headaches and sciatica. Same chiropractor at every appointment, with appointments until 7pm. Initial consultation £70 (60 minutes), follow-up treatment £45.
+> Chiropractic clinic in central Loughborough, Leicestershire, UK, run by one chiropractor, Tom Wikeley (MChiro, GCC-registered, fully insured). Treats back, neck, shoulder, joint and muscle pain, headaches that come from the neck, sciatica, and neck and back pain from desk work. The same chiropractor at every appointment, with appointments until 7pm on Mondays and Thursdays and on Saturday mornings. Initial consultation £70 (60 minutes), follow-up treatment £45.
 
 ## Key facts
 
-- Practitioner: Tom, MChiro, Welsh Institute of Chiropractic, registered with the General Chiropractic Council (GCC), fully insured
-- Location: The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2FJ
-- Booking: online booking widget at https://www.tomthechiropractor.co.uk/#book, or WhatsApp +44 7871 283457
+- Practitioner: Tom Wikeley, MChiro, Welsh Institute of Chiropractic, registered with the General Chiropractic Council (GCC No. 05268), fully insured. Registration can be checked at https://www.gcc-uk.org/find-a-chiropractor
+- Location: The Work Lounge, 1 Beehive Lane, Loughborough, Leicestershire, LE11 2FJ. Beehive Lane Car Park is opposite
+- Hours: Monday 9am-7pm, Thursday 9am-7pm, Saturday 9am-2pm. Appointments are booked in advance; no walk-ins
+- Booking: online booking widget at https://www.tomthechiropractor.co.uk/#book, or WhatsApp +44 7871 283457. No GP referral needed
 - Pricing: initial consultation £70 (60 minutes), follow-up treatment £45, block of 5 follow-ups £200 (£40/visit)
-- Hours: Thursday 9am-7pm. From October 2026: Monday 9am-7pm, Thursday 9am-7pm, Saturday 9am-2pm.
+- Student and under-16 rates: student follow-up £40, student block of 5 £180, follow-ups for under-16s £35
+- Areas served: Loughborough and nearby villages including Shepshed, Quorn, Barrow upon Soar, Sileby, Mountsorrel, Hathern, East Leake and Kegworth (10 to 20 minutes by car)
+- Google rating: 5.0 from 15 reviews
 
 ## Pages
 
-- [Home](https://www.tomthechiropractor.co.uk/): overview, how it works, pricing, chiropractor-vs-physio FAQ, booking and location
-- [About Tom](https://www.tomthechiropractor.co.uk/about.html): Tom's qualifications, GCC registration, where he's trained and practised, and his approach to treatment
+- [Home](https://www.tomthechiropractor.co.uk/): overview, how it works, pricing, FAQs, booking and location
+- [About Tom](https://www.tomthechiropractor.co.uk/about.html): qualifications, GCC registration, where he has trained and practised, and his approach to treatment
+- [Areas covered](https://www.tomthechiropractor.co.uk/areas-covered.html): driving times from nearby villages, directions, parking and opening hours
 - [Neck pain](https://www.tomthechiropractor.co.uk/conditions/neck-pain.html): causes of neck pain and how chiropractic treatment helps
 - [Back pain](https://www.tomthechiropractor.co.uk/conditions/back-pain.html): causes of back pain and how chiropractic treatment helps
+- [Pain from desk work](https://www.tomthechiropractor.co.uk/conditions/desk-related-pain.html): neck, upper back, lower back and headache pain that builds up over a working day at a desk
 - [Shoulder pain](https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html): causes of shoulder pain and how chiropractic treatment helps
 - [Joint and muscle pain](https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html): hip, knee, ankle and elbow pain, causes and treatment
 - [Headaches](https://www.tomthechiropractor.co.uk/conditions/headaches.html): cervicogenic (neck-related) headaches and how chiropractic treatment helps
 - [Sciatica](https://www.tomthechiropractor.co.uk/conditions/sciatica.html): causes of leg pain from the lower back and how chiropractic treatment helps
 - [Free desk check](https://www.tomthechiropractor.co.uk/desk-check.html): free two-minute self-assessment of desk and workstation setup, scored out of 10, based on the Rapid Office Strain Assessment, with an optional emailed results summary
-- [Block booking terms](https://www.tomthechiropractor.co.uk/block-booking-terms.html): terms for the block of 5 treatments
-- [How much does a chiropractor cost in Loughborough?](https://www.tomthechiropractor.co.uk/questions/chiropractor-cost-loughborough.html): pricing breakdown for first appointments, follow-ups and block bookings
+- [How much does a chiropractor cost in Loughborough?](https://www.tomthechiropractor.co.uk/questions/chiropractor-cost-loughborough.html): pricing for first appointments, follow-ups, block bookings, student and under-16 rates
 - [Chiropractor or physiotherapist?](https://www.tomthechiropractor.co.uk/questions/chiropractor-vs-physiotherapist.html): how the two professions differ and how Tom decides what's appropriate
 - [Is chiropractic treatment safe?](https://www.tomthechiropractor.co.uk/questions/is-chiropractic-safe.html): GCC regulation, common side effects, and who should see a GP first
 - [What happens at your first appointment](https://www.tomthechiropractor.co.uk/questions/first-appointment.html): a step-by-step walkthrough of a first visit
 - [How many appointments will I need?](https://www.tomthechiropractor.co.uk/questions/how-many-appointments.html): what affects recovery time, without promising a fixed number
+- [Block booking terms](https://www.tomthechiropractor.co.uk/block-booking-terms.html): terms for the block of 5 treatments
+
+## Patient guides
+
+Long-form, plain-English guides written and reviewed by Tom. Index: https://www.tomthechiropractor.co.uk/guides/
+
+- [Back and Leg Pain: When Fast Recovery Slows Down](https://www.tomthechiropractor.co.uk/guides/back-and-leg-pain-when-recovery-slows.html)
+- [Back Pain That Travels Down One Leg](https://www.tomthechiropractor.co.uk/guides/back-and-leg-pain.html)
+- [Back Pain and Sciatica Over 60](https://www.tomthechiropractor.co.uk/guides/back-pain-and-sciatica-over-60.html)
+- [Back Pain and Sciatica](https://www.tomthechiropractor.co.uk/guides/back-pain-and-sciatica.html)
+- [Back Pain When You Work With Your Body](https://www.tomthechiropractor.co.uk/guides/back-pain-manual-work.html)
+- [Headaches That Come From the Neck](https://www.tomthechiropractor.co.uk/guides/headaches-from-the-neck.html)
+- [When Hip Arthritis Starts Costing You Your Back](https://www.tomthechiropractor.co.uk/guides/hip-arthritis-and-low-back-pain.html)
+- [Low Back Pain Over 60](https://www.tomthechiropractor.co.uk/guides/low-back-pain-over-60.html)
+- [Low Back Pain in Your 30s, 40s and 50s](https://www.tomthechiropractor.co.uk/guides/low-back-pain.html)
+- [Neck and Back Pain at the Same Time](https://www.tomthechiropractor.co.uk/guides/neck-and-back-pain-together.html)
+- [Neck and Back Pain When You Have Diabetes](https://www.tomthechiropractor.co.uk/guides/neck-and-back-pain-with-diabetes.html)
+- [Mechanical Neck and Upper Back Pain](https://www.tomthechiropractor.co.uk/guides/neck-and-upper-back-pain.html)
+- [Neck Disc Pain and Arm Symptoms](https://www.tomthechiropractor.co.uk/guides/neck-disc-pain-and-arm-symptoms.html)
+- [Your Neck After a Disc Flare-Up Has Settled](https://www.tomthechiropractor.co.uk/guides/neck-pain-after-a-disc-settles.html)
+- [Neck Pain Over 60](https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html)
+- [Neck Pain in Your 30s, 40s and 50s](https://www.tomthechiropractor.co.uk/guides/neck-pain.html)
+- [Shoulder Pain Over 60](https://www.tomthechiropractor.co.uk/guides/shoulder-pain-over-60.html)
+- [Shoulder Pain in Your 30s, 40s and 50s](https://www.tomthechiropractor.co.uk/guides/shoulder-pain.html)
+- [Tennis Elbow](https://www.tomthechiropractor.co.uk/guides/tennis-elbow.html)
+- [Upper Back Pain Over 60](https://www.tomthechiropractor.co.uk/guides/upper-back-pain-over-60.html)
+- [Upper Back Pain in Your 30s, 40s and 50s](https://www.tomthechiropractor.co.uk/guides/upper-back-pain.html)

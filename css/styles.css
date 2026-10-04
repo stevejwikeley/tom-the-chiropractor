@@ -921,6 +921,9 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   margin-bottom:6px;
 }
 .condition-stat__value{font:700 20px/1 var(--font-family);}
+.condition-stat__value--small{font:600 15px/1.45 var(--font-family);}
+.condition-review{margin:20px 0;}
+.condition-local__more{margin-top:12px;}
 
 .condition-related{
   max-width:720px;
@@ -1238,6 +1241,13 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   font:var(--type-body-sm);
   color:var(--cream-b3);
 }
+.faq-facts{
+  margin:0;
+  padding-left:18px;
+  font:var(--type-body-sm);
+  color:var(--cream-b3);
+}
+.faq-facts li + li{margin-top:6px;}
 /* BOOK ONLINE (WIDGET) */
 .book{padding:var(--space-section-y) var(--space-section-x);}
 .book h2{
