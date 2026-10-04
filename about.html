@@ -69,9 +69,7 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -123,7 +121,7 @@
   <div class="condition-page__body">
 
     <div class="condition-section about-intro">
-      <img class="about-intro__photo" src="images/headshots/1Z5A8513-yellow.jpg" alt="Tom Wikeley, chiropractor in Loughborough" width="1023" height="1279" loading="lazy">
+      <img class="about-intro__photo" src="images/headshots/1Z5A8513-yellow.jpg" srcset="images/headshots/1Z5A8513-yellow-480w.jpg 480w, images/headshots/1Z5A8513-yellow-800w.jpg 800w, images/headshots/1Z5A8513-yellow.jpg 1023w" sizes="(max-width: 700px) 31vw, (max-width: 1000px) 160px, 160px" alt="Tom Wikeley, chiropractor in Loughborough" width="1023" height="1279" loading="lazy">
       <div class="about-intro__text">
         <h2>Hi, I'm Tom.</h2>
         <p>I'm the chiropractor behind Tom the Chiropractor, based in central Loughborough. I see every patient myself, from your first appointment through to your last — I've learned it's just as important to understand the person as the pain, so I focus on what may be contributing to your pain rather than only the symptom in front of me.</p>

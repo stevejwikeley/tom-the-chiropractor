@@ -59,9 +59,7 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -147,9 +145,9 @@
       <h2>What treatment looks like</h2>
       <div class="carousel" data-carousel>
         <div class="carousel__frame">
-          <div class="carousel__slide is-active"><img src="../images/action/neck/neck-muscle-check.jpg" alt="Tom feeling along the muscles at the base of a patient's neck" width="1066" height="1600" loading="lazy"></div>
-          <div class="carousel__slide"><img src="../images/action/neck/neck-treatment-lying-down.jpg" alt="Tom treating a patient's neck as they lie on their back" width="1066" height="1600" loading="lazy"></div>
-          <div class="carousel__slide"><img src="../images/action/room/treatment-room-posture-check.jpg" alt="Tom checking a patient's neck and posture" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide is-active"><img src="../images/action/neck/neck-muscle-check.jpg" srcset="../images/action/neck/neck-muscle-check-480w.jpg 480w, ../images/action/neck/neck-muscle-check-800w.jpg 800w, ../images/action/neck/neck-muscle-check.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom feeling along the muscles at the base of a patient's neck" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide"><img src="../images/action/neck/neck-treatment-lying-down.jpg" srcset="../images/action/neck/neck-treatment-lying-down-480w.jpg 480w, ../images/action/neck/neck-treatment-lying-down-800w.jpg 800w, ../images/action/neck/neck-treatment-lying-down.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom treating a patient's neck as they lie on their back" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide"><img src="../images/action/room/treatment-room-posture-check.jpg" srcset="../images/action/room/treatment-room-posture-check-480w.jpg 480w, ../images/action/room/treatment-room-posture-check-800w.jpg 800w, ../images/action/room/treatment-room-posture-check.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom checking a patient's neck and posture" width="1066" height="1600" loading="lazy"></div>
           <button class="carousel__btn carousel__btn--prev" type="button" data-prev aria-label="Previous photo">‹</button>
           <button class="carousel__btn carousel__btn--next" type="button" data-next aria-label="Next photo">›</button>
         </div>
@@ -269,7 +267,7 @@
     <h2>Related conditions</h2>
     <div class="condition-related__cards">
       <a href="neck-pain.html" class="condition-card">
-        <img src="../images/action/neck/neck-adjustment.jpg" alt="Tom adjusting a patient's neck" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/neck/neck-adjustment.jpg" srcset="../images/action/neck/neck-adjustment-480w.jpg 480w, ../images/action/neck/neck-adjustment-800w.jpg 800w, ../images/action/neck/neck-adjustment.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom adjusting a patient's neck" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>Neck pain</h3>
           <p>Stiffness or pain that limits how far you can turn or tilt your head.</p>
@@ -277,7 +275,7 @@
         </div>
       </a>
       <a href="shoulder-pain.html" class="condition-card">
-        <img src="../images/action/shoulder/shoulder-posture-check.jpg" alt="Tom with his hands on a patient's shoulders, checking how they sit" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/shoulder/shoulder-posture-check.jpg" srcset="../images/action/shoulder/shoulder-posture-check-480w.jpg 480w, ../images/action/shoulder/shoulder-posture-check-800w.jpg 800w, ../images/action/shoulder/shoulder-posture-check.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom with his hands on a patient's shoulders, checking how they sit" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>Shoulder pain</h3>
           <p>Restricted movement, or pain that flares when reaching or lifting.</p>

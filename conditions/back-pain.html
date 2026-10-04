@@ -59,9 +59,7 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -151,9 +149,9 @@
       <h2>What treatment looks like</h2>
       <div class="carousel" data-carousel>
         <div class="carousel__frame">
-          <div class="carousel__slide is-active"><img src="../images/action/back/mid-back-both-hands.jpg" alt="Tom with both hands on a patient's mid-back as they lie face down" width="1066" height="1600" loading="lazy"></div>
-          <div class="carousel__slide"><img src="../images/action/back/upper-back-adjustment.jpg" alt="Tom adjusting a patient's upper back between the shoulder blades" width="1066" height="1600" loading="lazy"></div>
-          <div class="carousel__slide"><img src="../images/action/back/mid-back-treatment.jpg" alt="Tom working on a patient's mid-back as they lie face down" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide is-active"><img src="../images/action/back/mid-back-both-hands.jpg" srcset="../images/action/back/mid-back-both-hands-480w.jpg 480w, ../images/action/back/mid-back-both-hands-800w.jpg 800w, ../images/action/back/mid-back-both-hands.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom with both hands on a patient's mid-back as they lie face down" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide"><img src="../images/action/back/upper-back-adjustment.jpg" srcset="../images/action/back/upper-back-adjustment-480w.jpg 480w, ../images/action/back/upper-back-adjustment-800w.jpg 800w, ../images/action/back/upper-back-adjustment.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom adjusting a patient's upper back between the shoulder blades" width="1066" height="1600" loading="lazy"></div>
+          <div class="carousel__slide"><img src="../images/action/back/mid-back-treatment.jpg" srcset="../images/action/back/mid-back-treatment-480w.jpg 480w, ../images/action/back/mid-back-treatment-800w.jpg 800w, ../images/action/back/mid-back-treatment.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 654px, 654px" alt="Tom working on a patient's mid-back as they lie face down" width="1066" height="1600" loading="lazy"></div>
           <button class="carousel__btn carousel__btn--prev" type="button" data-prev aria-label="Previous photo">‹</button>
           <button class="carousel__btn carousel__btn--next" type="button" data-next aria-label="Next photo">›</button>
         </div>
@@ -277,7 +275,7 @@
     <h2>Related conditions</h2>
     <div class="condition-related__cards">
       <a href="sciatica.html" class="condition-card">
-        <img src="../images/action/back/lower-back-adjustment.jpg" alt="Tom adjusting a patient's lower back" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/back/lower-back-adjustment.jpg" srcset="../images/action/back/lower-back-adjustment-480w.jpg 480w, ../images/action/back/lower-back-adjustment-800w.jpg 800w, ../images/action/back/lower-back-adjustment.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom adjusting a patient's lower back" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>Sciatica</h3>
           <p>Sharp, shooting pain that travels from your lower back down your leg.</p>
@@ -285,7 +283,7 @@
         </div>
       </a>
       <a href="joint-and-muscle-pain.html" class="condition-card">
-        <img src="../images/action/nerve/arm-reflex-test-close-up.jpg" alt="A close-up of Tom testing a patient's arm reflexes" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/nerve/arm-reflex-test-close-up.jpg" srcset="../images/action/nerve/arm-reflex-test-close-up-480w.jpg 480w, ../images/action/nerve/arm-reflex-test-close-up-800w.jpg 800w, ../images/action/nerve/arm-reflex-test-close-up.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="A close-up of Tom testing a patient's arm reflexes" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>Joint and muscle pain</h3>
           <p>Aches and stiffness in the joints and muscles that slow you down.</p>
