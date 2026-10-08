@@ -69,15 +69,13 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <div id="cookieBanner" class="cookie-banner" hidden>
-  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="cookie-policy.html">Learn more</a>.</p>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="cookie-policy.html">Read the cookie policy</a>.</p>
   <div class="cookie-banner__actions">
     <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
     <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
@@ -123,7 +121,7 @@
   <div class="condition-page__body">
 
     <div class="condition-section about-intro">
-      <img class="about-intro__photo" src="images/headshots/1Z5A8513-yellow.jpg" alt="Tom Wikeley, chiropractor in Loughborough" width="1023" height="1279" loading="lazy">
+      <img class="about-intro__photo" src="images/headshots/1Z5A8513-yellow.jpg" srcset="images/headshots/1Z5A8513-yellow-480w.jpg 480w, images/headshots/1Z5A8513-yellow-800w.jpg 800w, images/headshots/1Z5A8513-yellow.jpg 1023w" sizes="(max-width: 700px) 31vw, (max-width: 1000px) 160px, 160px" alt="Tom Wikeley, chiropractor in Loughborough" width="1023" height="1279" loading="lazy">
       <div class="about-intro__text">
         <h2>Hi, I'm Tom.</h2>
         <p>I'm the chiropractor behind Tom the Chiropractor, based in central Loughborough. I see every patient myself, from your first appointment through to your last — I've learned it's just as important to understand the person as the pain, so I focus on what may be contributing to your pain rather than only the symptom in front of me.</p>
@@ -132,7 +130,7 @@
 
     <div class="condition-section">
       <h2>Qualifications and regulation</h2>
-      <p>I'm MChiro qualified, trained at the Welsh Institute of Chiropractic, and registered with the General Chiropractic Council (GCC No. 05268). I'm fully insured.</p>
+      <p>I'm MChiro qualified, trained at the Welsh Institute of Chiropractic, and registered with the General Chiropractic Council (GCC No. 05268). I'm fully insured. You can check my registration on the <a href="https://www.gcc-uk.org/find-a-chiropractor" target="_blank" rel="noopener">GCC register</a> by searching for that number.</p>
       <p>Chiropractors in the UK must be registered with the GCC to practise — the same way doctors are registered with the GMC. That means a recognised standard of training, an enforceable code of conduct, and a route for complaints if something goes wrong. You can check any chiropractor's registration on the GCC's public register.</p>
     </div>
 
@@ -196,6 +194,8 @@
   </div>
   <div class="site-footer__links">
     <a href="about.html">About Tom</a>
+    <span>·</span>
+    <a href="areas-covered.html">Areas covered</a>
     <span>·</span>
     <a href="guides/index.html">Patient guides</a>
     <span>·</span>

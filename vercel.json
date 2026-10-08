@@ -1,9 +1,70 @@
 {
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/book-online", "destination": "/book-online.html", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/book-online",
+      "destination": "/book-online.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/back-pain-v2.html",
+      "destination": "/conditions/back-pain.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/headaches-v2.html",
+      "destination": "/conditions/headaches.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/joint-and-muscle-pain-v2.html",
+      "destination": "/conditions/joint-and-muscle-pain.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/neck-pain-v2.html",
+      "destination": "/conditions/neck-pain.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/sciatica-v2.html",
+      "destination": "/conditions/sciatica.html",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/shoulder-pain-v2.html",
+      "destination": "/conditions/shoulder-pain.html",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/send-guide", "destination": "/send-guide.html" }
+    {
+      "source": "/send-guide",
+      "destination": "/send-guide.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }

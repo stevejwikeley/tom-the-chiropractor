@@ -83,15 +83,13 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <div id="cookieBanner" class="cookie-banner" hidden>
-  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Learn more</a>.</p>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Read the cookie policy</a>.</p>
   <div class="cookie-banner__actions">
     <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
     <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
@@ -187,6 +185,31 @@
       </ul>
     </div>
 
+    <div class="condition-section">
+      <h2>Seeing me in Loughborough</h2>
+      <article class="review-card condition-review">
+        <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-card__text">Nicest guy, super professional and helps you feel comfortable. I was nervous about my disability affecting things but Tom talks me through how he changes what he's doing and offers me advice on keeping comfortable long term.</p>
+        <p class="review-card__author">callan sl</p>
+        <p class="review-card__date">Google review</p>
+      </article>
+      <div class="condition-stats">
+        <div class="condition-stat">
+          <div class="condition-stat__label">Where</div>
+          <div class="condition-stat__value condition-stat__value--small">The Work Lounge, Beehive Lane<br>Car park opposite</div>
+        </div>
+        <div class="condition-stat">
+          <div class="condition-stat__label">When</div>
+          <div class="condition-stat__value condition-stat__value--small">Mon and Thu 9am – 7pm<br>Sat 9am – 2pm</div>
+        </div>
+        <div class="condition-stat">
+          <div class="condition-stat__label">Prices</div>
+          <div class="condition-stat__value condition-stat__value--small">First visit £70<br>Follow-ups £45</div>
+        </div>
+      </div>
+      <p>Book online in under a minute, and you'll see me at every appointment. Coming from a village nearby? <a href="../areas-covered.html">Driving times and directions</a>.</p>
+    </div>
+
   </div>
 
   <div class="condition-cta" id="book">
@@ -215,7 +238,7 @@
     <h2>More questions</h2>
     <div class="condition-related__cards">
       <a href="chiropractor-vs-physiotherapist.html" class="condition-card">
-        <img src="../images/action/nerve/arm-reflex-test-close-up.jpg" alt="A close-up of Tom testing a patient's arm reflexes" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/nerve/arm-reflex-test-close-up.jpg" srcset="../images/action/nerve/arm-reflex-test-close-up-480w.jpg 480w, ../images/action/nerve/arm-reflex-test-close-up-800w.jpg 800w, ../images/action/nerve/arm-reflex-test-close-up.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="A close-up of Tom testing a patient's arm reflexes" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>Chiropractor or physio?</h3>
           <p>How the two professions differ, and how I decide.</p>
@@ -223,7 +246,7 @@
         </div>
       </a>
       <a href="first-appointment.html" class="condition-card">
-        <img src="../images/action/room/treatment-room-posture-check.jpg" alt="Tom checking a patient's posture in the treatment room" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/room/treatment-room-posture-check.jpg" srcset="../images/action/room/treatment-room-posture-check-480w.jpg 480w, ../images/action/room/treatment-room-posture-check-800w.jpg 800w, ../images/action/room/treatment-room-posture-check.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom checking a patient's posture in the treatment room" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>What happens at your first appointment</h3>
           <p>What to expect, step by step, before you book.</p>
@@ -242,6 +265,8 @@
   </div>
   <div class="site-footer__links">
     <a href="../about.html">About Tom</a>
+    <span>·</span>
+    <a href="../areas-covered.html">Areas covered</a>
     <span>·</span>
     <a href="../guides/index.html">Patient guides</a>
     <span>·</span>

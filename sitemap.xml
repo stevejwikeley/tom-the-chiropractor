@@ -2,85 +2,103 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.tomthechiropractor.co.uk/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/desk-check.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomthechiropractor.co.uk/conditions/desk-related-pain.html</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomthechiropractor.co.uk/areas-covered.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/neck-pain.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/back-pain.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/shoulder-pain.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/joint-and-muscle-pain.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/headaches.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/conditions/sciatica.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/questions/chiropractor-cost-loughborough.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/questions/chiropractor-vs-physiotherapist.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomthechiropractor.co.uk/questions/chiropractor-vs-osteopath.html</loc>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/questions/is-chiropractic-safe.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/questions/first-appointment.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/questions/how-many-appointments.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/about.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -92,127 +110,127 @@
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/low-back-pain.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/low-back-pain-over-60.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/back-pain-and-sciatica.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/back-pain-and-sciatica-over-60.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/back-and-leg-pain.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/back-and-leg-pain-when-recovery-slows.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/back-pain-manual-work.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/hip-arthritis-and-low-back-pain.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-pain.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-pain-over-60.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-disc-pain-and-arm-symptoms.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-pain-after-a-disc-settles.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/headaches-from-the-neck.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-and-upper-back-pain.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-and-back-pain-together.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/upper-back-pain.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/upper-back-pain-over-60.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/shoulder-pain.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/shoulder-pain-over-60.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/tennis-elbow.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-and-back-pain-with-diabetes.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

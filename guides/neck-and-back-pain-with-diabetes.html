@@ -70,15 +70,13 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <div id="cookieBanner" class="cookie-banner" hidden>
-  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Learn more</a>.</p>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Read the cookie policy</a>.</p>
   <div class="cookie-banner__actions">
     <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
     <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
@@ -362,7 +360,7 @@
 
   <div class="condition-cta" id="book">
     <h2>Book an appointment</h2>
-    <p class="condition-cta__lead">Reading about pain is no substitute for someone examining you. If you are in Loughborough and want that done properly, book in.</p>
+    <p class="condition-cta__lead">Reading about pain is no substitute for someone examining you. If you are in Loughborough and want that done properly, book in. I'm in clinic on Monday and Thursday until 7pm and Saturday mornings. You can also read <a href="../conditions/back-pain.html">how I treat back pain</a>.</p>
     <div class="book__widget">
       <div id="ph_online_bookings_widget"></div>
       <script>
@@ -403,6 +401,8 @@
   </div>
   <div class="site-footer__links">
     <a href="../about.html">About Tom</a>
+    <span>·</span>
+    <a href="../areas-covered.html">Areas covered</a>
     <span>·</span>
     <a href="index.html">Patient guides</a>
     <span>·</span>

@@ -83,15 +83,13 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <div id="cookieBanner" class="cookie-banner" hidden>
-  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Learn more</a>.</p>
+  <p>This site uses cookies for analytics and advertising, to understand how the site is used and whether adverts lead to bookings. You can accept or decline non-essential cookies. <a href="../cookie-policy.html">Read the cookie policy</a>.</p>
   <div class="cookie-banner__actions">
     <button type="button" id="cookieDecline" class="btn btn--yellow btn--small">Decline</button>
     <button type="button" id="cookieAccept" class="btn btn--dark btn--small">Accept</button>
@@ -175,6 +173,31 @@
       <p>Wear something you can move comfortably in. I may need to see or work on the area I'm treating, but you'll never be asked to undress beyond what's necessary, and you're welcome to bring someone with you. If you've had any relevant scans or letters from other clinicians, bring those along too.</p>
     </div>
 
+    <div class="condition-section">
+      <h2>Seeing me in Loughborough</h2>
+      <article class="review-card condition-review">
+        <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-card__text">He provided clear instructions on how to find his office and where to park etc. Within about 20 minutes of my appointment, Tom had pretty much worked out what the issue was, explained it to me in detail that I could understand</p>
+        <p class="review-card__author">Mel</p>
+        <p class="review-card__date">Google review</p>
+      </article>
+      <div class="condition-stats">
+        <div class="condition-stat">
+          <div class="condition-stat__label">Where</div>
+          <div class="condition-stat__value condition-stat__value--small">The Work Lounge, Beehive Lane<br>Car park opposite</div>
+        </div>
+        <div class="condition-stat">
+          <div class="condition-stat__label">When</div>
+          <div class="condition-stat__value condition-stat__value--small">Mon and Thu 9am – 7pm<br>Sat 9am – 2pm</div>
+        </div>
+        <div class="condition-stat">
+          <div class="condition-stat__label">Prices</div>
+          <div class="condition-stat__value condition-stat__value--small">First visit £70<br>Follow-ups £45</div>
+        </div>
+      </div>
+      <p>Book online in under a minute, and you'll see me at every appointment. Coming from a village nearby? <a href="../areas-covered.html">Driving times and directions</a>.</p>
+    </div>
+
   </div>
 
   <div class="condition-cta" id="book">
@@ -203,7 +226,7 @@
     <h2>More questions</h2>
     <div class="condition-related__cards">
       <a href="how-many-appointments.html" class="condition-card">
-        <img src="../images/action/back/back-adjustment-with-instrument.jpg" alt="Tom using an adjusting instrument on a patient's back" width="1600" height="1066" loading="lazy">
+        <img src="../images/action/back/back-adjustment-with-instrument.jpg" srcset="../images/action/back/back-adjustment-with-instrument-480w.jpg 480w, ../images/action/back/back-adjustment-with-instrument-800w.jpg 800w, ../images/action/back/back-adjustment-with-instrument.jpg 1600w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom using an adjusting instrument on a patient's back" width="1600" height="1066" loading="lazy">
         <div class="condition-card__body">
           <h3>How many appointments will I need?</h3>
           <p>An honest answer, without a fixed number attached.</p>
@@ -211,7 +234,7 @@
         </div>
       </a>
       <a href="chiropractor-cost-loughborough.html" class="condition-card">
-        <img src="../images/action/neck/neck-and-shoulder-massager.jpg" alt="Tom using a percussion massager on a patient's neck and shoulders" width="1066" height="1600" loading="lazy">
+        <img src="../images/action/neck/neck-and-shoulder-massager.jpg" srcset="../images/action/neck/neck-and-shoulder-massager-480w.jpg 480w, ../images/action/neck/neck-and-shoulder-massager-800w.jpg 800w, ../images/action/neck/neck-and-shoulder-massager.jpg 1066w" sizes="(max-width: 700px) 89vw, (max-width: 1000px) 318px, 318px" alt="Tom using a percussion massager on a patient's neck and shoulders" width="1066" height="1600" loading="lazy">
         <div class="condition-card__body">
           <h3>How much does it cost?</h3>
           <p>Full pricing for first visits, follow-ups and blocks.</p>
@@ -230,6 +253,8 @@
   </div>
   <div class="site-footer__links">
     <a href="../about.html">About Tom</a>
+    <span>·</span>
+    <a href="../areas-covered.html">Areas covered</a>
     <span>·</span>
     <a href="../guides/index.html">Patient guides</a>
     <span>·</span>
