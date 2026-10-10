@@ -104,7 +104,7 @@
   </url>
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -231,6 +231,18 @@
   <url>
     <loc>https://www.tomthechiropractor.co.uk/guides/neck-and-back-pain-with-diabetes.html</loc>
     <lastmod>2026-10-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomthechiropractor.co.uk/guides/ankle-sprain-grade-1.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tomthechiropractor.co.uk/guides/ankle-sprain-grade-2.html</loc>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

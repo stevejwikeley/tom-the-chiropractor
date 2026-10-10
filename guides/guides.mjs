@@ -5,7 +5,7 @@
 // called or whether it exists.
 //
 // A guide that belongs to two body areas is defined once and listed in
-// both groups. Six of them are, which is why there are 21 guides but 27
+// both groups. Six of them are, which is why there are 23 guides but 29
 // entries in the lists.
 
 export default {
@@ -30,7 +30,9 @@ export default {
     "upper-back-pain-over-60": { "title": "Upper Back Pain Over 60" },
     "shoulder-pain": { "title": "Shoulder Pain in Your 30s, 40s and 50s" },
     "shoulder-pain-over-60": { "title": "Shoulder Pain Over 60" },
-    "tennis-elbow": { "title": "Tennis Elbow" }
+    "tennis-elbow": { "title": "Tennis Elbow" },
+    "ankle-sprain-grade-1": { "title": "Ankle Sprain, Grade 1" },
+    "ankle-sprain-grade-2": { "title": "Ankle Sprain, Grade 2" }
   },
   groups: [
     {
@@ -88,6 +90,13 @@ export default {
       "heading": "Headaches",
       "slugs": [
         "headaches-from-the-neck"
+      ]
+    },
+    {
+      "heading": "Ankle",
+      "slugs": [
+        "ankle-sprain-grade-1",
+        "ankle-sprain-grade-2"
       ]
     }
   ]
