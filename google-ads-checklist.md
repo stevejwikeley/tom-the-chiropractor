@@ -104,7 +104,7 @@ Free Ad Strength/CTR gains — these don't cost anything extra to add.
 - "Reviews" → `https://www.tomthechiropractor.co.uk/#reviews`
 
 **Callouts:**
-"5.0★ on Google (10 reviews)" · "GCC-registered chiropractor" ·
+"5.0★ on Google (16 reviews)" · "GCC-registered chiropractor" ·
 "Fully insured" · "Appointments until 7pm" · "Park 30 seconds away" ·
 "LAST10: £25 off your first visit"
 
