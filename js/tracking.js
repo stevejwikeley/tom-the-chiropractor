@@ -11,6 +11,11 @@
  * enquiry and booking signals into the same bidding goal can corrupt
  * optimisation once the campaign moves to Maximise conversions.
  *
+ * These send_to conversions only reach Ads because cookie-consent.js runs
+ * gtag('config', 'AW-18395409899') on every page. Before that was added,
+ * gtag silently dropped them (the Ads destination was only ever loaded by
+ * GTM, on the thank-you page), so none of these had ever been recorded.
+ *
  * Loaded sitewide, after cookie-consent.js. Idempotent; safe to include twice.
  */
 (function () {

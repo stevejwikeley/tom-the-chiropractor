@@ -4,36 +4,43 @@
 <script src="js/cookie-consent.js"></script>
 <script src="js/tracking.js"></script>
 <!--
-  Google Ads conversion — "Book completed" (account 642-795-0400).
-  Must run after cookie-consent.js so gtag exists and consent state is set;
-  gtag queues the event correctly while consent is pending, so no extra gating
-  is needed here.
+  Booking tracking. PracticeHub redirects here after a booking with
+  ?t=<booking timestamp>&online_fee=<price>&... in the URL.
 
-  No `send_to` here on purpose. GTM container GTM-KQFB5WPB already has this
-  exact conversion built in (AW-18395409899/RbBfCIi6kescEOvbzsNE, GBP) wired
-  to fire on the reserved gtag "conversion" event — adding an explicit
-  send_to makes the directly-loaded gtag.js (G-DLL6GMS3S4) *also* route the
-  same ping independently, double-counting every booking. Confirmed via
-  verify/verify-tracking.mjs: with send_to, 2 pings per load; without it, 1.
+  The Google Ads "Book completed" conversion itself (AW-18395409899/
+  RbBfCIi6kescEOvbzsNE) is NOT fired from this file. GTM container
+  GTM-KQFB5WPB fires it on any page view whose path is /thank-you.html, with
+  `t` as the order ID (so Ads dedupes refreshes). Don't add a gtag
+  conversion with send_to here as well: it would be a second ping for the
+  same booking. And don't send a bare gtag('event', 'conversion', ...)
+  either: cookie-consent.js configures the Ads destination on every page, so
+  an event named "conversion" without send_to gets routed to Ads too.
+
+  This block only sends the GA4 event. It is skipped when there's no `t`
+  (someone revisiting or bookmarking the page, not a new booking).
 -->
 <script>
   (function () {
     if (typeof gtag !== 'function') {
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-        console.error('[tracking] gtag missing on thank-you page — conversion not sent');
+        console.error('[tracking] gtag missing on thank-you page — booking event not sent');
       }
       return;
     }
 
-    gtag('event', 'conversion', {
-      value: 70.0,
-      currency: 'GBP'
-    });
+    var params = new URLSearchParams(location.search);
+    var bookingId = params.get('t');
+    if (!bookingId) return;
+    var fee = parseFloat(params.get('online_fee'));
 
-    gtag('event', 'booking_completed', {
-      value: 70.0,
+    var detail = {
+      transaction_id: bookingId,
+      value: isFinite(fee) ? fee : 70.0,
       currency: 'GBP'
-    });
+    };
+    if (params.get('appt_type')) detail.appointment_type = params.get('appt_type');
+
+    gtag('event', 'booking_completed', detail);
   })();
 
   // ChatGPT/OpenAI Ads conversion — "Complete a booking".

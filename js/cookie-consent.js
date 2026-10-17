@@ -16,13 +16,15 @@
  * The consent defaults below MUST run before any Google tag loads, which is
  * why this file is a plain synchronous <script> in the <head> of every page.
  * Don't make it async or defer it, and don't let anything else on the page
- * load Google Tag Manager first -- see the note about the PracticeHub booking
- * widget's gtmContainerId option in index.html.
+ * load Google Tag Manager first. In particular, never set gtmContainerId in
+ * the PracticeHub widget's window.BookingTrackerConfig: its embed script
+ * would then load GTM itself.
  */
 (function () {
   var CONSENT_KEY = 'cookieConsent';
   var GTM_ID = 'GTM-KQFB5WPB';
   var GA_ID = 'G-DLL6GMS3S4';
+  var AW_ID = 'AW-18395409899';
   var OAIQ_PIXEL_ID = 'QeTofy82ewKqgbGSfjGbwz'; // ChatGPT/OpenAI Ads conversion pixel
 
   window.dataLayer = window.dataLayer || [];
@@ -77,6 +79,12 @@
 
     gtag('js', new Date());
     gtag('config', GA_ID);
+    // Google Ads must be configured as its own destination on every page.
+    // Without this, js/tracking.js's send_to conversions (WhatsApp, phone,
+    // contact) are silently dropped: gtag only routes to destinations it has
+    // loaded, and GTM only loads the Ads destination on /thank-you.html. It
+    // also gives the Ads conversion linker url_passthrough on every page.
+    gtag('config', AW_ID);
 
     var ga = document.createElement('script');
     ga.async = true;
