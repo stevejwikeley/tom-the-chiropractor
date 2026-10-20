@@ -1543,6 +1543,12 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
   gap:6px;
 }
 .cookie-banner__actions .btn{justify-content:center;}
+.cookie-banner__ads-only{
+  background:transparent;
+  color:var(--color-cream);
+  box-shadow:inset 0 0 0 1px var(--cream-cc);
+}
+.cookie-banner__ads-only:hover{box-shadow:inset 0 0 0 1px var(--color-cream);}
 .cookie-banner__decline{
   background:none;
   border:none;

@@ -55,6 +55,7 @@
   // Returning visitors who already accepted get consent restored before the
   // tags load, so there's no brief denied state on every subsequent page.
   if (stored === 'accepted') grantConsent();
+  if (stored === 'ads_only') grantAdsMeasurement();
 
   loadTags();
 
@@ -66,6 +67,17 @@
       analytics_storage: 'granted'
     });
     if (typeof oaiq === 'function') oaiq('consent', true);
+  }
+
+  // The banner's middle option: Google Ads conversion measurement only (did
+  // an ad click lead to a booking). Analytics, ad personalisation and
+  // remarketing, and the OpenAI pixel all stay denied. The cookie policy
+  // describes this option, so keep the two in step.
+  function grantAdsMeasurement() {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted'
+    });
   }
 
   function loadTags() {
@@ -119,11 +131,12 @@
     try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
     hideBanner();
     if (value === 'accepted') grantConsent();
+    if (value === 'ads_only') grantAdsMeasurement();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     // Already chosen, either way: no banner.
-    if (stored === 'accepted' || stored === 'declined') return;
+    if (stored === 'accepted' || stored === 'ads_only' || stored === 'declined') return;
 
     var banner = document.getElementById('cookieBanner');
     if (!banner) return;
@@ -136,9 +149,11 @@
     document.documentElement.style.overflow = 'hidden';
 
     var acceptBtn = document.getElementById('cookieAccept');
+    var adsOnlyBtn = document.getElementById('cookieAdsOnly');
     var declineBtn = document.getElementById('cookieDecline');
     if (acceptBtn) acceptBtn.focus({ preventScroll: true });
     if (acceptBtn) acceptBtn.addEventListener('click', function () { setConsent('accepted'); });
+    if (adsOnlyBtn) adsOnlyBtn.addEventListener('click', function () { setConsent('ads_only'); });
     if (declineBtn) declineBtn.addEventListener('click', function () { setConsent('declined'); });
   });
 })();
