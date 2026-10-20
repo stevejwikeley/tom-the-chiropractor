@@ -112,6 +112,7 @@
   function hideBanner() {
     var el = document.getElementById('cookieBanner');
     if (el) el.hidden = true;
+    document.documentElement.style.overflow = '';
   }
 
   function setConsent(value) {
@@ -126,10 +127,17 @@
 
     var banner = document.getElementById('cookieBanner');
     if (!banner) return;
+    // Shown as a modal over the page (see .cookie-banner in styles.css), so
+    // announce it as a dialog and stop the page scrolling behind it.
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-modal', 'true');
+    banner.setAttribute('aria-label', 'Cookie preferences');
     banner.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
 
     var acceptBtn = document.getElementById('cookieAccept');
     var declineBtn = document.getElementById('cookieDecline');
+    if (acceptBtn) acceptBtn.focus({ preventScroll: true });
     if (acceptBtn) acceptBtn.addEventListener('click', function () { setConsent('accepted'); });
     if (declineBtn) declineBtn.addEventListener('click', function () { setConsent('declined'); });
   });

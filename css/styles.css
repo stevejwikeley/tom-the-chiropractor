@@ -1502,35 +1502,58 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 .site-footer__links a:hover{color:var(--color-teal);}
 
 /* COOKIE CONSENT */
+/* A centred modal over the page, without needing a wrapper element. The
+   huge spread box-shadow dims the page; the transparent ::before covers the
+   viewport and blocks clicks on the page until the visitor chooses (Chrome
+   won't paint a background on it behind the box, hence the shadow). Don't
+   give the banner a transform or any overflow other than visible: either
+   one shrinks ::before to the box. */
 .cookie-banner{
   position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:50;
+  inset:0;
+  margin:auto;
+  z-index:100;
+  width:min(440px, calc(100vw - 32px));
+  height:fit-content;
   background:var(--color-ink);
   color:var(--color-cream);
-  padding:18px var(--space-section-x);
+  padding:28px 24px 20px;
   display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  box-shadow:0 -2px 12px rgba(0,0,0,0.15);
+  flex-direction:column;
+  gap:20px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.35), 0 0 0 100vmax rgba(0,0,0,0.6);
+}
+.cookie-banner::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
 }
 .cookie-banner[hidden]{display:none;}
 .cookie-banner p{
   margin:0;
-  font:400 13px/1.5 var(--font-family);
-  max-width:640px;
+  font:400 14px/1.6 var(--font-family);
   color:var(--cream-cc);
 }
 .cookie-banner a{color:var(--color-teal);}
 .cookie-banner__actions{
   display:flex;
-  gap:10px;
-  flex:none;
+  flex-direction:column;
+  align-items:stretch;
+  gap:6px;
 }
+.cookie-banner__actions .btn{justify-content:center;}
+.cookie-banner__decline{
+  background:none;
+  border:none;
+  padding:10px;
+  font:400 13px/1.4 var(--font-family);
+  color:var(--cream-cc);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  cursor:pointer;
+}
+.cookie-banner__decline:hover{color:var(--color-cream);}
 
 /* STICKY MOBILE BOOK CTA */
 .sticky-cta{
