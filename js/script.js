@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initCopyCodeButtons();
   initNav();
   initNavOffset();
   initReviews();
@@ -7,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initStickyCta();
   initBookingCtaTracking();
-  initPromoBar();
-  initCopyCodeButtons();
 });
 
 // Every "Book" link on the site carries a data-cta value unique to its page
@@ -139,30 +138,8 @@ function initStickyCta() {
   }, { threshold: 0.15 }).observe(target);
 }
 
-// Shows the LAST10 offer bar unless this visitor already dismissed it.
-function initPromoBar() {
-  const bar = document.getElementById('promoBar');
-  if (!bar) return;
-
-  const DISMISS_KEY = 'promoBarDismissed_last10';
-  let dismissed = false;
-  try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
-  if (dismissed) return;
-
-  bar.hidden = false;
-
-  const closeBtn = document.getElementById('promoClose');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      bar.hidden = true;
-      try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
-    });
-  }
-}
-
-// Every ".copy-code" button (the promo bar's and the pricing card's)
-// copies its code to the clipboard so it's easy to paste into WhatsApp or
-// the booking widget's notes field.
+// Every ".copy-code" button copies its data-code to the clipboard, so the
+// clinic address is easy to paste into a maps app or a message.
 function initCopyCodeButtons() {
   if (!navigator.clipboard) return;
 

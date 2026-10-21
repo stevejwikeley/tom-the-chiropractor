@@ -57,7 +57,7 @@ own kill threshold (£100+ with no path down).
    - `AG3 | Back Pain` → `https://www.tomthechiropractor.co.uk/conditions/back-pain.html`
    - `AG4 | Neck & Headaches` → `https://www.tomthechiropractor.co.uk/conditions/neck-pain.html` and/or `headaches.html` (split into two ad groups if you want separate message-match for each)
    - `AG5 | Sciatica (ASA)` → `https://www.tomthechiropractor.co.uk/conditions/sciatica.html`
-   - `AG6 | Convenience` → decide which page best sells "convenient/easy parking/appointments until 7pm" — likely the homepage's `#pillars` or `#find` anchor
+   - `AG6 | Convenience` → decide which page best sells "convenient/easy parking/appointments until 8pm" — likely the homepage's `#pillars` or `#find` anchor
 
 ## 3. Fix or drop AG7 Competitor
 
@@ -105,8 +105,7 @@ Free Ad Strength/CTR gains — these don't cost anything extra to add.
 
 **Callouts:**
 "5.0★ on Google (18 reviews)" · "GCC-registered chiropractor" ·
-"Fully insured" · "Appointments until 7pm" · "Park 30 seconds away" ·
-"LAST10: £25 off your first visit"
+"Fully insured" · "Appointments until 8pm" · "Park 30 seconds away"
 
 **Call extension:** `07871 283457`. While you're there, check whether
 "Calls from ads" is set up as its own conversion action (Ads → Goals →
