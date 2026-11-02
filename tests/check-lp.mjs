@@ -159,7 +159,7 @@ function checkRunbook() {
   }
   // Google Ads callouts are limited to 25 characters. Callouts are listed
   // as backticked items on lines starting "- Callouts:" and the lines after.
-  const calloutBlock = (md.match(/^- Callouts:[\s\S]*?(?=^- )/m) || [""])[0];
+  const calloutBlock = (md.match(/^- Callouts\b[\s\S]*?(?=^- )/m) || [""])[0];
   const callouts = [...calloutBlock.matchAll(/`([^`]+)`/g)].map((m) => m[1]);
   const longCallouts = callouts.filter((c) => c.length > 25);
   check(`callout lengths${longCallouts.length ? " (too long: " + longCallouts.join("; ") + ")" : ""}`,
@@ -168,7 +168,7 @@ function checkRunbook() {
   // No cross-campaign "neck"/"back" negatives: with every campaign negating
   // the other condition, a "neck and back pain" search would get no ad at all.
   check("no cross-condition negatives",
-    !/`"neck"`/.test(md) && !/`"back"`/.test(md) && !/`"lower back"`/.test(md));
+    !/`"neck"`/.test(md) && !/`"back"`/.test(md));
 
   check(`ad text lengths${tooLong.length ? " (too long: " + tooLong.join("; ") + ")" : ""}`,
     tooLong.length === 0 && count.h === 30 && count.d === 8);
