@@ -134,21 +134,24 @@ function checkRunbook() {
   check(`runbook URLs${bad.length ? " (bad: " + bad.join(", ") + ")" : ""}`,
     bad.length === 0 && expected.every((u) => found.includes(u)));
 
-  // Ad text lists: a "Headlines" or "Descriptions" heading/label line,
-  // followed by numbered lines "1. text" until a blank line.
+  // Ad text lists: a line that is exactly **Headlines ...** or
+  // **Descriptions ...**, followed by numbered lines "1. text" until a blank
+  // line. "(pin ...)" notes after the text don't count toward the length.
   const tooLong = [];
-  let mode = null, count = { h: 0, d: 0 };
+  let mode = null, inList = 0;
+  const count = { h: 0, d: 0 };
   for (const line of md.split("\n")) {
-    if (/^\**(#+\s*)?.*Headlines\b/i.test(line)) { mode = "h"; continue; }
-    if (/^\**(#+\s*)?.*Descriptions\b/i.test(line)) { mode = "d"; continue; }
+    if (/^\*\*Headlines\b[^*]*\*\*\s*$/.test(line)) { mode = "h"; inList = 0; continue; }
+    if (/^\*\*Descriptions\b[^*]*\*\*\s*$/.test(line)) { mode = "d"; inList = 0; continue; }
     const item = line.match(/^\s*\d+\.\s+(.*?)\s*(?:\(pin[^)]*\))?\s*$/);
     if (mode && item) {
       const text = item[1].replace(/`/g, "");
       count[mode]++;
+      inList++;
       if (text.length > (mode === "h" ? 30 : 90)) tooLong.push(`${text} (${text.length})`);
     } else if (mode && line.trim() === "") {
       // blank line between heading and list is fine; a blank after items ends it
-      if (count[mode] > 0) mode = null;
+      if (inList > 0) mode = null;
     }
   }
   check(`ad text lengths${tooLong.length ? " (too long: " + tooLong.join("; ") + ")" : ""}`,
