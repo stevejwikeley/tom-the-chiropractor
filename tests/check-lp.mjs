@@ -86,6 +86,18 @@ function checkPage(slug) {
   check(`${slug}: facts${missingFacts.length ? " (missing: " + missingFacts.join(", ") + ")" : ""}`,
     missingFacts.length === 0 && has60);
 
+  // Each review card must carry the same text as that reviewer's card on
+  // index.html or the condition page, so a copy can't pair one person's
+  // name with someone else's words.
+  const sources = [read("index.html"), read(`conditions/${slug}.html`)];
+  const cardRe = /<p class="review-card__text">([^<]*)<\/p>\s*(?:<\/div>\s*)?<p class="review-card__author">([^<]*)<\/p>/g;
+  const known = new Map();
+  for (const src of sources) for (const m of src.matchAll(cardRe)) known.set(m[2], m[1]);
+  const cards = [...html.matchAll(cardRe)];
+  const mismatched = cards.filter((m) => known.get(m[2]) !== m[1]).map((m) => m[2]);
+  check(`${slug}: review text matches source${mismatched.length ? " (wrong: " + mismatched.join(", ") + ")" : ""}`,
+    cards.length === cfg.reviewers.length && mismatched.length === 0);
+
   const missingReviews = cfg.reviewers.filter((r) => !html.includes(r));
   check(`${slug}: reviews${missingReviews.length ? " (missing: " + missingReviews.join(", ") + ")" : ""}`,
     missingReviews.length === 0);
