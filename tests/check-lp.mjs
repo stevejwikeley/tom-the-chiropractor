@@ -39,7 +39,7 @@ const ALLOWED_HREF = [
   /^tel:\+447871283457$/,
   /^https:\/\/wa\.me\/447871283457$/,
   /^https:\/\/tomthechiro\.neptune\.practicehub\.io\/?$/,
-  /^https:\/\/www\.google\.com\/maps\//,
+  /^https:\/\/www\.google\.com\/maps[/?]/,
   /^\.\.\/(cookie-policy|privacy-policy|cancellation-policy)\.html$/,
 ];
 

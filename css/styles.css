@@ -1857,3 +1857,41 @@ a.guide-card:hover .condition-card__arrow{transform:translateX(3px);}
   .guide-notice,.condition-callout{border:1px solid #000;background:#fff;}
 }
 
+
+/* Landing pages (lp/)
+   Paid-only condition pages. They reuse the homepage and condition-page
+   components; these rules only cover what's different: a header with no
+   nav, a rating and contact line in the hero, and section spacing for
+   condition-page__body blocks sitting between full-width sections. */
+.lp-header__brand{cursor:default;}
+.lp-hero__rating{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 18px;
+  font:600 14px/1.4 var(--font-family);
+  color:var(--color-ink);
+}
+.lp-hero__rating .review-card__stars{margin:0;}
+.lp-hero__contact{
+  margin-top:24px;
+  font:var(--type-body-sm);
+  color:var(--ink-b3);
+}
+.lp-body{padding-top:var(--space-section-y);padding-bottom:var(--space-section-y);}
+.lp-body .condition-section h2 + p + h2,
+.lp-body .condition-section p + h2{margin-top:32px;}
+.lp-pricing__block{
+  margin:28px 0;
+  font:var(--type-body-sm);
+  color:var(--cream-b3);
+  max-width:640px;
+}
+.lp .book__widget .condition-cta__note{margin-top:16px;}
+@media (max-width: 700px){
+  /* On a phone the H1 and Book button need to be above the fold for an ad
+     click, so the photo moves below the text and shrinks. */
+  .lp-hero{padding-top:32px;}
+  .lp-hero .hero__media{order:0;max-width:70%;}
+  .lp-hero .hero__media img{max-height:280px;object-fit:cover;}
+}
