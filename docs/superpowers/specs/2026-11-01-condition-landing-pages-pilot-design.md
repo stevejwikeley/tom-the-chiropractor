@@ -125,7 +125,7 @@ Deliverable: `docs/google-ads-lp-pilot.md` (under `docs/`, which `.vercelignore`
 ### Negatives
 
 - A new shared negative keyword list, "Non-patient intent", applied to all three campaigns: jobs, job, course, training, degree, NHS, free, exercises, stretches, DIY, "what causes", "symptoms of", physiotherapist, osteopath.
-- Cross-negatives so the campaigns don't compete: "neck" on Back Pain LP, and "back", "lower back" on Neck Pain LP.
+- No cross-negatives between the two LP campaigns. Their keywords are already condition-specific, and negating "neck" on Back and "back" on Neck (with Rebuild negating both) would leave "neck and back pain" searches with no ad at all. (Changed after the final review.)
 - Back and neck condition terms ("back pain", "lower back", "neck pain", "stiff neck") as phrase negatives on Rebuild, so those searches go to the LP campaigns.
 
 ### Tidying up Rebuild

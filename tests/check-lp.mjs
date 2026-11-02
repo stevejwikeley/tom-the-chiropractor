@@ -106,8 +106,11 @@ function checkPage(slug) {
     /When I(?:'|&#39;|’)m not the right person/.test(html) && html.includes("A&amp;E"));
 
   const bookAt = html.indexOf('id="book"');
+  // Match the visible link itself: the widget's loader script inside #book
+  // contains the same domain, so a bare domain search would pass without it.
+  const bookSection = bookAt === -1 ? "" : html.slice(bookAt, html.indexOf("</section>", bookAt));
   check(`${slug}: fallback booking link`,
-    bookAt !== -1 && html.indexOf("https://tomthechiro.neptune.practicehub.io", bookAt) !== -1);
+    /<a href="https:\/\/tomthechiro\.neptune\.practicehub\.io\/?"[^>]*>Open online booking/.test(bookSection));
 
   check(`${slug}: scripts`,
     ["../js/cookie-consent.js", "../js/tracking.js", "../js/script.js"]
@@ -154,6 +157,19 @@ function checkRunbook() {
       if (inList > 0) mode = null;
     }
   }
+  // Google Ads callouts are limited to 25 characters. Callouts are listed
+  // as backticked items on lines starting "- Callouts:" and the lines after.
+  const calloutBlock = (md.match(/^- Callouts:[\s\S]*?(?=^- )/m) || [""])[0];
+  const callouts = [...calloutBlock.matchAll(/`([^`]+)`/g)].map((m) => m[1]);
+  const longCallouts = callouts.filter((c) => c.length > 25);
+  check(`callout lengths${longCallouts.length ? " (too long: " + longCallouts.join("; ") + ")" : ""}`,
+    callouts.length > 0 && longCallouts.length === 0);
+
+  // No cross-campaign "neck"/"back" negatives: with every campaign negating
+  // the other condition, a "neck and back pain" search would get no ad at all.
+  check("no cross-condition negatives",
+    !/`"neck"`/.test(md) && !/`"back"`/.test(md) && !/`"lower back"`/.test(md));
+
   check(`ad text lengths${tooLong.length ? " (too long: " + tooLong.join("; ") + ")" : ""}`,
     tooLong.length === 0 && count.h === 30 && count.d === 8);
 }

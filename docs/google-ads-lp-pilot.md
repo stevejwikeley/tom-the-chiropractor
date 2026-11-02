@@ -101,9 +101,10 @@ Once you have the Rebuild search-terms export, add any back-pain searches
 from it that converted or got clicks here as well.
 
 **Negatives on this campaign:** apply the **Non-patient intent** list
-(Keywords → Negative keywords → + → Use negative keyword list). Also add
-these campaign negatives so it doesn't compete with the neck campaign:
-`"neck"`.
+(Keywords → Negative keywords → + → Use negative keyword list). Don't add
+"neck" as a negative here, or "back" on the neck campaign: the keywords are
+already condition-specific, and cross-negatives would leave a search like
+"neck and back pain chiropractor" with no ad from any campaign.
 
 **Responsive search ad**
 
@@ -139,9 +140,9 @@ Display path: `back-pain` / `loughborough`
 To pin: click the pin icon next to a headline → choose position.
 
 **Assets** (campaign level):
-- Callouts: `5.0★ on Google (18 reviews)`, `GCC-registered chiropractor`,
-  `Fully insured`, `Appointments until 8pm`, `Park 30 seconds away`.
-  If the ★ is rejected, use `Rated 5.0 on Google`.
+- Callouts (25 characters max each): `Rated 5.0 on Google`,
+  `GCC-Registered Chiro`, `Fully insured`, `Appointments until 8pm`,
+  `Park 30 seconds away`.
 - Call asset: `07871 283457`.
 - Structured snippet, header **Services**: Back pain, Neck pain, Headaches,
   Sciatica, Joint & muscle pain.
@@ -176,8 +177,8 @@ Same settings as section 3 (networks, location, bidding, schedule, created
 Headache keywords from the old AG4 are **not** added here. They wait for
 their own landing page.
 
-**Negatives on this campaign:** the **Non-patient intent** list, plus
-`"back"` and `"lower back"`.
+**Negatives on this campaign:** the **Non-patient intent** list only (see
+the note in section 3 on why there are no cross-negatives).
 
 **Responsive search ad**
 
