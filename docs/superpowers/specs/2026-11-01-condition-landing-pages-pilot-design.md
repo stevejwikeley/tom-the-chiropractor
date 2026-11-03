@@ -40,12 +40,12 @@ Two files: `lp/back-pain.html` and `lp/neck-pain.html`. Plain static HTML, in th
    - The H1 matches the search intent: "Back pain treatment in Loughborough" / "Neck pain treatment in Loughborough".
    - A one-line promise below it, plus the 5.0★ on Google, 18 reviews badge.
    - Primary button "Book your appointment" pointing at `#book`. Secondary options: call `07871 283457` and WhatsApp, using the same links as the homepage.
-   - One condition photo: back uses `images/action/back/lower-back-adjustment`, neck uses `images/action/neck/neck-treatment-lying-down`. Use the existing 480w/800w `srcset` and `fetchpriority="high"`.
+   - Tom's headshot (`images/headshots/1Z5A8513-yellow`, the same as the homepage hero), with the existing 480w/800w `srcset` and `fetchpriority="high"`. On phones it sits below the text so the H1 and Book button stay above the fold. (Changed 2026-11-03 from a condition photo: for a one-person practice the person is the product, and it keeps the hero identical to the homepage baseline.)
 3. **"Does this sound like you?"** The symptom list, copied from the matching `conditions/*.html` page.
 4. **Reviews.** Three or four Google reviews that mention that body area, using the existing `review-card` markup.
    - Back: Lewis Edwards, Carolyn Quinn, Pepe Lois, Gurpreet L.
    - Neck: Megan, Alisonlee520, Ramesh Mistry.
-5. **What's going on and how I help.** At most two short paragraphs, condensed from the condition page's "What's usually going on" and "How I can help" sections. No new clinical claims.
+5. **What's going on and how I help.** At most two short paragraphs, condensed from the condition page's "What's usually going on" and "How I can help" sections. No new clinical claims. Followed by a "What treatment looks like" carousel with the same three photos as the matching condition page.
 6. **How it works.** The homepage's three pillars, with the copy unchanged.
 7. **Pricing.** Initial consultation £70 (60 minutes) and follow-up £45. The block of 5 (£200) appears as one line. No links off the page.
 8. **Booking (`id="book"`).** The PracticeHub widget embed and the appointment times, copied from the homepage `book` section, plus the "Having trouble with the booking form?" fallback link.

@@ -1890,8 +1890,7 @@ a.guide-card:hover .condition-card__arrow{transform:translateX(3px);}
 .lp .book__widget .condition-cta__note{margin-top:16px;}
 @media (max-width: 700px){
   /* On a phone the H1 and Book button need to be above the fold for an ad
-     click, so the photo moves below the text and shrinks. */
+     click, so Tom's photo moves below the text. */
   .lp-hero{padding-top:32px;}
-  .lp-hero .hero__media{order:0;max-width:70%;}
-  .lp-hero .hero__media img{max-height:280px;object-fit:cover;}
+  .lp-hero .hero__media{order:0;max-width:60%;}
 }

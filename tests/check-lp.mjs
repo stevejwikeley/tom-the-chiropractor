@@ -112,6 +112,16 @@ function checkPage(slug) {
   check(`${slug}: fallback booking link`,
     /<a href="https:\/\/tomthechiro\.neptune\.practicehub\.io\/?"[^>]*>Open online booking/.test(bookSection));
 
+  // Hero shows Tom's headshot (same as the homepage); the treatment photos
+  // sit lower down in the same carousel the condition page uses.
+  check(`${slug}: hero is Tom's headshot`,
+    /<div class="hero__media[^"]*">\s*<img src="\.\.\/images\/headshots\/1Z5A8513-yellow\.jpg"/.test(html));
+  const slidesOf = (src) => [...src.matchAll(/<div class="carousel__slide[^"]*"><img src="([^"]+)"/g)].map((m) => m[1]);
+  const lpSlides = slidesOf(html);
+  const srcSlides = slidesOf(read(`conditions/${slug}.html`));
+  check(`${slug}: treatment photo carousel (${lpSlides.length} slides)`,
+    lpSlides.length === 3 && lpSlides.join() === srcSlides.join());
+
   check(`${slug}: scripts`,
     ["../js/cookie-consent.js", "../js/tracking.js", "../js/script.js"]
       .every((s) => html.includes(`<script src="${s}"></script>`)));
