@@ -5,12 +5,13 @@
 // called or whether it exists.
 //
 // A guide that belongs to two body areas is defined once and listed in
-// both groups. Six of them are, which is why there are 24 guides but 30
+// both groups. Six of them are, which is why there are 25 guides but 31
 // entries in the lists.
 
 export default {
   guides: {
     "non-specific-low-back-pain": { "title": "Understanding Non-Specific Low Back Pain" },
+    "sacroiliac-joint-pain": { "title": "Understanding Your Sacroiliac Joint Pain" },
     "low-back-pain": { "title": "Low Back Pain in Your 30s, 40s and 50s" },
     "low-back-pain-over-60": { "title": "Low Back Pain Over 60" },
     "back-pain-and-sciatica": { "title": "Back Pain and Sciatica" },
@@ -40,6 +41,7 @@ export default {
       "heading": "Low back and leg",
       "slugs": [
         "non-specific-low-back-pain",
+        "sacroiliac-joint-pain",
         "low-back-pain",
         "low-back-pain-over-60",
         "back-pain-and-sciatica",
