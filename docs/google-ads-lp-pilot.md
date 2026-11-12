@@ -134,7 +134,7 @@ Display path: `back-pain` / `loughborough`
 
 1. Back pain? Get a proper assessment and hands-on treatment in central Loughborough.
 2. 60-minute first appointment for £70. See the same chiropractor at every visit.
-3. Rated 5.0 on Google from 18 reviews. Appointments until 8pm, parking 30 seconds away.
+3. Rated 5.0 on Google from 19 reviews. Appointments until 8pm, parking 30 seconds away.
 4. No GP referral needed. Book online in under a minute and choose a time that suits you.
 
 To pin: click the pin icon next to a headline → choose position.
@@ -208,7 +208,7 @@ Display path: `neck-pain` / `loughborough`
 
 1. Stiff neck? Get a proper assessment and hands-on treatment in central Loughborough.
 2. 60-minute first appointment for £70. See the same chiropractor at every visit.
-3. Rated 5.0 on Google from 18 reviews. Appointments until 8pm, parking 30 seconds away.
+3. Rated 5.0 on Google from 19 reviews. Appointments until 8pm, parking 30 seconds away.
 4. No GP referral needed. Book online in under a minute and choose a time that suits you.
 
 **Assets:** same callouts, call asset and structured snippet as section 3.

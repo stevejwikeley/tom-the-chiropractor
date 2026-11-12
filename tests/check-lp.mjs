@@ -32,7 +32,7 @@ const PAGES = {
   },
 };
 
-const FACTS = ["£70", "£45", "£200", "9am – 8pm", "9am – 3pm", "18 reviews", "07871 283457"];
+const FACTS = ["£70", "£45", "£200", "9am – 8pm", "9am – 3pm", "19 reviews", "07871 283457"];
 
 const ALLOWED_HREF = [
   /^#/,
@@ -130,7 +130,7 @@ function checkPage(slug) {
 function checkGlobal() {
   check("not in sitemap", !read("sitemap.xml").includes("/lp/") && !read("llms.txt").includes("/lp/"));
   check("index.html facts unchanged",
-    ["£70", "£45", "£200", "18 reviews"].every((f) => read("index.html").includes(f)));
+    ["£70", "£45", "£200", "19 reviews"].every((f) => read("index.html").includes(f)));
 }
 
 function checkRunbook() {

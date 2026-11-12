@@ -104,7 +104,7 @@ Free Ad Strength/CTR gains — these don't cost anything extra to add.
 - "Reviews" → `https://www.tomthechiropractor.co.uk/#reviews`
 
 **Callouts:**
-"5.0★ on Google (18 reviews)" · "GCC-registered chiropractor" ·
+"5.0★ on Google (19 reviews)" · "GCC-registered chiropractor" ·
 "Fully insured" · "Appointments until 8pm" · "Park 30 seconds away"
 
 **Call extension:** `07871 283457`. While you're there, check whether
