@@ -16,7 +16,7 @@
 - No `nav__links` nav, no menu toggle. Header brand is not a link.
 - `data-cta` prefixes: `lp-back_` / `lp-neck_`, suffixes from `_header`, `_hero`, `_mid-page`, `_pricing`, `_sticky-mobile`.
 - Allowed `href`s only: `#book` (and other in-page `#` anchors), `tel:+447871283457`, `https://wa.me/447871283457`, `https://tomthechiro.neptune.practicehub.io`, Google Maps directions, `../cookie-policy.html`, `../privacy-policy.html`, and `/favicon*`/`/apple-touch-icon.png`/CSS hrefs in `<head>`.
-- Facts must match `index.html` on the day: £70 (60 minutes), £45, £200 block of 5; Monday and Thursday 9am – 8pm, Saturday 9am – 3pm; 5.0 on Google from 18 reviews; 07871 283457.
+- Facts must match `index.html` on the day: £70 (60 minutes), £45, £200 block of 5; Monday and Thursday 9am to 8pm, Saturday 9am to 3pm; 5.0 on Google from 18 reviews; 07871 283457.
 - No new clinical claims; copy is reused or shortened from existing pages. Only new wording: hero promise line and ad copy.
 - Back reviews: Lewis Edwards, Carolyn Quinn, Pepe Lois, Gurpreet L. Neck reviews: Megan, Alisonlee520, Ramesh Mistry.
 - Hero images: back `images/action/back/lower-back-adjustment`, neck `images/action/neck/neck-treatment-lying-down` (480w/800w srcset, `fetchpriority="high"`).
@@ -50,7 +50,7 @@
   - `one #book` — exactly one `id="book"`
   - `cta prefix` — every `data-cta="..."` starts with the prefix; at least `_hero`, `_sticky-mobile` present
   - `links allowed` — every `href` in `<body>` matches the Global Constraints allow-list
-  - `facts` — contains `£70`, `£45`, `£200`, `60 minutes` (or `60-minute`), `9am – 8pm`, `9am – 3pm`, `18 reviews`, `07871 283457`; and `index.html` still contains `18 reviews` and `£70` (so drift fails loudly)
+  - `facts` — contains `£70`, `£45`, `£200`, `60 minutes` (or `60-minute`), `9am to 8pm`, `9am to 3pm`, `18 reviews`, `07871 283457`; and `index.html` still contains `18 reviews` and `£70` (so drift fails loudly)
   - `reviews` — contains each reviewer name for that slug
   - `safety callout` — contains `When I'm not the right person` (accept `I&#39;m`/`I’m`) and `A&amp;E`
   - `fallback booking link` — `https://tomthechiro.neptune.practicehub.io` appears after `id="book"`

@@ -32,7 +32,7 @@ const PAGES = {
   },
 };
 
-const FACTS = ["£70", "£45", "£200", "9am – 8pm", "9am – 3pm", "19 reviews", "07871 283457"];
+const FACTS = ["£70", "£45", "£200", "9am to 8pm", "9am to 3pm", "19 reviews", "07871 283457"];
 
 const ALLOWED_HREF = [
   /^#/,
