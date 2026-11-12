@@ -1477,6 +1477,15 @@ a.condition-card:hover .condition-card__arrow{transform:translateX(3px);}
 }
 .cookie-banner__decline:hover{color:var(--color-cream);}
 
+/* The two column "why" layout needs 660px + 56px gap + a 400px aside, so it
+   stops fitting at 1116px. The collapse used to fire only at 700px, which
+   left every viewport between those two widths scrolling sideways. */
+@media (max-width: 1120px){
+  .why__layout{grid-template-columns:1fr;gap:28px;}
+  .why__aside{order:-1;width:400px;max-width:100%;margin:0 auto;}
+  .why__bio{margin-top:0;padding-top:16px;}
+}
+
 /* STICKY MOBILE BOOK CTA */
 .sticky-cta{
   display:none;

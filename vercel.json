@@ -11,6 +11,41 @@
       "permanent": true
     },
     {
+      "source": "/about",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookie-policy.html",
+      "permanent": true
+    },
+    {
+      "source": "/cancellation-policy",
+      "destination": "/cancellation-policy.html",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html",
+      "permanent": true
+    },
+    {
+      "source": "/desk-check",
+      "destination": "/desk-check.html",
+      "permanent": true
+    },
+    {
+      "source": "/block-booking-terms",
+      "destination": "/block-booking-terms.html",
+      "permanent": true
+    },
+    {
       "source": "/conditions/back-pain-v2.html",
       "destination": "/conditions/back-pain.html",
       "permanent": true
