@@ -5,7 +5,7 @@
 // called or whether it exists.
 //
 // A guide that belongs to two body areas is defined once and listed in
-// both groups. Six of them are, which is why there are 26 guides but 32
+// both groups. Six of them are, which is why there are 27 guides but 33
 // entries in the lists.
 
 export default {
@@ -33,6 +33,7 @@ export default {
     "upper-back-pain-over-60": { "title": "Upper Back Pain Over 60" },
     "shoulder-pain": { "title": "Shoulder Pain in Your 30s, 40s and 50s" },
     "shoulder-pain-over-60": { "title": "Shoulder Pain Over 60" },
+    "subacromial-shoulder-routine": { "title": "Your 8 Week Subacromial Shoulder Routine" },
     "tennis-elbow": { "title": "Tennis Elbow" },
     "ankle-sprain-grade-1": { "title": "Ankle Sprain, Grade 1" },
     "ankle-sprain-grade-2": { "title": "Ankle Sprain, Grade 2" }
@@ -82,6 +83,7 @@ export default {
       "slugs": [
         "shoulder-pain",
         "shoulder-pain-over-60",
+        "subacromial-shoulder-routine",
         "tennis-elbow",
         "neck-disc-pain-and-arm-symptoms"
       ]
