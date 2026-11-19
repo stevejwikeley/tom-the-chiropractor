@@ -5,7 +5,7 @@
 // called or whether it exists.
 //
 // A guide that belongs to two body areas is defined once and listed in
-// both groups. Six of them are, which is why there are 25 guides but 31
+// both groups. Six of them are, which is why there are 26 guides but 32
 // entries in the lists.
 
 export default {
@@ -27,6 +27,7 @@ export default {
     "neck-disc-pain-and-arm-symptoms": { "title": "Neck Disc Pain and Arm Symptoms" },
     "neck-pain-after-a-disc-settles": { "title": "Your Neck After a Disc Flare-Up Has Settled" },
     "neck-and-upper-back-pain": { "title": "Mechanical Neck and Upper Back Pain" },
+    "neck-turning-plan": { "title": "Your 12 Week Neck Turning Plan" },
     "headaches-from-the-neck": { "title": "Headaches That Come From the Neck" },
     "upper-back-pain": { "title": "Upper Back Pain in Your 30s, 40s and 50s" },
     "upper-back-pain-over-60": { "title": "Upper Back Pain Over 60" },
@@ -62,6 +63,7 @@ export default {
         "neck-disc-pain-and-arm-symptoms",
         "neck-pain-after-a-disc-settles",
         "neck-and-upper-back-pain",
+        "neck-turning-plan",
         "headaches-from-the-neck",
         "neck-and-back-pain-together",
         "neck-and-back-pain-with-diabetes"
