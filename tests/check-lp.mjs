@@ -1,4 +1,4 @@
-// Checks the paid landing pages under lp/ against the rules in
+// Checks the landing pages under lp/ against the rules in
 // docs/superpowers/specs/2026-11-01-condition-landing-pages-pilot-design.md:
 //   hidden from search, no site nav, one booking section, CTA prefixes,
 //   links that only keep the visitor on the page (or book/call/message),
@@ -29,6 +29,15 @@ const PAGES = {
     prefix: "lp-neck_",
     campaign: "lp-neck",
     reviewers: ["Megan", "Alisonlee520", "Ramesh Mistry"],
+  },
+  // Reached by the QR code on the Rothley Park advert, not by an ad,
+  // and it has no condition page of its own: source says which page
+  // its treatment photos and review text must match.
+  golf: {
+    prefix: "lp-golf_",
+    paid: false,
+    source: "conditions/back-pain.html",
+    reviewers: ["Mark Tebbatt", "Megan", "Mel"],
   },
 };
 
@@ -89,7 +98,8 @@ function checkPage(slug) {
   // Each review card must carry the same text as that reviewer's card on
   // index.html or the condition page, so a copy can't pair one person's
   // name with someone else's words.
-  const sources = [read("index.html"), read(`conditions/${slug}.html`)];
+  const sourcePage = cfg.source || `conditions/${slug}.html`;
+  const sources = [read("index.html"), read(sourcePage)];
   const cardRe = /<p class="review-card__text">([^<]*)<\/p>\s*(?:<\/div>\s*)?<p class="review-card__author">([^<]*)<\/p>/g;
   const known = new Map();
   for (const src of sources) for (const m of src.matchAll(cardRe)) known.set(m[2], m[1]);
@@ -118,7 +128,7 @@ function checkPage(slug) {
     /<div class="hero__media[^"]*">\s*<img src="\.\.\/images\/headshots\/1Z5A8513-yellow\.jpg"/.test(html));
   const slidesOf = (src) => [...src.matchAll(/<div class="carousel__slide[^"]*"><img src="([^"]+)"/g)].map((m) => m[1]);
   const lpSlides = slidesOf(html);
-  const srcSlides = slidesOf(read(`conditions/${slug}.html`));
+  const srcSlides = slidesOf(read(sourcePage));
   check(`${slug}: treatment photo carousel (${lpSlides.length} slides)`,
     lpSlides.length === 3 && lpSlides.join() === srcSlides.join());
 
@@ -140,8 +150,12 @@ function checkRunbook() {
   if (!exists) return;
   const md = read(path);
 
-  const expected = Object.entries(PAGES).map(([slug, c]) =>
-    `${SITE}/lp/${slug}.html?utm_source=google&utm_medium=cpc&utm_campaign=${c.campaign}`);
+  // A page with paid: false has no Google Ads campaign, so the runbook
+  // is not expected to carry a final URL for it.
+  const expected = Object.entries(PAGES)
+    .filter(([, c]) => c.paid !== false)
+    .map(([slug, c]) =>
+      `${SITE}/lp/${slug}.html?utm_source=google&utm_medium=cpc&utm_campaign=${c.campaign}`);
   const found = md.match(/https:\/\/www\.tomthechiropractor\.co\.uk\/lp\/[^\s`)>]*/g) || [];
   const bad = found.filter((u) => !expected.includes(u));
   check(`runbook URLs${bad.length ? " (bad: " + bad.join(", ") + ")" : ""}`,

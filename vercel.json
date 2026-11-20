@@ -46,6 +46,11 @@
       "permanent": true
     },
     {
+      "source": "/golf",
+      "destination": "/lp/golf.html?utm_source=rothley-park&utm_medium=qr&utm_campaign=golf",
+      "permanent": false
+    },
+    {
       "source": "/conditions/back-pain-v2.html",
       "destination": "/conditions/back-pain.html",
       "permanent": true
