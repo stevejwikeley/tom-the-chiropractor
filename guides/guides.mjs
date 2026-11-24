@@ -5,7 +5,7 @@
 // called or whether it exists.
 //
 // A guide that belongs to two body areas is defined once and listed in
-// both groups. Six of them are, which is why there are 27 guides but 33
+// both groups. Six of them are, which is why there are 29 guides but 35
 // entries in the lists.
 
 export default {
@@ -36,7 +36,9 @@ export default {
     "subacromial-shoulder-routine": { "title": "Your 8 Week Subacromial Shoulder Routine" },
     "tennis-elbow": { "title": "Tennis Elbow" },
     "ankle-sprain-grade-1": { "title": "Ankle Sprain, Grade 1" },
-    "ankle-sprain-grade-2": { "title": "Ankle Sprain, Grade 2" }
+    "ankle-sprain-grade-2": { "title": "Ankle Sprain, Grade 2" },
+    "groin-strength-plan-sport": { "title": "Getting Your Groin Strong Again, For Sport" },
+    "groin-strength-plan-everyday": { "title": "Getting Your Groin Strong Again, For Everyday Life" }
   },
   groups: [
     {
@@ -92,6 +94,13 @@ export default {
       "heading": "Hip",
       "slugs": [
         "hip-arthritis-and-low-back-pain"
+      ]
+    },
+    {
+      "heading": "Groin",
+      "slugs": [
+        "groin-strength-plan-sport",
+        "groin-strength-plan-everyday"
       ]
     },
     {
